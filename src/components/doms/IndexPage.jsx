@@ -1,0 +1,22 @@
+const IndexPage = () => {
+  return (
+    <div className="">
+      <section 
+        className="h-screen" 
+        style={{ backgroundColor: 'rgb(218, 174, 53)' }}
+      >
+        三五成群
+        {[0,0,0,0,0,0,0].map((k, i) => <button key={`s1-${i}`} onClick={()=>alert(`button ${i}`)}>{i}</button>)}
+      </section>
+      <section 
+        className="h-screen" 
+        style={{ backgroundColor: 'rgb(110, 198, 109)' }}
+      >
+        破浪前行
+        {[0,0,0,0,0,0,0].map((k, i) => <button key={`s2-${i}`} onClick={()=>alert(`button ${i}`)}>{i}</button>)}
+      </section>
+    </div>
+  )
+}
+
+export default IndexPage
