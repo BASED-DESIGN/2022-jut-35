@@ -28,5 +28,6 @@ const IndexPage = forwardRef((props, ref) => {
     </div>
   )
 })
+IndexPage.displayName = "IndexPage"
 
 export default IndexPage

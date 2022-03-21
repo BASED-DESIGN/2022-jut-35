@@ -101,20 +101,13 @@ export default function PresentationControls({
 
   const bindWheel = useWheel(({ wheeling, delta: [deltaX, deltaY], memo: [oldX, oldY] = spring.position.animation.to || pInitial }) => {
     // console.log(deltaX, deltaY, oldX, oldY)
-    const y = MathUtils.clamp(oldY + (-deltaY / size.height) * speed, ...pHeight)
+    const y = MathUtils.clamp(oldY + (-deltaY / size.height) * speed * 3, ...pHeight)
     api.start({
-      position: snap && !wheeling ? pInitial : [0, y, 0],
+      position: snap && !wheeling ? pInitial : [position[0], y, position[2]],
     })
   }, {
     target: gl.domElement
   })
-
-  // const bindScroll = useScroll((props) => {
-  //   console.log(props)
-    
-  // }, {
-  //   target: gl.domElement
-  // })
 
   return (
     <a.group {...bind?.()} {...(spring)}>

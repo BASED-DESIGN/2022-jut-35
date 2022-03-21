@@ -1,17 +1,18 @@
 import { MathUtils } from 'three'
 import { useThree } from '@react-three/fiber'
 import { Html } from '@react-three/drei'
-import { useState, useRef } from 'react'
+import { useRef, cloneElement } from 'react'
 import { useWheel } from '@use-gesture/react'
-import { cloneElement } from 'react/cjs/react.production.min'
+import useStore from '@helpers/store'
 
 const Dom = props => {
   const { children } = props
   const { width, height } = useThree((state) => state.size)
   const gl = useThree(state => state.gl)
-  const [offset, setOffset] = useState(0)
+  const offset = useStore(state => state.offset)
+  const setOffset = useStore(state => state.setOffset)
   const ref = useRef()
-  
+
   const bind = useWheel(({ wheeling, delta: [deltaX, deltaY] }) => {
     // console.log(ref.current.offsetHeight)
   //   // console.log('hi', deltaY)
@@ -31,7 +32,7 @@ const Dom = props => {
       <planeBufferGeometry attach="geometry" args={[width, height]} />
       <meshPhongMaterial 
         attach="material" 
-        // color="green"
+        color="green"
       >
         <Html
           // position={[0, 0, 0.51]}

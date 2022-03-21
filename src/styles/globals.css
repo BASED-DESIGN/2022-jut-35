@@ -6,6 +6,7 @@
   * {
     box-sizing: border-box;
     /* -webkit-overflow-scrolling: touch; */
+    overscroll-behavior: none;
   }
 
   html,
