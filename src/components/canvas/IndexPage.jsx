@@ -78,13 +78,9 @@ const IndexPage = () => {
           />
         </group>
       </Suspense>
-      <directionalLight position={[5, 5, 5]} />
+      <directionalLight position={[0, 0, 0]} intensity={0.5} />
       <ambientLight />
-      <LightMouseTracker
-        // refContainer={refGLTFDisplayer}
-        // intensity={mouseLightIntensity}
-        // color={mouseLightColor}
-      />
+      <LightMouseTracker intensity={0.5} />
     </>
   )
 }

@@ -13,29 +13,21 @@ const LightMouseTracker = React.memo(
     const refFollowPointLight = useRef(null)
 
     useEffect(() => {
-      const container = gl.domElement;
+      const container = gl.domElement
       const listener = container.addEventListener(
         "mousemove",
         (event) => {
           // Update the mouse variable
           event.preventDefault()
 
-          const x = (event.clientX / container.offsetWidth) * 2 - 1;
-          const y = -(event.clientY / container.offsetHeight) * 2 + 1;
+          const x = (event.clientX / container.offsetWidth) * 2 - 1
+          const y = -(event.clientY / container.offsetHeight) * 2 + 1
 
           if (!refFollowPointLight.current?.position) return null;
 
-          // Make the sphere follow the mouse
-          var vector = new THREE.Vector3(x, y, 0.5);
-          vector.unproject(camera);
-          var dir = vector.sub(camera.position).normalize();
-          var distance = -camera.position.z / dir.z;
-          var pos = camera.position.clone().add(dir.multiplyScalar(distance));
-          //mouseMesh.position.copy(pos);
-
           if (!isMobile) {
             refFollowPointLight.current.position.copy(
-              new THREE.Vector3(x * 20, 1, y * -20)
+              new THREE.Vector3(event.clientX - container.offsetWidth/2, - event.clientY + container.offsetHeight/2, -50)
             );
           }
         },
