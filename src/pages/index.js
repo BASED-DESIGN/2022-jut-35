@@ -1,8 +1,11 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, Suspense } from 'react'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import IndexPage from '@components/doms/IndexPage'
 // import { Camera } from '@components/layout/C'
+
+// About Next dynamic, React.Suspense, React.lazy discussion:
+// https://github.com/vercel/next.js/discussions/17979
 
 const Canvas = dynamic(
   () => import('@src/components/layout/Canvas'), 
@@ -16,7 +19,10 @@ const Dom = dynamic(
 
 const Man = dynamic(
   () => import('@components/canvas/Man'), 
-  { ssr: false }
+  { 
+    ssr: false, 
+    // suspense: true, 
+  }
 )
 
 export default function Home() {
@@ -29,7 +35,9 @@ export default function Home() {
       </Head>
 
       <Canvas>
-        <Man />
+        <Suspense fallback={`loading assets`}>
+          <Man />
+        </Suspense>
         <directionalLight position={[5, 5, 5]} />
         <ambientLight />
 

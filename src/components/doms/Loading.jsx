@@ -5,7 +5,7 @@ export default function Loading() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000)
+    setTimeout(() => setLoading(false), 3000)
   }, [])
 
   const transitions = useTransition(loading, {
@@ -13,11 +13,10 @@ export default function Loading() {
     enter: { opacity: 1 },
     leave: { opacity: 0 },
     reverse: loading,
-    delay: 200,
-    config: config.molasses,
+    delay: 1000,
+    // config: config.molasses,
     // onRest: () => set(!show),
   })
-
 
   return transitions(
     (styles, item) => item && 
