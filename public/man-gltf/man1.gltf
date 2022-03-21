@@ -1,6 +1,6 @@
 {
     "asset" : {
-        "generator" : "Khronos glTF Blender I/O v1.4.40",
+        "generator" : "Khronos glTF Blender I/O v1.6.16",
         "version" : "2.0"
     },
     "scene" : 0,
@@ -23,12 +23,9 @@
             "doubleSided" : true,
             "name" : "OctDiffuse1",
             "pbrMetallicRoughness" : {
-                "baseColorFactor" : [
-                    0.800000011920929,
-                    0.800000011920929,
-                    0.800000011920929,
-                    1
-                ],
+                "baseColorTexture" : {
+                    "index" : 0
+                },
                 "metallicFactor" : 0,
                 "roughnessFactor" : 0.5527864098548889
             }
@@ -50,20 +47,33 @@
             ]
         }
     ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/png",
+            "name" : "KV_1_0321_OctDiffuse1_AlbedoTransparency",
+            "uri" : "texture/KV_1_0321_OctDiffuse1_AlbedoTransparency.png"
+        }
+    ],
     "accessors" : [
         {
             "bufferView" : 0,
             "componentType" : 5126,
             "count" : 3599,
             "max" : [
-                15.984867095947266,
-                27.35055160522461,
-                10.961152076721191
+                18.407825469970703,
+                27.659366607666016,
+                12.143718719482422
             ],
             "min" : [
-                -18.341304779052734,
-                0.06173515319824219,
-                -13.910028457641602
+                -15.918347358703613,
+                0.37055110931396484,
+                -12.727461814880371
             ],
             "type" : "VEC3"
         },
@@ -106,6 +116,12 @@
             "buffer" : 0,
             "byteLength" : 36444,
             "byteOffset" : 115168
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
         }
     ],
     "buffers" : [

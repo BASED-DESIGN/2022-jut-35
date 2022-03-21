@@ -1,11 +1,14 @@
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import PresentationControls from '@components/canvas/PresentationControls'
 
-export default function Wrapper(props) {
+export default function Man(props) {
+  const {
+    url = `/man-gltf/man1.gltf`
+  } = props
   const ref = useRef()
-  const { nodes, materials } = useGLTF(`/man-gltf/man1.gltf`)
+  const { nodes } = useGLTF(url)
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
@@ -28,16 +31,17 @@ export default function Wrapper(props) {
         ref={ref} 
         dispose={null}
       >
-        <mesh 
-          scale={4}
-          // castShadow 
-          // receiveShadow
-          geometry={nodes.man1.geometry} 
-          position={nodes.man1.position} 
-          material={nodes.man1.material} 
-        />
+        {Object.keys(nodes).filter(key => key!=='Scene').map(key => 
+          <mesh 
+            scale={4}
+            // castShadow 
+            // receiveShadow
+            geometry={nodes[key].geometry} 
+            position={nodes[key].position} 
+            material={nodes[key].material} 
+          />
+        )}
       </group>
-      
     </PresentationControls>
   )
 }
