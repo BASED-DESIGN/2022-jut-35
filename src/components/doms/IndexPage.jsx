@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from "react"
+import { forwardRef, useEffect, useRef } from "react"
 import { gsap } from "gsap"
 
 import {
@@ -51,10 +51,6 @@ const IndexPage = forwardRef((props, ref) => {
           // console.log(containScroll + ', ' + itemScroll);
           if (containScroll > itemScroll) {
             // console.log(item);
-            // const addArray = ["opacity-1", "translate-y-0"];
-            // const removeArray = ["opacity-0", "translate-y-10"];
-            // item.classList.remove(...removeArray);
-            // item.classList.add(...addArray);
             item.classList.add('enter');
           }
         });
@@ -63,6 +59,9 @@ const IndexPage = forwardRef((props, ref) => {
     
     observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
+    const sdgList = document.querySelector('.sdgList');
+    const sdgListItem = sdgList.querySelectorAll('.listItem');
+    sdgList.style.height = sdgListItem[0].offsetHeight + 'px';
 
     // gsap.registerPlugin(ScrollTrigger);
     
@@ -83,7 +82,46 @@ const IndexPage = forwardRef((props, ref) => {
     //   }
     // })
 
+    const Move = () => rowLooping.timeScale(1);
+    const Slow = () => rowLooping.timeScale(.5);
+
+    const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
+    const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
+    photoRowLeftLoopList.forEach(function(el) {
+      const rowLooping = new TimelineMax({ repeat: -1 });
+      rowLooping.staggerFromTo(
+        el,
+        24,
+        { xPercent: -100, ease: Linear.easeNone },
+        { xPercent: 0, ease: Linear.easeNone }
+      );
+    });
+
+    photoRowLeftLoop.addEventListener("mouseenter", Slow);
+    photoRowLeftLoop.addEventListener("mouseleave", Move);
+    photoRowLeftLoop.addEventListener("touchstart", Slow);
+    photoRowLeftLoop.addEventListener("touchend", Move);
+
+    const photoRowRightLoop = document.querySelector(".photoRowRightLoop");
+    const photoRowRightLoopList = photoRowRightLoop.querySelectorAll(".photoRowList");
+    photoRowRightLoopList.forEach(function(el) {
+      const rowLooping = new TimelineMax({ repeat: -1 });
+      rowLooping.staggerFromTo(
+        el,
+        24,
+        { xPercent: 0, ease: Linear.easeNone },
+        { xPercent: -100, ease: Linear.easeNone }
+      );
+    });
+
+    photoRowRightLoop.addEventListener("mouseenter", Slow);
+    photoRowRightLoop.addEventListener("mouseleave", Move);
+    photoRowRightLoop.addEventListener("touchstart", Slow);
+    photoRowRightLoop.addEventListener("touchend", Move);
+
   }, [])
+
+  const a = ["0", "0", "0", "0", "0"];
 
   return (
     <div className="wrap" ref={ref}>
@@ -98,7 +136,7 @@ const IndexPage = forwardRef((props, ref) => {
       <section className="intro">
         <div className="bg-kv-2 py-32">
           <div className="container mx-auto">
-            <div className="title_gruop fadeIn mb-32 text-gray-dark md:mb-48">
+            <div className="titleGruop fadeIn mb-32 text-gray-dark md:mb-48">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">The JUT Way</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">忠泰之道</div>
             </div>
@@ -131,7 +169,7 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </section>
 
-      <div className="section_break relative z-1">
+      <div className="sectionBreak relative z-1">
         <div className="bg-kv-2">
           <div className="scale-125 origin-center -rotate-6 translate-y-16">
             {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
@@ -141,20 +179,20 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </div>
       
-      <section className="new_way relative z-0">
+      <section className="newWay relative z-0">
         <div className="bg-kv-3 py-32">
           <div className="container mx-auto">
-            <div className="title_gruop fadeIn mb-40 text-gray-dark md:mb-48">
+            <div className="titleGruop fadeIn mb-40 text-gray-dark md:mb-48">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">New Way</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">探索新航向</div>
             </div>
-            <div className="new_way_list space-y-40 md:space-y-60">
+            <div className="newWayList space-y-40 md:space-y-60">
 
-              <div className="list_item fadeIn ml-8 md:ml-48">
+              <div className="listItem fadeIn ml-8 md:ml-48">
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
-                <div className="item_title mt-8 md:flex">
+                <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
                     <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
                       忠泰建設與義泰建設<br />雙品牌發展策略
@@ -166,11 +204,11 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div className="list_item fadeIn mr-8 md:mr-32">
+              <div className="listItem fadeIn mr-8 md:mr-32">
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
-                <div className="item_title mt-8 md:flex">
+                <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
                     <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
                       首度跨足國際頂級商辦市場
@@ -182,11 +220,11 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div className="list_item fadeIn ml-8 md:ml-48">
+              <div className="listItem fadeIn ml-8 md:ml-48">
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
-                <div className="item_title mt-8 md:flex">
+                <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
                     <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
                       拓展生活版圖<br />首度公開外縣市造鎮藍圖
@@ -198,11 +236,11 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div className="list_item fadeIn mr-8 md:mr-48">
+              <div className="listItem fadeIn mr-8 md:mr-48">
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
-                <div className="item_title mt-8 md:flex">
+                <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
                     <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
                       首座零售商場<br />蓄勢待發
@@ -214,11 +252,11 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div className="list_item fadeIn ml-8 md:mx-24">
+              <div className="listItem fadeIn ml-8 md:mx-24">
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
-                <div className="item_title mt-8 md:flex">
+                <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
                     <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
                       全城焦點<br />安藤忠雄特展五月登場
@@ -238,7 +276,7 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </section>
 
-      <div className="section_break relative z-1">
+      <div className="sectionBreak relative z-1">
         <div className="bg-kv-3">
           <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
             <div className="midde relative z-1 w-screen h-32 rotate-12 md:rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -250,14 +288,14 @@ const IndexPage = forwardRef((props, ref) => {
       <section className="vision relative z-0">
         <div className="bg-kv-1 py-32">
           <div className="container mx-auto">
-            <div className="title_gruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
+            <div className="titleGruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">Vision</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
             </div>
             <div className="video fadeIn aspect-video -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
               <iframe className="w-full h-full" src="https://www.youtube.com/embed/8BbBGLUzjaA" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
-            <div className="item_title fadeIn mt-8 md:flex">
+            <div className="itemTitle fadeIn mt-8 md:flex">
               <div className="title md:basis-1/2">
                 <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
                   在建築之上，我們構築一座富有生命力與創造力的平行城市。
@@ -270,7 +308,7 @@ const IndexPage = forwardRef((props, ref) => {
               </div>
             </div>
 
-            <div className="title_gruop fadeIn mt-52 mb-12 text-gray-dark -md:-mt-48 md:mb-24">
+            <div className="titleGruop fadeIn mt-52 mb-12 text-gray-dark -md:-mt-48 md:mb-24">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">VISION 2030</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">遠望一個更美好的明天</div>
             </div>          
@@ -280,36 +318,36 @@ const IndexPage = forwardRef((props, ref) => {
               <p>在建築之上，忠泰是生活的園丁，澆灌、照護著這座百花齊放的平行城市。</p>
             </div>
             <div className="mt-24 fadeIn ml-8 md:ml-0 md:mt-32">
-              <div className="h-screen flex flex-wrap flex-col space-x-12 md:space-x-20">
-                <div className="w-64 md:w-80">
+              <div className="sdgList flex flex-wrap flex-col space-x-12 md:space-x-20">
+                <div className="listItem w-64 md:w-80">
                   <div className="photo aspect-2/3 bg-gray-light"></div>
                   <div className="content mt-20 article_normal">
                     <h4>環境永續</h4>
                     <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
                   </div>
                 </div>
-                <div className="w-64 md:w-80">
+                <div className="listItem w-64 md:w-80">
                   <div className="photo aspect-2/3 bg-gray-light"></div>
                   <div className="content mt-20 article_normal">
                     <h4>環境永續</h4>
                     <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
                   </div>
                 </div>
-                <div className="w-64 md:w-80">
+                <div className="listItem w-64 md:w-80">
                   <div className="photo aspect-2/3 bg-gray-light"></div>
                   <div className="content mt-20 article_normal">
                     <h4>環境永續</h4>
                     <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
                   </div>
                 </div>
-                <div className="w-64 md:w-80">
+                <div className="listItem w-64 md:w-80">
                   <div className="photo aspect-2/3 bg-gray-light"></div>
                   <div className="content mt-20 article_normal">
                     <h4>環境永續</h4>
                     <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
                   </div>
                 </div>
-                <div className="w-64 md:w-80">
+                <div className="listItem w-64 md:w-80">
                   <div className="photo aspect-2/3 bg-gray-light"></div>
                   <div className="content mt-20 article_normal">
                     <h4>環境永續</h4>
@@ -323,16 +361,102 @@ const IndexPage = forwardRef((props, ref) => {
         </div>            
       </section>
 
-      <div className="section_break relative z-1">
+      <div className="sectionBreak relative z-1">
         <div className="bg-kv-1">
-          <div className="scale-125 origin-center -rotate-6 translate-y-16">
+          <div className="scale-125 origin-center -rotate-6 translate-y-12">
             <div className="midde relative z-1 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
             <div className="lower relative z-2 w-screen h-48 md:h-72 bg-kv-2"></div>
           </div>
         </div>
       </div>
 
-      <section className="creative"></section>
+      <section className="creative relative z-0">
+        <div className="bg-kv-2 py-32">
+          <div className="container mx-auto fadeIn">
+            <div className="-mt-40 mb-12 text-center md:text-left md:-mt-48 md:mb-24 md:flex md:justify-between md:items-end">
+              <div className="md:basis-1/2">
+                <div className="titleGruop text-white">
+                  <div className="en font-inner font-bold text-8xl md:text-9xl">100</div>
+                  <div className="zh mt-2 text-3xl font-inner font-bold md:text-5xl">Creative Power</div>
+                </div>
+              </div>
+              <div className="md:basis-1/3 mt-8">
+                <p className="text-white text-lg">為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業。</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="photoRowWrap space-y-8 md:space-y-10">
+            <div className="photoRowLeftLoop flex space-x-8 md:space-x-12">
+              <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
+                {a.map(i => (
+                  <>
+                    <div className="listItem relative">
+                      <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
+                        <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
+                      </div>
+                      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                        <div className="name text-2xl font-medium tracking-wider">李彥良</div>
+                        <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
+                      </div>
+                    </div>
+                  </>
+                ))}
+              </div>
+              <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
+                {a.map(i => (
+                  <>
+                    <div className="listItem relative">
+                      <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
+                        <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
+                      </div>
+                      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                        <div className="name text-2xl font-medium tracking-wider">李彥良</div>
+                        <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
+                      </div>
+                    </div>
+                  </>
+                ))}
+              </div>
+            </div>
+
+            <div className="photoRowRightLoop flex space-x-8 md:space-x-12">
+              <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
+                {a.map(i => (
+                  <>
+                    <div className="listItem relative">
+                      <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
+                        <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
+                      </div>
+                      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                        <div className="name text-2xl font-medium tracking-wider">李彥良</div>
+                        <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
+                      </div>
+                    </div>
+                  </>
+                ))}
+              </div>
+              <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
+                {a.map(i => (
+                  <>
+                    <div className="listItem relative">
+                      <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
+                        <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
+                      </div>
+                      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                        <div className="name text-2xl font-medium tracking-wider">李彥良</div>
+                        <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
+                      </div>
+                    </div>
+                  </>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       <section className="footer"></section>
     </div>
   )

@@ -34,6 +34,7 @@ module.exports = {
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
       'white': '#FFFFFF',
+      'black': '#000000',
     },
     fontFamily: {
       title: ['Malayalam MN', 'Noto Sans JP', 'sans-serif'],
@@ -42,6 +43,7 @@ module.exports = {
     },
     transitionDuration: {
       '0': '0ms',
+      '1000': '1000ms',
       '1500': '1500ms',
       '2000': '2000ms',
     },
