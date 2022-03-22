@@ -5,6 +5,7 @@ import CanvasContent from '@components/canvas/IndexPage'
 import { useThree } from '@react-three/fiber'
 import useStore from '@helpers/store'
 import { useWheel } from '@use-gesture/react'
+import Scroller from '@components/doms/Scroller'
 
 // About Next dynamic, React.Suspense, React.lazy discussion:
 // https://github.com/vercel/next.js/discussions/17979
@@ -40,11 +41,13 @@ const Home = () => {
         {/* <link rel="icon" href="./favicon.ico" /> */}
       </Head>
 
-      <Canvas>
-        <CanvasContent />
-      </Canvas>
+      <Scroller>
+        <Canvas>
+          <CanvasContent />
+        </Canvas>
 
-      <DomContent />
+        <DomContent />
+      </Scroller>
     </>
   )
 }

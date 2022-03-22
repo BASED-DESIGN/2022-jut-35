@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useRef } from "react"
+import useStore from '@helpers/store'
 import { gsap } from "gsap"
 
 import {
@@ -28,7 +29,8 @@ const slogan_top_white = '/slogan_top_white.svg'
 const slogan_bottom_white = '/slogan_bottom_white.svg'
 
 const IndexPage = forwardRef((props, ref) => {
-
+  const scrollerRef = useStore(state => state.scrollerRef)
+  
   useEffect(() => {  
     // gsap.to('.sea', {
     //   opacity: 1,
@@ -37,7 +39,7 @@ const IndexPage = forwardRef((props, ref) => {
     //   // delay: .5,
     //   ease: Power2.easeOut
     // });
-
+    // console.log(scrollerRef)
     const target = document.querySelector('.wrap-main');
     const observerItem = document.querySelectorAll('.fadeIn');
 
@@ -128,6 +130,10 @@ const IndexPage = forwardRef((props, ref) => {
     photoRowRightLoop.addEventListener("touchend", Move);
 
   }, [])
+
+  useEffect(() => {
+    console.log(scrollerRef)
+  }, [scrollerRef])
 
   const a = ["0", "0", "0", "0", "0"];
 
@@ -397,66 +403,58 @@ const IndexPage = forwardRef((props, ref) => {
           <div className="photoRowWrap space-y-8 md:space-y-10">
             <div className="photoRowLeftLoop flex space-x-8 md:space-x-12">
               <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
-                {a.map(i => (
-                  <>
-                    <div className="listItem relative">
-                      <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                        <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
-                      </div>
-                      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
-                        <div className="name text-2xl font-medium tracking-wider">李彥良</div>
-                        <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
-                      </div>
+                {a.map((k, i) => (
+                  <div key={`row-1-${i}`} className="listItem relative">
+                    <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
+                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
                     </div>
-                  </>
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                      <div className="name text-2xl font-medium tracking-wider">李彥良</div>
+                      <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
+                    </div>
+                  </div>
                 ))}
               </div>
               <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
-                {a.map(i => (
-                  <>
-                    <div className="listItem relative">
-                      <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                        <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
-                      </div>
-                      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
-                        <div className="name text-2xl font-medium tracking-wider">李彥良</div>
-                        <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
-                      </div>
+                {a.map((k, i) => (
+                  <div key={`row-2-${i}`} className="listItem relative">
+                    <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
+                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
                     </div>
-                  </>
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                      <div className="name text-2xl font-medium tracking-wider">李彥良</div>
+                      <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
 
             <div className="photoRowRightLoop flex space-x-8 md:space-x-12">
               <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
-                {a.map(i => (
-                  <>
-                    <div className="listItem relative">
-                      <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                        <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
-                      </div>
-                      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
-                        <div className="name text-2xl font-medium tracking-wider">李彥良</div>
-                        <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
-                      </div>
+                {a.map((k, i) => (
+                  <div key={`row-3-${i}`} className="listItem relative">
+                    <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
+                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
                     </div>
-                  </>
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                      <div className="name text-2xl font-medium tracking-wider">李彥良</div>
+                      <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
+                    </div>
+                  </div>
                 ))}
               </div>
               <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
-                {a.map(i => (
-                  <>
-                    <div className="listItem relative">
-                      <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                        <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
-                      </div>
-                      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
-                        <div className="name text-2xl font-medium tracking-wider">李彥良</div>
-                        <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
-                      </div>
+                {a.map((k, i) => (
+                  <div key={`row-4-${i}`} className="listItem relative">
+                    <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
+                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
                     </div>
-                  </>
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                      <div className="name text-2xl font-medium tracking-wider">李彥良</div>
+                      <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>

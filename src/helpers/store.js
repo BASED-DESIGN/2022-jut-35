@@ -1,6 +1,8 @@
 import create from 'zustand'
 
 const useStore = create((set, get) => ({
+  scrollerRef: null,
+  
   width: 0,
   height: 0,
   setSize: size => set(() => ({ width: size.width, height: size.height })),
