@@ -8,11 +8,12 @@ const isMobile = false
 const LightMouseTracker = React.memo(
   ({ intensity = 1, color = 0xffffff }) => {
     // const camera = useThree(state => state.camera)
-    const gl = useThree(state => state.gl)
+    // const gl = useThree(state => state.gl)
     const refFollowPointLight = useRef(null)
 
     useEffect(() => {
-      const container = gl.domElement
+      // const container = gl.domElement
+      const container = document.querySelector('body')
       const listener = container.addEventListener(
         "mousemove",
         (e) => {

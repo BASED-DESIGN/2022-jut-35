@@ -29,8 +29,7 @@ const slogan_top_white = '/slogan_top_white.svg'
 const slogan_bottom_white = '/slogan_bottom_white.svg'
 
 const IndexPage = forwardRef((props, ref) => {
-  const scrollerRef = useStore(state => state.scrollerRef)
-  
+
   useEffect(() => {  
     // gsap.to('.sea', {
     //   opacity: 1,
@@ -40,34 +39,33 @@ const IndexPage = forwardRef((props, ref) => {
     //   ease: Power2.easeOut
     // });
     // console.log(scrollerRef)
+    // const target = document.querySelector('.wrap-main');
+    // const observerItem = document.querySelectorAll('.fadeIn');
+
+    // [...observerItem].forEach((item)=>{
+    //   item.classList.add('enter');
+    // })
+
     const target = document.querySelector('.wrap-main');
     const observerItem = document.querySelectorAll('.fadeIn');
 
-    [...observerItem].forEach((item)=>{
-      item.classList.add('enter');
-    })
-
-    // const observer = new MutationObserver(function(mutations) {
-    //   mutations.forEach(function(mutationRecord) {
-    //     const scrollTop = target.getBoundingClientRect().top;
-    //     // console.log(scrollTop);
-    //     [...observerItem].forEach((item)=>{
-    //       var containScroll = -scrollTop + window.innerHeight * 0.75;
-    //       var itemScroll = item.getBoundingClientRect().top - scrollTop;
-    //       // console.log(containScroll + ', ' + itemScroll);
-    //       if (containScroll > itemScroll) {
-    //         // console.log(item);
-    //         // const addArray = ["opacity-1", "translate-y-0"];
-    //         // const removeArray = ["opacity-0", "translate-y-10"];
-    //         // item.classList.remove(...removeArray);
-    //         // item.classList.add(...addArray);
-    //         item.classList.add('enter');
-    //       }
-    //     });
-    //   });    
-    // });
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutationRecord) {
+        const scrollTop = target.getBoundingClientRect().top;
+        // console.log(scrollTop);
+        [...observerItem].forEach((item)=>{
+          var containScroll = -scrollTop + window.innerHeight * 0.75;
+          var itemScroll = item.getBoundingClientRect().top - scrollTop;
+          // console.log(containScroll + ', ' + itemScroll);
+          if (containScroll > itemScroll) {
+            // console.log(item);
+            item.classList.add('enter');
+          }
+        });
+      });    
+    });
     
-    // observer.observe(target, { attributes : true, attributeFilter : ['style'] });
+    observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
     const sdgList = document.querySelector('.sdgList');
     const sdgListItem = sdgList.querySelectorAll('.listItem');
@@ -92,8 +90,10 @@ const IndexPage = forwardRef((props, ref) => {
     //   }
     // })
 
-    const Move = () => rowLooping.timeScale(1);
-    const Slow = () => rowLooping.timeScale(.5);
+    // const Move = () => rowLooping.timeScale(1);
+    // const Slow = () => rowLooping.timeScale(.5);
+    const Move = () => {}
+    const Slow = () => {}
 
     const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
     const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
@@ -131,19 +131,30 @@ const IndexPage = forwardRef((props, ref) => {
 
   }, [])
 
-  useEffect(() => {
-    console.log(scrollerRef)
-  }, [scrollerRef])
-
   const a = ["0", "0", "0", "0", "0"];
 
+  const break1Ref = useRef()
+  const break2Ref = useRef()
+  const break3Ref = useRef()
+  const newWay1Ref = useRef()
+  const newWay2Ref = useRef()
+  const newWay3Ref = useRef()
+  const newWay4Ref = useRef()
+  const newWay5Ref = useRef()
+  useEffect(() => {
+    useStore.setState({ 
+      break1Ref, break2Ref, break3Ref,
+      newWay1Ref, newWay2Ref, newWay3Ref, newWay4Ref, newWay5Ref,
+    })
+  }, [])
+
   return (
-    <div className="wrap pointer-events-none overflow-hidden" ref={ref}>
+    <div className="wrap" ref={ref}>
       <nav className="nav"></nav>
       
-      {/* <div className="pre-hero w-screen h-screen bg-kv-3"></div>
+      {/* <div className="pre-hero w-screen h-screen bg-kv-3"></div> */}
 
-      <section className="hero relative h-screen flex flex-wrap flex-col">
+      {/* <section className="hero relative h-screen flex flex-wrap flex-col">
         <div className="w-screen h-screen bg-kv-2"></div>
         <div className="w-screen h-screen bg-kv-1"></div>
       </section> */}
@@ -183,7 +194,7 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-1">
+      <div className="sectionBreak relative z-1" ref={break1Ref}>
         <div className="bg-kv-2">
           <div className="scale-125 origin-center -rotate-6 translate-y-16">
             {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
@@ -202,7 +213,7 @@ const IndexPage = forwardRef((props, ref) => {
             </div>
             <div className="newWayList space-y-40 md:space-y-60">
 
-              <div className="listItem fadeIn ml-8 md:ml-48">
+              <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay1Ref}>
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
@@ -218,7 +229,7 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div className="listItem fadeIn mr-8 md:mr-32">
+              <div className="listItem fadeIn mr-8 md:mr-32" ref={newWay2Ref}>
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
@@ -234,7 +245,7 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div className="listItem fadeIn ml-8 md:ml-48">
+              <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay3Ref}>
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
@@ -250,7 +261,7 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div className="listItem fadeIn mr-8 md:mr-48">
+              <div className="listItem fadeIn mr-8 md:mr-48" ref={newWay4Ref}>
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
@@ -266,7 +277,7 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
               </div>
 
-              <div className="listItem fadeIn ml-8 md:mx-24">
+              <div className="listItem fadeIn ml-8 md:mx-24" ref={newWay5Ref}>
                 <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
                   <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
                 </div>
@@ -290,7 +301,7 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-1">
+      <div className="sectionBreak relative z-1" ref={break2Ref}>
         <div className="bg-kv-3">
           <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
             <div className="midde relative z-1 w-screen h-32 rotate-12 md:rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -375,7 +386,7 @@ const IndexPage = forwardRef((props, ref) => {
         </div>            
       </section>
 
-      <div className="sectionBreak relative z-1">
+      <div className="sectionBreak relative z-1" ref={break3Ref}>
         <div className="bg-kv-1">
           <div className="scale-125 origin-center -rotate-6 translate-y-12">
             <div className="midde relative z-1 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>

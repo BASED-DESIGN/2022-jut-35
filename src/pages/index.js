@@ -41,11 +41,11 @@ const Home = () => {
         {/* <link rel="icon" href="./favicon.ico" /> */}
       </Head>
 
-      <Scroller>
-        <Canvas>
-          <CanvasContent />
-        </Canvas>
+      <Canvas>
+        <CanvasContent />
+      </Canvas>
 
+      <Scroller>
         <DomContent />
       </Scroller>
     </>

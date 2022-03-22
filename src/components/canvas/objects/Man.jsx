@@ -1,22 +1,24 @@
 import { useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import PresentationControls from '@components/canvas/objects/PresentationControls'
 
 export default function Man(props) {
   const {
-    url = `/man-gltf/man1.gltf`
+    url = `/man-gltf/man1.gltf`,
+    scale=1
   } = props
   const ref = useRef()
   const { nodes } = useGLTF(url)
+  const { width, height } = useThree(state => state.size)
 
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime()
-    ref.current.rotation.x = Math.cos(t / 2) / 6
-    ref.current.rotation.y = Math.sin(t / 2) / 6
-    ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
-    // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
-  })
+  // useFrame((state) => {
+  //   const t = state.clock.getElapsedTime()
+  //   ref.current.rotation.x = Math.cos(t / 2) / 6
+  //   ref.current.rotation.y = Math.sin(t / 2) / 6
+  //   ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
+  //   // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+  // })
 
   return (
     <PresentationControls
@@ -34,7 +36,7 @@ export default function Man(props) {
         {Object.keys(nodes).filter(key => key!=='Scene').map(key => 
           <mesh
             key={`man-${key}`}
-            scale={4}
+            scale={scale * width / 360}
             // castShadow 
             // receiveShadow
             geometry={nodes[key].geometry} 

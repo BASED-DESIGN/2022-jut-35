@@ -6,7 +6,7 @@ const LCanvas = ({ children }) => {
   // const dom = useStore((state) => state.dom)
 
   return (
-    <div className='fixed top-0 left-0 right-0 bottom-0 z-6'>    
+    <div className='fixed top-0 left-0 w-full h-full pointer-events-none z-10'>    
       <Canvas
         mode='concurrent'
         // onCreated={state => state.gl.setClearColor("rgb(218, 174, 53)")}
