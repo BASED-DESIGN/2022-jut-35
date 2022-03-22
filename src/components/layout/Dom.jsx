@@ -24,6 +24,7 @@ const Dom = props => {
   //   // console.log('hi', deltaY)
     const newOffset = MathUtils.clamp(offset + deltaY/2, 0, ref.current.offsetHeight - height) 
     setOffset(newOffset)
+    // console.log(newOffset);
   //   // console.log(deltaX, deltaY, oldX, oldY)
   //   // const y = MathUtils.clamp(oldY + (-deltaY / size.height) * speed, ...pHeight)
   //   // api.start({
