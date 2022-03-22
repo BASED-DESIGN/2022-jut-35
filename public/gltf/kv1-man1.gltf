@@ -56,8 +56,8 @@
     "images" : [
         {
             "mimeType" : "image/png",
-            "name" : "KV_1_0321_OctDiffuse1_AlbedoTransparency",
-            "uri" : "texture/KV_1_0321_OctDiffuse1_AlbedoTransparency.png"
+            "name" : "KV_2_0321_Pose_AlbedoTransparency",
+            "uri" : "texture/KV_2_0321_Pose_AlbedoTransparency.png"
         }
     ],
     "accessors" : [
@@ -127,7 +127,7 @@
     "buffers" : [
         {
             "byteLength" : 151612,
-            "uri" : "man1.bin"
+            "uri" : "kv1-man1.bin"
         }
     ]
 }

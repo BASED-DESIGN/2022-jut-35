@@ -96,8 +96,7 @@ export default function PresentationControls({
       return [y, x]
     }
   },
-  { target: global ? gl.domElement : undefined }
-  )
+  { target: global ? gl.domElement : undefined })
 
   // const bindWheel = useWheel(({ wheeling, delta: [deltaX, deltaY], memo: [oldX, oldY] = spring.position.animation.to || pInitial }) => {
   //   // console.log(deltaX, deltaY, oldX, oldY)

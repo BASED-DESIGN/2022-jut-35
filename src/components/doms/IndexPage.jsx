@@ -4,8 +4,7 @@ const IndexPage = forwardRef((props, ref) => {
   return (
     <div ref={ref} className="">
       <section 
-        className="h-screen" 
-        // style={{ backgroundColor: 'rgb(218, 174, 53)' }}
+        className="h-screen"
       >
         三五成群
         {[0,0,0,0,0,0,0].map((k, i) => 

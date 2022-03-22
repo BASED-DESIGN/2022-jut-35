@@ -1,14 +1,13 @@
 import React, { useRef, useEffect } from "react"
 import { useThree } from "@react-three/fiber"
 import * as THREE from "three"
-import { useDrag, useGesture, useHover, useWheel } from '@use-gesture/react'
 
 // import { isMobile } from "mobile-device-detect"
 const isMobile = false
 
 const LightMouseTracker = React.memo(
   ({ intensity = 1, color = 0xffffff }) => {
-    const camera = useThree(state => state.camera)
+    // const camera = useThree(state => state.camera)
     const gl = useThree(state => state.gl)
     const refFollowPointLight = useRef(null)
 
@@ -16,26 +15,26 @@ const LightMouseTracker = React.memo(
       const container = gl.domElement
       const listener = container.addEventListener(
         "mousemove",
-        (event) => {
+        (e) => {
           // Update the mouse variable
-          event.preventDefault()
+          e.preventDefault()
 
-          const x = (event.clientX / container.offsetWidth) * 2 - 1
-          const y = -(event.clientY / container.offsetHeight) * 2 + 1
+          const x = (e.clientX / container.offsetWidth) * 2 - 1
+          const y = -(e.clientY / container.offsetHeight) * 2 + 1
 
-          if (!refFollowPointLight.current?.position) return null;
+          if (!refFollowPointLight.current?.position) return null
 
           if (!isMobile) {
             refFollowPointLight.current.position.copy(
-              new THREE.Vector3(event.clientX - container.offsetWidth/2, - event.clientY + container.offsetHeight/2, -50)
-            );
+              new THREE.Vector3(e.clientX - container.offsetWidth/2, - e.clientY + container.offsetHeight/2, -50)
+            )
           }
         },
         false
-      );
+      )
       return () => {
         container.removeEventListener("mousemove", listener);
-      };
+      }
     }, [])
 
     return (

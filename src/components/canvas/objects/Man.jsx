@@ -32,7 +32,8 @@ export default function Man(props) {
         dispose={null}
       >
         {Object.keys(nodes).filter(key => key!=='Scene').map(key => 
-          <mesh 
+          <mesh
+            key={`man-${key}`}
             scale={4}
             // castShadow 
             // receiveShadow
