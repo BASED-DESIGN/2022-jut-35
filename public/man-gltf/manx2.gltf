@@ -1,6 +1,6 @@
 {
     "asset" : {
-        "generator" : "Khronos glTF Blender I/O v1.4.40",
+        "generator" : "Khronos glTF Blender I/O v1.6.16",
         "version" : "2.0"
     },
     "scene" : 0,
@@ -27,27 +27,23 @@
         {
             "doubleSided" : true,
             "name" : "D_Concrete_11",
+            "normalTexture" : {
+                "index" : 0
+            },
             "pbrMetallicRoughness" : {
-                "baseColorFactor" : [
-                    0.800000011920929,
-                    0.800000011920929,
-                    0.800000011920929,
-                    1
-                ],
-                "metallicFactor" : 0,
-                "roughnessFactor" : 0.5527864098548889
+                "baseColorTexture" : {
+                    "index" : 1
+                },
+                "metallicFactor" : 0
             }
         },
         {
             "doubleSided" : true,
             "name" : "OctDiffuse1",
             "pbrMetallicRoughness" : {
-                "baseColorFactor" : [
-                    0.800000011920929,
-                    0.800000011920929,
-                    0.800000011920929,
-                    1
-                ],
+                "baseColorTexture" : {
+                    "index" : 2
+                },
                 "metallicFactor" : 0,
                 "roughnessFactor" : 0.5527864098548889
             }
@@ -83,20 +79,51 @@
             ]
         }
     ],
+    "textures" : [
+        {
+            "sampler" : 0,
+            "source" : 0
+        },
+        {
+            "sampler" : 0,
+            "source" : 1
+        },
+        {
+            "sampler" : 0,
+            "source" : 2
+        }
+    ],
+    "images" : [
+        {
+            "mimeType" : "image/jpeg",
+            "name" : "KV_1_0321_D_Concrete_11_Normal",
+            "uri" : "texture/KV_1_0321_D_Concrete_11_Normal.jpg"
+        },
+        {
+            "mimeType" : "image/jpeg",
+            "name" : "KV_1_0321_D_Concrete_11_AlbedoTransparency",
+            "uri" : "texture/KV_1_0321_D_Concrete_11_AlbedoTransparency.jpg"
+        },
+        {
+            "mimeType" : "image/png",
+            "name" : "KV_1_0321_OctDiffuse1_AlbedoTransparency",
+            "uri" : "texture/KV_1_0321_OctDiffuse1_AlbedoTransparency.png"
+        }
+    ],
     "accessors" : [
         {
             "bufferView" : 0,
             "componentType" : 5126,
             "count" : 166,
             "max" : [
-                25.88459014892578,
-                38.294769287109375,
-                15.745308876037598
+                23.296131134033203,
+                34.530174255371094,
+                12.962331771850586
             ],
             "min" : [
-                -26.07501220703125,
-                28.033485412597656,
-                -13.091601371765137
+                -23.467510223388672,
+                25.295021057128906,
+                -12.990888595581055
             ],
             "type" : "VEC3"
         },
@@ -123,14 +150,14 @@
             "componentType" : 5126,
             "count" : 7198,
             "max" : [
-                30.35542106628418,
-                29.364200592041016,
-                17.290664672851562
+                27.31987953186035,
+                26.492658615112305,
+                14.353151321411133
             ],
             "min" : [
-                -29.856361389160156,
-                0.1634540557861328,
-                -14.748858451843262
+                -26.870723724365234,
+                0.21198824048042297,
+                -14.48241901397705
             ],
             "type" : "VEC3"
         },
@@ -193,6 +220,12 @@
             "buffer" : 0,
             "byteLength" : 72888,
             "byteOffset" : 236872
+        }
+    ],
+    "samplers" : [
+        {
+            "magFilter" : 9729,
+            "minFilter" : 9987
         }
     ],
     "buffers" : [

@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // reactStrictMode: true,
-  distDir: 'build',
-  // assetPrefix: ".",
+  reactStrictMode: true,
+  assetPrefix: ".",
   // images: {
   //   loader: "imgix",
   //   path: "./",

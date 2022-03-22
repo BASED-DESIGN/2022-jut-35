@@ -7,7 +7,6 @@
       "@helpers/*": ["./src/helpers/*"],
       "@styles/*": ["./src/styles/*"],
       "@apis/*": ["./src/apis/*"],
-      "@helpers/*": ["./src/helpers/*"],
     }
   }
 }
