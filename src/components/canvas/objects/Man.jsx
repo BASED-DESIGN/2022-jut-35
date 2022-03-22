@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
-import PresentationControls from '@components/canvas/PresentationControls'
+import PresentationControls from '@components/canvas/objects/PresentationControls'
 
 export default function Man(props) {
   const {

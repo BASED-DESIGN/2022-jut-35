@@ -41,23 +41,31 @@ const IndexPage = forwardRef((props, ref) => {
     const target = document.querySelector('.wrap-main');
     const observerItem = document.querySelectorAll('.fadeIn');
 
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutationRecord) {
-        const scrollTop = target.getBoundingClientRect().top;
-        // console.log(scrollTop);
-        [...observerItem].forEach((item)=>{
-          var containScroll = -scrollTop + window.innerHeight * 0.75;
-          var itemScroll = item.getBoundingClientRect().top - scrollTop;
-          // console.log(containScroll + ', ' + itemScroll);
-          if (containScroll > itemScroll) {
-            // console.log(item);
-            item.classList.add('enter');
-          }
-        });
-      });    
-    });
+    [...observerItem].forEach((item)=>{
+      item.classList.add('enter');
+    })
+
+    // const observer = new MutationObserver(function(mutations) {
+    //   mutations.forEach(function(mutationRecord) {
+    //     const scrollTop = target.getBoundingClientRect().top;
+    //     // console.log(scrollTop);
+    //     [...observerItem].forEach((item)=>{
+    //       var containScroll = -scrollTop + window.innerHeight * 0.75;
+    //       var itemScroll = item.getBoundingClientRect().top - scrollTop;
+    //       // console.log(containScroll + ', ' + itemScroll);
+    //       if (containScroll > itemScroll) {
+    //         // console.log(item);
+    //         // const addArray = ["opacity-1", "translate-y-0"];
+    //         // const removeArray = ["opacity-0", "translate-y-10"];
+    //         // item.classList.remove(...removeArray);
+    //         // item.classList.add(...addArray);
+    //         item.classList.add('enter');
+    //       }
+    //     });
+    //   });    
+    // });
     
-    observer.observe(target, { attributes : true, attributeFilter : ['style'] });
+    // observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
     const sdgList = document.querySelector('.sdgList');
     const sdgListItem = sdgList.querySelectorAll('.listItem');
@@ -124,7 +132,7 @@ const IndexPage = forwardRef((props, ref) => {
   const a = ["0", "0", "0", "0", "0"];
 
   return (
-    <div className="wrap" ref={ref}>
+    <div className="wrap pointer-events-none overflow-hidden" ref={ref}>
       <nav className="nav"></nav>
       
       {/* <div className="pre-hero w-screen h-screen bg-kv-3"></div>
