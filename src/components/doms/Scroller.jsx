@@ -8,14 +8,14 @@ const Scroller = props => {
   const ref = useRef()
   const innerRef = useRef()
   const offset = useStore(state => state.offset)
-  // const [offset, setOffset] = useState(0)
 
   const bind = useWheel(({ wheeling, delta: [deltaX, deltaY] }) => {
     const newOffset = MathUtils.clamp(offset + deltaY/2, 0, innerRef.current.offsetHeight - window.innerHeight) 
     // const newOffset = offset + deltaY/2
     useStore.setState({ offset: newOffset })
   }, {
-    target: ref
+    target: ref,
+    eventOptions: { passive: false }
   })
 
   useEffect(() => {
@@ -26,13 +26,6 @@ const Scroller = props => {
     <div 
       ref={ref} 
       className="fixed left-0 top-0 bottom-0 right-0"
-      // style={{
-      //   // width: '100%'
-      //   // width: width + 'px',
-      //   // height: height + 'px',
-      //   transform: `translate3d(0, ${ - offset}px, 0)`,
-      //   // willChange: 'transform',
-      // }}
     >
       <div 
         ref={innerRef}

@@ -4,7 +4,7 @@ import { Html } from '@react-three/drei'
 import { useState, useEffect, useRef, cloneElement } from 'react'
 import { useWheel } from '@use-gesture/react'
 import useStore from '@helpers/store'
-import IndexPage from '@src/pages/dev-dom'
+import IndexPage from '@pages/dev-dom'
 
 const Dom = props => {
   // const { position=[0, 0], children } = props

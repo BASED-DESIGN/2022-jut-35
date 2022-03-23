@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useRef } from "react"
+import dynamic from 'next/dynamic'
 import useStore from '@helpers/store'
 import { gsap } from "gsap"
 
@@ -27,6 +28,9 @@ const logo_jutgroup_white = '/logo_jutgroup_white.svg'
 
 const slogan_top_white = '/slogan_top_white.svg'
 const slogan_bottom_white = '/slogan_bottom_white.svg'
+
+const Scene1Left = dynamic(() => import('@components/canvas/sub-scenes/1_Left'), { ssr: false })
+const Scene1Right = dynamic(() => import('@components/canvas/sub-scenes/1_Right'), { ssr: false })
 
 const IndexPage = forwardRef((props, ref) => {
 
@@ -162,12 +166,18 @@ const IndexPage = forwardRef((props, ref) => {
     <div className="wrap w-screen overflow-x-hidden" ref={ref}>
       <nav className="nav"></nav>
       
-      {/* <div className="pre-hero w-screen h-screen bg-kv-3"></div> */}
+      <div className="relative pre-hero w-screen h-screen bg-kv-1">
+        <Scene1Left />
+      </div>
 
-      {/* <section className="hero relative h-screen flex flex-wrap flex-col">
+      <div className="relative pre-hero w-screen h-screen bg-kv-2">
+        <Scene1Right />
+      </div>
+
+      <section className="hero relative h-screen flex flex-wrap flex-col">
         <div className="w-screen h-screen bg-kv-2"></div>
         <div className="w-screen h-screen bg-kv-1"></div>
-      </section> */}
+      </section>
       <section className="intro">
         <div className="bg-kv-2 py-32">
           <div className="container mx-auto">

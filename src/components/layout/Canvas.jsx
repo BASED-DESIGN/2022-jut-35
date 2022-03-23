@@ -2,11 +2,15 @@ import { Canvas } from '@react-three/fiber'
 import { Preload } from '@react-three/drei'
 import Camera from './Camera'
 
-const LCanvas = ({ children }) => {
+const LCanvas = ({ 
+  children, 
+  wrapperClassName,
+  followPageScroll
+}) => {
   // const dom = useStore((state) => state.dom)
 
   return (
-    <div className='fixed top-0 left-0 w-full h-full pointer-events-none z-10'>    
+    <div className={wrapperClassName}>    
       <Canvas
         mode='concurrent'
         // onCreated={state => state.gl.setClearColor("rgb(218, 174, 53)")}
@@ -14,7 +18,7 @@ const LCanvas = ({ children }) => {
         // camera={{ position: [0, 0, 5], fov: 50 }}
       >
         <Preload all />
-        <Camera>
+        <Camera followPageScroll={followPageScroll}>
           {children}
         </Camera>
       </Canvas>
