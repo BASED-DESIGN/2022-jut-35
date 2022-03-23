@@ -44,6 +44,7 @@ export default function Man(props) {
             material={nodes[key].material} 
           />
         )}
+        <directionalLight intensity={0.5} position={[50, 300, 50]} />
       </group>
     </PresentationControls>
   )

@@ -31,6 +31,10 @@ const Content = () => {
           url="/kv/kv2_layer_2.png"
           position={[0, 0, -300]}
         />
+        {/* <Plane 
+          url="/kv/kv2_layer_3.png"
+          position={[0, 0, -300]}
+        /> */}
         
         <Man
           url='/gltf/kv2-man1.gltf'
@@ -75,8 +79,8 @@ const Content = () => {
         />
       </Suspense>
 
-      <directionalLight position={[-width/2, -height/2, -150]} intensity={0.8} />
-      <ambientLight />
+      <directionalLight position={[-width/2, -height/2, -150]} intensity={0.5} />
+      <ambientLight intensity={0.4} />
       {/* <LightMouseTracker intensity={0.5} /> */}
     </>
   )

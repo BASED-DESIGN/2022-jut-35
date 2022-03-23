@@ -30,30 +30,34 @@ const Content = () => {
           url="/kv/kv1_layer_2.png"
           position={[0, 0, -300]}
         />
+        {/* <Plane 
+          url="/kv/kv1_layer_3.png"
+          position={[0, 0, -300]}
+        /> */}
         
         <Man
           url='/gltf/kv1-man2.gltf'
-          position={[-width * .47, -height * .07, -100]} 
-          rotation={[-.2, -0.8, 0]}
+          position={[-width * .3, -height * .1, -100]} 
+          rotation={[-.1, -0.8, 0]}
           scale={0.8}
         />
         <Man
           url='/gltf/kv1-man3.gltf'
-          position={[-width * .35, -height * .12, -100]} 
-          rotation={[-.2, -0.8, 0]}
+          position={[-width * .16, -height * .22, -100]} 
+          rotation={[-.1, -0.8, 0]}
           scale={0.8}
         />
 
         <Man
           url='/gltf/kv1-manx2.gltf'
-          position={[-width * .4, -height * .28, -100]} 
-          rotation={[-.2, -0.8, 0]} 
+          position={[-width * .275, -height * .28, -100]} 
+          rotation={[-.15, -0.7, 0]} 
           scale={0.9}
         />
       </Suspense>
 
-      <directionalLight position={[-width/2, -height/2, -150]} intensity={0.8} />
-      <ambientLight />
+      <directionalLight position={[-width/2, -height/2, -150]} intensity={0.5} />
+      <ambientLight intensity={0.4} />
       {/* <LightMouseTracker intensity={0.5} /> */}
     </>
   )

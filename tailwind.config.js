@@ -14,7 +14,7 @@ module.exports = {
     container: {
       padding: {
         DEFAULT: '1.5rem',
-        sm: '3rem',
+        sm: '2rem',
         lg: '6rem',
         xl: '10rem',
         '2xl': '10%',
@@ -52,6 +52,8 @@ module.exports = {
       'cover': 'cover',
       'contain': 'contain',
       'half': '50%',
+      'over-quarter': '125%',
+      'over-half': '150%',
     },
     extend: {
       spacing: {
@@ -74,6 +76,13 @@ module.exports = {
       },
       transitionTimingFunction: {
         'expo': 'cubic-bezier(.5, 0, 0, 1)',
+      },
+      zIndex: {
+        '60': '60',
+        '70': '70',
+        '80': '80',
+        '90': '90',
+        '100': '100'
       }
     },
   },

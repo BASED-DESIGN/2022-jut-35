@@ -28,6 +28,8 @@ const logo_jutgroup_white = '/logo_jutgroup_white.svg'
 
 const slogan_top_white = '/slogan_top_white.svg'
 const slogan_bottom_white = '/slogan_bottom_white.svg'
+const slogan_top = '/kv/kv1_layer_3_2.svg'
+const slogan_bottom = '/kv/kv2_layer_3_2.svg'
 
 const Scene1Left = dynamic(() => import('@components/canvas/sub-scenes/1_Left'), { ssr: false })
 const Scene1Right = dynamic(() => import('@components/canvas/sub-scenes/1_Right'), { ssr: false })
@@ -90,8 +92,8 @@ const IndexPage = forwardRef((props, ref) => {
 
     gsap.registerPlugin(ScrollTrigger);
     
-    const heroContainer = document.querySelector(".hero");
-    gsap.to('.hero', 3,{
+    // Hero
+    gsap.to('.hero', {
       x: -(window.innerWidth * 1) + "px",
       // ease: Linear.easeNone,
       ease: "none",
@@ -101,12 +103,230 @@ const IndexPage = forwardRef((props, ref) => {
         pin: true,
         scrub: true,
         start: "top top",
-        // end: () => "+=" + window.innerHeight,
         end: () => "+=" + window.innerHeight * 2,
         // markers: true,
       }
-    })
+    });
+    gsap.to('.kv_left', {
+      x: window.innerWidth * .5 + "px",
+      // ease: Linear.easeNone,
+      ease: "none",
+      scrollTrigger: {
+        trigger: '.wrap',
+        invalidateOnRefresh: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 2,
+        // markers: true,
+      }
+    }, 1);
+    gsap.to('.kv_right', {
+      // x: -(window.innerWidth * 0) + "px",
+      // ease: Linear.easeNone,
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: '.wrap',
+        invalidateOnRefresh: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 2,
+        // markers: true,
+      }
+    });
+    gsap.to('.kv_right_inner', {
+      // x: '0%',
+      transform: "translate(0%, 0%)",
+      // ease: Linear.easeNone,
+      // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: '.wrap',
+        invalidateOnRefresh: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 2,
+        // markers: true,
+      }
+    });
 
+    
+    gsap.to('.loadCover .bg', 1,{
+      opacity: 0,
+      // scale: 1,
+      // backgroundColor: "transparent",
+      ease: Expo.easeIn,
+      delay: 1,
+      onComplete: () => {
+        console.log('end');
+      }
+    });
+
+    gsap.to('.mainLogo', {
+      opacity: 0,
+      // ease: Linear.easeNone,
+      ease: "none",
+      scrollTrigger: {
+        trigger: '.wrap',
+        invalidateOnRefresh: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 0.5,
+        // markers: true,
+      }
+    });
+
+    const kvSloganLoopingRange = () => {
+      if (window.innerWidth > 959) {
+        return window.innerWidth;
+      } else {
+        return window.innerWidth * 1.25;
+      }
+    }
+
+    const kvSloganLeftLooping = new TimelineMax({ repeat: -1 });
+    kvSloganLeftLooping.staggerFromTo('.hero .sloganTop', 40,
+      { backgroundPositionX: 0, ease: Linear.easeNone },
+      { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
+    );
+
+    const kvSloganRightLooping = new TimelineMax({ repeat: -1 });
+    kvSloganRightLooping.staggerFromTo('.hero .sloganBottom', 40,
+      { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
+      { backgroundPositionX: 0, ease: Linear.easeNone }
+    );
+
+    const mainLogoAnimate = function(ev) {
+      const target = document.querySelector(".mainLogo");
+
+      const evX = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
+      const evY = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
+
+      const sxPos = (evX / window.innerWidth * 50) * 0.6;
+      const syPos = (evY / window.innerHeight * 50) * 0.6;
+
+      gsap.to(target, 1, {
+        css:{ "filter": "drop-shadow(" + Math.ceil(-sxPos) + "px " + Math.ceil(-syPos) + "px 24px rgba(0,0,0,.25))"},
+        ease: Expo.easeOut
+      });
+    };
+
+    window.addEventListener("touchstart", mainLogoAnimate);
+    window.addEventListener("touchend", mainLogoAnimate);
+
+    window.addEventListener("mousemove", mainLogoAnimate);
+    window.addEventListener("mouseleave", mainLogoAnimate);
+
+    // New Way
+    gsap.to('.newWay .sloganGroup', {
+      position: 'fixed',
+      opacity: 0.3,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWay',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
+
+    gsap.to('.newWay .sloganTop', {
+      // position: 'fixed',
+      opacity: 1,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWay',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
+
+    gsap.to('.newWay .sloganTop', {
+      opacity: 0,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWayList .listItem:nth-child(3)',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
+
+    gsap.to('.newWay .sloganBottom', {
+      position: 'fixed',
+      opacity: 1,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWayList .listItem:nth-child(3)',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
+
+    gsap.to('.newWay .sloganBottom', {
+      opacity: 0,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWayList .listItem:nth-child(5)',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 0.5,
+        // markers: true,
+      }
+    });
+
+    const sloganLoopingRange = () => {
+      if (window.innerWidth > 959) {
+        return window.innerWidth * 1.25;
+      } else {
+        return window.innerWidth * 1.5;
+      }
+    }
+
+    const NWsloganLeftLooping = new TimelineMax({ repeat: -1 });
+    NWsloganLeftLooping.staggerFromTo('.newWay .sloganTop', 40,
+      { backgroundPositionX: 0, ease: Linear.easeNone },
+      { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
+    );
+
+    const NWsloganRightLooping = new TimelineMax({ repeat: -1 });
+    NWsloganRightLooping.staggerFromTo('.newWay .sloganBottom', 40,
+      { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
+      { backgroundPositionX: 0, ease: Linear.easeNone }
+    );
+
+    let currentPos = window.pageYOffset;
+    const callDistort = function() {
+      const newPos = window.pageYOffset;
+      const diff = newPos - currentPos;
+      const speed = diff * 0.5;
+      currentPos = newPos;
+      kvSloganLeftLooping.timeScale(1 + speed);
+      kvSloganRightLooping.timeScale(1 + speed);
+      NWsloganLeftLooping.timeScale(1 + speed);
+      NWsloganRightLooping.timeScale(1 + speed);
+      requestAnimationFrame(callDistort);
+    };
+    callDistort();
+
+
+    // Creative Power
     const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
     const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
     photoRowLeftLoopList.forEach(function(el) {
@@ -143,115 +363,6 @@ const IndexPage = forwardRef((props, ref) => {
       photoRowRightLoop.addEventListener("touchend", Move);
     });
 
-    gsap.to('.sloganGroup', {
-      position: 'fixed',
-      opacity: 0.3,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWay',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
-
-    gsap.to('.sloganTop', {
-      // position: 'fixed',
-      opacity: 1,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWay',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
-
-    gsap.to('.sloganTop', {
-      opacity: 0,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(3)',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
-
-    gsap.to('.sloganBottom', {
-      position: 'fixed',
-      opacity: 1,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(3)',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
-
-    gsap.to('.sloganBottom', {
-      opacity: 0,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(5)',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 0.5,
-        // markers: true,
-      }
-    });
-
-    const sloganTopLooping = new TimelineMax({ repeat: -1 });
-    sloganTopLooping.staggerFromTo('.sloganTop', 20,
-      { backgroundPositionX: 0, ease: Linear.easeNone },
-      { backgroundPositionX: -(window.innerWidth) + 'px', ease: Linear.easeNone }
-    );
-
-    const sloganBottomLooping = new TimelineMax({ repeat: -1 });
-    sloganBottomLooping.staggerFromTo('.sloganBottom', 20,
-      { backgroundPositionX: -(window.innerWidth) + 'px', ease: Linear.easeNone },
-      { backgroundPositionX: 0, ease: Linear.easeNone }
-    );
-
-
-    let currentPos = window.pageYOffset;
-    const callDistort = function () {
-      const newPos = window.pageYOffset;
-      const diff = newPos - currentPos;
-      const speed = diff * 0.5;
-      // document.querySelector('.sloganTop').style.transform = "skewX(" + -(speed * .5) + "deg)";
-
-      // gsap.to('.sloganTop', 2, {
-      //   skewX: (speed * .5),
-      //   ease: Expo.easeOut
-      // });
-      // gsap.to('.sloganBottom', 2, {
-      //   skewX: -(speed * .5),
-      //   ease: Expo.easeOut
-      // });
-
-      currentPos = newPos;
-      sloganTopLooping.timeScale(1 + speed);
-      sloganBottomLooping.timeScale(1 + speed);
-      requestAnimationFrame(callDistort);
-    };
-    callDistort();
-
   }, [])
 
   const a = ["0", "0", "0", "0", "0"];
@@ -273,21 +384,29 @@ const IndexPage = forwardRef((props, ref) => {
 
   return (
     <div className="wrap w-screen overflow-x-hidden" ref={ref}>
+
       <nav className="nav"></nav>
       
+      <div className="loadCover fixed top-0 left-0 right-0 bottom-0 z-100 w-screen h-screen pointer-events-none">
+        <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
+        <div className="bg absolute top-0 left-0 right-0 bottom-0 z-20 w-full h-full bg-kv-1"></div>
+      </div>
+
       <section className="hero relative h-screen flex flex-wrap flex-col">
-        <div className="relative pre-hero w-screen h-screen bg-kv-1">
-          <Scene1Left />
+        <div className="relative kv_left pre-hero w-screen h-screen bg-kv-1 overflow-hidden scale-x-105 origin-top-left">
+          <div className="kv_left_inner w-full h-full block">
+            <Scene1Left />
+          </div>
+          <div className="sloganTop absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x -bg-no-repeat bg-left-top scale-x-95 origin-top-left pointer-events-none" style={{backgroundImage: `url(${slogan_top})`}}></div>
         </div>
-        <div className="relative pre-hero w-screen h-screen bg-kv-2">
-          <Scene1Right />
+        <div className="relative kv_right pre-hero w-screen h-screen bg-kv-2 overflow-hidden" style={{clipPath: "polygon(5% 0, 100% 0%, 100% 100%, 0% 100%)"}}>
+          <div className="kv_right_inner w-full h-full block" style={{transform: "translate(-50%, 0%)"}}>
+            <Scene1Right />
+          </div>
+          <div className="sloganBottom absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x -bg-no-repeat bg-left-bottom pointer-events-none" style={{backgroundImage: `url(${slogan_bottom})`}}></div>
         </div>
       </section>
 
-      {/* <section className="hero relative h-screen flex flex-wrap flex-col">
-        <div className="w-screen h-screen bg-kv-2"></div>
-        <div className="w-screen h-screen bg-kv-1"></div>
-      </section> */}
       <section className="intro">
         <div className="bg-kv-2 py-32">
           <div className="container mx-auto">
@@ -338,8 +457,8 @@ const IndexPage = forwardRef((props, ref) => {
         <div className="bg-kv-3 py-32">
 
           <div className="sloganGroup absolute top-0 left-0 z-0 w-screen h-screen opacity-0">
-            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-top opacity-0" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
-            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-bottom opacity-0" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
+            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-top opacity-0" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
+            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-bottom opacity-0" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
           </div>
 
           <div className="container mx-auto">
