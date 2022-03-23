@@ -88,7 +88,7 @@ const IndexPage = forwardRef((props, ref) => {
     const sdgListItem = sdgList.querySelectorAll('.listItem');
     sdgList.style.height = sdgListItem[0].offsetHeight + 'px';
 
-    // gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
     
     // let container = document.querySelector(".hero");
 
@@ -142,6 +142,115 @@ const IndexPage = forwardRef((props, ref) => {
       photoRowRightLoop.addEventListener("touchstart", Slow);
       photoRowRightLoop.addEventListener("touchend", Move);
     });
+
+    gsap.to('.sloganGroup', {
+      position: 'fixed',
+      opacity: 1,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWay',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
+
+    // gsap.to('.sloganTop', {
+    //   // position: 'fixed',
+    //   opacity: 1,
+    //   ease: Expo.easeOut,
+    //   scrollTrigger: {
+    //     trigger: '.newWay',
+    //     invalidateOnRefresh: true,
+    //     // pin: true,
+    //     scrub: true,
+    //     start: "top top",
+    //     end: () => "+=" + window.innerHeight,
+    //     // markers: true,
+    //   }
+    // });
+
+    // gsap.to('.sloganTop', {
+    //   opacity: 0,
+    //   ease: Expo.easeOut,
+    //   scrollTrigger: {
+    //     trigger: '.newWayList .listItem:nth-child(3)',
+    //     invalidateOnRefresh: true,
+    //     // pin: true,
+    //     scrub: true,
+    //     start: "top top",
+    //     end: () => "+=" + window.innerHeight,
+    //     // markers: true,
+    //   }
+    // });
+
+    // gsap.to('.sloganBottom', {
+    //   position: 'fixed',
+    //   opacity: 1,
+    //   ease: Expo.easeOut,
+    //   scrollTrigger: {
+    //     trigger: '.newWayList .listItem:nth-child(3)',
+    //     invalidateOnRefresh: true,
+    //     // pin: true,
+    //     scrub: true,
+    //     start: "top top",
+    //     end: () => "+=" + window.innerHeight,
+    //     // markers: true,
+    //   }
+    // });
+
+    // gsap.to('.sloganBottom', {
+    //   opacity: 0,
+    //   ease: Expo.easeOut,
+    //   scrollTrigger: {
+    //     trigger: '.newWayList .listItem:nth-child(5)',
+    //     invalidateOnRefresh: true,
+    //     // pin: true,
+    //     scrub: true,
+    //     start: "top top",
+    //     end: () => "+=" + window.innerHeight * 0.5,
+    //     // markers: true,
+    //   }
+    // });
+
+    const sloganTopLooping = new TimelineMax({ repeat: -1 });
+    sloganTopLooping.staggerFromTo('.sloganTop', 20,
+      { backgroundPositionX: 0, ease: Linear.easeNone },
+      { backgroundPositionX: -(window.innerWidth) + 'px', ease: Linear.easeNone }
+    );
+
+    const sloganBottomLooping = new TimelineMax({ repeat: -1 });
+    sloganBottomLooping.staggerFromTo('.sloganBottom', 20,
+      { backgroundPositionX: -(window.innerWidth) + 'px', ease: Linear.easeNone },
+      { backgroundPositionX: 0, ease: Linear.easeNone }
+    );
+
+
+    let currentPos = window.pageYOffset;
+    const callDistort = function () {
+      const newPos = window.pageYOffset;
+      const diff = newPos - currentPos;
+      const speed = diff * 0.5;
+      // document.querySelector('.sloganTop').style.transform = "skewX(" + -(speed * .5) + "deg)";
+
+      // gsap.to('.sloganTop', 2, {
+      //   skewX: (speed * .5),
+      //   ease: Expo.easeOut
+      // });
+      // gsap.to('.sloganBottom', 2, {
+      //   skewX: -(speed * .5),
+      //   ease: Expo.easeOut
+      // });
+
+      currentPos = newPos;
+      sloganTopLooping.timeScale(1 + speed);
+      sloganBottomLooping.timeScale(1 + speed);
+      requestAnimationFrame(callDistort);
+    };
+    callDistort();
 
   }, [])
 
@@ -214,20 +323,26 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-1" ref={break1Ref}>
+      <div className="sectionBreak relative z-20" ref={break1Ref}>
         <div className="bg-kv-2">
           <div className="scale-125 origin-center -rotate-6 translate-y-16">
             {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
-            <div className="midde relative z-1 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
-            <div className="lower relative z-2 w-screen h-48 md:h-72 bg-kv-3"></div>
+            <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-72 bg-kv-3"></div>
           </div>
         </div>
       </div>
       
-      <section className="newWay relative z-0">
+      <section className="newWay relative z-30">
         <div className="bg-kv-3 py-32">
+
+          <div className="sloganGroup absolute top-0 left-0 z-30 w-screen h-screen opacity-0">
+            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-top opacity-100" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
+            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-bottom opacity-100" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
+          </div>
+
           <div className="container mx-auto">
-            <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:mb-48">
+            <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:-mt-40 md:mb-48">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">New Way</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">探索新航向</div>
             </div>
@@ -239,12 +354,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       忠泰建設與義泰建設<br />雙品牌發展策略
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">秉承忠泰集團始創人李忠義董事長之名，「忠泰建設」與「義泰建設」將以雙品牌策略發展，並駕齊驅，共同建造平行於台北的明日之城。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">秉承忠泰集團始創人李忠義董事長之名，「忠泰建設」與「義泰建設」將以雙品牌策略發展，並駕齊驅，共同建造平行於台北的明日之城。</p>
                   </div>
                 </div>
               </div>
@@ -255,12 +370,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       首度跨足國際頂級商辦市場
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">以體驗為首開封充滿樂趣的零售之旅。<br />我們正在創造一種與顧客深層交流的零售體驗。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以體驗為首開封充滿樂趣的零售之旅。<br />我們正在創造一種與顧客深層交流的零售體驗。</p>
                   </div>
                 </div>
               </div>
@@ -271,12 +386,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       拓展生活版圖<br />首度公開外縣市造鎮藍圖
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">以美學之姿探索運動之於日常的實踐。<br  />我們正在實踐一種獨樹一幟的城市運動。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以美學之姿探索運動之於日常的實踐。<br  />我們正在實踐一種獨樹一幟的城市運動。</p>
                   </div>
                 </div>
               </div>
@@ -287,12 +402,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       首座零售商場<br />蓄勢待發
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">以體驗為首開封充滿樂趣的零售之旅。<br/>我們正在創造一種與顧客深層交流的零售體驗。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以體驗為首開封充滿樂趣的零售之旅。<br/>我們正在創造一種與顧客深層交流的零售體驗。</p>
                   </div>
                 </div>
               </div>
@@ -303,12 +418,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       全城焦點<br />安藤忠雄特展五月登場
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">以美學之姿探索運動之於日常的實踐。<br/>我們正在實踐一種獨樹一幟的城市運動。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以美學之姿探索運動之於日常的實踐。<br/>我們正在實踐一種獨樹一幟的城市運動。</p>
                   </div>
                 </div>
               </div>
@@ -321,16 +436,16 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-1" ref={break2Ref}>
+      <div className="sectionBreak relative z-10" ref={break2Ref}>
         <div className="bg-kv-3">
           <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
-            <div className="midde relative z-1 w-screen h-32 rotate-12 md:rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
-            <div className="lower relative z-2 w-screen h-48 md:h-72 bg-kv-1"></div>
+            <div className="midde relative z-10 w-screen h-32 rotate-12 md:rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-72 bg-kv-1"></div>
           </div>
         </div>
       </div>
 
-      <section className="vision relative z-">
+      <section className="vision relative z-20">
         <div className="bg-kv-1 py-32">
           <div className="container mx-auto">
             <div className="titleGruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
@@ -342,7 +457,7 @@ const IndexPage = forwardRef((props, ref) => {
             </div>
             <div className="itemTitle fadeIn mt-8 md:flex">
               <div className="title md:basis-1/2">
-                <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                   在建築之上，我們構築一座富有生命力與創造力的平行城市。
                 </h2>
               </div>                  
@@ -406,16 +521,16 @@ const IndexPage = forwardRef((props, ref) => {
         </div>            
       </section>
 
-      <div className="sectionBreak relative z-1" ref={break3Ref}>
+      <div className="sectionBreak relative z-30" ref={break3Ref}>
         <div className="bg-kv-1">
           <div className="scale-125 origin-center -rotate-6 translate-y-12">
-            <div className="midde relative z-1 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
-            <div className="lower relative z-2 w-screen h-48 md:h-72 bg-kv-2"></div>
+            <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-72 bg-kv-2"></div>
           </div>
         </div>
       </div>
 
-      <section className="creative relative z-0">
+      <section className="creative relative z-40">
         <div className="bg-kv-2 py-32">
           <div className="container mx-auto fadeIn">
             <div className="-mt-40 mb-12 text-center md:text-left md:-mt-48 md:mb-24 md:flex md:justify-between md:items-end">
