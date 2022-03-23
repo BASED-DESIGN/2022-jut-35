@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useThree, useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import * as THREE from 'three'
 
 export default function Item(props) {
   const {
@@ -9,6 +10,7 @@ export default function Item(props) {
   } = props
   const ref = useRef()
   const texture = useLoader(TextureLoader, url)
+  texture.encoding = THREE.sRGBEncoding;
   const { width, height } = useThree(state => state.size)
   const planeHeight = width * texture.image.height / texture.image.width
 
@@ -29,7 +31,9 @@ export default function Item(props) {
         <meshBasicMaterial 
           attach="material" 
           map={texture} 
-          transparent={true} 
+          transparent={true}
+          dithering
+         
         />
       </mesh>
     </group>
