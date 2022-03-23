@@ -143,7 +143,7 @@ const IndexPage = forwardRef((props, ref) => {
       photoRowRightLoop.addEventListener("touchend", Move);
     });
 
-    gsap.to('.sloganTop', {
+    gsap.to('.sloganGroup', {
       position: 'fixed',
       opacity: 1,
       ease: Expo.easeOut,
@@ -158,57 +158,72 @@ const IndexPage = forwardRef((props, ref) => {
       }
     });
 
-    gsap.to('.sloganTop', {
-      opacity: 0,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(3)',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
+    // gsap.to('.sloganTop', {
+    //   // position: 'fixed',
+    //   opacity: 1,
+    //   ease: Expo.easeOut,
+    //   scrollTrigger: {
+    //     trigger: '.newWay',
+    //     invalidateOnRefresh: true,
+    //     // pin: true,
+    //     scrub: true,
+    //     start: "top top",
+    //     end: () => "+=" + window.innerHeight,
+    //     // markers: true,
+    //   }
+    // });
 
-    gsap.to('.sloganBottom', {
-      position: 'fixed',
-      opacity: 1,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(3)',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
+    // gsap.to('.sloganTop', {
+    //   opacity: 0,
+    //   ease: Expo.easeOut,
+    //   scrollTrigger: {
+    //     trigger: '.newWayList .listItem:nth-child(3)',
+    //     invalidateOnRefresh: true,
+    //     // pin: true,
+    //     scrub: true,
+    //     start: "top top",
+    //     end: () => "+=" + window.innerHeight,
+    //     // markers: true,
+    //   }
+    // });
 
-    gsap.to('.sloganBottom', {
-      opacity: 0,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(5)',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 0.5,
-        // markers: true,
-      }
-    });
+    // gsap.to('.sloganBottom', {
+    //   position: 'fixed',
+    //   opacity: 1,
+    //   ease: Expo.easeOut,
+    //   scrollTrigger: {
+    //     trigger: '.newWayList .listItem:nth-child(3)',
+    //     invalidateOnRefresh: true,
+    //     // pin: true,
+    //     scrub: true,
+    //     start: "top top",
+    //     end: () => "+=" + window.innerHeight,
+    //     // markers: true,
+    //   }
+    // });
+
+    // gsap.to('.sloganBottom', {
+    //   opacity: 0,
+    //   ease: Expo.easeOut,
+    //   scrollTrigger: {
+    //     trigger: '.newWayList .listItem:nth-child(5)',
+    //     invalidateOnRefresh: true,
+    //     // pin: true,
+    //     scrub: true,
+    //     start: "top top",
+    //     end: () => "+=" + window.innerHeight * 0.5,
+    //     // markers: true,
+    //   }
+    // });
 
     const sloganTopLooping = new TimelineMax({ repeat: -1 });
-    sloganTopLooping.staggerFromTo('.sloganTop', 12,
+    sloganTopLooping.staggerFromTo('.sloganTop', 20,
       { backgroundPositionX: 0, ease: Linear.easeNone },
       { backgroundPositionX: -(window.innerWidth) + 'px', ease: Linear.easeNone }
     );
 
     const sloganBottomLooping = new TimelineMax({ repeat: -1 });
-    sloganBottomLooping.staggerFromTo('.sloganBottom', 12,
+    sloganBottomLooping.staggerFromTo('.sloganBottom', 20,
       { backgroundPositionX: -(window.innerWidth) + 'px', ease: Linear.easeNone },
       { backgroundPositionX: 0, ease: Linear.easeNone }
     );
@@ -321,9 +336,9 @@ const IndexPage = forwardRef((props, ref) => {
       <section className="newWay relative z-30">
         <div className="bg-kv-3 py-32">
 
-          <div className="sloganGroup absolute top-0 left-0 z-0 w-screen h-screen opacity-50">
-            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-top opacity-0" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
-            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-bottom opacity-0" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
+          <div className="sloganGroup absolute top-0 left-0 z-30 w-screen h-screen opacity-0">
+            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-top opacity-100" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
+            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-bottom opacity-100" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
           </div>
 
           <div className="container mx-auto">
@@ -339,12 +354,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       忠泰建設與義泰建設<br />雙品牌發展策略
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">秉承忠泰集團始創人李忠義董事長之名，「忠泰建設」與「義泰建設」將以雙品牌策略發展，並駕齊驅，共同建造平行於台北的明日之城。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">秉承忠泰集團始創人李忠義董事長之名，「忠泰建設」與「義泰建設」將以雙品牌策略發展，並駕齊驅，共同建造平行於台北的明日之城。</p>
                   </div>
                 </div>
               </div>
@@ -355,12 +370,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       首度跨足國際頂級商辦市場
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">以體驗為首開封充滿樂趣的零售之旅。<br />我們正在創造一種與顧客深層交流的零售體驗。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以體驗為首開封充滿樂趣的零售之旅。<br />我們正在創造一種與顧客深層交流的零售體驗。</p>
                   </div>
                 </div>
               </div>
@@ -371,12 +386,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       拓展生活版圖<br />首度公開外縣市造鎮藍圖
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">以美學之姿探索運動之於日常的實踐。<br  />我們正在實踐一種獨樹一幟的城市運動。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以美學之姿探索運動之於日常的實踐。<br  />我們正在實踐一種獨樹一幟的城市運動。</p>
                   </div>
                 </div>
               </div>
@@ -387,12 +402,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       首座零售商場<br />蓄勢待發
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">以體驗為首開封充滿樂趣的零售之旅。<br/>我們正在創造一種與顧客深層交流的零售體驗。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以體驗為首開封充滿樂趣的零售之旅。<br/>我們正在創造一種與顧客深層交流的零售體驗。</p>
                   </div>
                 </div>
               </div>
@@ -403,12 +418,12 @@ const IndexPage = forwardRef((props, ref) => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       全城焦點<br />安藤忠雄特展五月登場
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-lg">以美學之姿探索運動之於日常的實踐。<br/>我們正在實踐一種獨樹一幟的城市運動。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以美學之姿探索運動之於日常的實踐。<br/>我們正在實踐一種獨樹一幟的城市運動。</p>
                   </div>
                 </div>
               </div>
@@ -442,7 +457,7 @@ const IndexPage = forwardRef((props, ref) => {
             </div>
             <div className="itemTitle fadeIn mt-8 md:flex">
               <div className="title md:basis-1/2">
-                <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-4xl md:leading-snug">
+                <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                   在建築之上，我們構築一座富有生命力與創造力的平行城市。
                 </h2>
               </div>                  
