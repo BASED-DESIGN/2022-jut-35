@@ -3,9 +3,9 @@ import { OrthographicCamera } from '@react-three/drei'
 import useStore from '@helpers/store'
 
 const Camera = props => {
-  const { children } = props
+  const { children, followPageScroll=false } = props
   const { width, height } = useThree((state) => state.size)
-  const offset = useStore(state => state.offset)
+  const offset = followPageScroll ? useStore(state => state.offset) : 0
 
   return (
     <OrthographicCamera 

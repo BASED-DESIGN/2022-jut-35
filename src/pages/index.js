@@ -2,21 +2,18 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import DomContent from '@components/doms/IndexPage'
 import CanvasContent from '@components/canvas/IndexPage'
-import { useThree } from '@react-three/fiber'
-import useStore from '@helpers/store'
-import { useWheel } from '@use-gesture/react'
 import Scroller from '@components/doms/Scroller'
 
 // About Next dynamic, React.Suspense, React.lazy discussion:
 // https://github.com/vercel/next.js/discussions/17979
 
 const Canvas = dynamic(
-  () => import('@src/components/layout/Canvas'), 
+  () => import('@components/layout/Canvas'), 
   { ssr: false, }
 )
 
 // const Dom = dynamic(
-//   () => import('@src/components/layout/Dom'), 
+//   () => import('@components/layout/Dom'), 
 //   { ssr: false, }
 // )
 
@@ -41,7 +38,10 @@ const Home = () => {
         {/* <link rel="icon" href="./favicon.ico" /> */}
       </Head>
 
-      <Canvas>
+      <Canvas 
+        wrapperClassName="fixed top-0 left-0 w-full h-full pointer-events-none z-10"
+        followPageScroll={true}
+      >
         <CanvasContent />
       </Canvas>
 

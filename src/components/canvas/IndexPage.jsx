@@ -3,9 +3,9 @@ import { useRef, useEffect, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { useThree, useFrame } from '@react-three/fiber'
 import useStore from '@helpers/store'
-import LightMouseTracker from '@src/components/canvas/objects/LightMouseTracker'
+import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
 
-const Man = dynamic(() => import('@src/components/canvas/objects/Man'), { ssr: false })
+const Man = dynamic(() => import('@components/canvas/objects/Man'), { ssr: false })
 
 const IndexPage = () => {
   const { width, height } = useThree(state => state.size)
