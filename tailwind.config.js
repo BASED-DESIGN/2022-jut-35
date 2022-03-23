@@ -47,6 +47,12 @@ module.exports = {
       '1500': '1500ms',
       '2000': '2000ms',
     },
+    backgroundSize: {
+      'auto': 'auto',
+      'cover': 'cover',
+      'contain': 'contain',
+      'half': '50%',
+    },
     extend: {
       spacing: {
         '128': '32rem',

@@ -145,6 +145,21 @@ const IndexPage = forwardRef((props, ref) => {
 
     gsap.to('.sloganGroup', {
       position: 'fixed',
+      opacity: 0.3,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWay',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
+
+    gsap.to('.sloganTop', {
+      // position: 'fixed',
       opacity: 1,
       ease: Expo.easeOut,
       scrollTrigger: {
@@ -158,63 +173,48 @@ const IndexPage = forwardRef((props, ref) => {
       }
     });
 
-    // gsap.to('.sloganTop', {
-    //   // position: 'fixed',
-    //   opacity: 1,
-    //   ease: Expo.easeOut,
-    //   scrollTrigger: {
-    //     trigger: '.newWay',
-    //     invalidateOnRefresh: true,
-    //     // pin: true,
-    //     scrub: true,
-    //     start: "top top",
-    //     end: () => "+=" + window.innerHeight,
-    //     // markers: true,
-    //   }
-    // });
+    gsap.to('.sloganTop', {
+      opacity: 0,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWayList .listItem:nth-child(3)',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
 
-    // gsap.to('.sloganTop', {
-    //   opacity: 0,
-    //   ease: Expo.easeOut,
-    //   scrollTrigger: {
-    //     trigger: '.newWayList .listItem:nth-child(3)',
-    //     invalidateOnRefresh: true,
-    //     // pin: true,
-    //     scrub: true,
-    //     start: "top top",
-    //     end: () => "+=" + window.innerHeight,
-    //     // markers: true,
-    //   }
-    // });
+    gsap.to('.sloganBottom', {
+      position: 'fixed',
+      opacity: 1,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWayList .listItem:nth-child(3)',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
 
-    // gsap.to('.sloganBottom', {
-    //   position: 'fixed',
-    //   opacity: 1,
-    //   ease: Expo.easeOut,
-    //   scrollTrigger: {
-    //     trigger: '.newWayList .listItem:nth-child(3)',
-    //     invalidateOnRefresh: true,
-    //     // pin: true,
-    //     scrub: true,
-    //     start: "top top",
-    //     end: () => "+=" + window.innerHeight,
-    //     // markers: true,
-    //   }
-    // });
-
-    // gsap.to('.sloganBottom', {
-    //   opacity: 0,
-    //   ease: Expo.easeOut,
-    //   scrollTrigger: {
-    //     trigger: '.newWayList .listItem:nth-child(5)',
-    //     invalidateOnRefresh: true,
-    //     // pin: true,
-    //     scrub: true,
-    //     start: "top top",
-    //     end: () => "+=" + window.innerHeight * 0.5,
-    //     // markers: true,
-    //   }
-    // });
+    gsap.to('.sloganBottom', {
+      opacity: 0,
+      ease: Expo.easeOut,
+      scrollTrigger: {
+        trigger: '.newWayList .listItem:nth-child(5)',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 0.5,
+        // markers: true,
+      }
+    });
 
     const sloganTopLooping = new TimelineMax({ repeat: -1 });
     sloganTopLooping.staggerFromTo('.sloganTop', 20,
@@ -336,9 +336,9 @@ const IndexPage = forwardRef((props, ref) => {
       <section className="newWay relative z-30">
         <div className="bg-kv-3 py-32">
 
-          <div className="sloganGroup absolute top-0 left-0 z-30 w-screen h-screen opacity-0">
-            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-top opacity-100" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
-            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-bottom opacity-100" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
+          <div className="sloganGroup absolute top-0 left-0 z-0 w-screen h-screen opacity-0">
+            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-top opacity-0" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
+            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-contain bg-repeat-x bg-left-bottom opacity-0" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
           </div>
 
           <div className="container mx-auto">
