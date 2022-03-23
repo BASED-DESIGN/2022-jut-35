@@ -5,7 +5,7 @@ import PresentationControls from '@components/canvas/objects/PresentationControl
 
 export default function Item(props) {
   const {
-    url = `/man-gltf/man1.gltf`,
+    url = `/gltf/man1.gltf`,
     scale=1
   } = props
   const ref = useRef()

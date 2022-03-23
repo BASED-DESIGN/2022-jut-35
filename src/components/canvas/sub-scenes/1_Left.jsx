@@ -3,11 +3,11 @@ import dynamic from 'next/dynamic'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import PresentationControls from '@components/canvas/objects/PresentationControls'
-// import Object from '@components/canvas/objects/Object'
 import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
 
 const Canvas = dynamic(() => import('@components/layout/Canvas'), { ssr: false, })
-const Object = dynamic(() => import('@components/canvas/objects/Item'), { ssr: false, })
+// const Object = dynamic(() => import('@components/canvas/objects/Item3D'), { ssr: false, })
+const Plane = dynamic(() => import('@components/canvas/objects/Item2D'), { ssr: false, })
 const Man = dynamic(() => import('@components/canvas/objects/Man'), { ssr: false, })
 
 const Content = () => {
@@ -16,11 +16,19 @@ const Content = () => {
   return (
     <>
       <Suspense fallback={`loading assets`}>
-        <Object
+        {/* <Object
           url='/gltf/kv1-scenes.gltf'
           position={[-width * .3, -height * .9, -300]} 
           rotation={[-0.03, -0.5, 0]} 
           scale={1.1}
+        /> */}
+        <Plane 
+          url="/kv/kv1_layer_1.png"
+          position={[0, 0, -300]}
+        />
+        <Plane 
+          url="/kv/kv1_layer_2.png"
+          position={[0, 0, -300]}
         />
         
         <Man
