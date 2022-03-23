@@ -174,10 +174,10 @@ const IndexPage = forwardRef((props, ref) => {
         <Scene1Right />
       </div>
 
-      <section className="hero relative h-screen flex flex-wrap flex-col">
+      {/* <section className="hero relative h-screen flex flex-wrap flex-col">
         <div className="w-screen h-screen bg-kv-2"></div>
         <div className="w-screen h-screen bg-kv-1"></div>
-      </section>
+      </section> */}
       <section className="intro">
         <div className="bg-kv-2 py-32">
           <div className="container mx-auto">
