@@ -90,22 +90,22 @@ const IndexPage = forwardRef((props, ref) => {
 
     gsap.registerPlugin(ScrollTrigger);
     
-    // let container = document.querySelector(".hero");
-
-    // gsap.to(container, {
-    //   x: () => -(container.scrollWidth - document.documentElement.clientWidth) + "px",
-    //   ease: "none",
-    //   scrollTrigger: {
-    //     trigger: '.hero',
-    //     invalidateOnRefresh: true,
-    //     pin: true,
-    //     scrub: true,
-    //     // start: "top top",
-    //     // end: () => "+=" + window.innerHeight,
-    //     end: () => "+=" + window.innerHeight * 2,
-    //     markers: true,
-    //   }
-    // })
+    const heroContainer = document.querySelector(".hero");
+    gsap.to('.hero', 3,{
+      x: -(window.innerWidth * 1) + "px",
+      // ease: Linear.easeNone,
+      ease: "none",
+      scrollTrigger: {
+        trigger: '.hero',
+        invalidateOnRefresh: true,
+        pin: true,
+        scrub: true,
+        start: "top top",
+        // end: () => "+=" + window.innerHeight,
+        end: () => "+=" + window.innerHeight * 2,
+        // markers: true,
+      }
+    })
 
     const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
     const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
@@ -275,13 +275,14 @@ const IndexPage = forwardRef((props, ref) => {
     <div className="wrap w-screen overflow-x-hidden" ref={ref}>
       <nav className="nav"></nav>
       
-      <div className="relative pre-hero w-screen h-screen bg-kv-1">
-        <Scene1Left />
-      </div>
-
-      <div className="relative pre-hero w-screen h-screen bg-kv-2">
-        <Scene1Right />
-      </div>
+      <section className="hero relative h-screen flex flex-wrap flex-col">
+        <div className="relative pre-hero w-screen h-screen bg-kv-1">
+          <Scene1Left />
+        </div>
+        <div className="relative pre-hero w-screen h-screen bg-kv-2">
+          <Scene1Right />
+        </div>
+      </section>
 
       {/* <section className="hero relative h-screen flex flex-wrap flex-col">
         <div className="w-screen h-screen bg-kv-2"></div>
