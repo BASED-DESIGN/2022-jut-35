@@ -46,26 +46,39 @@ const IndexPage = forwardRef((props, ref) => {
     //   item.classList.add('enter');
     // })
 
+    // translate scroll
     const target = document.querySelector('.wrap-main');
-    const observerItem = document.querySelectorAll('.fadeIn');
-
-    const observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutationRecord) {
-        const scrollTop = target.getBoundingClientRect().top;
-        // console.log(scrollTop);
-        [...observerItem].forEach((item)=>{
-          var containScroll = -scrollTop + window.innerHeight * 0.75;
-          var itemScroll = item.getBoundingClientRect().top - scrollTop;
-          // console.log(containScroll + ', ' + itemScroll);
-          if (containScroll > itemScroll) {
-            // console.log(item);
-            item.classList.add('enter');
+    if (target != null){
+      const observerItem = document.querySelectorAll('.fadeIn');
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutationRecord) {
+          const scrollTop = target.getBoundingClientRect().top;
+          // console.log(scrollTop);
+          [...observerItem].forEach((item)=>{
+            var containScroll = -scrollTop + window.innerHeight * 0.75;
+            var itemScroll = item.getBoundingClientRect().top - scrollTop;
+            // console.log(containScroll + ', ' + itemScroll);
+            if (containScroll > itemScroll) {
+              // console.log(item);
+              item.classList.add('enter');
+            }
+          });
+        });    
+      });
+      observer.observe(target, { attributes : true, attributeFilter : ['style'] });
+    } else {
+      document.addEventListener('scroll', inViewItems);
+      inViewItems();
+      function inViewItems(){
+        document.querySelectorAll(".fadeIn").forEach((item) => {
+          if (item.getBoundingClientRect().y - window.innerHeight * 0.75 < 0) {
+            item.classList.add("enter");
+          } else {
+            // item.classList.remove("enter");
           }
         });
-      });    
-    });
-    
-    observer.observe(target, { attributes : true, attributeFilter : ['style'] });
+      };
+    }
 
     const sdgList = document.querySelector('.sdgList');
     const sdgListItem = sdgList.querySelectorAll('.listItem');
@@ -90,11 +103,6 @@ const IndexPage = forwardRef((props, ref) => {
     //   }
     // })
 
-    // const Move = () => rowLooping.timeScale(1);
-    // const Slow = () => rowLooping.timeScale(.5);
-    const Move = () => {}
-    const Slow = () => {}
-
     const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
     const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
     photoRowLeftLoopList.forEach(function(el) {
@@ -105,12 +113,13 @@ const IndexPage = forwardRef((props, ref) => {
         { xPercent: -100, ease: Linear.easeNone },
         { xPercent: 0, ease: Linear.easeNone }
       );
+      const Move = () => rowLooping.timeScale(1);
+      const Slow = () => rowLooping.timeScale(.3);
+      photoRowLeftLoop.addEventListener("mouseenter", Slow);
+      photoRowLeftLoop.addEventListener("mouseleave", Move);
+      photoRowLeftLoop.addEventListener("touchstart", Slow);
+      photoRowLeftLoop.addEventListener("touchend", Move);
     });
-
-    photoRowLeftLoop.addEventListener("mouseenter", Slow);
-    photoRowLeftLoop.addEventListener("mouseleave", Move);
-    photoRowLeftLoop.addEventListener("touchstart", Slow);
-    photoRowLeftLoop.addEventListener("touchend", Move);
 
     const photoRowRightLoop = document.querySelector(".photoRowRightLoop");
     const photoRowRightLoopList = photoRowRightLoop.querySelectorAll(".photoRowList");
@@ -122,12 +131,13 @@ const IndexPage = forwardRef((props, ref) => {
         { xPercent: 0, ease: Linear.easeNone },
         { xPercent: -100, ease: Linear.easeNone }
       );
+      const Move = () => rowLooping.timeScale(1);
+      const Slow = () => rowLooping.timeScale(.3);
+      photoRowRightLoop.addEventListener("mouseenter", Slow);
+      photoRowRightLoop.addEventListener("mouseleave", Move);
+      photoRowRightLoop.addEventListener("touchstart", Slow);
+      photoRowRightLoop.addEventListener("touchend", Move);
     });
-
-    photoRowRightLoop.addEventListener("mouseenter", Slow);
-    photoRowRightLoop.addEventListener("mouseleave", Move);
-    photoRowRightLoop.addEventListener("touchstart", Slow);
-    photoRowRightLoop.addEventListener("touchend", Move);
 
   }, [])
 
@@ -149,7 +159,7 @@ const IndexPage = forwardRef((props, ref) => {
   }, [])
 
   return (
-    <div className="wrap" ref={ref}>
+    <div className="wrap w-screen overflow-x-hidden" ref={ref}>
       <nav className="nav"></nav>
       
       {/* <div className="pre-hero w-screen h-screen bg-kv-3"></div> */}
@@ -207,7 +217,7 @@ const IndexPage = forwardRef((props, ref) => {
       <section className="newWay relative z-0">
         <div className="bg-kv-3 py-32">
           <div className="container mx-auto">
-            <div className="titleGruop fadeIn mb-40 text-gray-dark md:mb-48">
+            <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:mb-48">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">New Way</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">探索新航向</div>
             </div>
@@ -310,7 +320,7 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </div>
 
-      <section className="vision relative z-0">
+      <section className="vision relative z-">
         <div className="bg-kv-1 py-32">
           <div className="container mx-auto">
             <div className="titleGruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
@@ -411,28 +421,28 @@ const IndexPage = forwardRef((props, ref) => {
             </div>
           </div>
 
-          <div className="photoRowWrap space-y-8 md:space-y-10">
-            <div className="photoRowLeftLoop flex space-x-8 md:space-x-12">
-              <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
+          <div className="photoRowWrap fadeIn w-screen overflow-x-hidden space-y-8 md:space-y-10">
+            <div className="photoRowLeftLoop flex">
+              <div className="photoRowList flex whitespace-nowrap">
                 {a.map((k, i) => (
-                  <div key={`row-1-${i}`} className="listItem relative">
+                  <div key={`row-1-${i}`} className="listItem relative mr-8 md:mr-12">
                     <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
                       <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
                     </div>
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
                       <div className="name text-2xl font-medium tracking-wider">李彥良</div>
                       <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
+              <div className="photoRowList flex whitespace-nowrap">
                 {a.map((k, i) => (
-                  <div key={`row-2-${i}`} className="listItem relative">
+                  <div key={`row-2-${i}`} className="listItem relative mr-8 md:mr-12">
                     <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
                       <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
                     </div>
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
                       <div className="name text-2xl font-medium tracking-wider">李彥良</div>
                       <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
                     </div>
@@ -441,27 +451,27 @@ const IndexPage = forwardRef((props, ref) => {
               </div>
             </div>
 
-            <div className="photoRowRightLoop flex space-x-8 md:space-x-12">
-              <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
+            <div className="photoRowRightLoop flex">
+              <div className="photoRowList flex whitespace-nowrap">
                 {a.map((k, i) => (
-                  <div key={`row-3-${i}`} className="listItem relative">
+                  <div key={`row-3-${i}`} className="listItem relative mr-8 md:mr-12">
                     <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
                       <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
                     </div>
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
                       <div className="name text-2xl font-medium tracking-wider">李彥良</div>
                       <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="photoRowList flex whitespace-nowrap space-x-8 md:space-x-12">
+              <div className="photoRowList flex whitespace-nowrap">
                 {a.map((k, i) => (
-                  <div key={`row-4-${i}`} className="listItem relative">
+                  <div key={`row-4-${i}`} className="listItem relative mr-8 md:mr-12">
                     <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
                       <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
                     </div>
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm hover:opacity-1">
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
                       <div className="name text-2xl font-medium tracking-wider">李彥良</div>
                       <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
                     </div>
