@@ -47,6 +47,7 @@ const LightMouseTracker = React.memo(
   }
 )
 
+LightMouseTracker.displayName = 'LightMouseTracker'
 LightMouseTracker.propTypes = {}
 
 export default LightMouseTracker
