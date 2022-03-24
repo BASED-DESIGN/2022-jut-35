@@ -149,6 +149,21 @@ const IndexPage = forwardRef((props, ref) => {
         // markers: true,
       }
     });
+    gsap.to('.kv_right_inner', {
+      // x: '0%',
+      transform: "translate(0%, 50%)",
+      // ease: Linear.easeNone,
+      // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: '.intro',
+        invalidateOnRefresh: true,
+        scrub: true,
+        start: "top bottom",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
 
     
     gsap.to('.loadCover .bg', 1,{
@@ -202,11 +217,11 @@ const IndexPage = forwardRef((props, ref) => {
       const evX = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
       const evY = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
 
-      const sxPos = (evX / window.innerWidth * 50) * 0.6;
-      const syPos = (evY / window.innerHeight * 50) * 0.6;
+      const sxPos = (evX / window.innerWidth * 50) * 0.7;
+      const syPos = (evY / window.innerHeight * 50) * 0.7;
 
       gsap.to(target, 1, {
-        css:{ "filter": "drop-shadow(" + Math.ceil(-sxPos) + "px " + Math.ceil(-syPos) + "px 24px rgba(0,0,0,.25))"},
+        css:{ "filter": "drop-shadow(" + Math.ceil(-sxPos) + "px " + Math.ceil(-syPos) + "px 20px rgba(0,0,0,.25))"},
         ease: Expo.easeOut
       });
     };
@@ -317,8 +332,8 @@ const IndexPage = forwardRef((props, ref) => {
       const diff = newPos - currentPos;
       const speed = diff * 0.5;
       currentPos = newPos;
-      kvSloganLeftLooping.timeScale(1 + speed);
-      kvSloganRightLooping.timeScale(1 + speed);
+      // kvSloganLeftLooping.timeScale(1 + speed);
+      // kvSloganRightLooping.timeScale(1 + speed);
       NWsloganLeftLooping.timeScale(1 + speed);
       NWsloganRightLooping.timeScale(1 + speed);
       requestAnimationFrame(callDistort);
