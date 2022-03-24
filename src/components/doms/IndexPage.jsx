@@ -420,7 +420,7 @@ const IndexPage = forwardRef((props, ref) => {
             <div className="kv_right_inner w-full h-full block" style={{transform: "translate(-50%, 0%)"}}>
               <Scene1Right />
             </div>
-            <div className="sloganBottom absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x -bg-no-repeat bg-left-bottom pointer-events-none" style={{backgroundImage: `url(${slogan_bottom})`}}></div>
+            <div className="sloganBottom absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x bg-left-bottom translate-y-1 pointer-events-none" style={{backgroundImage: `url(${slogan_bottom})`}}></div>
           </div>
         </section>
 
