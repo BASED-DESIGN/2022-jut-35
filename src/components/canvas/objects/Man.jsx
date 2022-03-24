@@ -1,26 +1,25 @@
-import { useRef, useState } from 'react'
+import { forwardRef, useRef, useState } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import PresentationControls from '@components/canvas/objects/PresentationControls'
 import { useTransition, a } from '@react-spring/three'
 
-export default function Man(props) {
+const Man = forwardRef((props, ref) => {
+// export default function Man((props, ref) {
   const {
     url = `/man-gltf/man1.gltf`,
     scale=1,
     rotation,
     position,
-    lazyIn=false
+    lazyIn=false,
   } = props
-  const ref = useRef()
+  // const ref = useRef()
   const { nodes } = useGLTF(url)
   const { width, height } = useThree(state => state.size)
   
-  const [active, setActive] = useState(false)
-
   const transition = useTransition(Object.keys(nodes).filter(key => key!=='Scene'), {
-    // from: { scale: [1, 1, 1], rotation: [0, 0, 0] },
-    from: { scale: [0, 0, 0], rotation: [0, 0, 0] },
+    from: { scale: [1, 1, 1], rotation: [0, 0, 0] },
+    // from: { scale: [0, 0, 0], rotation: [0, 0, 0] },
     enter: ({ r=0 }) => ({ scale: [1, 1, 1], rotation: [r * 3, r * 3, r * 3] }),
     // leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
     config: { mass: 5, tension: 1000, friction: 100 },
@@ -45,13 +44,13 @@ export default function Man(props) {
       azimuth={[-Math.PI / 1.4, Math.PI / 2]} // Horizontal rotate limits
     >      
       <group 
-        ref={ref} 
         dispose={null}
       >
         {transition((props, key) => {
           return (
-            <a.group {...props} onClick={()=>setActive(true)}>
+            <a.group {...props}>
               <mesh
+                ref={ref}
                 key={`man-${key}`}
                 scale={scale * width / 360}
                 geometry={nodes[key].geometry} 
@@ -62,19 +61,12 @@ export default function Man(props) {
             </a.group>
           )
         })}
-        {/* {Object.keys(nodes).filter(key => key!=='Scene').map(key => 
-          <mesh
-            key={`man-${key}`}
-            scale={scale * width / 360}
-            // castShadow 
-            // receiveShadow
-            geometry={nodes[key].geometry} 
-            position={nodes[key].position} 
-            material={nodes[key].material} 
-          />
-        )} */}
         <directionalLight intensity={0.5} position={[50, 300, 50]} />
       </group>
     </PresentationControls>
   )
-}
+})
+
+Man.displayName = 'Man'
+
+export default Man

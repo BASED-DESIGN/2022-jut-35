@@ -1,4 +1,4 @@
-import { useMemo, useEffect } from 'react'
+import { useMemo, useEffect, cloneElement, useRef } from 'react'
 import { MathUtils } from 'three'
 import { useThree } from '@react-three/fiber'
 import { a, useSpring } from '@react-spring/three'
@@ -19,6 +19,7 @@ export default function PresentationControls({
   config = { mass: 1, tension: 170, friction: 26 },
 }) {
   const { size, gl } = useThree()
+  const ref = useRef()
   const rPolar = useMemo(
     () => [
       rotation[0] + polar[0], 
@@ -57,7 +58,6 @@ export default function PresentationControls({
     [position[0], position[1], position[2], pHeight]
   )
 
-
   const [spring, api] = useSpring(() => ({ scale: 1, rotation: rInitial, position: pInitial, config }))
   const [stareSpring, stareApi] = useSpring(() => ({ rotation: [0, 0, 0], config }))
   useEffect(() => void api.start({ scale: 1, rotation: rInitial, position: pInitial, config }), [rInitial, pInitial])
@@ -73,12 +73,6 @@ export default function PresentationControls({
         position: hovering ? [position[0], position[1] + 15, position[2]] : position,
       })
     },
-    // onClick: (props) => {
-    //   console.log(props)
-    //   api.start({
-    //     position: [position[0], position[1] + 10, position[2]],
-    //   })
-    // },
     onDrag: ({ down, delta: [x, y], memo: [oldY, oldX] = spring.rotation.animation.to || rInitial }) => {
       if (cursor) gl.domElement.style.cursor = down ? 'grabbing' : 'grab'
       x = MathUtils.clamp(oldX + (x / size.width) * Math.PI * speed, ...rAzimuth)
@@ -106,21 +100,25 @@ export default function PresentationControls({
   // })
 
   const moveBind = useMove(({ xy }) => {
-    const deltaX = xy[0] - size.width/2
-    const deltaY = xy[1] - size.height/2
+    // const deltaX = xy[0] - size.width/2
+    // const deltaY = xy[1] - size.height/2 - gl.domElement.getBoundingClientRect().top
+    // console.log(pInitial[0])
+    const deltaX = xy[0] - size.width/2 - pInitial[0]
+    const deltaY = - xy[1] + size.height/2 - pInitial[1] + gl.domElement.getBoundingClientRect().top
     stareApi.start({
-      rotation: [0, deltaX * .0002, - deltaY * .0001]
+      // rotation: [0, deltaX * .0002, - deltaY * .0001]
+      rotation: [0, deltaX * .0003, deltaY * .0001]
     })
-    
   }, {
-    target: gl.domElement
+    // target: gl.domElement
+    target: document.querySelector('body')
   })
 
   return (
     
     <a.group {...bind?.()} {...(spring)}>
       <a.group {...moveBind?.()} {...stareSpring}>
-        {children}
+        {cloneElement(children, { ref })}
       </a.group>
     </a.group>
   )

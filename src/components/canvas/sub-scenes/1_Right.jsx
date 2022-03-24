@@ -26,11 +26,11 @@ const Content = () => {
     onMove: ({ xy, ...props }) => {
       // console.log(props)
       // console.log('hovering')
-      planeFrontApi.start({
-        position: (xy[1] > height * 0.6 && xy[0] < width * 0.6) ? [0, 10, 0] : [0, 0, 0],
-      })
+      // planeFrontApi.start({
+      //   position: (xy[1] > height * 0.6 && xy[0] < width * 0.6) ? [0, 10, 0] : [0, 0, 0],
+      // })
       planeBackApi.start({
-        position: (xy[1] > height * 0.65 && xy[0] < width * 0.55) ? [0, -10, 0] : [0, 0, 0],
+        position: (xy[1] > height * 0.65 && xy[0] < width * 0.55) ? [0, -20, 0] : [0, 0, 0],
       })
     }
   },
@@ -45,16 +45,20 @@ const Content = () => {
           rotation={[-0.03, -0.5, 0]} 
           scale={1.1}
         /> */}
-        <Plane 
-          ref={planeFrontRef}
-          url="/kv/kv2_layer_1.png"
-          position={[0, 0, -300]}
-        />
-        <Plane 
-          ref={planeBackRef}
-          url="/kv/kv2_layer_2.png"
-          position={[0, 0, -300]}
-        />
+        <a.group {...planeFrontSpring}>
+          <Plane 
+            ref={planeFrontRef}
+            url="/kv/kv2_layer_1.png"
+            position={[0, 0, -300]}
+          />
+        </a.group>
+        <a.group {...planeBackSpring}>
+          <Plane 
+            ref={planeBackRef}
+            url="/kv/kv2_layer_2.png"
+            position={[0, 0, -300]}
+          />
+        </a.group>
         {/* <Plane 
           url="/kv/kv2_layer_3.png"
           position={[0, 0, -300]}

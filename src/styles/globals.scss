@@ -29,6 +29,10 @@
   }
 }
 
+canvas {
+  touch-action: none;
+}
+
 .article_normal {
   @apply text-base font-inner font-normal text-justify text-gray-dark leading-8 space-y-6;
   h3 {

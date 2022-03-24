@@ -97,7 +97,7 @@ const Content = () => {
           {newWay1Bound &&
             <Man
               url='/gltf/kv2-man4.gltf'
-              position={[width * .25, height/2 - (newWay1Bound.top - newWay1Bound.height * .08), -100]} 
+              position={[width * .25, height/2 - (newWay1Bound.top - width * .01), -100]} 
               rotation={[0, -0.1, 0]} 
               scale={.8}
             />
@@ -106,7 +106,7 @@ const Content = () => {
           {newWay2Bound &&
             <Man
               url='/gltf/kv1-man1.gltf'
-              position={[width * .2, height/2 - (newWay2Bound.top - newWay2Bound.height * .08), -100]} 
+              position={[width * .2, height/2 - (newWay2Bound.top - width * .01), -100]} 
               rotation={[0.3, 3.16, 0]} 
               scale={.9}
             />
@@ -115,25 +115,23 @@ const Content = () => {
           {newWay3Bound &&
             <Man
               url='/gltf/kv2-man5.gltf'
-              position={[-width * .36, height/2 - (newWay3Bound.top + newWay3Bound.height * .2), -100]} 
+              position={[-width * .36, height/2 - (newWay3Bound.top + width * .1), -100]} 
               rotation={[0, -0.6, 0]} 
-              // scale={}
             />
           }
 
           {newWay4Bound &&
             <Man
               url='/gltf/kv2-man2.gltf'
-              position={[width * .2, height/2 - (newWay4Bound.top - newWay4Bound.height * .08), -100]} 
+              position={[width * .2, height/2 - (newWay4Bound.top - width * .01), -100]} 
               rotation={[0.3, 3.16, 0]} 
-              // scale={.9}
             />
           }
 
           {newWay5Bound &&
             <Man
               url='/gltf/kv2-man4.gltf'
-              position={[width * .25, height/2 - (newWay5Bound.top - newWay5Bound.height * .08), -100]} 
+              position={[width * .25, height/2 - (newWay5Bound.top - width * .015), -100]} 
               rotation={[0, -0.1, 0]} 
               scale={.8}
             />
