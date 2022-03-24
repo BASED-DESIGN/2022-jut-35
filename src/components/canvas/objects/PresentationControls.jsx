@@ -2,20 +2,7 @@ import { useMemo, useEffect } from 'react'
 import { MathUtils } from 'three'
 import { useThree } from '@react-three/fiber'
 import { a, useSpring } from '@react-spring/three'
-import { useDrag, useGesture, useHover, useWheel } from '@use-gesture/react'
-
-// type Props = {
-//   snap?: boolean
-//   global?: boolean
-//   cursor?: boolean
-//   speed?: number
-//   zoom?: number
-//   rotation?: [number, number, number]
-//   polar?: [number, number]
-//   azimuth?: [number, number]
-//   config?: any
-//   children?: React.ReactNode
-// }
+import { useGesture, useMove } from '@use-gesture/react'
 
 export default function PresentationControls({
   snap,
@@ -72,27 +59,26 @@ export default function PresentationControls({
 
 
   const [spring, api] = useSpring(() => ({ scale: 1, rotation: rInitial, position: pInitial, config }))
-  
+  const [stareSpring, stareApi] = useSpring(() => ({ rotation: [0, 0, 0], config }))
   useEffect(() => void api.start({ scale: 1, rotation: rInitial, position: pInitial, config }), [rInitial, pInitial])
   useEffect(() => {
     if (global && cursor) gl.domElement.style.cursor = 'grab'
   }, [global, cursor, gl.domElement])
   
   const bind = useGesture({
-    onHover: ({ last, hovering, ...props }) => {
-      // console.log(props)
+    onHover: ({ last, hovering }) => {
       if (cursor && !global) gl.domElement.style.cursor = last ? 'auto' : 'grab'
       api.start({
-        scale: hovering ? 1.05 : 1
+        scale: hovering ? 1.05 : 1,
+        position: hovering ? [position[0], position[1] + 15, position[2]] : position,
       })
     },
-    onClick: (props) => {
-      console.log(props)
-      api.start({
-        position: [position[0], position[1] + 10, position[2]],
-      })
-
-    },
+    // onClick: (props) => {
+    //   console.log(props)
+    //   api.start({
+    //     position: [position[0], position[1] + 10, position[2]],
+    //   })
+    // },
     onDrag: ({ down, delta: [x, y], memo: [oldY, oldX] = spring.rotation.animation.to || rInitial }) => {
       if (cursor) gl.domElement.style.cursor = down ? 'grabbing' : 'grab'
       x = MathUtils.clamp(oldX + (x / size.width) * Math.PI * speed, ...rAzimuth)
@@ -119,9 +105,23 @@ export default function PresentationControls({
   //   target: gl.domElement
   // })
 
+  const moveBind = useMove(({ xy }) => {
+    const deltaX = xy[0] - size.width/2
+    const deltaY = xy[1] - size.height/2
+    stareApi.start({
+      rotation: [0, deltaX * .0002, - deltaY * .0001]
+    })
+    
+  }, {
+    target: gl.domElement
+  })
+
   return (
+    
     <a.group {...bind?.()} {...(spring)}>
-      {children}
+      <a.group {...moveBind?.()} {...stareSpring}>
+        {children}
+      </a.group>
     </a.group>
   )
 }

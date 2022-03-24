@@ -1,18 +1,40 @@
 import { useRef, Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { useFrame, useThree } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
-import PresentationControls from '@components/canvas/objects/PresentationControls'
-// import Object from '@components/canvas/objects/Object'
 import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
+import { useSpring, config, a } from '@react-spring/three'
+import { useGesture } from '@use-gesture/react'
+
+import Plane from '@components/canvas/objects/Item2D'
 
 const Canvas = dynamic(() => import('@components/layout/Canvas'), { ssr: false, })
-// const Object = dynamic(() => import('@components/canvas/objects/Item3D'), { ssr: false, })
-const Plane = dynamic(() => import('@components/canvas/objects/Item2D'), { ssr: false, })
 const Man = dynamic(() => import('@components/canvas/objects/Man'), { ssr: false, })
 
 const Content = () => {
   const { width, height } = useThree(state => state.size)
+  const gl = useThree(state => state.gl)
+  const planeFrontRef = useRef(null)
+  const planeBackRef = useRef(null)
+
+  const planeConfig = {
+    ...config, duration: 1000
+  }
+
+  const [planeFrontSpring, planeFrontApi] = useSpring(() => ({ position: [0, 0, 0], config: planeConfig }))
+  const [planeBackSpring, planeBackApi] = useSpring(() => ({ position: [0, 0, 0], config: planeConfig }))
+  const bind = useGesture({
+    onMove: ({ xy, ...props }) => {
+      // console.log(props)
+      // console.log('hovering')
+      planeFrontApi.start({
+        position: (xy[1] > height * 0.6 && xy[0] < width * 0.6) ? [0, 10, 0] : [0, 0, 0],
+      })
+      planeBackApi.start({
+        position: (xy[1] > height * 0.65 && xy[0] < width * 0.55) ? [0, -10, 0] : [0, 0, 0],
+      })
+    }
+  },
+  { target: gl.domElement })
 
   return (
     <>
@@ -24,10 +46,12 @@ const Content = () => {
           scale={1.1}
         /> */}
         <Plane 
+          ref={planeFrontRef}
           url="/kv/kv2_layer_1.png"
           position={[0, 0, -300]}
         />
         <Plane 
+          ref={planeBackRef}
           url="/kv/kv2_layer_2.png"
           position={[0, 0, -300]}
         />
@@ -36,47 +60,41 @@ const Content = () => {
           position={[0, 0, -300]}
         /> */}
         
-        <Man
-          url='/gltf/kv2-man1.gltf'
-          position={[-width * .4, -width * .2, -100]} 
-          rotation={[-.2, -0.2, 0]} 
-        />
-        <Man
-          url='/gltf/kv2-man2.gltf'
-          position={[-width * .32, -width * .18, -100]}
-          rotation={[-.4, -0.5, 0]}
-        />
-        {/* <Man
-          url='/gltf/kv2-man2.gltf'
-          position={[width * .38, height/2 - (break1Bound.top + break1Bound.height * .15), -100]} 
-          rotation={[-.4, -0.5, 0]}
-        /> */}
-
-        {/* <Man
-          url='/gltf/kv1-man2.gltf'
-          position={[-width * .47, -height * .17, -100]} 
-          rotation={[-.2, -0.8, 0]}
-          scale={0.8}
-        />
-        <Man
-          url='/gltf/kv1-man3.gltf'
-          position={[-width * .35, -height * .22, -100]} 
-          rotation={[-.2, -0.8, 0]}
-          scale={0.8}
-        /> */}
-
-        <Man
-          url='/gltf/kv2-man4.gltf'
-          position={[width * .32, height * 0.185, -100]} 
-          rotation={[-.2, -0.8, 0]} 
-          scale={0.9}
-        />
-        <Man
-          url='/gltf/kv2-man3.gltf'
-          position={[width * .39, height * 0.21, -100]} 
-          rotation={[-.2, -0.8, 0]} 
-          scale={0.9}
-        />
+        <group 
+          position={[
+            0, 
+            planeFrontRef.current && (planeFrontRef.current.children[0].geometry.parameters.height > height) ? 
+              (height - planeFrontRef.current.children[0].geometry.parameters.height)/2 : 0,
+            0
+          ]}
+        >
+          {/* 下左 */}
+          <Man
+            url='/gltf/kv2-man1.gltf'
+            position={[-width * .31, -height/2 + width * .23, -100]} 
+            rotation={[-.2, -0.2, 0]} 
+          />
+          {/* 下右 */}
+          <Man
+            url='/gltf/kv2-man2.gltf'
+            position={[-width * .2, -height/2 + width * .25, -100]}
+            rotation={[-.4, -0.6, .2]}
+          />
+          {/* 上左 */}
+          <Man
+            url='/gltf/kv2-man4.gltf'
+            position={[width * .08, -height/2 + width * 0.44, -500]} 
+            rotation={[-.2, -0.8, 0]} 
+            scale={0.9}
+          />
+          {/* 上右 */}
+          <Man
+            url='/gltf/kv2-man3.gltf'
+            position={[width * .16, -height/2 + width * 0.46, -500]} 
+            rotation={[-.1, -.95, 0.4]} 
+            scale={0.95}
+          />
+        </group>
       </Suspense>
 
       <directionalLight position={[-width/2, -height/2, -150]} intensity={0.5} />
