@@ -5,12 +5,14 @@ import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
 import { useSpring, config, a } from '@react-spring/three'
 import { useGesture } from '@use-gesture/react'
 
+import Canvas from '@components/layout/Canvas'
 import Plane from '@components/canvas/objects/Item2D'
+import Man from '@components/canvas/objects/Man'
 
-const Canvas = dynamic(() => import('@components/layout/Canvas'), { ssr: false, })
+// const Canvas = dynamic(() => import('@components/layout/Canvas'), { ssr: false, })
 // const Object = dynamic(() => import('@components/canvas/objects/Item3D'), { ssr: false, })
 // const Plane = dynamic(() => import('@components/canvas/objects/Item2D'), { ssr: false, })
-const Man = dynamic(() => import('@components/canvas/objects/Man'), { ssr: false, })
+// const Man = dynamic(() => import('@components/canvas/objects/Man'), { ssr: false, })
 
 const Content = () => {
   const { width, height } = useThree(state => state.size)
@@ -41,7 +43,7 @@ const Content = () => {
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
     // if(planeFrontRef.current) planeFrontRef.current.position.z = t
-    // if(planeFrontRef.current) console.log(planeFrontRef.current.children[0].geometry.parameters.height)
+    if(planeFrontRef.current) console.log(planeFrontRef.current)
     // ref.current.rotation.y = Math.sin(t / 2) / 6
     // ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
     // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
@@ -56,6 +58,9 @@ const Content = () => {
           rotation={[-0.03, -0.5, 0]} 
           scale={1.1}
         /> */}
+
+
+        {/* Base */}
         <a.group {...planeFrontSpring}>
           <Plane 
             ref={planeFrontRef}
@@ -71,11 +76,14 @@ const Content = () => {
           />
         </a.group>
         
+
+        {/* Mans */}
         <group 
           position={[
             0, 
-            planeFrontRef.current && (planeFrontRef.current.children[0].geometry.parameters.height > height) ? 
-              (height - planeFrontRef.current.children[0].geometry.parameters.height)/2 : 0,
+            (planeFrontRef.current 
+            && (planeFrontRef.current.children[0].children[0].geometry.parameters.height > height)) ? 
+            (height - planeFrontRef.current.children[0].children[0].geometry.parameters.height)/2 : 0,
             0
           ]}
         >
@@ -118,12 +126,6 @@ const Content = () => {
 }
 
 export default function Scene(props) {
-  const {
-  } = props
-  // const ref = useRef()
-  // const { nodes } = useGLTF(url)
-  // const { width, height } = useThree(state => state.size)
-
   // useFrame((state) => {
   //   const t = state.clock.getElapsedTime()
   //   ref.current.rotation.x = Math.cos(t / 2) / 6
@@ -133,9 +135,7 @@ export default function Scene(props) {
   // })
 
   return (   
-    <Canvas 
-      wrapperClassName="absolute top-0 left-0 w-full h-full z-10"
-    >
+    <Canvas wrapperClassName="absolute top-0 left-0 w-full h-full z-10">
       <Content />
     </Canvas>
   )

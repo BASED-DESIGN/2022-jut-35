@@ -5,8 +5,10 @@ import { useThree, useFrame } from '@react-three/fiber'
 import useStore from '@helpers/store'
 import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
 
-const Canvas = dynamic(() => import('@components/layout/Canvas'), { ssr: false })
-const Man = dynamic(() => import('@components/canvas/objects/Man'), { ssr: false })
+import Canvas from '@components/layout/Canvas'
+import Man from '@components/canvas/objects/Man'
+// const Canvas = dynamic(() => import('@components/layout/Canvas'), { ssr: false })
+// const Man = dynamic(() => import('@components/canvas/objects/Man'), { ssr: false })
 
 const Content = () => {
   const gl = useThree(state => state.gl)

@@ -69,7 +69,7 @@ export default function PresentationControls({
     onHover: ({ last, hovering }) => {
       if (cursor && !global) gl.domElement.style.cursor = last ? 'auto' : 'grab'
       api.start({
-        scale: hovering ? 1.05 : 1,
+        scale: hovering ? 0.99 : 1,
         position: hovering ? [position[0], position[1] + 15, position[2]] : position,
       })
     },
@@ -102,20 +102,16 @@ export default function PresentationControls({
   const moveBind = useMove(({ xy }) => {
     // const deltaX = xy[0] - size.width/2
     // const deltaY = xy[1] - size.height/2 - gl.domElement.getBoundingClientRect().top
-    // console.log(pInitial[0])
     const deltaX = xy[0] - size.width/2 - pInitial[0]
     const deltaY = - xy[1] + size.height/2 - pInitial[1] + gl.domElement.getBoundingClientRect().top
     stareApi.start({
-      // rotation: [0, deltaX * .0002, - deltaY * .0001]
       rotation: [0, deltaX * .0003, deltaY * .0001]
     })
   }, {
-    // target: gl.domElement
     target: document.querySelector('body')
   })
 
   return (
-    
     <a.group {...bind?.()} {...(spring)}>
       <a.group {...moveBind?.()} {...stareSpring}>
         {cloneElement(children, { ref })}

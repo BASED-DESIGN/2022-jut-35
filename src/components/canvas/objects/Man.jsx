@@ -5,7 +5,6 @@ import PresentationControls from '@components/canvas/objects/PresentationControl
 import { useTransition, a } from '@react-spring/three'
 
 const Man = forwardRef((props, ref) => {
-// export default function Man((props, ref) {
   const {
     url = `/man-gltf/man1.gltf`,
     scale=1,
@@ -13,16 +12,15 @@ const Man = forwardRef((props, ref) => {
     position,
     lazyIn=false,
   } = props
-  // const ref = useRef()
   const { nodes } = useGLTF(url)
   const { width, height } = useThree(state => state.size)
   
   const transition = useTransition(Object.keys(nodes).filter(key => key!=='Scene'), {
-    from: { scale: [1, 1, 1], rotation: [0, 0, 0] },
-    // from: { scale: [0, 0, 0], rotation: [0, 0, 0] },
+    // from: { scale: [1, 1, 1], rotation: [0, 0, 0] },
+    from: { scale: [0, 0, 0], rotation: [0, 0, 0] },
     enter: ({ r=0 }) => ({ scale: [1, 1, 1], rotation: [r * 3, r * 3, r * 3] }),
     // leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
-    config: { mass: 5, tension: 1000, friction: 100 },
+    config: { mass: 3, tension: 1000, friction: 100 },
     trail: 100
   })
 
@@ -46,21 +44,18 @@ const Man = forwardRef((props, ref) => {
       <group 
         dispose={null}
       >
-        {transition((props, key) => {
-          return (
-            <a.group {...props}>
-              <mesh
-                ref={ref}
-                key={`man-${key}`}
-                scale={scale * width / 360}
-                geometry={nodes[key].geometry} 
-                position={nodes[key].position} 
-                material={nodes[key].material} 
-                // {...props}
-              />
-            </a.group>
-          )
-        })}
+        {transition((props, key) => (
+          <a.group {...props}>
+            <mesh
+              ref={ref}
+              key={`man-${key}`}
+              scale={scale * width / 360}
+              geometry={nodes[key].geometry} 
+              position={nodes[key].position} 
+              material={nodes[key].material} 
+            />
+          </a.group>
+        ))}
         <directionalLight intensity={0.5} position={[50, 300, 50]} />
       </group>
     </PresentationControls>
