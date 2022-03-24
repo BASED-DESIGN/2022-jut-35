@@ -87,10 +87,6 @@ const IndexPage = forwardRef((props, ref) => {
       }
     // }
 
-    const sdgList = document.querySelector('.sdgList');
-    const sdgListItem = sdgList.querySelectorAll('.listItem');
-    sdgList.style.height = sdgListItem[0].offsetHeight + 'px';
-
     gsap.registerPlugin(ScrollTrigger);
     
     // Hero
@@ -268,12 +264,12 @@ const IndexPage = forwardRef((props, ref) => {
       opacity: 0,
       ease: Expo.easeOut,
       scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(3)',
+        trigger: '.newWayList .listItem:nth-child(2)',
         invalidateOnRefresh: true,
         // pin: true,
         scrub: true,
         start: "top top",
-        end: () => "+=" + window.innerHeight,
+        end: () => "+=" + window.innerHeight * 1.5,
         // markers: true,
       }
     });
@@ -283,7 +279,7 @@ const IndexPage = forwardRef((props, ref) => {
       opacity: 1,
       ease: Expo.easeOut,
       scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(3)',
+        trigger: '.newWayList .listItem:nth-child(2)',
         invalidateOnRefresh: true,
         // pin: true,
         scrub: true,
@@ -297,12 +293,12 @@ const IndexPage = forwardRef((props, ref) => {
       opacity: 0,
       ease: Expo.easeOut,
       scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(5)',
+        trigger: '.newWayList .listItem:nth-child(4)',
         invalidateOnRefresh: true,
         // pin: true,
         scrub: true,
         start: "top top",
-        end: () => "+=" + window.innerHeight * 0.5,
+        end: () => "+=" + window.innerHeight * 1,
         // markers: true,
       }
     });
@@ -341,6 +337,36 @@ const IndexPage = forwardRef((props, ref) => {
     };
     callDistort();
 
+    // Vision
+
+    const sdgList = document.querySelector('.sdgList');
+    const sdgListItems = sdgList.querySelectorAll('.listItem');
+
+    const sdgListRange = () => {
+      if (window.innerWidth > 959) {
+        return window.innerWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 2);
+      } else {
+        return window.innerWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 1.2);
+      }
+    }
+
+    sdgList.style.height = sdgListItems[0].offsetHeight + 'px';
+
+    gsap.to('.sdgList', {
+      x: (sdgListRange()) + "px",
+      ease: Linear.easeNone,
+      scrollTrigger: {
+        trigger: '.sdgListWrap',
+        invalidateOnRefresh: true,
+        pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight,
+        // markers: true,
+      }
+    });
+
+    
 
     // Creative Power
     const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
@@ -493,7 +519,7 @@ const IndexPage = forwardRef((props, ref) => {
 
             <div className="bg-kv-3 py-32">
 
-              <div className="sloganGroup absolute top-0 left-0 z-0 w-screen h-screen opacity-0">
+              <div className="sloganGroup absolute top-0 left-0 z-0 w-screen h-screen opacity-0 pointer-events-none">
                 <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-top opacity-0" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
                 <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-bottom opacity-0" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
               </div>
@@ -617,7 +643,7 @@ const IndexPage = forwardRef((props, ref) => {
                   <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
                 </div>
                 <div className="video fadeIn aspect-video -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
-                  <iframe className="w-full h-full" src="https://www.youtube.com/embed/8BbBGLUzjaA" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                  {/* <iframe className="w-full h-full" src="https://www.youtube.com/embed/8BbBGLUzjaA" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
                 </div>
                 <div className="itemTitle fadeIn mt-8 md:flex">
                   <div className="title md:basis-1/2">
@@ -641,40 +667,40 @@ const IndexPage = forwardRef((props, ref) => {
                   <p>關注於未來的建構，我們在乎每個人對生活的想望，希望在多個面向提出更好的生活方案：從個體出發，我們提出對居住與工作環境的重組，來改變人們對於空間關係的思考；對於城市的規劃，我們把人們的需求擺在第一位，探討城市宜居性等議題；而對於環境，我們著眼永續發展，提出環友善環境與社會的方案來進入可持續性的未來發展。</p>
                   <p>在建築之上，忠泰是生活的園丁，澆灌、照護著這座百花齊放的平行城市。</p>
                 </div>
-                <div className="mt-24 fadeIn ml-8 md:ml-0 md:mt-32">
-                  <div className="sdgList flex flex-wrap flex-col space-x-12 md:space-x-20">
-                    <div className="listItem w-64 md:w-80">
+                <div className="sdgListWrap mt-20 pt-6 ml-8 md:ml-0 md:mt-24 md:pt-8 xl:pt-20">
+                  <div className="sdgList flex flex-wrap flex-col">
+                    <div className="listItem fadeIn delay-100 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                       <div className="photo aspect-2/3 bg-gray-light"></div>
-                      <div className="content mt-20 article_normal">
-                        <h4>環境永續</h4>
+                      <div className="content mt-8 article_light">
+                        <h3>環境永續</h3>
                         <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
                       </div>
                     </div>
-                    <div className="listItem w-64 md:w-80">
+                    <div className="listItem fadeIn delay-200 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                       <div className="photo aspect-2/3 bg-gray-light"></div>
-                      <div className="content mt-20 article_normal">
-                        <h4>環境永續</h4>
+                      <div className="content mt-8 article_light">
+                        <h3>環境永續</h3>
                         <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
                       </div>
                     </div>
-                    <div className="listItem w-64 md:w-80">
+                    <div className="listItem fadeIn delay-300 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                       <div className="photo aspect-2/3 bg-gray-light"></div>
-                      <div className="content mt-20 article_normal">
-                        <h4>環境永續</h4>
+                      <div className="content mt-8 article_light">
+                        <h3>環境永續</h3>
                         <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
                       </div>
                     </div>
-                    <div className="listItem w-64 md:w-80">
+                    <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                       <div className="photo aspect-2/3 bg-gray-light"></div>
-                      <div className="content mt-20 article_normal">
-                        <h4>環境永續</h4>
+                      <div className="content mt-8 article_light">
+                        <h3>環境永續</h3>
                         <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
                       </div>
                     </div>
-                    <div className="listItem w-64 md:w-80">
+                    <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                       <div className="photo aspect-2/3 bg-gray-light"></div>
-                      <div className="content mt-20 article_normal">
-                        <h4>環境永續</h4>
+                      <div className="content mt-8 article_light">
+                        <h3>環境永續</h3>
                         <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
                       </div>
                     </div>

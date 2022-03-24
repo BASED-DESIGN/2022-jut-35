@@ -14,6 +14,10 @@
     overflow-x: hidden;
     padding: 0;
     margin: 0;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     
@@ -35,6 +39,25 @@
   }
   h5 {
     @apply text-xl font-bold;
+  }
+  h6 {
+    @apply text-base font-bold;
+  }
+  a {
+    @apply underline;
+  }
+}
+
+.article_light {
+  @apply text-base font-inner font-normal text-justify text-gray-dark leading-6 space-y-2;
+  h3 {
+    @apply text-2xl font-bold;
+  }
+  h4 {
+    @apply text-xl font-bold;
+  }
+  h5 {
+    @apply text-lg font-bold;
   }
   h6 {
     @apply text-base font-bold;
