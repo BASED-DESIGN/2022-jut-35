@@ -79,14 +79,19 @@ export default function PresentationControls({
   }, [global, cursor, gl.domElement])
   
   const bind = useGesture({
-    onHover: ({ last }) => {
+    onHover: ({ last, hovering, ...props }) => {
+      // console.log(props)
       if (cursor && !global) gl.domElement.style.cursor = last ? 'auto' : 'grab'
+      api.start({
+        scale: hovering ? 1.05 : 1
+      })
     },
-    onClick: () => {
-      console.log('hi')
-      // api.start({
-      //   position: [position[0], y, position[2]],
-      // })
+    onClick: (props) => {
+      console.log(props)
+      api.start({
+        position: [position[0], position[1] + 10, position[2]],
+      })
+
     },
     onDrag: ({ down, delta: [x, y], memo: [oldY, oldX] = spring.rotation.animation.to || rInitial }) => {
       if (cursor) gl.domElement.style.cursor = down ? 'grabbing' : 'grab'
