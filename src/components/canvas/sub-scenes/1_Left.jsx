@@ -54,6 +54,7 @@ const Content = () => {
           rotation={[-.15, -0.7, 0]} 
           scale={0.9}
         />
+        {/* <arrowHelper /> */}
       </Suspense>
 
       <directionalLight position={[-width/2, -height/2, -150]} intensity={0.5} />
