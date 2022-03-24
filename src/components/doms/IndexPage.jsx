@@ -399,9 +399,7 @@ const IndexPage = forwardRef((props, ref) => {
   }, [])
 
   return (
-    <div className="relative wrap w-screen overflow-x-hidden" ref={ref}
-      
-    >
+    <div className="relative wrap w-screen overflow-x-hidden" ref={ref}>
         <nav className="nav"></nav>
         
         {/* <div className="loadCover fixed top-0 left-0 right-0 bottom-0 z-100 w-screen h-screen pointer-events-none">
@@ -424,14 +422,20 @@ const IndexPage = forwardRef((props, ref) => {
           </div>
         </section>
 
-        <div style={{ transformStyle: 'preserve-3d' }}>
-
+        {/* <div style={{ transformStyle: 'preserve-3d' }}> */}
+        
           <BackgroundMans />
 
-          <section className="relative intro" style={{ transformStyle: 'preserve-3d' }}>
-            <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-2" style={{ transform: 'translate3d(0, 0, -1px)' }} />
+          <section 
+            className="relative intro" 
+            // style={{ transformStyle: 'preserve-3d' }}
+          >
+            {/* <div 
+              className="absolute left-0 top-0 right-0 bottom-0 bg-kv-2" 
+              style={{ transform: 'translate3d(0, 0, -1px)' }} 
+            /> */}
 
-            <div className="py-32">
+            <div className="bg-kv-2 py-32">
               <div className="container mx-auto">
                 <div className="titleGruop fadeIn mb-32 text-gray-dark md:mb-48">
                   <div className="en font-title text-5xl md:text-6xl xl:text-7xl">The JUT Way</div>
@@ -466,7 +470,11 @@ const IndexPage = forwardRef((props, ref) => {
             </div>
           </section>
 
-          <div className="sectionBreak relative z-20" style={{ transform: 'translate3d(0, 0, -1px)' }} ref={break1Ref}>
+          <div 
+            className="sectionBreak relative z-20" 
+            // style={{ transform: 'translate3d(0, 0, -1px)' }} 
+            ref={break1Ref}
+          >
             <div className="bg-kv-2">
               <div className="scale-125 origin-center -rotate-6 translate-y-16">
                 {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
@@ -476,10 +484,14 @@ const IndexPage = forwardRef((props, ref) => {
             </div>
           </div>
           
-          <section className="newWay relative z-30" style={{ transformStyle: 'preserve-3d' }}>
-            <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-3" style={{ transform: 'translate3d(0, 0, -1px)' }} />
+          <section className="newWay relative z-30" 
+          // style={{ transformStyle: 'preserve-3d' }}
+          >
+            {/* <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-3" 
+              style={{ transform: 'translate3d(0, 0, -1px)' }} 
+            /> */}
 
-            <div className="py-32">
+            <div className="bg-kv-3 py-32">
 
               <div className="sloganGroup absolute top-0 left-0 z-0 w-screen h-screen opacity-0">
                 <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-top opacity-0" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
@@ -581,7 +593,9 @@ const IndexPage = forwardRef((props, ref) => {
             </div>
           </section>
 
-          <div className="sectionBreak relative z-10" style={{ transform: 'translate3d(0, 0, -1px)' }} ref={break2Ref}>
+          <div className="sectionBreak relative z-10" 
+          // style={{ transform: 'translate3d(0, 0, -1px)' }} 
+          ref={break2Ref}>
             <div className="bg-kv-3">
               <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
                 <div className="midde relative z-10 w-screen h-32 rotate-12 md:rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -590,10 +604,13 @@ const IndexPage = forwardRef((props, ref) => {
             </div>
           </div>
 
-          <section className="vision relative z-20" style={{ transformStyle: 'preserve-3d' }}>
-            <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-1" style={{ transform: 'translate3d(0, 0, -1px)' }} />
+          <section 
+            className="vision relative z-20" 
+            // style={{ transformStyle: 'preserve-3d' }}
+          >
+            {/* <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-1" style={{ transform: 'translate3d(0, 0, -1px)' }} /> */}
 
-            <div className="py-32">
+            <div className="bg-kv-1 py-32">
               <div className="container mx-auto">
                 <div className="titleGruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
                   <div className="en font-title text-5xl md:text-6xl xl:text-7xl">Vision</div>
@@ -677,10 +694,12 @@ const IndexPage = forwardRef((props, ref) => {
             </div>
           </div>
 
-          <section className="creative relative z-40" style={{ transformStyle: 'preserve-3d' }}>
-            <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-2" style={{ transform: 'translate3d(0, 0, -1px)' }} />
+          <section className="creative relative z-40" 
+          // style={{ transformStyle: 'preserve-3d' }}
+          >
+            {/* <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-2" style={{ transform: 'translate3d(0, 0, -1px)' }} /> */}
 
-            <div className="py-32">
+            <div className="bg-kv-2 py-32">
               <div className="container mx-auto fadeIn">
                 <div className="-mt-40 mb-12 text-center md:text-left md:-mt-48 md:mb-24 md:flex md:justify-between md:items-end">
                   <div className="md:basis-1/2">
@@ -759,7 +778,7 @@ const IndexPage = forwardRef((props, ref) => {
           </section>
 
           <section className="footer"></section>
-      </div>
+      {/* </div> */}
     </div>
   )
 })
