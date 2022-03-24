@@ -82,6 +82,12 @@ export default function PresentationControls({
     onHover: ({ last }) => {
       if (cursor && !global) gl.domElement.style.cursor = last ? 'auto' : 'grab'
     },
+    onClick: () => {
+      console.log('hi')
+      // api.start({
+      //   position: [position[0], y, position[2]],
+      // })
+    },
     onDrag: ({ down, delta: [x, y], memo: [oldY, oldX] = spring.rotation.animation.to || rInitial }) => {
       if (cursor) gl.domElement.style.cursor = down ? 'grabbing' : 'grab'
       x = MathUtils.clamp(oldX + (x / size.width) * Math.PI * speed, ...rAzimuth)

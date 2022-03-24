@@ -5,9 +5,11 @@ import { useThree, useFrame } from '@react-three/fiber'
 import useStore from '@helpers/store'
 import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
 
+const Canvas = dynamic(() => import('@components/layout/Canvas'), { ssr: false })
 const Man = dynamic(() => import('@components/canvas/objects/Man'), { ssr: false })
 
-const IndexPage = () => {
+const Content = () => {
+  const gl = useThree(state => state.gl)
   const { width, height } = useThree(state => state.size)
   const break1Ref = useStore(state => state.break1Ref)
   const break1Bound = break1Ref.current ? break1Ref.current.getBoundingClientRect() : null
@@ -30,7 +32,7 @@ const IndexPage = () => {
   return (
     <>
       <Suspense fallback={`loading assets`}>
-        <group position={[0, 0, 0]}>
+        <group position={[0, gl.domElement.getBoundingClientRect().top, 0]}>
           {break1Bound &&
             <>
               <Man
@@ -195,8 +197,6 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
-
 function Rig() {
   const { camera, mouse } = useThree()
   const vec = new THREE.Vector3()
@@ -205,5 +205,29 @@ function Rig() {
     camera.position.lerp(
       vec.set(mouse.x * 2000, mouse.y * 1000, camera.position.z)
     , 0.02)
+  )
+}
+
+export default function Scene(props) {
+  const {
+  } = props
+  // const ref = useRef()
+  // const { nodes } = useGLTF(url)
+  // const { width, height } = useThree(state => state.size)
+
+  // useFrame((state) => {
+  //   const t = state.clock.getElapsedTime()
+  //   ref.current.rotation.x = Math.cos(t / 2) / 6
+  //   ref.current.rotation.y = Math.sin(t / 2) / 6
+  //   ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
+  //   // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+  // })
+
+  return (   
+    <Canvas 
+      wrapperClassName="absolute top-0 left-0 right-0 bottom-0"
+    >
+      <Content />
+    </Canvas>
   )
 }

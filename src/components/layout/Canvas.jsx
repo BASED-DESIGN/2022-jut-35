@@ -5,7 +5,6 @@ import Camera from './Camera'
 const LCanvas = ({ 
   children, 
   wrapperClassName,
-  followPageScroll
 }) => {
   // const dom = useStore((state) => state.dom)
 
@@ -18,7 +17,7 @@ const LCanvas = ({
         // camera={{ position: [0, 0, 5], fov: 50 }}
       >
         <Preload all />
-        <Camera followPageScroll={followPageScroll}>
+        <Camera>
           {children}
         </Camera>
       </Canvas>
