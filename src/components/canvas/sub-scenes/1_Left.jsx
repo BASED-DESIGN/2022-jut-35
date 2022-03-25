@@ -64,14 +64,14 @@ const Content = () => {
         <a.group {...planeFrontSpring}>
           <Plane 
             ref={planeFrontRef}
-            url="/kv/kv1_layer_1.png"
+            url="/kv/kv1_layer_1s.png"
             position={[0, 0, -600]}
           />
         </a.group>
         <a.group {...planeBackSpring}>
           <Plane
             ref={planeBackRef}
-            url="/kv/kv1_layer_2.png"
+            url="/kv/kv1_layer_2s.png"
             position={[0, 0, -500]}
           />
         </a.group>
