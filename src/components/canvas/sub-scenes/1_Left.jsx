@@ -43,7 +43,7 @@ const Content = () => {
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
     // if(planeFrontRef.current) planeFrontRef.current.position.z = t
-    if(planeFrontRef.current) console.log(planeFrontRef.current)
+    // if(planeFrontRef.current) console.log(planeFrontRef.current)
     // ref.current.rotation.y = Math.sin(t / 2) / 6
     // ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
     // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
