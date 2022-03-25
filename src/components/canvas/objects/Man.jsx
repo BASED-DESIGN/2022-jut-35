@@ -1,4 +1,4 @@
-import { forwardRef, useRef, useState } from 'react'
+import { forwardRef, useRef, useState, useEffect } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import PresentationControls from '@components/canvas/objects/PresentationControls'
@@ -11,26 +11,36 @@ const Man = forwardRef((props, ref) => {
     rotation,
     position,
     lazyIn=false,
+    animMoveY,
+    animMoveX
   } = props
   const { nodes } = useGLTF(url)
   const { width, height } = useThree(state => state.size)
-  
-  const transition = useTransition(Object.keys(nodes).filter(key => key!=='Scene'), {
+  const [active, setActive] = useState(!lazyIn)
+
+  const transition = useTransition(active && Object.keys(nodes).filter(key => key!=='Scene'), {
     // from: { scale: [1, 1, 1], rotation: [0, 0, 0] },
-    from: { scale: [0, 0, 0], rotation: [0, 0, 0] },
-    enter: ({ r=0 }) => ({ scale: [1, 1, 1], rotation: [r * 3, r * 3, r * 3] }),
+    from: { scale: [0, 0, 0], rotation: [0, 1, 0], position: [0, -30, 0] },
+    enter: ({ r=.5 }) => ({ scale: [1, 1, 1], rotation: [0, 0, 0], position: [0, 0, 0] }),
     // leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
-    config: { mass: 3, tension: 1000, friction: 100 },
-    trail: 100
+    config: { mass: 3, tension: 1000, friction: 100, duration: 300 },
+    // trail: 100
   })
 
-  // useFrame((state) => {
-  //   const t = state.clock.getElapsedTime()
-  //   ref.current.rotation.x = Math.cos(t / 2) / 6
-  //   ref.current.rotation.y = Math.sin(t / 2) / 6
-  //   ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
-  //   // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
-  // })
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll)
+    return () => document.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleScroll = e => {
+    if (!active && lazyIn) {
+      const manScrollTop =  - position[1] + height*.5 - window.innerHeight*.95
+      if (e.target.scrollingElement.scrollTop > manScrollTop) {
+        // console.log(e.target.scrollingElement.scrollTop, manScrollTop)
+        setActive(true)
+      }
+    }
+  }
 
   return (
     <PresentationControls
@@ -40,11 +50,11 @@ const Man = forwardRef((props, ref) => {
       position={position} // Default position
       polar={[-Math.PI / 3, Math.PI / 3]} // Vertical rotate limits
       azimuth={[-Math.PI / 1.4, Math.PI / 2]} // Horizontal rotate limits
+      animMoveX={animMoveX}
+      animMoveY={animMoveY}
     >      
-      <group 
-        dispose={null}
-      >
-        {transition((props, key) => (
+      <group dispose={null}>
+        {transition((props, key) => key && (
           <a.group {...props}>
             <mesh
               ref={ref}

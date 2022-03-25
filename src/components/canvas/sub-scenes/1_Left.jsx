@@ -40,14 +40,14 @@ const Content = () => {
   },
   { target: gl.domElement })
 
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime()
-    // if(planeFrontRef.current) planeFrontRef.current.position.z = t
-    // if(planeFrontRef.current) console.log(planeFrontRef.current)
-    // ref.current.rotation.y = Math.sin(t / 2) / 6
-    // ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
-    // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
-  })
+  // useFrame((state) => {
+  //   const t = state.clock.getElapsedTime()
+  //   // if(planeFrontRef.current) planeFrontRef.current.position.z = t
+  //   // if(planeFrontRef.current) console.log(planeFrontRef.current)
+  //   // ref.current.rotation.y = Math.sin(t / 2) / 6
+  //   // ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
+  //   // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
+  // })
 
   return (
     <>
@@ -66,6 +66,7 @@ const Content = () => {
             ref={planeFrontRef}
             url="/kv/kv1_layer_1s.png"
             position={[0, 0, -600]}
+            enterConfig={{ duration: 800 }}
           />
         </a.group>
         <a.group {...planeBackSpring}>
@@ -73,6 +74,7 @@ const Content = () => {
             ref={planeBackRef}
             url="/kv/kv1_layer_2s.png"
             position={[0, 0, -500]}
+            enterConfig={{ duration: 600 }}
           />
         </a.group>
         

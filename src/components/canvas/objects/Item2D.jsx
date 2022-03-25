@@ -1,7 +1,7 @@
 import { useRef, forwardRef, useEffect } from 'react'
 import { useThree, useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
-import { useTransition, a } from '@react-spring/three'
+import { useTransition, a, config } from '@react-spring/three'
 import * as THREE from 'three'
 
 const Item2D = forwardRef((props, ref) => {
@@ -9,7 +9,8 @@ const Item2D = forwardRef((props, ref) => {
     url = `/kv/kv1_layer_1.png`,
     scale=1,
     position,
-    rotation
+    rotation,
+    enterConfig = {}
   } = props
   const texture = useLoader(TextureLoader, url)
   texture.encoding = THREE.sRGBEncoding;
@@ -17,10 +18,13 @@ const Item2D = forwardRef((props, ref) => {
   const planeHeight = width * texture.image.height / texture.image.width
 
   const transition = useTransition(texture, {
-    from: { position: [0, -height, 0] },
+    from: { position: [0, -height/4, 0] },
     enter: { position: [0, 0, 0] },
     // leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
-    config: { mass: 3, tension: 1000, friction: 100 },
+    config: {
+      ...config.molasses,
+      ...enterConfig
+    },
     trail: 100
   })
 
