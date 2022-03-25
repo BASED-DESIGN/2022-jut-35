@@ -40,7 +40,7 @@ const Content = () => {
 
   return (
     <>
-      <primitive object={new THREE.AxesHelper(100)} />
+      {/* <primitive object={new THREE.AxesHelper(100)} /> */}
       <Suspense fallback={`loading assets`}>
         <group position={[0, gl.domElement.getBoundingClientRect().top, 0]}>
           {break1Bound !== null &&
