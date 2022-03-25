@@ -73,17 +73,17 @@ canvas {
 
 .fadeIn {
   @apply opacity-0 ease-expo duration-2000;
-  position: relative;
-  top: 4rem;
-  transform: perspective(500px) rotateX(2deg);
-  transform-origin: top center;
+  // position: relative;
+  // top: 4rem;
+  // transform: perspective(500px) rotateX(2deg);
+  // transform-origin: top center;
   // opacity: 0;
   // transition: 1s ease-out;
   &.enter {
     @apply opacity-100;
-    position: relative;
-    top: 0px;
-    transform: perspective(500px) rotateX(0deg);
+    // position: relative;
+    // top: 0px;
+    // transform: perspective(500px) rotateX(0deg);
     // opacity: 1;
   }
 }

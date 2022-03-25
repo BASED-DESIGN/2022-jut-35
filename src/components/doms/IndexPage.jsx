@@ -38,13 +38,6 @@ const BackgroundMans = dynamic(() => import('@components/canvas/BackgroundMans')
 const IndexPage = forwardRef((props, ref) => {
 
   useEffect(() => {  
-    // gsap.to('.sea', {
-    //   opacity: 1,
-    //   y: 0,
-    //   duration: 2,
-    //   // delay: .5,
-    //   ease: Power2.easeOut
-    // });
     // console.log(scrollerRef)
     // const target = document.querySelector('.wrap-main');
     // const observerItem = document.querySelectorAll('.fadeIn');
@@ -161,7 +154,6 @@ const IndexPage = forwardRef((props, ref) => {
         // markers: true,
       }
     });
-
     
     gsap.to('.loadCover .bg', 1,{
       opacity: 0,
@@ -225,9 +217,36 @@ const IndexPage = forwardRef((props, ref) => {
 
     window.addEventListener("touchstart", mainLogoAnimate);
     window.addEventListener("touchend", mainLogoAnimate);
-
     window.addEventListener("mousemove", mainLogoAnimate);
     window.addEventListener("mouseleave", mainLogoAnimate);
+
+    // Intro
+    gsap.to('.groupIconBg', {
+      y: '-50vh',
+      ease: Linear.easeNone,
+      scrollTrigger: {
+        trigger: '.intro',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 2.5,
+        // markers: true,
+      }
+    });
+    gsap.to('.mainIconBg', {
+      y: '-50vh',
+      ease: Linear.easeNone,
+      scrollTrigger: {
+        trigger: '.intro',
+        invalidateOnRefresh: true,
+        // pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => "+=" + window.innerHeight * 2.5,
+        // markers: true,
+      }
+    });
 
     // New Way
     gsap.to('.newWay .sloganGroup', {
@@ -327,7 +346,7 @@ const IndexPage = forwardRef((props, ref) => {
     const callDistort = function() {
       const newPos = window.pageYOffset;
       const diff = newPos - currentPos;
-      const speed = diff * 0.5;
+      const speed = diff * 0.25;
       currentPos = newPos;
       // kvSloganLeftLooping.timeScale(1 + speed);
       // kvSloganRightLooping.timeScale(1 + speed);
@@ -337,8 +356,27 @@ const IndexPage = forwardRef((props, ref) => {
     };
     callDistort();
 
-    // Vision
+    const newWayListItem = document.querySelectorAll('.newWayList .listItem');
+    newWayListItem.forEach((item)=>{
+      const itemImg = item.querySelector('img');
+      gsap.to(itemImg, {
+        y: '-25%',
+        ease: Linear.easeNone,
+        scrollTrigger: {
+          trigger: item,
+          invalidateOnRefresh: true,
+          // pin: true,
+          scrub: true,
+          start: "-=" + window.innerHeight * 0.5 + " top",
+          end: () => "+=" + window.innerHeight * 1.2,
+          // markers: true,
+        }
+      });
+    });
 
+
+    
+    // Vision
     const sdgList = document.querySelector('.sdgList');
     const sdgListItems = sdgList.querySelectorAll('.listItem');
 
@@ -461,28 +499,36 @@ const IndexPage = forwardRef((props, ref) => {
               style={{ transform: 'translate3d(0, 0, -1px)' }} 
             /> */}
 
+
             <div className="bg-kv-2 py-32">
+
               <div className="container mx-auto">
                 <div className="titleGruop fadeIn mb-32 text-gray-dark md:mb-48">
                   <div className="en font-title text-5xl md:text-6xl xl:text-7xl">The JUT Way</div>
                   <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">忠泰之道</div>
                 </div>
                 <div className="space-y-32">
-                  <div className="fadeIn md:flex">
-                    <div className="md:basis-1/2">
+              
+
+                  <div className="relative fadeIn md:flex">
+                    <div className="relative z-10 md:basis-1/2">
                       <img src={`${logo_jutgroup_white}`} className="mx-auto w-3/5 -h-full max-w-none md:w-2/4 md:ml-32" />
                     </div>
-                    <div className="mt-12 md:basis-1/2 md:mt-0">
+                    <div className="relative z-10 mt-12 md:basis-1/2 md:mt-0">
                       <div className="article_normal">
                         <p>忠泰集團的標誌以「⼈、樹、家」意象組成，藍綠兩⾊代表天空與陸地，象徵忠泰以建築營造事業立⾜天地之間。集團成立初期，懷抱「忠於建築　泰然求新」的經營理念，至今⼀直秉持初衷屹立不搖。而忠泰的英⽂名字「JUT」，來自初創時訂立的三⼤核⼼價值：「Justice」（公正）、「Union」（團結）、「Technique」（技術）取其首個字母而得名，「JUT」字義上有尖銳、突出的意思，寓意忠泰永遠走在時代尖端，成為台灣建造產業的領航企業。</p>
                       </div>
                     </div>
+                    <div className="groupIconBg absolute z-0 top-0 left-0 w-full h-full opacity-5">
+                      <img src={`${logo_jutgroup_icon_black}`} className="ml-auto -mr-12 mt-20 w-4/5 md:w-2/5 md:-mr-24 md:-mt-24 xl:w-2/5 max-w-none" />
+                    </div>
                   </div>
-                  <div className="fadeIn md:flex">
-                    <div className="md:basis-1/2">
+
+                  <div className="relative fadeIn md:flex">
+                    <div className="relative z-10 md:basis-1/2">
                       <img src={`${logo_jut35_s_white}`} className="mx-auto w-3/5 max-w-none md:w-2/5 md:ml-32" />
                     </div>
-                    <div className="mt-12 md:basis-1/2 md:mt-0">
+                    <div className="relative z-10 mt-12 md:basis-1/2 md:mt-0">
                       <div className="article_normal">
                         <p>我們期許以「A Better Tomorrow」的企業價值，創造一個平行於台北的平行城市、以忠泰事業系統所築構的生態體系，能獨立於城市傲然而生，同時又與原屬地共生共長，迎接每一個美好的明天。</p>
                         <p>35週年標誌呈階梯狀的意象，忠泰集團期盼以平行城市創造者之姿，藉由階梯連結都市開發之點線面，既深且廣地拓展忠泰的城市版圖。</p>
@@ -490,7 +536,11 @@ const IndexPage = forwardRef((props, ref) => {
                         <p>忠泰集團自創立至今所建立的一切，均有賴集團裡每一位夥伴的努力與堅持。古語有話：「三十而立，四十不惑」，屆而立與不惑之間，時代正處在最變幻莫測之際，集團希望「三五成群」即能凝聚成堅定的力量，臨危而不亂，穩中可求勝，大家都不忘人與人、社會、環境之間的緊密連繫，懷抱共好、創新、精益求精的態度，成就美好明天。</p>
                       </div>
                     </div>
+                    <div className="mainIconBg absolute z-0 top-0 left-0 w-full h-full opacity-5">
+                      <img src={`${logo_jut35_icon_black}`} className="mr-auto -ml-12 mt-20 w-4/5 md:w-2/5 md:-ml-24 md:mt-20 xl:w-2/5 max-w-none" />
+                    </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -524,7 +574,7 @@ const IndexPage = forwardRef((props, ref) => {
                 <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-bottom opacity-0" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
               </div>
 
-              <div className="container mx-auto">
+              <div className="container mx-auto relative z-10">
                 <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:-mt-40 md:mb-48">
                   <div className="en font-title text-5xl md:text-6xl xl:text-7xl">New Way</div>
                   <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">探索新航向</div>
@@ -532,8 +582,8 @@ const IndexPage = forwardRef((props, ref) => {
                 <div className="newWayList space-y-40 md:space-y-60">
 
                   <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay1Ref}>
-                    <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
+                    <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
+                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
                     </div>
                     <div className="itemTitle mt-8 md:flex">
                       <div className="title md:basis-1/2">
@@ -548,8 +598,8 @@ const IndexPage = forwardRef((props, ref) => {
                   </div>
 
                   <div className="listItem fadeIn mr-8 md:mr-32" ref={newWay2Ref}>
-                    <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
+                    <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
+                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
                     </div>
                     <div className="itemTitle mt-8 md:flex">
                       <div className="title md:basis-1/2">
@@ -564,8 +614,8 @@ const IndexPage = forwardRef((props, ref) => {
                   </div>
 
                   <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay3Ref}>
-                    <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
+                    <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
+                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
                     </div>
                     <div className="itemTitle mt-8 md:flex">
                       <div className="title md:basis-1/2">
@@ -580,8 +630,8 @@ const IndexPage = forwardRef((props, ref) => {
                   </div>
 
                   <div className="listItem fadeIn mr-8 md:mr-48" ref={newWay4Ref}>
-                    <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
+                    <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
+                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
                     </div>
                     <div className="itemTitle mt-8 md:flex">
                       <div className="title md:basis-1/2">
@@ -596,8 +646,8 @@ const IndexPage = forwardRef((props, ref) => {
                   </div>
 
                   <div className="listItem fadeIn ml-8 md:mx-24" ref={newWay5Ref}>
-                    <div className="item_photo shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] bg-white" />
+                    <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
+                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
                     </div>
                     <div className="itemTitle mt-8 md:flex">
                       <div className="title md:basis-1/2">
