@@ -17,6 +17,8 @@ export default function PresentationControls({
   azimuth = [-Infinity, Infinity],
   height = [-100, 100],
   config = { mass: 1, tension: 170, friction: 26 },
+  animMoveX=true,
+  animMoveY=true
 }) {
   const { size, gl } = useThree()
   const ref = useRef()
@@ -99,13 +101,15 @@ export default function PresentationControls({
   //   target: gl.domElement
   // })
 
-  const moveBind = useMove(({ xy }) => {
+  const moveBind = useMove(({ xy, ...props }) => {
+    // console.log(props)
     // const deltaX = xy[0] - size.width/2
     // const deltaY = xy[1] - size.height/2 - gl.domElement.getBoundingClientRect().top
     const deltaX = xy[0] - size.width/2 - pInitial[0]
-    const deltaY = - xy[1] + size.height/2 - pInitial[1] + gl.domElement.getBoundingClientRect().top
+    const deltaY = - (xy[1] - size.height/2 - gl.domElement.getBoundingClientRect().top) - pInitial[1] 
     stareApi.start({
-      rotation: [0, deltaX * .0003, deltaY * .0001]
+      // rotation: [0, deltaX * .0003, deltaY * .0001]
+      rotation: [0, animMoveX ? deltaX * .0003 : 0, animMoveY ? deltaY * .0001 : 0]
     })
   }, {
     target: document.querySelector('body')
