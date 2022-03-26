@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="52px" viewBox="0 0 38 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logo_jut35_icon_white</title>
+    <defs>
+        <filter x="0.0%" y="0.0%" width="100.0%" height="100.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M8.99972663,8 L18,16.7995723 L18,25.5996793 L13.5277466,30.0269958 L18,34.3997862 L18,43.1993585 L8.99972663,52 L0,52 L0,43.1993585 L4.49466938,38.7950285 L0,34.3997862 L0,25.5996793 L4.48045439,21.1809158 L0,16.7995723 L0,8 L8.99972663,8 Z M38,0 L38,8.80021383 L29.0002734,17.5998931 L38,26.4001069 L38,35.2003207 L29.0002734,44 L20,44 L20,35.2003207 L24.5159919,30.7841765 L20,26.4001069 L20,8.80021383 L29.0002734,0 L38,0 Z" id="logo_jut35_icon_white" fill="#FFFFFF" filter="url(#filter-1)"></path>
+    </g>
+</svg>

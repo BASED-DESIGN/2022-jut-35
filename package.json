@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next-tools/dynamic": "0.0.11",
     "@react-spring/three": "^9.4.4",
     "@react-three/drei": "^8.16.7",
     "@react-three/fiber": "^7.0.26",
@@ -17,6 +18,7 @@
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-odometerjs": "^2.1.2",
     "react-spring": "^9.4.4",
     "resize-observer-polyfill": "^1.5.1",
     "sass": "^1.49.9",

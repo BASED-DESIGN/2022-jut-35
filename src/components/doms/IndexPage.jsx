@@ -1,7 +1,8 @@
-import { forwardRef, useEffect, useRef } from "react"
+import { forwardRef, useEffect, useRef, useState } from "react"
 import dynamic from 'next/dynamic'
 import useStore from '@helpers/store'
 import { gsap } from "gsap"
+// import Odometer from 'react-odometerjs';
 
 import {
   TimelineMax,
@@ -20,7 +21,15 @@ import {
 } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+const Odometer = dynamic(import('react-odometerjs'), {
+  ssr: false,
+  loading: () => 0
+});
+
+const video = '/video.mp4'
+
 const logo_jut35_icon_black = '/logo_jut35_icon_black.svg'
+const logo_jut35_icon_white = '/logo_jut35_icon_white.svg'
 const logo_jutgroup_icon_black = '/logo_jutgroup_icon_black.svg'
 const logo_jut35_white = '/logo_jut35_white.svg'
 const logo_jut35_s_white = '/logo_jut35_s_white.svg'
@@ -36,6 +45,125 @@ const Scene1Right = dynamic(() => import('@components/canvas/sub-scenes/1_Right'
 const BackgroundMans = dynamic(() => import('@components/canvas/BackgroundMans'), { ssr: false })
 
 const IndexPage = forwardRef((props, ref) => {
+
+  const [loadState, setLoadState] = useState()
+
+  const [coverLogoValue, setCoverLogoValue] = useState(0)
+  const [yearValue, setYearValue] = useState(0)
+  const [videoCurrentState, setVideoCurrentState] = useState(0)
+  const [videoState, setVideoState] = useState('ready')
+
+
+  useEffect(() => {
+
+    setCoverLogoValue(20);
+    setYearValue(1987);
+    setTimeout(()=>{
+      setCoverLogoValue(35);
+      setYearValue(2022);
+    }, 500);
+
+    gsap.to('.coverLogo', 1, {
+      opacity: 1,
+      ease: Expo.easeIn,
+      // delay: 1,
+      onComplete: () => {}
+    });
+
+    gsap.to('.coverStartButton', 1, {
+      opacity: 1,
+      ease: Expo.easeIn,
+      delay: .5,
+      onComplete: () => {
+        // console.log(loadState);
+        setTimeout(()=>{
+          setLoadState(true);
+        }, 1000);
+      }
+    });
+
+    const coverStartButton = document.querySelector(".coverStartButton");
+    const coverVideo = document.querySelector(".coverVideo");
+    const videoFrame = coverVideo.querySelector(".videoFrame");
+    const video = videoFrame.querySelector(".video");
+    const skipVideoButton = videoFrame.querySelector(".skipVideoButton");
+
+    coverStartButton.addEventListener("click", startPlayVideo, false);
+    function startPlayVideo(){
+      setVideoState('start');
+      handlePlayButton();
+    }
+
+    skipVideoButton.addEventListener("click", skipVideo, false);
+    function skipVideo(){
+      setTimeout(()=>{
+        setVideoState('ends');
+      }, 500);
+      video.pause();
+    }
+
+    video.addEventListener("click", handlePlayButton, false);
+    async function playVideo() {
+      try {
+        await video.play();
+        // coverVideo.classList.toggle("playing");
+        var i = setInterval(function() {
+          if (video.readyState > 0) {
+            // modal_video minutes = parseInt(video.duration / 60, 10);
+            // var seconds = video.duration % 60;
+            var duration = video.duration;
+            var currentTime = video.currentTime;
+            var currentPercentage = Math.floor((currentTime / duration) * 100);
+            // console.log(currentPercentage);
+            
+            setVideoCurrentState(currentPercentage + "%");
+
+            if (parseInt(duration) - parseInt(currentTime) == 0) {
+              clearInterval(i);
+              // coverVideo.classList.remove("playing");
+              setVideoState('ends');
+              // setTimeout(()=>{}, 1000);
+            }
+          }
+        }, 100);
+      } catch (err) {}
+    }
+
+    function handlePlayButton() {
+      if (video.paused) {
+        playVideo();
+        setVideoState('play');
+      } else {
+        video.pause();
+        setVideoState('pause');
+        // coverVideo.classList.remove("playing");
+      }
+    }
+
+  }, []);
+
+  useEffect(() => {  
+    if (videoState == 'ends') {
+      gsap.to('.kvLeft .kvLeftInner', 4, {
+        opacity: 1,
+        y: 0,
+        ease: Expo.easeOut,
+        delay: .6
+      });
+      gsap.to('.kvLeft .sloganTop', 4, {
+        opacity: 1,
+        y: 0,
+        ease: Expo.easeOut,
+        delay: .6
+      });
+      gsap.to('.hero .mainLogo', 3, {
+        opacity: 1,
+        scale: 1,
+        ease: Expo.easeOut,
+        delay: 1.5
+      });
+    }
+  }, [videoState]);
 
   useEffect(() => {  
     // console.log(scrollerRef)
@@ -82,368 +210,395 @@ const IndexPage = forwardRef((props, ref) => {
 
     gsap.registerPlugin(ScrollTrigger);
     
-    // Hero
-    gsap.to('.hero', {
-      x: -(window.innerWidth * 1) + "px",
-      // ease: Linear.easeNone,
-      ease: "none",
-      scrollTrigger: {
-        trigger: '.hero',
-        invalidateOnRefresh: true,
-        pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 2,
-        // markers: true,
-      }
-    });
-    gsap.to('.kv_left', {
-      x: window.innerWidth * .5 + "px",
-      // ease: Linear.easeNone,
-      ease: "none",
-      scrollTrigger: {
-        trigger: '.wrap',
-        invalidateOnRefresh: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 2,
-        // markers: true,
-      }
-    }, 1);
-    gsap.to('.kv_right', {
-      // x: -(window.innerWidth * 0) + "px",
-      // ease: Linear.easeNone,
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      ease: "none",
-      scrollTrigger: {
-        trigger: '.wrap',
-        invalidateOnRefresh: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 2,
-        // markers: true,
-      }
-    });
-    gsap.to('.kv_right_inner', {
-      // x: '0%',
-      transform: "translate(0%, 0%)",
-      // ease: Linear.easeNone,
-      // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      ease: "none",
-      scrollTrigger: {
-        trigger: '.wrap',
-        invalidateOnRefresh: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 2,
-        // markers: true,
-      }
-    });
-    gsap.to('.kv_right_inner', {
-      // x: '0%',
-      transform: "translate(0%, 50%)",
-      // ease: Linear.easeNone,
-      // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      ease: "none",
-      scrollTrigger: {
-        trigger: '.intro',
-        invalidateOnRefresh: true,
-        scrub: true,
-        start: "top bottom",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
-    
-    gsap.to('.loadCover .bg', 1,{
-      opacity: 0,
-      // scale: 1,
-      // backgroundColor: "transparent",
-      ease: Expo.easeIn,
-      delay: 1,
-      onComplete: () => {
-        console.log('end');
-      }
-    });
+    // console.log(loadState);
 
-    gsap.to('.mainLogo', {
-      opacity: 0,
-      // ease: Linear.easeNone,
-      ease: "none",
-      scrollTrigger: {
-        trigger: '.wrap',
-        invalidateOnRefresh: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 0.5,
-        // markers: true,
-      }
-    });
+    if (loadState == true) {
 
-    const kvSloganLoopingRange = () => {
-      if (window.innerWidth > 959) {
-        return window.innerWidth;
-      } else {
-        return window.innerWidth * 1.25;
-      }
-    }
-
-    const kvSloganLeftLooping = new TimelineMax({ repeat: -1 });
-    kvSloganLeftLooping.staggerFromTo('.hero .sloganTop', 40,
-      { backgroundPositionX: 0, ease: Linear.easeNone },
-      { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
-    );
-
-    const kvSloganRightLooping = new TimelineMax({ repeat: -1 });
-    kvSloganRightLooping.staggerFromTo('.hero .sloganBottom', 40,
-      { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
-      { backgroundPositionX: 0, ease: Linear.easeNone }
-    );
-
-    const mainLogoAnimate = function(ev) {
-      const target = document.querySelector(".mainLogo");
-
-      const evX = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
-      const evY = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
-
-      const sxPos = (evX / window.innerWidth * 50) * 0.7;
-      const syPos = (evY / window.innerHeight * 50) * 0.7;
-
-      gsap.to(target, 1, {
-        css:{ "filter": "drop-shadow(" + Math.ceil(-sxPos) + "px " + Math.ceil(-syPos) + "px 20px rgba(0,0,0,.25))"},
-        ease: Expo.easeOut
-      });
-    };
-
-    window.addEventListener("touchstart", mainLogoAnimate);
-    window.addEventListener("touchend", mainLogoAnimate);
-    window.addEventListener("mousemove", mainLogoAnimate);
-    window.addEventListener("mouseleave", mainLogoAnimate);
-
-    // Intro
-    gsap.to('.groupIconBg', {
-      y: '-50vh',
-      ease: Linear.easeNone,
-      scrollTrigger: {
-        trigger: '.intro',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 2.5,
-        // markers: true,
-      }
-    });
-    gsap.to('.mainIconBg', {
-      y: '-50vh',
-      ease: Linear.easeNone,
-      scrollTrigger: {
-        trigger: '.intro',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 2.5,
-        // markers: true,
-      }
-    });
-
-    // New Way
-    gsap.to('.newWay .sloganGroup', {
-      position: 'fixed',
-      opacity: 0.3,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWay',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
-
-    gsap.to('.newWay .sloganTop', {
-      // position: 'fixed',
-      opacity: 1,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWay',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
-
-    gsap.to('.newWay .sloganTop', {
-      opacity: 0,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(2)',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 1.5,
-        // markers: true,
-      }
-    });
-
-    gsap.to('.newWay .sloganBottom', {
-      position: 'fixed',
-      opacity: 1,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(2)',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
-
-    gsap.to('.newWay .sloganBottom', {
-      opacity: 0,
-      ease: Expo.easeOut,
-      scrollTrigger: {
-        trigger: '.newWayList .listItem:nth-child(4)',
-        invalidateOnRefresh: true,
-        // pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 1,
-        // markers: true,
-      }
-    });
-
-    const sloganLoopingRange = () => {
-      if (window.innerWidth > 959) {
-        return window.innerWidth * 1.25;
-      } else {
-        return window.innerWidth * 1.5;
-      }
-    }
-
-    const NWsloganLeftLooping = new TimelineMax({ repeat: -1 });
-    NWsloganLeftLooping.staggerFromTo('.newWay .sloganTop', 40,
-      { backgroundPositionX: 0, ease: Linear.easeNone },
-      { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
-    );
-
-    const NWsloganRightLooping = new TimelineMax({ repeat: -1 });
-    NWsloganRightLooping.staggerFromTo('.newWay .sloganBottom', 40,
-      { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
-      { backgroundPositionX: 0, ease: Linear.easeNone }
-    );
-
-    let currentPos = window.pageYOffset;
-    const callDistort = function() {
-      const newPos = window.pageYOffset;
-      const diff = newPos - currentPos;
-      const speed = diff * 0.25;
-      currentPos = newPos;
-      // kvSloganLeftLooping.timeScale(1 + speed);
-      // kvSloganRightLooping.timeScale(1 + speed);
-      NWsloganLeftLooping.timeScale(1 + speed);
-      NWsloganRightLooping.timeScale(1 + speed);
-      requestAnimationFrame(callDistort);
-    };
-    callDistort();
-
-    const newWayListItem = document.querySelectorAll('.newWayList .listItem');
-    newWayListItem.forEach((item)=>{
-      const itemImg = item.querySelector('img');
-      gsap.to(itemImg, {
-        y: '-25%',
-        ease: Linear.easeNone,
+      // Hero
+      gsap.to('.hero', {
+        x: -(window.innerWidth * 1) + "px",
+        // ease: Linear.easeNone,
+        ease: "none",
         scrollTrigger: {
-          trigger: item,
+          trigger: '.hero',
           invalidateOnRefresh: true,
-          // pin: true,
+          pin: true,
           scrub: true,
-          start: "-=" + window.innerHeight * 0.5 + " top",
-          end: () => "+=" + window.innerHeight * 1.2,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2,
           // markers: true,
         }
       });
-    });
+      gsap.to('.kvLeft', {
+        x: window.innerWidth * .5 + "px",
+        // ease: Linear.easeNone,
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.wrap',
+          invalidateOnRefresh: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2,
+          // markers: true,
+        }
+      }, 1);
+      gsap.to('.kvRight', {
+        // x: -(window.innerWidth * 0) + "px",
+        // ease: Linear.easeNone,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.wrap',
+          invalidateOnRefresh: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2,
+          // markers: true,
+        }
+      });
+      gsap.to('.kvRightInner', {
+        // x: '0%',
+        transform: "translate(0%, 0%)",
+        // ease: Linear.easeNone,
+        // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.wrap',
+          invalidateOnRefresh: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2,
+          // markers: true,
+        }
+      });
+      gsap.to('.kvRightInner', {
+        // x: '0%',
+        transform: "translate(0%, 50%)",
+        // ease: Linear.easeNone,
+        // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.intro',
+          invalidateOnRefresh: true,
+          scrub: true,
+          start: "top bottom",
+          end: () => "+=" + window.innerHeight,
+          // markers: true,
+        }
+      });
+      
+      // gsap.to('.loadCover .bg', 1,{
+      //   opacity: 0,
+      //   // scale: 1,
+      //   // backgroundColor: "transparent",
+      //   ease: Expo.easeIn,
+      //   delay: 1,
+      //   onComplete: () => {
+      //     console.log('end');
+      //   }
+      // });
 
+      // gsap.to('.mainLogo', {
+      //   opacity: 0,
+      //   // ease: Linear.easeNone,
+      //   ease: "none",
+      //   scrollTrigger: {
+      //     trigger: '.wrap',
+      //     invalidateOnRefresh: true,
+      //     scrub: true,
+      //     start: "top top",
+      //     end: () => "+=" + window.innerHeight * 0.5,
+      //     // markers: true,
+      //   }
+      // });
 
-    
-    // Vision
-    const sdgList = document.querySelector('.sdgList');
-    const sdgListItems = sdgList.querySelectorAll('.listItem');
-
-    const sdgListRange = () => {
-      if (window.innerWidth > 959) {
-        return window.innerWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 2);
-      } else {
-        return window.innerWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 1.2);
+      const kvSloganLoopingRange = () => {
+        if (window.innerWidth > 959) {
+          return window.innerWidth;
+        } else {
+          return window.innerWidth * 1.25;
+        }
       }
+
+      const kvSloganLeftLooping = new TimelineMax({ repeat: -1 });
+      kvSloganLeftLooping.staggerFromTo('.hero .sloganTop', 40,
+        { backgroundPositionX: 0, ease: Linear.easeNone },
+        { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
+      );
+
+      const kvSloganRightLooping = new TimelineMax({ repeat: -1 });
+      kvSloganRightLooping.staggerFromTo('.hero .sloganBottom', 40,
+        { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
+        { backgroundPositionX: 0, ease: Linear.easeNone }
+      );
+
+      // const mainLogoAnimate = function(ev) {
+      //   const target = document.querySelector(".mainLogo");
+
+      //   const evX = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
+      //   const evY = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
+
+      //   const sxPos = (evX / window.innerWidth * 50) * 0.7;
+      //   const syPos = (evY / window.innerHeight * 50) * 0.7;
+
+      //   gsap.to(target, 1, {
+      //     css:{ "filter": "drop-shadow(" + Math.ceil(-sxPos) + "px " + Math.ceil(-syPos) + "px 20px rgba(0,0,0,.25))"},
+      //     ease: Expo.easeOut
+      //   });
+      // };
+
+      // window.addEventListener("touchstart", mainLogoAnimate);
+      // window.addEventListener("touchend", mainLogoAnimate);
+      // window.addEventListener("mousemove", mainLogoAnimate);
+      // window.addEventListener("mouseleave", mainLogoAnimate);
+
+      // Intro
+      gsap.to('.groupIconBg', {
+        y: '-50vh',
+        ease: Linear.easeNone,
+        scrollTrigger: {
+          trigger: '.intro',
+          invalidateOnRefresh: true,
+          // pin: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2.5,
+          // markers: true,
+        }
+      });
+      gsap.to('.mainIconBg', {
+        y: '-50vh',
+        ease: Linear.easeNone,
+        scrollTrigger: {
+          trigger: '.intro',
+          invalidateOnRefresh: true,
+          // pin: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2.5,
+          // markers: true,
+        }
+      });
+
+      // New Way
+      gsap.to('.newWay .sloganGroup', {
+        position: 'fixed',
+        opacity: 0.3,
+        ease: Expo.easeOut,
+        scrollTrigger: {
+          trigger: '.newWay',
+          invalidateOnRefresh: true,
+          // pin: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight,
+          // markers: true,
+        }
+      });
+
+      gsap.to('.newWay .sloganTop', {
+        // position: 'fixed',
+        opacity: 1,
+        ease: Expo.easeOut,
+        scrollTrigger: {
+          trigger: '.newWay',
+          invalidateOnRefresh: true,
+          // pin: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight,
+          // markers: true,
+        }
+      });
+
+      gsap.to('.newWay .sloganTop', {
+        opacity: 0,
+        ease: Expo.easeOut,
+        scrollTrigger: {
+          trigger: '.newWayList .listItem:nth-child(2)',
+          invalidateOnRefresh: true,
+          // pin: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 1.5,
+          // markers: true,
+        }
+      });
+
+      gsap.to('.newWay .sloganBottom', {
+        position: 'fixed',
+        opacity: 1,
+        ease: Expo.easeOut,
+        scrollTrigger: {
+          trigger: '.newWayList .listItem:nth-child(2)',
+          invalidateOnRefresh: true,
+          // pin: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight,
+          // markers: true,
+        }
+      });
+
+      gsap.to('.newWay .sloganBottom', {
+        opacity: 0,
+        ease: Expo.easeOut,
+        scrollTrigger: {
+          trigger: '.newWayList .listItem:nth-child(4)',
+          invalidateOnRefresh: true,
+          // pin: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 1,
+          // markers: true,
+        }
+      });
+
+      const sloganLoopingRange = () => {
+        if (window.innerWidth > 959) {
+          return window.innerWidth * 1.25;
+        } else {
+          return window.innerWidth * 1.5;
+        }
+      }
+
+      const NWsloganLeftLooping = new TimelineMax({ repeat: -1 });
+      NWsloganLeftLooping.staggerFromTo('.newWay .sloganTop', 40,
+        { backgroundPositionX: 0, ease: Linear.easeNone },
+        { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
+      );
+
+      const NWsloganRightLooping = new TimelineMax({ repeat: -1 });
+      NWsloganRightLooping.staggerFromTo('.newWay .sloganBottom', 40,
+        { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
+        { backgroundPositionX: 0, ease: Linear.easeNone }
+      );
+
+      let currentPos = window.pageYOffset;
+      const callDistort = function() {
+        const newPos = window.pageYOffset;
+        const diff = newPos - currentPos;
+        const speed = diff * 0.25;
+        currentPos = newPos;
+        // kvSloganLeftLooping.timeScale(1 + speed);
+        // kvSloganRightLooping.timeScale(1 + speed);
+        NWsloganLeftLooping.timeScale(1 + speed);
+        NWsloganRightLooping.timeScale(1 + speed);
+        requestAnimationFrame(callDistort);
+      };
+      callDistort();
+
+      const newWayListItem = document.querySelectorAll('.newWayList .listItem');
+      newWayListItem.forEach((item)=>{
+        const itemImg = item.querySelector('img');
+        gsap.to(itemImg, {
+          y: '-25%',
+          ease: Linear.easeNone,
+          scrollTrigger: {
+            trigger: item,
+            invalidateOnRefresh: true,
+            // pin: true,
+            scrub: true,
+            start: "-=" + window.innerHeight * 0.5 + " top",
+            end: () => "+=" + window.innerHeight * 1.2,
+            // markers: true,
+          }
+        });
+      });
+
+
+
+      // Vision
+      const sdgList = document.querySelector('.sdgList');
+      const sdgListItems = sdgList.querySelectorAll('.listItem');
+
+      const sdgListRange = () => {
+        if (window.innerWidth > 959) {
+          return window.innerWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 2);
+        } else {
+          return window.innerWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 1.2);
+        }
+      }
+
+      sdgList.style.height = sdgListItems[0].offsetHeight + 'px';
+
+      gsap.to('.sdgList', {
+        x: (sdgListRange()) + "px",
+        ease: Linear.easeNone,
+        scrollTrigger: {
+          trigger: '.sdgListWrap',
+          invalidateOnRefresh: true,
+          pin: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight,
+          // markers: true,
+        }
+      });
+
+      
+
+      // Creative Power
+      const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
+      const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
+      photoRowLeftLoopList.forEach(function(el) {
+        const rowLooping = new TimelineMax({ repeat: -1 });
+        rowLooping.staggerFromTo(
+          el,
+          24,
+          { xPercent: -100, ease: Linear.easeNone },
+          { xPercent: 0, ease: Linear.easeNone }
+        );
+        const Move = () => rowLooping.timeScale(1);
+        const Slow = () => rowLooping.timeScale(.3);
+        photoRowLeftLoop.addEventListener("mouseenter", Slow);
+        photoRowLeftLoop.addEventListener("mouseleave", Move);
+        photoRowLeftLoop.addEventListener("touchstart", Slow);
+        photoRowLeftLoop.addEventListener("touchend", Move);
+      });
+
+      const photoRowRightLoop = document.querySelector(".photoRowRightLoop");
+      const photoRowRightLoopList = photoRowRightLoop.querySelectorAll(".photoRowList");
+      photoRowRightLoopList.forEach(function(el) {
+        const rowLooping = new TimelineMax({ repeat: -1 });
+        rowLooping.staggerFromTo(
+          el,
+          24,
+          { xPercent: 0, ease: Linear.easeNone },
+          { xPercent: -100, ease: Linear.easeNone }
+        );
+        const Move = () => rowLooping.timeScale(1);
+        const Slow = () => rowLooping.timeScale(.3);
+        photoRowRightLoop.addEventListener("mouseenter", Slow);
+        photoRowRightLoop.addEventListener("mouseleave", Move);
+        photoRowRightLoop.addEventListener("touchstart", Slow);
+        photoRowRightLoop.addEventListener("touchend", Move);
+      });
     }
 
-    sdgList.style.height = sdgListItems[0].offsetHeight + 'px';
 
-    gsap.to('.sdgList', {
-      x: (sdgListRange()) + "px",
-      ease: Linear.easeNone,
-      scrollTrigger: {
-        trigger: '.sdgListWrap',
-        invalidateOnRefresh: true,
-        pin: true,
-        scrub: true,
-        start: "top top",
-        end: () => "+=" + window.innerHeight,
-        // markers: true,
-      }
-    });
+    // const countNumber = document.querySelectorAll('.countNumber');
+    // countNumber.forEach((item)=>{
+    //   var count = {val: item.dataset.start};
+    //   var end = item.dataset.end;
+    //   var speed = item.dataset.speed;
+      
+    //   // console.log(end);
+    //   gsap.to(count, 2,
+    //     {
+    //       val: end,
+    //       roundProps: "val",
+    //       onUpdate: function(){
+    //         item.textContent = count.val;
+    //         item.classList.add('counting');
+    //         // console.log($(ele));
+    //       },
+    //       ease: Linear.easeNone
+    //     }
+    //   );
+    // });
 
-    
-
-    // Creative Power
-    const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
-    const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
-    photoRowLeftLoopList.forEach(function(el) {
-      const rowLooping = new TimelineMax({ repeat: -1 });
-      rowLooping.staggerFromTo(
-        el,
-        24,
-        { xPercent: -100, ease: Linear.easeNone },
-        { xPercent: 0, ease: Linear.easeNone }
-      );
-      const Move = () => rowLooping.timeScale(1);
-      const Slow = () => rowLooping.timeScale(.3);
-      photoRowLeftLoop.addEventListener("mouseenter", Slow);
-      photoRowLeftLoop.addEventListener("mouseleave", Move);
-      photoRowLeftLoop.addEventListener("touchstart", Slow);
-      photoRowLeftLoop.addEventListener("touchend", Move);
-    });
-
-    const photoRowRightLoop = document.querySelector(".photoRowRightLoop");
-    const photoRowRightLoopList = photoRowRightLoop.querySelectorAll(".photoRowList");
-    photoRowRightLoopList.forEach(function(el) {
-      const rowLooping = new TimelineMax({ repeat: -1 });
-      rowLooping.staggerFromTo(
-        el,
-        24,
-        { xPercent: 0, ease: Linear.easeNone },
-        { xPercent: -100, ease: Linear.easeNone }
-      );
-      const Move = () => rowLooping.timeScale(1);
-      const Slow = () => rowLooping.timeScale(.3);
-      photoRowRightLoop.addEventListener("mouseenter", Slow);
-      photoRowRightLoop.addEventListener("mouseleave", Move);
-      photoRowRightLoop.addEventListener("touchstart", Slow);
-      photoRowRightLoop.addEventListener("touchend", Move);
-    });
-
-  }, [])
+  }, [loadState])
 
   const a = ["0", "0", "0", "0", "0"];
 
@@ -462,28 +617,74 @@ const IndexPage = forwardRef((props, ref) => {
     })
   }, [])
 
+
   return (
     <div className="relative wrap w-screen overflow-x-hidden" ref={ref}>
         <nav className="nav"></nav>
-        
-        <div className="loadCover fixed top-0 left-0 right-0 bottom-0 z-100 w-screen h-screen pointer-events-none">
-          <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
-          <div className="bg absolute top-0 left-0 right-0 bottom-0 z-20 w-full h-full bg-kv-1"></div>
+
+        <div className={`coverVideo fixed top-0 left-0 z-100 w-screen h-screen bg-kv-2 duration-2000 ease-expo ${videoState == 'ends' ? 'opacity-0 pointer-events-none':''}`}>
+          <div className="videoCover relative w-full h-screen z-60">
+
+            <div className="thumbanil"></div>
+            
+            <div className="coverLogo opacity-0">
+              <div className="absolute top-2 left-0 w-full text-center text-white text-base font-inner font-semibold tracking-wider pointer-events-none">
+                <Odometer value={yearValue} duration={8000} format="d" theme="default" />
+              </div>
+              
+              <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center">
+                <div className="flex items-center mt-16 mb-4">
+                  <div className="w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
+                  <div className="ml-4 text-white text-5xl inline-flex">
+                    <div className="font-extrabold tracking-wide">忠泰</div>
+                    <div className="countNumber ml-1 font-medium font-inner tracking-wider" style={{transform: 'translateY(-5px)'}}>
+                      <Odometer value={coverLogoValue} duration={8000} format="d" theme="default" />
+                    </div>
+                    {/* <div className="countNumber ml-1 font-medium font-inner" data-start="1" data-end="35" data-speed="2">1</div> */}
+                  </div>
+                </div>
+                <div className="coverStartButton flex items-center justify-center opacity-0">
+                  <div className="text-white text-base text-center font-inner font-medium border-2 border-white border-solid px-4 py-1 cursor-pointer hover:scale-110 duration-1000 ease-expo">Start JUT 35</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-out duration-1000 bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
+            {/* <video autoPlay loop muted playsInline preload="auto" className="video w-full aspect-16/9"> */}
+            <video preload="auto" className="video w-full aspect-16/9">
+              <source src={video} type="video/mp4" />
+            </video>
+            <div className="videoProgress absolute bottom-4 z-0 w-full px-4 mix-blend-difference">
+              <div className="bar bg-white/70 ease-linear duration-[1000ms]" style={{height: '1px', width: videoCurrentState}}></div>
+              <div className="w-full bg-white/30" style={{height: '1px', transform: 'translateY(-1px)'}}></div>
+            </div>
+            <div className="skipVideoButton absolute bottom-9 z-10 flex items-center justify-center scale-90 ease-out duration-1000 opacity-50 hover:opacity-100">
+              <div className="text-white text-sm text-center font-inner font-normal border border-white border-solid bg-black/50 backdrop-blur-sm px-3 py-1 cursor-pointer">SKIP</div>
+            </div>
+          </div>
         </div>
 
+        {/* <div className="loadCover fixed top-0 left-0 right-0 bottom-0 z-100 w-screen h-screen pointer-events-none">
+          <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
+          <div className="bg absolute top-0 left-0 right-0 bottom-0 z-20 w-full h-full bg-kv-1"></div>
+        </div> */}
+
         <section className="hero relative h-screen flex flex-wrap flex-col">
-          <div className="relative kv_left pre-hero w-screen h-screen bg-kv-1 overflow-hidden scale-x-105 origin-top-left">
-            <div className="kv_left_inner w-full h-full block">
+          <div className="kvLeft relative pre-hero w-screen h-screen bg-kv-1 overflow-hidden scale-x-105 origin-top-left">
+            <div className="kvLeftInner w-full h-full block opacity-0 translate-y-12">
               <Scene1Left />
             </div>
-            <div className="sloganTop absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x -bg-no-repeat bg-left-top scale-x-95 origin-top-left pointer-events-none" style={{backgroundImage: `url(${slogan_top})`}}></div>
+            <div className="sloganTop absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x -bg-no-repeat bg-left-top scale-x-95 origin-top-left pointer-events-none opacity-0 -translate-y-12" style={{backgroundImage: `url(${slogan_top})`}}></div>
           </div>
-          <div className="relative kv_right pre-hero w-screen h-screen bg-kv-2 overflow-hidden" style={{clipPath: "polygon(5% 0, 100% 0%, 100% 100%, 0% 100%)"}}>
-            <div className="kv_right_inner w-full h-full block" style={{transform: "translate(-50%, 0%)"}}>
+          <div className="kvRight relative pre-hero w-screen h-screen bg-kv-2 overflow-hidden" style={{clipPath: "polygon(5% 0, 100% 0%, 100% 100%, 0% 100%)"}}>
+            <div className="kvRightInner w-full h-full block" style={{transform: "translate(-50%, 0%)"}}>
               <Scene1Right />
             </div>
             <div className="sloganBottom absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x bg-left-bottom translate-y-1 pointer-events-none" style={{backgroundImage: `url(${slogan_bottom})`}}></div>
           </div>
+          <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center opacity-0 scale-90" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
         </section>
 
         {/* <div style={{ transformStyle: 'preserve-3d' }}> */}

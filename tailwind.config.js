@@ -37,12 +37,15 @@ module.exports = {
       'black': '#000000',
     },
     fontFamily: {
-      title: ['Malayalam MN', 'Noto Sans JP', 'sans-serif'],
-      inner: ['Din', 'Din Pro', 'Noto Sans JP', 'sans-serif'],
+      title: ['Malayalam MN', 'Noto Sans TC', 'sans-serif'],
+      inner: ['Din', 'Din Pro', 'Noto Sans TC', 'sans-serif'],
       // serif: ['Merriweather', 'serif'],
     },
     transitionDuration: {
       '0': '0ms',
+      '200': '200ms',
+      '400': '400ms',
+      '800': '800ms',
       '1000': '1000ms',
       '1500': '1500ms',
       '2000': '2000ms',
