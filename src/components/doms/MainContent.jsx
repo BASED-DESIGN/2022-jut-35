@@ -205,11 +205,11 @@ const MainContent = props => {
       };
       callDistort();
 
-      const newWayListItem = document.querySelectorAll('.newWayList .listItem');
+      const newWayListItem = document.querySelectorAll('.newWayList .listItem .itemPhoto .photo');
       newWayListItem.forEach((item)=>{
-        const itemImg = item.querySelector('img');
-        gsap.to(itemImg, {
-          y: '-25%',
+        // const itemImg = item.querySelector('img');
+        gsap.to(item, {
+          y: '-10%',
           ease: Linear.easeNone,
           scrollTrigger: {
             trigger: item,
@@ -535,7 +535,7 @@ const MainContent = props => {
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">Vision</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
             </div>
-            <div className="video fadeIn aspect-video -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
+            <div className="video fadeIn aspect-video bg-black/50 -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
               {/* <iframe className="w-full h-full" src="https://www.youtube.com/embed/8BbBGLUzjaA" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
             </div>
             <div className="itemTitle fadeIn mt-8 md:flex">
