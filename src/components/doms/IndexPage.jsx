@@ -623,8 +623,8 @@ const IndexPage = forwardRef((props, ref) => {
     <div className="relative wrap w-screen overflow-x-hidden" ref={ref}>
       <nav className="nav"></nav>
 
-        <div className={`coverVideo fixed top-0 left-0 z-100 w-screen h-screen duration-1000 ease-expo ${videoState == 'ends' ? 'opacity-0 pointer-events-none bg-kv-1':'bg-kv-2'}`}>
-          <div className="videoCover relative w-full h-screen z-60">
+      <div className={`coverVideo fixed top-0 left-0 z-100 w-screen h-screen duration-1000 ease-expo ${videoState == 'ends' ? 'opacity-0 pointer-events-none bg-kv-1':'bg-kv-2'}`}>
+        <div className="videoCover relative w-full h-screen z-60">
 
           <div className="thumbanil"></div>
           
@@ -633,47 +633,26 @@ const IndexPage = forwardRef((props, ref) => {
               <Odometer value={yearValue} duration={8000} format="d" theme="default" />
             </div>
             
-            <div className="coverLogo opacity-0">
-              <div className="absolute top-2 left-0 w-full text-center text-white text-base font-inner font-semibold tracking-wider pointer-events-none">
-                <Odometer value={yearValue} duration={8000} format="d" theme="default" />
-              </div>
-              
-              <div className={`absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center ${videoState != 'ready' ? 'opacity-0 pointer-events-none':''}`}>
-                <div className="flex items-center mt-16 mb-4 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-125 xl:scale-150">
-                  <div className="w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
-                  <div className="ml-4 text-white text-5xl inline-flex">
-                    <div className="font-extrabold tracking-wide">忠泰</div>
-                    <div className="countNumber ml-1 font-medium font-inner tracking-wider" style={{transform: 'translateY(-5px)'}}>
-                      <Odometer value={coverLogoValue} duration={8000} format="d" theme="default" />
-                    </div>
-                    {/* <div className="countNumber ml-1 font-medium font-inner" data-start="1" data-end="35" data-speed="2">1</div> */}
+            <div className={`absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center ${videoState != 'ready' ? 'opacity-0 pointer-events-none':''}`}>
+              <div className="flex items-center mt-16 mb-4 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-125 xl:scale-150">
+                <div className="w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
+                <div className="ml-4 text-white text-5xl inline-flex">
+                  <div className="font-extrabold tracking-wide">忠泰</div>
+                  <div className="countNumber ml-1 font-medium font-inner tracking-wider" style={{transform: 'translateY(-5px)'}}>
+                    <Odometer value={coverLogoValue} duration={8000} format="d" theme="default" />
                   </div>
-                </div>
-                <div className="coverStartButton flex items-center justify-center opacity-0 scale-75">
-                  <div className="text-white text-base text-center font-inner font-medium border-2 border-white border-solid px-4 py-1 cursor-pointer duration-800 ease-expo opacity-80 hover:opacity-100">Start JUT 35</div>
+                  {/* <div className="countNumber ml-1 font-medium font-inner" data-start="1" data-end="35" data-speed="2">1</div> */}
                 </div>
               </div>
-              <div className="coverStartButton flex items-center justify-center opacity-0">
-                <div className="text-white text-base text-center font-inner font-medium border-2 border-white border-solid px-4 py-1 cursor-pointer hover:scale-110 duration-1000 ease-expo">Start JUT 35</div>
+              <div className="coverStartButton flex items-center justify-center opacity-0 scale-75">
+                <div className="text-white text-base text-center font-inner font-medium border-2 border-white border-solid px-4 py-1 cursor-pointer duration-800 ease-expo opacity-80 hover:opacity-100">Start JUT 35</div>
               </div>
             </div>
 
-          <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-expo duration-2000 delay-500 bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
-            {/* <video autoPlay loop muted playsInline preload="auto" className="video w-full aspect-16/9"> */}
-            <video preload="auto" className="video w-full aspect-16/9">
-              <source src={video} type="video/mp4" />
-            </video>
-            <div className="videoProgress absolute bottom-4 z-0 w-full px-4 mix-blend-difference">
-              <div className="bar bg-white/70 ease-linear duration-[1000ms]" style={{height: '1px', width: videoCurrentState}}></div>
-              <div className="w-full bg-white/30" style={{height: '1px', transform: 'translateY(-1px)'}}></div>
-            </div>
-            <div className="skipVideoButton absolute bottom-9 z-10 flex items-center justify-center scale-90 ease-out duration-1000 opacity-50 hover:opacity-100">
-              <div className="text-white text-sm text-center font-inner font-normal border border-white border-solid bg-black/20 backdrop-blur-sm px-3 py-1 cursor-pointer">SKIP</div>
-            </div>
           </div>
         </div>
 
-        <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-out duration-1000 bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
+        <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-expo duration-2000 delay-500 bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
           {/* <video autoPlay loop muted playsInline preload="auto" className="video w-full aspect-16/9"> */}
           <video preload="auto" className="video w-full aspect-16/9">
             <source src={video} type="video/mp4" />
@@ -683,9 +662,10 @@ const IndexPage = forwardRef((props, ref) => {
             <div className="w-full bg-white/30" style={{height: '1px', transform: 'translateY(-1px)'}}></div>
           </div>
           <div className="skipVideoButton absolute bottom-9 z-10 flex items-center justify-center scale-90 ease-out duration-1000 opacity-50 hover:opacity-100">
-            <div className="text-white text-sm text-center font-inner font-normal border border-white border-solid bg-black/50 backdrop-blur-sm px-3 py-1 cursor-pointer">SKIP</div>
+            <div className="text-white text-sm text-center font-inner font-normal border border-white border-solid bg-black/20 backdrop-blur-sm px-3 py-1 cursor-pointer">SKIP</div>
           </div>
         </div>
+
       </div>
 
       {/* <div className="loadCover fixed top-0 left-0 right-0 bottom-0 z-100 w-screen h-screen pointer-events-none">
@@ -706,7 +686,7 @@ const IndexPage = forwardRef((props, ref) => {
           </div>
           <div className="sloganBottom absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x bg-left-bottom translate-y-1 pointer-events-none" style={{backgroundImage: `url(${slogan_bottom})`}}></div>
         </div>
-        <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center opacity-0 scale-90" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
+        <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center opacity-0 scale-90 pointer-events-none" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
       </section>
       
       <BackgroundMans />
@@ -1048,8 +1028,7 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </section>
 
-      {/* <section className="footer"></section> */}
-      </div>
+      <section className="footer"></section>
     </div>
   )
 })
