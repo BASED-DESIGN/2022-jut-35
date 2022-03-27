@@ -1,10 +1,10 @@
 import * as THREE from "three"
-import { useRef, useEffect, Suspense, useState } from 'react'
-import { useThree, useFrame } from '@react-three/fiber'
+import { Suspense } from 'react'
+import { useThree } from '@react-three/fiber'
 import useStore from '@helpers/store'
-import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
 
 import Canvas from '@components/layout/Canvas'
+import Camera from '@components/layout/Camera'
 import Man from '@components/canvas/objects/Man'
 
 const Content = () => {
@@ -234,26 +234,30 @@ const Content = () => {
   )
 }
 
-export default function Scene(props) {
-  const {
-  } = props
-  // const ref = useRef()
-  // const { nodes } = useGLTF(url)
-  // const { width, height } = useThree(state => state.size)
-
-  // useFrame((state) => {
-  //   const t = state.clock.getElapsedTime()
-  //   ref.current.rotation.x = Math.cos(t / 2) / 6
-  //   ref.current.rotation.y = Math.sin(t / 2) / 6
-  //   ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
-  //   // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
-  // })
-
-  return (   
-    <Canvas 
-      wrapperClassName="absolute top-0 left-0 right-0 bottom-0 pointer-events-none z-40"
+const ResponsiveCamera = props => {
+  const { children } = props
+  const { width, height } = useThree(state => state.size)
+  
+  return (
+    <Camera 
+      config={{
+        left: - width / 2,
+        right: width / 2,
+        top: height / 2,
+        bottom: - height / 2
+      }}
     >
-      <Content />
+      {children}
+    </Camera>
+  )
+}
+
+export default function Scene(props) {
+  return (   
+    <Canvas name="bgmans" wrapperClassName="absolute top-0 left-0 right-0 bottom-0 pointer-events-none z-40">
+      <ResponsiveCamera>
+        <Content />
+      </ResponsiveCamera>
     </Canvas>
   )
 }

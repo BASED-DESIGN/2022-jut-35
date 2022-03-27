@@ -1,6 +1,8 @@
 import create from 'zustand'
 
 const useStore = create((set, get) => ({
+  videoEnded: false,
+
   scrollerRef: null,
 
   break1Ref: null,
