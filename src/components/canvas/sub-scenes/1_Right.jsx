@@ -74,14 +74,14 @@ const Content = () => {
           {/* 上左 */}
           <Man
             url='/gltf/kv2-man4.gltf'
-            position={[width * .08, -height/2 + width * 0.44, -500]} 
+            position={width<600 ? [-width * .17, -height/2 + width * .37, -500] : [width * .08, -height/2 + width * 0.44, -500]} 
             rotation={[-.2, -0.8, 0]} 
             scale={0.9}
           />
           {/* 上右 */}
           <Man
             url='/gltf/kv2-man3.gltf'
-            position={[width * .16, -height/2 + width * 0.46, -500]} 
+            position={width<600 ? [-width * .08, -height/2 + width * .395, -500] : [width * .16, -height/2 + width * 0.46, -500]} 
             rotation={[-.1, -.95, 0.4]} 
             scale={0.95}
           />
@@ -98,24 +98,13 @@ const Content = () => {
 const ResponsiveCamera = props => {
   const { children } = props
   const { width, height } = useThree(state => state.size)
-  console.log(width, height)
+
   return (
     <Camera 
-      config={
-        width < 600 ? 
-        {
-          left: -width * 0.45,
-          right: -width * 0.05,
-          top: -height * .1,
-          bottom: -height * .5
-        } : 
-        {
-          left: - width / 2,
-          right: width / 2,
-          top: height / 2,
-          bottom: - height / 2
-        }
-      }
+      left={width<600 ? -width*0.4 : -width/2}
+      right={width<600 ? -width*0 : width/2}
+      top={width<600 ? -height*.1 : height/2}
+      bottom={width<600 ? -height*.5 : -height/2}
     >
       {children}
     </Camera>

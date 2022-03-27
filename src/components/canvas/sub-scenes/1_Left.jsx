@@ -107,22 +107,26 @@ const ResponsiveCamera = props => {
   const { width, height } = useThree(state => state.size)
   
   return (
-    <Camera 
-      config={
-        width < 600 ? 
-        {
-          left: -width * 0.45,
-          right: -width * 0.05,
-          top: -height * .1,
-          bottom: -height * .5
-        } : 
-        {
-          left: - width / 2,
-          right: width / 2,
-          top: height / 2,
-          bottom: - height / 2
-        }
-      }
+    <Camera
+      left={width<600 ? -width * 0.45 : - width / 2}
+      right={width<600 ? -width * 0.05 : width / 2}
+      top={width<600 ? -height * .1 : height / 2}
+      bottom={width<600 ? -height * .5 : - height / 2}
+      // config={
+      //   width < 600 ? 
+      //   {
+      //     left: -width * 0.45,
+      //     right: -width * 0.05,
+      //     top: -height * .1,
+      //     bottom: -height * .5
+      //   } : 
+      //   {
+      //     left: - width / 2,
+      //     right: width / 2,
+      //     top: height / 2,
+      //     bottom: - height / 2
+      //   }
+      // }
     >
       {children}
     </Camera>
