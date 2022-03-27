@@ -1,5 +1,8 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import useStore from '@helpers/store'
+import Slider from "@farbenmeer/react-spring-slider"
+import dynamic from 'next/dynamic'
+
 import {
   gsap,
   TimelineMax,
@@ -21,12 +24,47 @@ const logo_jut35_icon_black = '/logo_jut35_icon_black.svg'
 const logo_jutgroup_icon_black = '/logo_jutgroup_icon_black.svg'
 const logo_jut35_s_white = '/logo_jut35_s_white.svg'
 const logo_jutgroup_white = '/logo_jutgroup_white.svg'
+const logo_jut35_icon_white = '/logo_jut35_icon_white.svg'
 
 const slogan_top_white = '/slogan_top_white.svg'
 const slogan_bottom_white = '/slogan_bottom_white.svg'
 
+// New Nay
+const newway_1_1 = '/newway/1-1.jpg'
+const newway_2_1 = '/newway/2-1.jpg'
+const newway_2_2 = '/newway/2-2.jpg'
+const newway_2_3 = '/newway/2-3.jpg'
+const newway_2_4 = '/newway/2-4.jpg'
+const newway_3_1 = '/newway/3-1.jpg'
+const newway_4_1 = '/newway/4-1.jpg'
+const newway_4_2 = '/newway/4-2.jpg'
+const newway_4_3 = '/newway/4-3.jpg'
+const newway_4_4 = '/newway/4-4.jpg'
+const newway_4_5 = '/newway/4-5.jpg'
+const newway_5_1 = '/newway/5-1.jpg'
+const newway_5_2 = '/newway/5-2.jpg'
+
+// Vision
+const vision_1 = '/vision/1.jpg'
+const vision_2 = '/vision/2.jpg'
+const vision_3 = '/vision/3.jpg'
+const vision_4 = '/vision/4.jpg'
+const vision_5 = '/vision/5.jpg'
+const vision_6 = '/vision/6.jpg'
+
+const Scene1Left = dynamic(() => import('@components/canvas/sub-scenes/1_Left'), { ssr: false })
+
 const MainContent = props => {
   const videoEnded = useStore(state => state.videoEnded)
+  const [windowWidth, setWindowWidth] = useState()
+
+  useEffect(() => {  
+    window.addEventListener('resize', resizing);
+    resizing();
+    function resizing(){
+      setWindowWidth(window.innerWidth);
+    }
+  }, [windowWidth])
 
   useEffect(() => {
     if (videoEnded == true) {
@@ -285,6 +323,7 @@ const MainContent = props => {
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">忠泰之道</div>
             </div>
             <div className="space-y-32">
+          
 
               <div className="relative fadeIn md:flex">
                 <div className="relative z-10 md:basis-1/2">
@@ -348,8 +387,8 @@ const MainContent = props => {
             <div className="newWayList space-y-40 md:space-y-60">
 
               <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay1Ref}>
-                <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                  <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
+                <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                  <img src={newway_1_1} alt="" className="photo aspect-[6/4] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
@@ -363,25 +402,58 @@ const MainContent = props => {
                 </div>
               </div>
 
-              <div className="listItem fadeIn mr-8 md:mr-32" ref={newWay2Ref}>
-                <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                  <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
-                </div>
-                <div className="itemTitle mt-8 md:flex">
-                  <div className="title md:basis-1/2">
+              <div className="listItem fadeIn mr-8 md:w-full md:mr-0" ref={newWay2Ref}>
+                {windowWidth < 959 ?
+                  <>
+                    <div className="itemPhoto overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                      <Slider 
+                        auto={6000}
+                        hasArrows
+                        arrowStyle={{ width: "20px", height: "20px", padding: "1px", borderColor: "rgba(255,255,255, .9)", borderWidth: "0px 2px 2px 0px" }}
+                        hasBullets
+                        bulletStyle={{ margin: "0 4px", width: "8px", height: "8px", backgroundColor: "rgba(255,255,255, .9)", border: "1px solid rgba(0,0,0, .2)" }}
+                      >
+                        <img src={newway_2_1} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_2} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_3} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_4} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                      </Slider>
+                    </div>
+                  </>
+                :
+                  <>
+                    <div className="grid grid-cols-2 gap-x-24 gap-y-20">
+                      <div className="itemPhoto fadeIn translate-x-12 overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                        <img src={newway_2_1} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                      </div>
+                      <div className="itemPhoto fadeIn mt-16 translate-x-12 overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                        <img src={newway_2_2} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                      </div>
+                      <div className="itemPhoto fadeIn overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                        <img src={newway_2_3} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                      </div>
+                      <div className="itemPhoto fadeIn mt-16 overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                        <img src={newway_2_4} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                      </div>
+                    </div>
+                  </>
+                }
+                <div className="itemTitle fadeIn mt-8 md:flex">
+                  <div className="title md:basis-1/2 md:ml-16">
                     <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       首度跨足國際頂級商辦市場
                     </h2>
+                    <p className="mt-4 text-base font-inner font-normal text-gray-dark md:text-base">忠泰建設將首度開發頂級商辦市場，聯手安藤忠雄、MVRDV等國際大師，以匠心概念糅合當代設計，勢將打造台北新世代的黃金商業核心區。</p>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以體驗為首開封充滿樂趣的零售之旅。<br />我們正在創造一種與顧客深層交流的零售體驗。</p>
+                    {/* <p className="text-base font-inner font-normal text-gray-dark md:text-base">忠泰建設將首度開發頂級商辦市場，聯手安藤忠雄、MVRDV等國際大師，以匠心概念糅合當代設計，勢將打造台北新世代的黃金商業核心區。</p> */}
                   </div>
                 </div>
               </div>
 
               <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay3Ref}>
-                <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                  <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
+                <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                  <img src={newway_3_1} alt="" className="photo aspect-[3/2] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
@@ -390,14 +462,26 @@ const MainContent = props => {
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以美學之姿探索運動之於日常的實踐。<br  />我們正在實踐一種獨樹一幟的城市運動。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">首個台北以外的大型造鎮項目即將展開，實踐永續生活社區的明日想像。</p>
                   </div>
                 </div>
               </div>
 
-              <div className="listItem fadeIn mr-8 md:mr-48" ref={newWay4Ref}>
-                <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                  <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
+              <div className="listItem fadeIn mr-8 md:mr-24" ref={newWay4Ref}>
+                <div className="itemPhoto overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                  <Slider 
+                    auto={6000}
+                    hasArrows
+                    arrowStyle={{ width: "20px", height: "20px", padding: "1px", borderColor: "rgba(255,255,255, .9)", borderWidth: "0px 2px 2px 0px" }}
+                    hasBullets
+                    bulletStyle={{ margin: "0 4px", width: "8px", height: "8px", backgroundColor: "rgba(255,255,255, .9)", border: "1px solid rgba(0,0,0, .2)" }}
+                  >
+                    <img src={newway_4_1} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_2} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_3} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_4} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_5} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                  </Slider>
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
@@ -406,14 +490,14 @@ const MainContent = props => {
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以體驗為首開封充滿樂趣的零售之旅。<br/>我們正在創造一種與顧客深層交流的零售體驗。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">位處台北大直高端消費聚落，忠泰集團首座商場「NOKE忠泰樂生活」即將於2022年第三季開幕，糅合自然(Nature)、原創(Originality)、知識(Knowledge)、活力(Energy) 於一身的零售場域，配備國際賽事標準規格之「極光冰場 Aurora Ice Rink」，以及蔦屋書店強勢加盟，勢將為品味人士敞開風格之門。</p>
                   </div>
                 </div>
               </div>
 
               <div className="listItem fadeIn ml-8 md:mx-24" ref={newWay5Ref}>
-                <div className="item_photo overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[2vw_-2vw_0_0_rgba(0,0,0,0.2)]">
-                  <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="aspect-[16/9] object-cover scale-125 origin-top bg-white" />
+                <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                  <img src={newway_5_2} alt="" className="photo aspect-[1/1] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
@@ -422,7 +506,7 @@ const MainContent = props => {
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">以美學之姿探索運動之於日常的實踐。<br/>我們正在實踐一種獨樹一幟的城市運動。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">《挑戰 - 安藤忠雄展》 全球巡展最終站首次來台展出，日本當代建築巨擘集半世紀的心血大成，將以 4 大主題 300 件展品精彩重現。</p>
                   </div>
                 </div>
               </div>
@@ -479,38 +563,57 @@ const MainContent = props => {
             <div className="sdgListWrap mt-20 pt-6 ml-8 md:ml-0 md:mt-24 md:pt-8 xl:pt-20">
               <div className="sdgList flex flex-wrap flex-col">
                 <div className="listItem fadeIn delay-100 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light"></div>
+                  <div className="photo aspect-2/3 bg-gray-light">
+                    <img src={vision_1} alt="宜居城市" className="aspect-2/3 object-cover" />
+                  </div>
                   <div className="content mt-8 article_light">
-                    <h3>環境永續</h3>
-                    <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
+                    <h3>宜居城市</h3>
+                    <p>我們重視建築與人、空間、環境之間的關係美學，以建造舒適、安全、宜居的社區以及城市為目標。</p>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-200 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light"></div>
+                  <div className="photo aspect-2/3 bg-gray-light">
+                    <img src={vision_2} alt="環境永續" className="aspect-2/3 object-cover" />
+                  </div>
                   <div className="content mt-8 article_light">
                     <h3>環境永續</h3>
-                    <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
+                    <p>我們密切關注全球碳排放以及氣候變化議題，並以開源、節能和綠化來付諸行動。</p>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-300 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light"></div>
+                  <div className="photo aspect-2/3 bg-gray-light">
+                    <img src={vision_3} alt="多元生活" className="aspect-2/3 object-cover" />
+                  </div>
                   <div className="content mt-8 article_light">
-                    <h3>環境永續</h3>
-                    <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
+                    <h3>多元生活</h3>
+                    <p>由商住營造、生活零售、運動產業以至文化藝術，我們不斷探索產業創新的可能性，致力提供優質生活的選擇。</p>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light"></div>
+                  <div className="photo aspect-2/3 bg-gray-light">
+                    <img src={vision_4} alt="管理績效" className="aspect-2/3 object-cover" />
+                  </div>
                   <div className="content mt-8 article_light">
-                    <h3>環境永續</h3>
-                    <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
+                    <h3>管理績效</h3>
+                    <p>作為廣受大眾市民以及投資者認同與信任的企業，我們致力提升永績治理效能，為企業創造價值。</p>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light"></div>
+                  <div className="photo aspect-2/3 bg-gray-light">
+                    <img src={vision_5} alt="職場培力" className="aspect-2/3 object-cover" />
+                  </div>
                   <div className="content mt-8 article_light">
-                    <h3>環境永續</h3>
-                    <p>為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業，將建築規劃、營造施工、企劃行銷、室內設計、家具家飾以及藝術文化。</p>
+                    <h3>職場培力</h3>
+                    <p>我們重視人力資源與培訓，努力創造關愛友善的工作環境，並提供多元的事業發展機會，讓同仁發揮潛能。</p>
+                  </div>
+                </div>
+                <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
+                  <div className="photo aspect-2/3 bg-gray-light">
+                    <img src={vision_6} alt="文化藝術" className="aspect-2/3 object-cover" />
+                  </div>
+                  <div className="content mt-8 article_light">
+                    <h3>文化藝術</h3>
+                    <p>我們以文化、藝術與設計融合建築，提供大眾與之對話、思考與互動的機會，藉此推動美學教育普及。</p>
                   </div>
                 </div>
               </div>
@@ -536,15 +639,18 @@ const MainContent = props => {
 
         <div className="bg-kv-2 py-32">
           <div className="container mx-auto fadeIn">
-            <div className="-mt-40 mb-12 text-center md:text-left md:-mt-48 md:mb-24 md:flex md:justify-between md:items-end">
+            <div className="-mt-40 mb-12 md:-mt-64 md:mb-24 md:flex md:justify-between md:items-end">
               <div className="md:basis-1/2">
                 <div className="titleGruop text-white">
-                  <div className="en font-inner font-bold text-8xl md:text-9xl">100</div>
-                  <div className="zh mt-2 text-3xl font-inner font-bold md:text-5xl">Creative Power</div>
+                  {/* <div className="en font-inner font-bold text-8xl md:text-9xl">100</div> */}
+                  {/* <div className="zh mt-2 text-3xl font-inner font-bold md:text-5xl">Creative Power</div> */}
+                  <div className="font-inner font-bold leading-snug md:leading-snug text-3xl md:text-5xl">35 個生命軌跡<br/>35 歲的明日記憶</div>
                 </div>
               </div>
-              <div className="md:basis-1/3 mt-8">
-                <p className="text-white text-lg">為貫徹對人與居家美學的關注，更者對於建築藝術文化的養成，忠泰陸續成立集團相關企業。</p>
+              <div className="md:basis-1/2 mt-8 article_normal">
+                {/* <p className="text-white text-lg"></p> */}
+                <p className="text-white">35歲，躊躇滿志的年紀，人生走到苦樂參半的道上，不論當時成就如何，歲月已經為生命憑添幾分重量了。在那個特定的時代背景下，偶然的命運或是因緣際會，就這樣不偏不倚地落在生命線上，讓他們35歲以後的生命航向，從此有了一點不一樣。</p>
+                <p className="text-white">我們邀請了35位來自建築、文化、藝術等不同背景的生活實踐者，在寶貴的記憶中回溯，搜出一件跟35歲那時候相關的物件，以一事與一物的個人史料、實物或非實物的紀錄作為分享，讓我們一睹這些彌足珍貴、足以促成社會變革的明日記憶。</p>
               </div>
             </div>
           </div>
@@ -609,6 +715,35 @@ const MainContent = props => {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <div className="sectionBreak relative z-60">
+        <div className="bg-kv-2">
+          <div className="scale-125 origin-center -rotate-6 translate-y-12">
+            <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-72 bg-kv-1"></div>
+          </div>
+        </div>
+      </div>
+
+      <section className="footer relative z-50 bg-kv-1">
+        <div className="w-full h-screen -mt-52">
+          <Scene1Left />
+          <div className="absolute top-0 left-0 z-10 w-full h-full flex justify-center items-center pointer-events-none">
+            <div className="flex items-center mt-16 mb-4 scale-125 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-150 xl:scale-250">
+              <div className="w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
+              <div className="ml-4 text-white">
+                {/* <div className="font-extrabold tracking-wide">忠泰</div> */}
+                <div className="ml-1 font-bold font-inner tracking-wider">
+                  <div className="text-sm">我們在城市</div>
+                  <div className="text-3xl">三五成群</div>
+                  <div className="text-3xl">破浪前行</div>
+                </div>
+                {/* <div className="countNumber ml-1 font-medium font-inner" data-start="1" data-end="35" data-speed="2">1</div> */}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>

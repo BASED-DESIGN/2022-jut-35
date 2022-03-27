@@ -77,15 +77,20 @@ module.exports = {
         '16/9': '16 / 9',
         '9/16': '9 / 16',
       },
-      transitionTimingFunction: {
-        'expo': 'cubic-bezier(.5, 0, 0, 1)',
-      },
       zIndex: {
         '60': '60',
         '70': '70',
         '80': '80',
         '90': '90',
         '100': '100'
+      },
+      transitionTimingFunction: {
+        'expo': 'cubic-bezier(.5, 0, 0, 1)',
+      },
+      scale: {
+        '200': '2',
+        '250': '2.5',
+        '300': '3',
       }
     },
   },
