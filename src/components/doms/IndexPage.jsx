@@ -1048,7 +1048,8 @@ const IndexPage = forwardRef((props, ref) => {
         </div>
       </section>
 
-      <section className="footer"></section>
+      {/* <section className="footer"></section> */}
+      </div>
     </div>
   )
 })
