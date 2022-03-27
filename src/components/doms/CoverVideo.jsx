@@ -28,14 +28,20 @@ const video = '/video.mp4'
 const logo_jut35_icon_white = '/logo_jut35_icon_white.svg'
 
 let interval = null
+
 const CoverVideo = props => {
   const [coverLogoValue, setCoverLogoValue] = useState(0)
   const [yearValue, setYearValue] = useState(0)
   const [videoState, setVideoState] = useState('ready')
   const progessRef = useRef()
-  
 
   useEffect(() => {
+
+    const innerHeight = document.querySelectorAll('.innerHeight');
+    innerHeight.forEach((element)=>{
+      element.style.height = window.innerHeight + 'px';
+    });
+
     setCoverLogoValue(20);
     setYearValue(1987);
     setTimeout(()=>{
@@ -52,8 +58,9 @@ const CoverVideo = props => {
 
     gsap.to('.coverStartButton', 1, {
       opacity: 1,
+      scale: 1,
       ease: Expo.easeIn,
-      delay: .5,
+      delay: 1,
       onComplete: () => {
         // console.log(loadState);
         // setTimeout(()=>{
@@ -152,8 +159,8 @@ const CoverVideo = props => {
   }, [videoState]);
 
   return (
-    <div className={`coverVideo fixed top-0 left-0 z-100 w-screen h-screen bg-kv-2 duration-2000 ease-expo ${videoState == 'ends' ? 'opacity-0 pointer-events-none':''}`}>
-      <div className="videoCover relative w-full h-screen z-60">
+    <div className={`coverVideo innerHeight fixed top-0 left-0 z-100 w-screen h-screen duration-1000 ease-expo ${videoState == 'ends' ? 'opacity-0 pointer-events-none bg-kv-1':'bg-kv-2'}`}>
+      <div className="videoCover relative w-full h-full z-60">
 
         <div className="thumbanil"></div>
         
@@ -162,8 +169,8 @@ const CoverVideo = props => {
             <Odometer value={yearValue} duration={8000} format="d" theme="default" />
           </div>
           
-          <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center">
-            <div className="flex items-center mt-16 mb-4">
+          <div className={`absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center ${videoState != 'ready' ? 'opacity-0 pointer-events-none':''}`}>
+            <div className="flex items-center mt-16 mb-4 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-125 xl:scale-150">
               <div className="w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
               <div className="ml-4 text-white text-5xl inline-flex">
                 <div className="font-extrabold tracking-wide">忠泰</div>
@@ -173,15 +180,15 @@ const CoverVideo = props => {
                 {/* <div className="countNumber ml-1 font-medium font-inner" data-start="1" data-end="35" data-speed="2">1</div> */}
               </div>
             </div>
-            <div className="coverStartButton flex items-center justify-center opacity-0">
-              <div className="text-white text-base text-center font-inner font-medium border-2 border-white border-solid px-4 py-1 cursor-pointer hover:scale-110 duration-1000 ease-expo">Start JUT 35</div>
+            <div className="coverStartButton flex items-center justify-center opacity-0 scale-75">
+              <div className="text-white text-base text-center font-inner font-medium border-2 border-white border-solid px-4 py-1 cursor-pointer duration-800 ease-expo opacity-80 hover:opacity-100">Start JUT 35</div>
             </div>
           </div>
 
         </div>
       </div>
 
-      <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-out duration-1000 bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
+      <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-expo duration-2000 delay-500 bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
         {/* <video autoPlay loop muted playsInline preload="auto" className="video w-full aspect-16/9"> */}
         <video preload="auto" className="video w-full aspect-16/9">
           <source src={video} type="video/mp4" />
@@ -190,7 +197,7 @@ const CoverVideo = props => {
         <Progess ref={progessRef} />
 
         <div className="skipVideoButton absolute bottom-9 z-10 flex items-center justify-center scale-90 ease-out duration-1000 opacity-50 hover:opacity-100">
-          <div className="text-white text-sm text-center font-inner font-normal border border-white border-solid bg-black/50 backdrop-blur-sm px-3 py-1 cursor-pointer">SKIP</div>
+          <div className="text-white text-sm text-center font-inner font-normal border border-white border-solid bg-black/20 backdrop-blur-sm px-3 py-1 cursor-pointer">SKIP</div>
         </div>
       </div>
     </div>

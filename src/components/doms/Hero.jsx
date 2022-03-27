@@ -195,7 +195,7 @@ const Hero = props => {
   }, [videoEnded])
 
   return (
-    <section className="hero relative h-screen flex flex-wrap flex-col">
+    <section className="hero relative w-screen h-screen flex flex-wrap flex-col">
       <div className="kvLeft relative pre-hero w-screen h-screen bg-kv-1 overflow-hidden scale-x-105 origin-top-left">
         <div className="kvLeftInner w-full h-full block opacity-0 translate-y-12">
           <Scene1Left />
@@ -208,7 +208,7 @@ const Hero = props => {
         </div>
         <div className="sloganBottom absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x bg-left-bottom translate-y-1 pointer-events-none" style={{backgroundImage: `url(${slogan_bottom})`}}></div>
       </div>
-      <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center opacity-0 scale-90 pointer-events-none" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
+      <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center opacity-0 scale-90 --pointer-events-none" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
     </section>
   )
 }
