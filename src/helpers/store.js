@@ -18,12 +18,12 @@ const useStore = create((set, get) => ({
   setSize: size => set(() => ({ width: size.width, height: size.height })),
   
   // globalScale: .5,
-  offset: 0,
-  // setOffset: offset => {
-  //   set(() => ({ offset }))
-  // },
-  offsetY1: 0,
-  offsetY2: 0,
+  // offset: 0,
+  // // setOffset: offset => {
+  // //   set(() => ({ offset }))
+  // // },
+  // offsetY1: 0,
+  // offsetY2: 0,
 }))
 
 export default useStore
