@@ -6,8 +6,6 @@ const LCanvas = ({
   children, 
   wrapperClassName,
 }) => {
-  // const dom = useStore((state) => state.dom)
-
   return (
     <div className={wrapperClassName}>    
       <Canvas
