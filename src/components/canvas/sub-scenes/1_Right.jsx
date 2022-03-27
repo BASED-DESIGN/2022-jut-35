@@ -1,10 +1,10 @@
 import { useRef, Suspense } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
-import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
+import { useThree } from '@react-three/fiber'
 import { useSpring, config, a } from '@react-spring/three'
 import { useGesture } from '@use-gesture/react'
 
 import Canvas from '@components/layout/Canvas'
+import Camera from '@components/layout/Camera'
 import Plane from '@components/canvas/objects/Item2D'
 import Man from '@components/canvas/objects/Man'
 
@@ -22,9 +22,6 @@ const Content = () => {
   const [planeBackSpring, planeBackApi] = useSpring(() => ({ position: [0, 0, 0], config: planeConfig }))
   const bind = useGesture({
     onMove: ({ xy, ...props }) => {
-      // planeFrontApi.start({
-      //   position: (xy[1] > height * 0.6 && xy[0] < width * 0.6) ? [0, 10, 0] : [0, 0, 0],
-      // })
       planeBackApi.start({
         position: (xy[1] > height * 0.65 && xy[0] < width * 0.55) ? [0, -20, 0] : [0, 0, 0],
       })
@@ -35,14 +32,6 @@ const Content = () => {
   return (
     <>
       <Suspense fallback={`loading assets`}>
-        {/* <Object
-          url='/gltf/kv2-scenes.gltf'
-          position={[-width * .3, -height * .8, -300]} 
-          rotation={[-0.03, -0.5, 0]} 
-          scale={1.1}
-        /> */}
-
-
         {/* Base */}
         <a.group {...planeFrontSpring}>
           <Plane 
@@ -106,18 +95,39 @@ const Content = () => {
   )
 }
 
-export default function Scene(props) {
-  // useFrame((state) => {
-  //   const t = state.clock.getElapsedTime()
-  //   ref.current.rotation.x = Math.cos(t / 2) / 6
-  //   ref.current.rotation.y = Math.sin(t / 2) / 6
-  //   ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
-  //   // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
-  // })
+const ResponsiveCamera = props => {
+  const { children } = props
+  const { width, height } = useThree(state => state.size)
+  // console.log(width, height)
+  return (
+    <Camera 
+      config={
+        width < 600 ? 
+        {
+          left: -width * 0.45,
+          right: -width * 0.05,
+          top: -height * .1,
+          bottom: -height * .5
+        } : 
+        {
+          left: - width / 2,
+          right: width / 2,
+          top: height / 2,
+          bottom: - height / 2
+        }
+      }
+    >
+      {children}
+    </Camera>
+  )
+}
 
+export default function Scene(props) {
   return (   
-    <Canvas wrapperClassName="absolute top-0 left-0 w-full h-full z-10">
-      <Content />
+    <Canvas name="right" wrapperClassName="absolute top-0 left-0 w-full h-full z-10">
+      <ResponsiveCamera>
+        <Content />
+      </ResponsiveCamera>
     </Canvas>
   )
 }

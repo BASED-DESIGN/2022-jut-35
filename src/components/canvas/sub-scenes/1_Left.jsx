@@ -1,25 +1,19 @@
-import { useRef, Suspense, useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useRef, Suspense } from 'react'
+import { useThree } from '@react-three/fiber'
 import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
 import { useSpring, config, a } from '@react-spring/three'
 import { useGesture } from '@use-gesture/react'
 
 import Canvas from '@components/layout/Canvas'
+import Camera from '@components/layout/Camera'
 import Plane from '@components/canvas/objects/Item2D'
 import Man from '@components/canvas/objects/Man'
-
-// const Canvas = dynamic(() => import('@components/layout/Canvas'), { ssr: false, })
-// const Object = dynamic(() => import('@components/canvas/objects/Item3D'), { ssr: false, })
-// const Plane = dynamic(() => import('@components/canvas/objects/Item2D'), { ssr: false, })
-// const Man = dynamic(() => import('@components/canvas/objects/Man'), { ssr: false, })
 
 const Content = () => {
   const { width, height } = useThree(state => state.size)
   const gl = useThree(state => state.gl)
   const planeFrontRef = useRef(null)
   const planeBackRef = useRef(null)
-
   const planeConfig = {
     ...config, duration: 1000
   }
@@ -28,8 +22,6 @@ const Content = () => {
   const [planeBackSpring, planeBackApi] = useSpring(() => ({ position: [0, 0, 0], config: planeConfig }))
   const bind = useGesture({
     onMove: ({ xy, ...props }) => {
-      // console.log(props)
-      // console.log('hovering')
       planeFrontApi.start({
         position: (xy[1] > height * 0.6 && xy[0] < width * 0.6) ? [0, 10, 0] : [0, 0, 0],
       })
@@ -40,26 +32,9 @@ const Content = () => {
   },
   { target: gl.domElement })
 
-  // useFrame((state) => {
-  //   const t = state.clock.getElapsedTime()
-  //   // if(planeFrontRef.current) planeFrontRef.current.position.z = t
-  //   // if(planeFrontRef.current) console.log(planeFrontRef.current)
-  //   // ref.current.rotation.y = Math.sin(t / 2) / 6
-  //   // ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
-  //   // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
-  // })
-
   return (
     <>
       <Suspense fallback={`loading assets`}>
-        {/* <Object
-          url='/gltf/kv1-scenes.gltf'
-          position={[-width * .3, -height * .9, -300]} 
-          rotation={[-0.03, -0.5, 0]} 
-          scale={1.1}
-        /> */}
-
-
         {/* Base */}
         <a.group {...planeFrontSpring}>
           <Plane 
@@ -92,7 +67,7 @@ const Content = () => {
           {/* 上左 */}
           <Man
             url='/gltf/kv1-man1.gltf'
-            position={[-width * .38, -height/2 + width * .245, -200]} 
+            position={[-width * .38, -height/2 + width * .25, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
           />
@@ -113,7 +88,7 @@ const Content = () => {
           {/* 下 */}
           <Man
             url='/gltf/kv1-manx2.gltf'
-            position={[-width * .26, -height/2 + width * .13, -100]} 
+            position={[-width * .32, -height/2 + width * .12, -100]} 
             rotation={[-.15, -0.7, 0]} 
             scale={0.9}
           />
@@ -127,18 +102,39 @@ const Content = () => {
   )
 }
 
-export default function Scene(props) {
-  // useFrame((state) => {
-  //   const t = state.clock.getElapsedTime()
-  //   ref.current.rotation.x = Math.cos(t / 2) / 6
-  //   ref.current.rotation.y = Math.sin(t / 2) / 6
-  //   ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20
-  //   // ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10
-  // })
+const ResponsiveCamera = props => {
+  const { children } = props
+  const { width, height } = useThree(state => state.size)
+  
+  return (
+    <Camera 
+      config={
+        width < 600 ? 
+        {
+          left: -width * 0.45,
+          right: -width * 0.05,
+          top: -height * .1,
+          bottom: -height * .5
+        } : 
+        {
+          left: - width / 2,
+          right: width / 2,
+          top: height / 2,
+          bottom: - height / 2
+        }
+      }
+    >
+      {children}
+    </Camera>
+  )
+}
 
+export default function Scene(props) {
   return (   
-    <Canvas wrapperClassName="absolute top-0 left-0 w-full h-full z-10">
-      <Content />
+    <Canvas name="left" wrapperClassName="absolute top-0 left-0 w-full h-full z-10">
+      <ResponsiveCamera>
+        <Content />
+      </ResponsiveCamera>
     </Canvas>
   )
 }
