@@ -75,8 +75,8 @@ const IndexPage = forwardRef((props, ref) => {
   const [coverLogoValue, setCoverLogoValue] = useState(0)
   const [yearValue, setYearValue] = useState(0)
   const [videoCurrentState, setVideoCurrentState] = useState(0)
-  const [videoState, setVideoState] = useState('ends')
-  // const [videoState, setVideoState] = useState('ready')
+  // const [videoState, setVideoState] = useState('ends')
+  const [videoState, setVideoState] = useState('ready')
 
   useEffect(() => {  
     window.addEventListener('resize', resizing);
