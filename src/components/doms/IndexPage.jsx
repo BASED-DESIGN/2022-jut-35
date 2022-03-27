@@ -949,7 +949,7 @@ const IndexPage = forwardRef((props, ref) => {
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">Vision</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
             </div>
-            <div className="video fadeIn aspect-video -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
+            <div className="video fadeIn aspect-video bg-black/30 -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
               {/* <iframe className="w-full h-full" src="https://www.youtube.com/embed/8BbBGLUzjaA" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
             </div>
             <div className="itemTitle fadeIn mt-8 md:flex">
@@ -1075,7 +1075,7 @@ const IndexPage = forwardRef((props, ref) => {
                 {a.map((k, i) => (
                   <div key={`row-1-${i}`} className="listItem relative mr-8 md:mr-12">
                     <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
+                      <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
                     </div>
                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
                       <div className="name text-2xl font-medium tracking-wider">李彥良</div>
@@ -1088,7 +1088,7 @@ const IndexPage = forwardRef((props, ref) => {
                 {a.map((k, i) => (
                   <div key={`row-2-${i}`} className="listItem relative mr-8 md:mr-12">
                     <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
+                      <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
                     </div>
                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
                       <div className="name text-2xl font-medium tracking-wider">李彥良</div>
@@ -1104,7 +1104,7 @@ const IndexPage = forwardRef((props, ref) => {
                 {a.map((k, i) => (
                   <div key={`row-3-${i}`} className="listItem relative mr-8 md:mr-12">
                     <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
+                      <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
                     </div>
                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
                       <div className="name text-2xl font-medium tracking-wider">李彥良</div>
@@ -1117,7 +1117,7 @@ const IndexPage = forwardRef((props, ref) => {
                 {a.map((k, i) => (
                   <div key={`row-4-${i}`} className="listItem relative mr-8 md:mr-12">
                     <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                      <img src="http://jutgroup.jut.com.tw/images/jutBg.jpg" alt="" className="object-cover w-full h-full" />
+                      <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
                     </div>
                     <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
                       <div className="name text-2xl font-medium tracking-wider">李彥良</div>
