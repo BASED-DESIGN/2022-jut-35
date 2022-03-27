@@ -98,7 +98,7 @@ const Content = () => {
 const ResponsiveCamera = props => {
   const { children } = props
   const { width, height } = useThree(state => state.size)
-  // console.log(width, height)
+  console.log(width, height)
   return (
     <Camera 
       config={

@@ -7,7 +7,7 @@ const Camera = props => {
     children, 
     config={}
   } = props
-  // console.log(config)
+  console.log(config)
   
   return (
     <OrthographicCamera 

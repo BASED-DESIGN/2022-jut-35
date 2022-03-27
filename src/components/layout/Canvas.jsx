@@ -11,15 +11,14 @@ const LCanvas = ({
 }) => {
   const { ref, inView } = useInView()
   const videoEnded = useStore(state => state.videoEnded)
-  console.log(name, 'frame?', inView, videoEnded)
+  // console.log(name, 'frame?', inView, videoEnded)
 
   return (
     <div ref={ref} className={wrapperClassName}>    
       <Canvas
-        mode='concurrent'
+        // mode='concurrent'
         // onCreated={state => state.gl.setClearColor("rgb(218, 174, 53)")}
         // onCreated={(state) => state.events.connect(dom.current)}
-        // camera={{ position: [0, 0, 5], fov: 50 }}
       >
         <Preload all />
         {(!videoEnded || !inView) && <DisableRender />}
