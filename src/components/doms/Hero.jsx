@@ -47,21 +47,6 @@ const Hero = props => {
           // markers: true,
         }
       });
-<<<<<<< HEAD
-      gsap.to('.kvLeft', {
-        x: window.innerWidth * .5 + "px",
-        // ease: Linear.easeNone,
-        ease: "none",
-        scrollTrigger: {
-          trigger: '.wrap',
-          invalidateOnRefresh: true,
-          scrub: true,
-          start: "top top",
-          end: () => "+=" + window.innerHeight * 2,
-          // markers: true,
-        }
-      }, 1);
-=======
       // gsap.to('.kvLeft', {
       //   x: window.innerWidth * .5 + "px",
       //   // ease: Linear.easeNone,
@@ -75,7 +60,6 @@ const Hero = props => {
       //     // markers: true,
       //   }
       // }, 1);
->>>>>>> bb9a80a2c965c1472d7cbd2cb943f4040b8116d8
       // gsap.to('.kvRight', {
       //   // x: -(window.innerWidth * 0) + "px",
       //   // ease: Linear.easeNone,
