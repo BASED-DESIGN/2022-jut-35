@@ -113,7 +113,8 @@ export default function PresentationControls({
       rotation: [0, animMoveX ? deltaX * .0003 : 0, animMoveY ? deltaY * .0001 : 0]
     })
   }, {
-    target: document.querySelector('body')
+    // target: document.querySelector('body')
+    target:  gl.domElement
   })
 
   return (

@@ -14,7 +14,10 @@ const LCanvas = ({
   console.log(name, 'frame inView?', inView)
 
   return (
-    <div ref={ref} className={wrapperClassName}>    
+    <div 
+      ref={ref} 
+      className={wrapperClassName}
+    >    
       <Canvas
         // frameloop="demand"
         mode='concurrent'
