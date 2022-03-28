@@ -40,7 +40,7 @@ const Man = forwardRef((props, ref) => {
     // }
     if (!active && lazyIn) {
       // console.log(width, height, newWay1Bound.top, height/2 - (newWay1Bound.top - 10))
-      const manScrollTop =  - (position[1] - height*.5) + (window.innerWidth+window.innerHeight) - window.innerHeight * .85
+      const manScrollTop =  - (position[1] - height*.5) + (window.innerWidth+window.innerHeight) - window.innerHeight * .9
       if (e.target.scrollingElement.scrollTop > manScrollTop) {
         setActive(true)
       }
