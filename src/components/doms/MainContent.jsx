@@ -161,7 +161,7 @@ const MainContent = props => {
         opacity: 0,
         ease: Expo.easeOut,
         scrollTrigger: {
-          trigger: '.newWayList .listItem:nth-child(4)',
+          trigger: '.newWayList .listItem:nth-child(5)',
           invalidateOnRefresh: true,
           // pin: true,
           scrub: true,
@@ -216,7 +216,7 @@ const MainContent = props => {
             invalidateOnRefresh: true,
             // pin: true,
             scrub: true,
-            start: "-=" + window.innerHeight * 0.5 + " top",
+            start: () => "-=" + window.innerHeight * 0.5 + " top",
             end: () => "+=" + window.innerHeight * 1.2,
             // markers: true,
           }
@@ -382,7 +382,7 @@ const MainContent = props => {
           <div className="container mx-auto relative z-10">
             <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:-mt-40 md:mb-48">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">New Way</div>
-              <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">探索新航向</div>
+              <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">探索最新航向 擘畫發展藍圖</div>
             </div>
             <div className="newWayList space-y-40 md:space-y-60">
 
@@ -532,8 +532,8 @@ const MainContent = props => {
         <div className="bg-kv-1 py-32">
           <div className="container mx-auto">
             <div className="titleGruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
-              <div className="en font-title text-5xl md:text-6xl xl:text-7xl">Vision</div>
-              <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
+              <div className="en font-title text-5xl md:text-6xl xl:text-7xl">VISION 2030</div>
+              <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">忠泰永續願景</div>
             </div>
             <div className="video fadeIn aspect-video bg-black/50 -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
               {/* <iframe className="w-full h-full" src="https://www.youtube.com/embed/8BbBGLUzjaA" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
