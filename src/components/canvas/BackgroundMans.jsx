@@ -10,7 +10,7 @@ import Man from '@components/canvas/objects/Man'
 const Content = () => {
   const gl = useThree(state => state.gl)
   const { width, height } = useThree(state => state.size)
-
+  console.log('BackgroundMans', width, height)
   const newWay1Ref = useStore(state => state.newWay1Ref)
   const newWay1Bound = newWay1Ref.current ? newWay1Ref.current.getBoundingClientRect() : null
   const newWay2Ref = useStore(state => state.newWay2Ref)
@@ -249,7 +249,7 @@ const Break3 = () => {
 
 const ResponsiveCamera = props => {
   const { children } = props
-  const { width, height } = useThree(state => state.size)
+  // const { width, height } = useThree(state => state.size)
   
   return (
     <Camera
