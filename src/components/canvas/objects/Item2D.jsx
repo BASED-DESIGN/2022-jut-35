@@ -22,7 +22,7 @@ const Item2D = forwardRef((props, ref) => {
     enter: { position: [0, 0, 0] },
     // leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
     config: {
-      ...config.molasses,
+      ...config.gentle,
       ...enterConfig
     },
     trail: 100

@@ -16,7 +16,7 @@ export default function PresentationControls({
   polar = [0, Math.PI / 2],
   azimuth = [-Infinity, Infinity],
   height = [-100, 100],
-  config = { mass: 1, tension: 170, friction: 26 },
+  config = { mass: 1, tension: 120, friction: 14 },
   animMoveX=true,
   animMoveY=true
 }) {

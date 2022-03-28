@@ -191,19 +191,19 @@ const MainContent = props => {
         { backgroundPositionX: 0, ease: Linear.easeNone }
       );
 
-      let currentPos = window.pageYOffset;
-      const callDistort = function() {
-        const newPos = window.pageYOffset;
-        const diff = newPos - currentPos;
-        const speed = diff * 0.25;
-        currentPos = newPos;
-        // kvSloganLeftLooping.timeScale(1 + speed);
-        // kvSloganRightLooping.timeScale(1 + speed);
-        NWsloganLeftLooping.timeScale(1 + speed);
-        NWsloganRightLooping.timeScale(1 + speed);
-        requestAnimationFrame(callDistort);
-      };
-      callDistort();
+      // let currentPos = window.pageYOffset;
+      // const callDistort = function() {
+      //   const newPos = window.pageYOffset;
+      //   const diff = newPos - currentPos;
+      //   const speed = diff * 0.25;
+      //   currentPos = newPos;
+      //   // kvSloganLeftLooping.timeScale(1 + speed);
+      //   // kvSloganRightLooping.timeScale(1 + speed);
+      //   NWsloganLeftLooping.timeScale(1 + speed);
+      //   NWsloganRightLooping.timeScale(1 + speed);
+      //   requestAnimationFrame(callDistort);
+      // };
+      // callDistort();
 
       const newWayListItem = document.querySelectorAll('.newWayList .listItem .itemPhoto .photo');
       newWayListItem.forEach((item)=>{
@@ -375,8 +375,8 @@ const MainContent = props => {
         <div className="bg-kv-3 py-32">
 
           <div className="sloganGroup absolute top-0 left-0 z-0 w-screen h-screen opacity-0 pointer-events-none">
-            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-top opacity-0" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
-            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-bottom opacity-0" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
+            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-top will-change-auto opacity-0" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
+            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-bottom will-change-auto opacity-0" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
           </div>
 
           <div className="container mx-auto relative z-10">
@@ -388,7 +388,7 @@ const MainContent = props => {
 
               <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay1Ref}>
                 <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
-                  <img src={newway_1_1} alt="" className="photo aspect-[6/4] object-cover scale-110 origin-top bg-white" />
+                  <img src={newway_1_1} alt="" className="photo will-change-auto aspect-[6/4] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
@@ -413,10 +413,10 @@ const MainContent = props => {
                         hasBullets
                         bulletStyle={{ margin: "0 4px", width: "8px", height: "8px", backgroundColor: "rgba(255,255,255, .9)", border: "1px solid rgba(0,0,0, .2)" }}
                       >
-                        <img src={newway_2_1} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
-                        <img src={newway_2_2} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
-                        <img src={newway_2_3} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
-                        <img src={newway_2_4} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_1} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_2} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_3} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_4} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
                       </Slider>
                     </div>
                   </>
@@ -424,16 +424,16 @@ const MainContent = props => {
                   <>
                     <div className="grid grid-cols-2 gap-x-24 gap-y-20">
                       <div className="itemPhoto fadeIn translate-x-12 overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
-                        <img src={newway_2_1} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_1} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
                       </div>
                       <div className="itemPhoto fadeIn mt-16 translate-x-12 overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
-                        <img src={newway_2_2} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_2} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
                       </div>
                       <div className="itemPhoto fadeIn overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
-                        <img src={newway_2_3} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_3} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
                       </div>
                       <div className="itemPhoto fadeIn mt-16 overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
-                        <img src={newway_2_4} alt="" className="photo aspect-[5/7] object-cover scale-110 origin-top bg-white" />
+                        <img src={newway_2_4} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
                       </div>
                     </div>
                   </>
@@ -453,7 +453,7 @@ const MainContent = props => {
 
               <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay3Ref}>
                 <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
-                  <img src={newway_3_1} alt="" className="photo aspect-[3/2] object-cover scale-110 origin-top bg-white" />
+                  <img src={newway_3_1} alt="" className="photo will-change-auto aspect-[3/2] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
@@ -476,11 +476,11 @@ const MainContent = props => {
                     hasBullets
                     bulletStyle={{ margin: "0 4px", width: "8px", height: "8px", backgroundColor: "rgba(255,255,255, .9)", border: "1px solid rgba(0,0,0, .2)" }}
                   >
-                    <img src={newway_4_1} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
-                    <img src={newway_4_2} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
-                    <img src={newway_4_3} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
-                    <img src={newway_4_4} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
-                    <img src={newway_4_5} alt="" className="photo aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_1} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_2} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_3} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_4} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_5} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
                   </Slider>
                 </div>
                 <div className="itemTitle mt-8 md:flex">
@@ -497,7 +497,7 @@ const MainContent = props => {
 
               <div className="listItem fadeIn ml-8 md:mx-24" ref={newWay5Ref}>
                 <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
-                  <img src={newway_5_2} alt="" className="photo aspect-[1/1] object-cover scale-110 origin-top bg-white" />
+                  <img src={newway_5_2} alt="" className="photo will-change-auto aspect-[1/1] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">

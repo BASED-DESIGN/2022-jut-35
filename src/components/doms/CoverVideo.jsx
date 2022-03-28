@@ -32,7 +32,7 @@ let interval = null
 const CoverVideo = props => {
   const [coverLogoValue, setCoverLogoValue] = useState(0)
   const [yearValue, setYearValue] = useState(0)
-  const [videoState, setVideoState] = useState('ends')
+  const [videoState, setVideoState] = useState('ready')
   const progessRef = useRef()
 
   useEffect(() => {
@@ -153,7 +153,7 @@ const CoverVideo = props => {
         opacity: 1,
         scale: 1,
         ease: Expo.easeOut,
-        delay: 1.5
+        delay: 3
       });
     }
   }, [videoState]);
@@ -188,7 +188,7 @@ const CoverVideo = props => {
         </div>
       </div>
 
-      <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-expo duration-2000 delay-500 bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
+      <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-expo duration-1000  bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
         {/* <video autoPlay loop muted playsInline preload="auto" className="video w-full aspect-16/9"> */}
         <video preload="auto" className="video w-full aspect-16/9">
           <source src={video} type="video/mp4" />
