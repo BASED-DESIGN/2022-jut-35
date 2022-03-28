@@ -74,7 +74,7 @@ canvas {
 }
 
 .fadeIn {
-  @apply opacity-0 ease-expo duration-2000 will-change-scroll;
+  @apply opacity-0 ease-expo duration-1000 will-change-scroll;
   // position: relative;
   // top: 4rem;
   // transform: perspective(500px) rotateX(2deg);

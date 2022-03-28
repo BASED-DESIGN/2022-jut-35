@@ -72,7 +72,7 @@ const MainContent = props => {
       // Intro
       gsap.to('.groupIconBg', {
         y: '-50vh',
-        ease: Linear.easeNone,
+        ease: "none",
         scrollTrigger: {
           trigger: '.intro',
           invalidateOnRefresh: true,
@@ -85,7 +85,7 @@ const MainContent = props => {
       });
       gsap.to('.mainIconBg', {
         y: '-50vh',
-        ease: Linear.easeNone,
+        ease: "none",
         scrollTrigger: {
           trigger: '.intro',
           invalidateOnRefresh: true,
@@ -99,9 +99,9 @@ const MainContent = props => {
 
       // New Way
       gsap.to('.newWay .sloganGroup', {
-        position: 'fixed',
+        // position: 'fixed',
         opacity: 0.3,
-        ease: Expo.easeOut,
+        ease: "none",
         scrollTrigger: {
           trigger: '.newWay',
           invalidateOnRefresh: true,
@@ -113,10 +113,10 @@ const MainContent = props => {
         }
       });
 
-      gsap.to('.newWay .sloganTop', {
+      gsap.to('.newWay .sloganTop .sloganTopInner', {
         // position: 'fixed',
         opacity: 1,
-        ease: Expo.easeOut,
+        ease: "none",
         scrollTrigger: {
           trigger: '.newWay',
           invalidateOnRefresh: true,
@@ -128,9 +128,9 @@ const MainContent = props => {
         }
       });
 
-      gsap.to('.newWay .sloganTop', {
+      gsap.to('.newWay .sloganTop .sloganTopInner', {
         opacity: 0,
-        ease: Expo.easeOut,
+        ease: "none",
         scrollTrigger: {
           trigger: '.newWayList .listItem:nth-child(2)',
           invalidateOnRefresh: true,
@@ -142,10 +142,10 @@ const MainContent = props => {
         }
       });
 
-      gsap.to('.newWay .sloganBottom', {
+      gsap.to('.newWay .sloganBottom .sloganBottomInner', {
         position: 'fixed',
         opacity: 1,
-        ease: Expo.easeOut,
+        ease: "none",
         scrollTrigger: {
           trigger: '.newWayList .listItem:nth-child(2)',
           invalidateOnRefresh: true,
@@ -157,9 +157,9 @@ const MainContent = props => {
         }
       });
 
-      gsap.to('.newWay .sloganBottom', {
+      gsap.to('.newWay .sloganBottom .sloganBottomInner', {
         opacity: 0,
-        ease: Expo.easeOut,
+        ease: "none",
         scrollTrigger: {
           trigger: '.newWayList .listItem:nth-child(5)',
           invalidateOnRefresh: true,
@@ -179,49 +179,61 @@ const MainContent = props => {
         }
       }
 
+      // const NWsloganLeftLooping = new TimelineMax({ repeat: -1 });
+      // NWsloganLeftLooping.staggerFromTo('.newWay .sloganTop', 40,
+      //   { backgroundPositionX: 0, ease: Linear.easeNone },
+      //   { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
+      // );
+
+      // const NWsloganRightLooping = new TimelineMax({ repeat: -1 });
+      // NWsloganRightLooping.staggerFromTo('.newWay .sloganBottom', 40,
+      //   { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
+      //   { backgroundPositionX: 0, ease: Linear.easeNone }
+      // );
+
       const NWsloganLeftLooping = new TimelineMax({ repeat: -1 });
       NWsloganLeftLooping.staggerFromTo('.newWay .sloganTop', 40,
-        { backgroundPositionX: 0, ease: Linear.easeNone },
-        { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
+        { x: '0%', ease: Linear.easeNone },
+        { x: '-200%', ease: Linear.easeNone }
       );
 
       const NWsloganRightLooping = new TimelineMax({ repeat: -1 });
       NWsloganRightLooping.staggerFromTo('.newWay .sloganBottom', 40,
-        { backgroundPositionX: -(sloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
-        { backgroundPositionX: 0, ease: Linear.easeNone }
+        { x: '-200%', ease: Linear.easeNone },
+        { x: '0%', ease: Linear.easeNone }
       );
 
-      // let currentPos = window.pageYOffset;
-      // const callDistort = function() {
-      //   const newPos = window.pageYOffset;
-      //   const diff = newPos - currentPos;
-      //   const speed = diff * 0.25;
-      //   currentPos = newPos;
-      //   // kvSloganLeftLooping.timeScale(1 + speed);
-      //   // kvSloganRightLooping.timeScale(1 + speed);
-      //   NWsloganLeftLooping.timeScale(1 + speed);
-      //   NWsloganRightLooping.timeScale(1 + speed);
-      //   requestAnimationFrame(callDistort);
-      // };
-      // callDistort();
+      let currentPos = window.pageYOffset;
+      const callDistort = function() {
+        const newPos = window.pageYOffset;
+        const diff = newPos - currentPos;
+        const speed = diff * 0.25;
+        currentPos = newPos;
+        // kvSloganLeftLooping.timeScale(1 + speed);
+        // kvSloganRightLooping.timeScale(1 + speed);
+        NWsloganLeftLooping.timeScale(1 + (speed < 0 ? '0' : speed));
+        NWsloganRightLooping.timeScale(1 + (speed < 0 ? '0' : speed));
+        requestAnimationFrame(callDistort);
+      };
+      callDistort();
 
-      const newWayListItem = document.querySelectorAll('.newWayList .listItem .itemPhoto .photo');
-      newWayListItem.forEach((item)=>{
-        // const itemImg = item.querySelector('img');
-        gsap.to(item, {
-          y: '-10%',
-          ease: Linear.easeNone,
-          scrollTrigger: {
-            trigger: item,
-            invalidateOnRefresh: true,
-            // pin: true,
-            scrub: true,
-            start: () => "-=" + window.innerHeight * 0.5 + " top",
-            end: () => "+=" + window.innerHeight * 1.2,
-            // markers: true,
-          }
-        });
-      });
+      // const newWayListItem = document.querySelectorAll('.newWayList .listItem .itemPhoto .photo');
+      // newWayListItem.forEach((item)=>{
+      //   // const itemImg = item.querySelector('img');
+      //   gsap.to(item, {
+      //     y: '-10%',
+      //     ease: "none",
+      //     scrollTrigger: {
+      //       trigger: item,
+      //       invalidateOnRefresh: true,
+      //       // pin: true,
+      //       scrub: true,
+      //       start: () => "-=" + window.innerHeight * 0.5 + " top",
+      //       end: () => "+=" + window.innerHeight * 1.2,
+      //       // markers: true,
+      //     }
+      //   });
+      // });
 
 
 
@@ -241,7 +253,7 @@ const MainContent = props => {
 
       gsap.to('.sdgList', {
         x: (sdgListRange()) + "px",
-        ease: Linear.easeNone,
+        ease: "none",
         scrollTrigger: {
           trigger: '.sdgListWrap',
           invalidateOnRefresh: true,
@@ -370,14 +382,9 @@ const MainContent = props => {
           </div>
         </div>
       </div>
-      
+
       <section className="newWay relative z-30">
         <div className="bg-kv-3 py-32">
-
-          <div className="sloganGroup absolute top-0 left-0 z-0 w-screen h-screen opacity-0 pointer-events-none">
-            <div className="sloganTop absolute top-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-top will-change-auto opacity-0" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
-            <div className="sloganBottom absolute bottom-0 left-0 w-full h-screen bg-over-half md:bg-over-quarter bg-repeat-x bg-left-bottom will-change-auto opacity-0" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
-          </div>
 
           <div className="container mx-auto relative z-10">
             <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:-mt-40 md:mb-48">
@@ -515,8 +522,28 @@ const MainContent = props => {
             </div>
           </div>
 
-          {/* <div className=""></div> */}
         </div>
+
+        <div className="sloganGroup fixed top-0 left-0 z-0 w-full w-full innerHeight opacity-0 pointer-events-none will-change-scroll">
+
+          <div className="sloganTop absolute top-0 left-0 w-full h-full will-change-transform">
+            <div className="sloganTopInner relative w-full h-full block opacity-0">
+              <div className="absolute top-0 left-0 w-full h-full bg-over-half md:bg-contain bg-repeat-x bg-left-top" style={{backgroundImage: `url(${slogan_top_white})`}}></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-over-half md:bg-contain bg-repeat-x bg-left-top" style={{transform: "translate(100%, 0%)", backgroundImage: `url(${slogan_top_white})`}}></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-over-half md:bg-contain bg-repeat-x bg-left-top" style={{transform: "translate(200%, 0%)", backgroundImage: `url(${slogan_top_white})`}}></div>
+            </div>
+          </div>
+          <div className="sloganBottom absolute bottom-0 left-0 w-full h-full will-change-transform">
+            <div className="sloganBottomInner relative w-full h-full block opacity-0">
+              <div className="absolute bottom-0 left-0 w-full h-full bg-over-half md:bg-contain bg-repeat-x bg-left-bottom" style={{backgroundImage: `url(${slogan_bottom_white})`}}></div>
+              <div className="absolute bottom-0 left-0 w-full h-full bg-over-half md:bg-contain bg-repeat-x bg-left-bottom" style={{transform: "translate(100%, 0%)", backgroundImage: `url(${slogan_bottom_white})`}}></div>
+              <div className="absolute bottom-0 left-0 w-full h-full bg-over-half md:bg-contain bg-repeat-x bg-left-bottom" style={{transform: "translate(200%, 0%)", backgroundImage: `url(${slogan_bottom_white})`}}></div>
+            </div>
+          </div>
+
+          {/* <div className="sloganBottom absolute bottom-0 left-0 w-full h-full bg-over-half md:bg-over-quarter bg-repeat-x bg-left-bottom will-change-auto opacity-0" style={{width: '300vw', backgroundImage: `url(${slogan_bottom_white})`}}></div> */}
+        </div>
+
       </section>
 
       <div className="sectionBreak relative z-10" ref={break2Ref}>
