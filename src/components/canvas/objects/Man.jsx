@@ -16,27 +16,32 @@ const Man = forwardRef((props, ref) => {
   } = props
   const { nodes } = useGLTF(url)
   const { width, height } = useThree(state => state.size)
+  const gl = useThree(state => state.gl)
   const [active, setActive] = useState(!lazyIn)
 
   const transition = useTransition(active && Object.keys(nodes).filter(key => key!=='Scene'), {
     // from: { scale: [1, 1, 1], rotation: [0, 0, 0] },
     from: { scale: [0, 0, 0], rotation: [0, 1, 0], position: [0, -30, 0] },
     enter: ({ r=.5 }) => ({ scale: [1, 1, 1], rotation: [0, 0, 0], position: [0, 0, 0] }),
-    // leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
-    config: { mass: 3, tension: 1000, friction: 100, duration: 300 },
+    leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
+    config: { mass: 3, tension: 1000, friction: 100, duration: 200 },
     // trail: 100
   })
 
   useEffect(() => {
-    document.addEventListener('scroll', handleScroll)
-    return () => document.removeEventListener('scroll', handleScroll)
-  }, [])
+    lazyIn && document.addEventListener('scroll', handleScroll)
+    return () => lazyIn && document.removeEventListener('scroll', handleScroll)
+  }, [active])
 
   const handleScroll = e => {
+    // if (lazyIn) {
+    //   console.log(active, position[1], height, window.innerWidth+window.innerHeight)
+    //   console.log(e.target.scrollingElement.scrollTop, - (position[1] - height*.5) + window.innerWidth+window.innerHeight)
+    // }
     if (!active && lazyIn) {
-      const manScrollTop =  - position[1] + height*.5 - window.innerHeight*.95
+      // console.log(width, height, newWay1Bound.top, height/2 - (newWay1Bound.top - 10))
+      const manScrollTop =  - (position[1] - height*.5) + (window.innerWidth+window.innerHeight) - window.innerHeight * .85
       if (e.target.scrollingElement.scrollTop > manScrollTop) {
-        // console.log(e.target.scrollingElement.scrollTop, manScrollTop)
         setActive(true)
       }
     }
