@@ -1,17 +1,18 @@
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { Preload } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
 import { useInView } from 'react-intersection-observer'
 import useStore from '@helpers/store'
+import { useState } from 'react'
 
 const LCanvas = ({ 
   children, 
   wrapperClassName,
-  name
+  name,
+  customInView=true
 }) => {
   const { ref, inView } = useInView()
   const videoEnded = useStore(state => state.videoEnded)
-  console.log(name, 'frame inView?', inView)
+  console.log(name, 'frame active?', !(!videoEnded || !inView || !customInView), inView, customInView)
 
   return (
     <div 
@@ -24,7 +25,7 @@ const LCanvas = ({
         // gl={{ preserveDrawingBuffer: true }}
       >
         <Preload all />
-        {(!videoEnded || !inView) && <DisableRender />}
+        {(!videoEnded || !inView || !customInView) && <DisableRender />}
         {children}
       </Canvas>
     </div>

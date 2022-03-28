@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import { Suspense } from 'react'
+import { Suspense, useState, useEffect } from 'react'
 import { useThree } from '@react-three/fiber'
 import useStore from '@helpers/store'
 
@@ -25,8 +25,8 @@ const Content = () => {
     <>
       {/* <primitive object={new THREE.AxesHelper(100)} /> */}
       <Suspense fallback={`loading assets`}>
-        {/* <group position={[0, gl.domElement.getBoundingClientRect().top, 0]}> */}
-        <group position={[0, window.innerHeight, 0]}>
+        <group position={[0, gl.domElement.getBoundingClientRect().top, 0]}>
+        {/* <group position={[0, window.innerHeight, 0]}> */}
           <Break1 />
           <Break2 />
           <Break3 />
@@ -270,8 +270,28 @@ const ResponsiveCamera = props => {
 }
 
 export default function Scene(props) {
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll)
+    return () => document.removeEventListener('scroll', handleScroll)
+  }, [inView])
+
+  const handleScroll = e => {
+    const manScrollTop = (window.innerWidth+window.innerHeight)
+    if (e.target.scrollingElement.scrollTop > manScrollTop) {
+      setInView(true)
+    } else {
+      setInView(false)
+    }
+  }
+
   return (   
-    <Canvas name="bgmans" wrapperClassName="absolute top-0 left-0 right-0 bottom-0 pointer-events-none z-40">
+    <Canvas
+      // customInView={inView} 
+      name="bgmans" 
+      wrapperClassName="absolute top-0 left-0 right-0 bottom-0 pointer-events-none z-40"
+    >
       <ResponsiveCamera>
         <Content />
       </ResponsiveCamera>
