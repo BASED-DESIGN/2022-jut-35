@@ -47,63 +47,48 @@ const Hero = props => {
           // markers: true,
         }
       });
-      // gsap.to('.kvLeft', {
-      //   x: window.innerWidth * .5 + "px",
-      //   // ease: Linear.easeNone,
-      //   ease: "none",
-      //   scrollTrigger: {
-      //     trigger: '.wrap',
-      //     invalidateOnRefresh: true,
-      //     scrub: true,
-      //     start: "top top",
-      //     end: () => "+=" + window.innerHeight * 2,
-      //     // markers: true,
-      //   }
-      // }, 1);
-      // gsap.to('.kvRight', {
-      //   // x: -(window.innerWidth * 0) + "px",
-      //   // ease: Linear.easeNone,
-      //   clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      //   ease: "none",
-      //   scrollTrigger: {
-      //     trigger: '.wrap',
-      //     invalidateOnRefresh: true,
-      //     scrub: true,
-      //     start: "top top",
-      //     end: () => "+=" + window.innerHeight * 2,
-      //     // markers: true,
-      //   }
-      // });
-      // gsap.to('.kvRightInner', {
-      //   // x: '0%',
-      //   transform: "translate(0%, 0%)",
-      //   // ease: Linear.easeNone,
-      //   // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      //   ease: "none",
-      //   scrollTrigger: {
-      //     trigger: '.wrap',
-      //     invalidateOnRefresh: true,
-      //     scrub: true,
-      //     start: "top top",
-      //     end: () => "+=" + window.innerHeight * 2,
-      //     // markers: true,
-      //   }
-      // });
-      // gsap.to('.kvRightInner', {
-      //   // x: '0%',
-      //   transform: "translate(0%, 50%)",
-      //   // ease: Linear.easeNone,
-      //   // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-      //   ease: "none",
-      //   scrollTrigger: {
-      //     trigger: '.intro',
-      //     invalidateOnRefresh: true,
-      //     scrub: true,
-      //     start: "top bottom",
-      //     end: () => "+=" + window.innerHeight,
-      //     // markers: true,
-      //   }
-      // });
+      gsap.to('.kvLeft', {
+        x: window.innerWidth * .5 + "px",
+        // ease: Linear.easeNone,
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.wrap',
+          invalidateOnRefresh: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2,
+          // markers: true,
+        }
+      }, 1);
+      gsap.to('.kvRight', {
+        // x: -(window.innerWidth * 0) + "px",
+        // ease: Linear.easeNone,
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.wrap',
+          invalidateOnRefresh: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2,
+          // markers: true,
+        }
+      });
+      gsap.to('.kvRightInner', {
+        // x: '0%',
+        transform: "translate(0%, 0%)",
+        // ease: Linear.easeNone,
+        // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.wrap',
+          invalidateOnRefresh: true,
+          scrub: true,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2,
+          // markers: true,
+        }
+      });
       
       // gsap.to('.loadCover .bg', 1,{
       //   opacity: 0,
@@ -205,7 +190,7 @@ const Hero = props => {
       <div className="kvRight relative pre-hero w-screen h-screen bg-kv-2 overflow-hidden" style={{clipPath: "polygon(5% 0, 100% 0%, 100% 100%, 0% 100%)"}}>
         <div 
           className="kvRightInner w-full h-full block" 
-          // style={{transform: "translate(-50%, 0%)"}}
+          style={{transform: "translate(-50%, 0%)"}}
         >
           <Scene1Right />
         </div>
