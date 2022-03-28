@@ -53,6 +53,9 @@ const vision_5 = '/vision/5.jpg'
 const vision_6 = '/vision/6.jpg'
 
 const Scene1Left = dynamic(() => import('@components/canvas/sub-scenes/1_Left'), { ssr: false })
+const Break1 = dynamic(() => import('@components/canvas/sub-scenes/Break1'), { ssr: false })
+const Break2 = dynamic(() => import('@components/canvas/sub-scenes/Break2'), { ssr: false })
+const Break3 = dynamic(() => import('@components/canvas/sub-scenes/Break3'), { ssr: false })
 
 const MainContent = props => {
   const videoEnded = useStore(state => state.videoEnded)
@@ -373,7 +376,11 @@ const MainContent = props => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-20" ref={break1Ref}>
+      <div className="sectionBreak relative z-10">
+        <div className="absolute w-screen left-0" style={{ height: '25vw', bottom: '8vw' }}>
+          <Break1 />
+        </div>
+       
         <div className="bg-kv-2">
           <div className="scale-125 origin-center -rotate-6 translate-y-16">
             {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
@@ -383,7 +390,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="newWay relative z-30">
+      <section className="newWay relative z-10">
         <div className="bg-kv-3 py-32">
 
           <div className="container mx-auto relative z-10">
@@ -546,7 +553,11 @@ const MainContent = props => {
 
       </section>
 
-      <div className="sectionBreak relative z-10" ref={break2Ref}>
+      <div className="sectionBreak relative z-10">
+        <div className="absolute w-screen left-0" style={{ height: '25vw', bottom: '15vw' }}>
+          <Break2 />
+        </div>
+
         <div className="bg-kv-3">
           <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
             <div className="midde relative z-10 w-screen h-32 rotate-12 md:rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -555,7 +566,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="vision relative z-20">
+      <section className="vision relative z-10">
         <div className="bg-kv-1 py-32">
           <div className="container mx-auto">
             <div className="titleGruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
@@ -650,7 +661,11 @@ const MainContent = props => {
         </div>            
       </section>
 
-      <div className="sectionBreak relative z-30" style={{ transform: 'translate3d(0, 0, -1px)' }} ref={break3Ref}>
+      <div className="sectionBreak relative z-10" style={{ transform: 'translate3d(0, 0, -1px)' }}>
+        <div className="absolute w-screen left-0" style={{ height: '25vw', bottom: '13vw' }}>
+          <Break3 />
+        </div>
+
         <div className="bg-kv-1">
           <div className="scale-125 origin-center -rotate-6 translate-y-12">
             <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -659,7 +674,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="creative relative z-40" 
+      <section className="creative relative z-10" 
       // style={{ transformStyle: 'preserve-3d' }}
       >
         {/* <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-2" style={{ transform: 'translate3d(0, 0, -1px)' }} /> */}
@@ -745,7 +760,7 @@ const MainContent = props => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-60">
+      <div className="sectionBreak relative z-20">
         <div className="bg-kv-2">
           <div className="scale-125 origin-center -rotate-6 translate-y-12">
             <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -754,7 +769,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="footer relative z-50 bg-kv-1">
+      <section className="footer relative z-10 bg-kv-1">
         <div className="w-full h-screen -mt-24">
           <Scene1Left />
           <div className="absolute top-0 left-0 z-10 w-full h-full flex justify-center items-center pointer-events-none">

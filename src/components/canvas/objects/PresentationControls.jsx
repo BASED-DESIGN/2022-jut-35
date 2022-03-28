@@ -108,10 +108,10 @@ export default function PresentationControls({
     // const deltaY = xy[1] - size.height/2 - gl.domElement.getBoundingClientRect().top
     const deltaX = xy[0] - size.width/2 - pInitial[0]
     const deltaY = - (xy[1] - size.height/2 - gl.domElement.getBoundingClientRect().top) - pInitial[1] 
-    stareApi.start({
-      // rotation: [0, deltaX * .0003, deltaY * .0001]
-      rotation: [0, animMoveX ? deltaX * .0003 : 0, animMoveY ? deltaY * .0001 : 0]
-    })
+    // stareApi.start({
+    //   // rotation: [0, deltaX * .0003, deltaY * .0001]
+    //   rotation: [0, animMoveX ? deltaX * .0003 : 0, animMoveY ? deltaY * .0001 : 0]
+    // })
   }, {
     // target: document.querySelector('body')
     target:  gl.domElement
