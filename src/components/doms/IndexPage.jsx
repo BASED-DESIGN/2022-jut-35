@@ -46,7 +46,7 @@ const IndexPage = forwardRef((props, ref) => {
       inViewItems();
       function inViewItems(){
         document.querySelectorAll(".fadeIn").forEach((item) => {
-          if (item.getBoundingClientRect().y - window.innerHeight * 0.75 < 0) {
+          if (item.getBoundingClientRect().y - window.innerHeight * 0.85 < 0) {
             item.classList.add("enter");
           } else {
             // item.classList.remove("enter");
