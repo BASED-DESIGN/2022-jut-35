@@ -34,13 +34,8 @@ const Man = forwardRef((props, ref) => {
   }, [active])
 
   const handleScroll = e => {
-    // if (lazyIn) {
-    //   console.log(active, position[1], height, window.innerWidth+window.innerHeight)
-    //   console.log(e.target.scrollingElement.scrollTop, - (position[1] - height*.5) + window.innerWidth+window.innerHeight)
-    // }
     if (!active && lazyIn) {
-      // console.log(width, height, newWay1Bound.top, height/2 - (newWay1Bound.top - 10))
-      const manScrollTop =  - (position[1] - height*.5) + (window.innerWidth+window.innerHeight) - window.innerHeight * .9
+      const manScrollTop =  - (position[1] - height*.5) + (window.innerWidth+window.innerHeight) - window.innerHeight * .8
       if (e.target.scrollingElement.scrollTop > manScrollTop) {
         setActive(true)
       }

@@ -12,7 +12,7 @@ const BackgroundMans = dynamic(() => import('@components/canvas/BackgroundMans')
 
 const IndexPage = forwardRef((props, ref) => {
 
-  useEffect(() => {  
+  useEffect(() => {
     // console.log(scrollerRef)
     // const target = document.querySelector('.wrap-main');
     // const observerItem = document.querySelectorAll('.fadeIn');
@@ -69,7 +69,7 @@ const IndexPage = forwardRef((props, ref) => {
 
       <Hero />
       
-      <BackgroundMans />
+      {/* <BackgroundMans /> */}
 
       <MainContent />
     </div>

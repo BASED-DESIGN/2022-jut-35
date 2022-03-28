@@ -10,7 +10,6 @@ import Man from '@components/canvas/objects/Man'
 const Content = () => {
   const gl = useThree(state => state.gl)
   const { width, height } = useThree(state => state.size)
-  // console.log('BackgroundMans', width, height)
   const newWay1Ref = useStore(state => state.newWay1Ref)
   const newWay1Bound = newWay1Ref.current ? newWay1Ref.current.getBoundingClientRect() : null
   const newWay2Ref = useStore(state => state.newWay2Ref)
@@ -26,7 +25,8 @@ const Content = () => {
     <>
       {/* <primitive object={new THREE.AxesHelper(100)} /> */}
       <Suspense fallback={`loading assets`}>
-        <group position={[0, gl.domElement.getBoundingClientRect().top, 0]}>
+        {/* <group position={[0, gl.domElement.getBoundingClientRect().top, 0]}> */}
+        <group position={[0, window.innerHeight, 0]}>
           <Break1 />
           <Break2 />
           <Break3 />

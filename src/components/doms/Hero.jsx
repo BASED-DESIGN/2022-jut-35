@@ -60,50 +60,50 @@ const Hero = props => {
           // markers: true,
         }
       }, 1);
-      gsap.to('.kvRight', {
-        // x: -(window.innerWidth * 0) + "px",
-        // ease: Linear.easeNone,
-        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "none",
-        scrollTrigger: {
-          trigger: '.wrap',
-          invalidateOnRefresh: true,
-          scrub: true,
-          start: "top top",
-          end: () => "+=" + window.innerHeight * 2,
-          // markers: true,
-        }
-      });
-      gsap.to('.kvRightInner', {
-        // x: '0%',
-        transform: "translate(0%, 0%)",
-        // ease: Linear.easeNone,
-        // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "none",
-        scrollTrigger: {
-          trigger: '.wrap',
-          invalidateOnRefresh: true,
-          scrub: true,
-          start: "top top",
-          end: () => "+=" + window.innerHeight * 2,
-          // markers: true,
-        }
-      });
-      gsap.to('.kvRightInner', {
-        // x: '0%',
-        transform: "translate(0%, 50%)",
-        // ease: Linear.easeNone,
-        // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-        ease: "none",
-        scrollTrigger: {
-          trigger: '.intro',
-          invalidateOnRefresh: true,
-          scrub: true,
-          start: "top bottom",
-          end: () => "+=" + window.innerHeight,
-          // markers: true,
-        }
-      });
+      // gsap.to('.kvRight', {
+      //   // x: -(window.innerWidth * 0) + "px",
+      //   // ease: Linear.easeNone,
+      //   clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      //   ease: "none",
+      //   scrollTrigger: {
+      //     trigger: '.wrap',
+      //     invalidateOnRefresh: true,
+      //     scrub: true,
+      //     start: "top top",
+      //     end: () => "+=" + window.innerHeight * 2,
+      //     // markers: true,
+      //   }
+      // });
+      // gsap.to('.kvRightInner', {
+      //   // x: '0%',
+      //   transform: "translate(0%, 0%)",
+      //   // ease: Linear.easeNone,
+      //   // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      //   ease: "none",
+      //   scrollTrigger: {
+      //     trigger: '.wrap',
+      //     invalidateOnRefresh: true,
+      //     scrub: true,
+      //     start: "top top",
+      //     end: () => "+=" + window.innerHeight * 2,
+      //     // markers: true,
+      //   }
+      // });
+      // gsap.to('.kvRightInner', {
+      //   // x: '0%',
+      //   transform: "translate(0%, 50%)",
+      //   // ease: Linear.easeNone,
+      //   // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      //   ease: "none",
+      //   scrollTrigger: {
+      //     trigger: '.intro',
+      //     invalidateOnRefresh: true,
+      //     scrub: true,
+      //     start: "top bottom",
+      //     end: () => "+=" + window.innerHeight,
+      //     // markers: true,
+      //   }
+      // });
       
       // gsap.to('.loadCover .bg', 1,{
       //   opacity: 0,
@@ -138,17 +138,17 @@ const Hero = props => {
         }
       }
 
-      const kvSloganLeftLooping = new TimelineMax({ repeat: -1 });
-      kvSloganLeftLooping.staggerFromTo('.hero .sloganTop', 40,
-        { backgroundPositionX: 0, ease: Linear.easeNone },
-        { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
-      );
+      // const kvSloganLeftLooping = new TimelineMax({ repeat: -1 });
+      // kvSloganLeftLooping.staggerFromTo('.hero .sloganTop', 40,
+      //   { backgroundPositionX: 0, ease: Linear.easeNone },
+      //   { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone }
+      // );
 
-      const kvSloganRightLooping = new TimelineMax({ repeat: -1 });
-      kvSloganRightLooping.staggerFromTo('.hero .sloganBottom', 40,
-        { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
-        { backgroundPositionX: 0, ease: Linear.easeNone }
-      );
+      // const kvSloganRightLooping = new TimelineMax({ repeat: -1 });
+      // kvSloganRightLooping.staggerFromTo('.hero .sloganBottom', 40,
+      //   { backgroundPositionX: -(kvSloganLoopingRange() * 3) + 'px', ease: Linear.easeNone },
+      //   { backgroundPositionX: 0, ease: Linear.easeNone }
+      // );
 
       // const mainLogoAnimate = function(ev) {
       //   const target = document.querySelector(".mainLogo");
@@ -203,7 +203,10 @@ const Hero = props => {
         <div className="sloganTop absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x -bg-no-repeat bg-left-top scale-x-95 origin-top-left pointer-events-none opacity-0 -translate-y-12" style={{backgroundImage: `url(${slogan_top})`}}></div>
       </div>
       <div className="kvRight relative pre-hero w-screen h-screen bg-kv-2 overflow-hidden" style={{clipPath: "polygon(5% 0, 100% 0%, 100% 100%, 0% 100%)"}}>
-        <div className="kvRightInner w-full h-full block" style={{transform: "translate(-50%, 0%)"}}>
+        <div 
+          className="kvRightInner w-full h-full block" 
+          // style={{transform: "translate(-50%, 0%)"}}
+        >
           <Scene1Right />
         </div>
         <div className="sloganBottom absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x bg-left-bottom translate-y-1 pointer-events-none" style={{backgroundImage: `url(${slogan_bottom})`}}></div>

@@ -22,6 +22,7 @@ export default function PresentationControls({
 }) {
   const { size, gl } = useThree()
   const ref = useRef()
+
   const rPolar = useMemo(
     () => [
       rotation[0] + polar[0], 
