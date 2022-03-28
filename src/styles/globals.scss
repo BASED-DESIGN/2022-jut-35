@@ -93,3 +93,7 @@ canvas {
 .slider__slide > * {
   @apply overflow-hidden;
 }
+
+.odometer-value {
+  @apply font-inner font-medium;
+}

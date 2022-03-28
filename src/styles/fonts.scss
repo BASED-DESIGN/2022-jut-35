@@ -9,3 +9,57 @@
 
 // Noto Sans JP
 // @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+// Din
+@font-face {
+    font-family: 'DIN Pro';
+    src:  url('/fonts/DINPro-Light.eot');
+    src:  url('/fonts/DINPro-Light.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/DINPro-Light.woff') format('woff'),
+        url('/fonts/DINPro-Light.ttf') format('truetype'),
+        url('/fonts/DINPro-Light.svg') format('svg');
+    font-style: normal;
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'DIN Pro';
+    src:  url('/fonts/DINPro-Medium.eot');
+    src:  url('/fonts/DINPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/DINPro-Medium.woff') format('woff'),
+        url('/fonts/DINPro-Medium.ttf') format('truetype'),
+        url('/fonts/DINPro-Medium.svg') format('svg');
+    font-style: normal;
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'DIN Pro';
+    src:  url('/fonts/DINPro-Bold.eot');
+    src:  url('/fonts/DINPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/DINPro-Bold.woff') format('woff'),
+        url('/fonts/DINPro-Bold.ttf') format('truetype'),
+        url('/fonts/DINPro-Bold.svg') format('svg');
+    font-style: normal;
+    font-weight: 700;
+}
+
+// MalayalamMN
+@font-face {
+    font-family: 'Malayalam MN';
+    src:  url('/fonts/MalayalamMN.eot');
+    src:  url('/fonts/MalayalamMN.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/MalayalamMN.woff') format('woff'),
+        url('/fonts/MalayalamMN.ttf') format('truetype'),
+        url('/fonts/MalayalamMN.svg') format('svg');
+    font-style: normal;
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Malayalam MN';
+    src:  url('/fonts/MalayalamMN-Bold.eot');
+    src:  url('/fonts/MalayalamMN-Bold.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/MalayalamMN-Bold.woff') format('woff'),
+        url('/fonts/MalayalamMN-Bold.ttf') format('truetype'),
+        url('/fonts/MalayalamMN-Bold.svg') format('svg');
+    font-style: normal;
+    font-weight: 700;
+}
