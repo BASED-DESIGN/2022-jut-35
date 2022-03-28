@@ -174,7 +174,7 @@ const CoverVideo = props => {
               <div className="w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
               <div className="ml-4 text-white text-5xl inline-flex">
                 <div className="font-extrabold tracking-wide">忠泰</div>
-                <div className="countNumber ml-1 font-medium font-inner tracking-wider" style={{transform: 'translateY(-5px)'}}>
+                <div className="countNumber ml-1" style={{transform: 'translateY(-5px)'}}>
                   <Odometer value={coverLogoValue} duration={8000} format="d" theme="default" />
                 </div>
                 {/* <div className="countNumber ml-1 font-medium font-inner" data-start="1" data-end="35" data-speed="2">1</div> */}
