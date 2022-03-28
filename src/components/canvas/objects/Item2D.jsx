@@ -10,7 +10,8 @@ const Item2D = forwardRef((props, ref) => {
     scale=1,
     position,
     rotation,
-    enterConfig = {}
+    enterConfig = {},
+    delay=0
   } = props
   const texture = useLoader(TextureLoader, url)
   texture.encoding = THREE.sRGBEncoding;
@@ -19,13 +20,13 @@ const Item2D = forwardRef((props, ref) => {
 
   const transition = useTransition(texture, {
     from: { position: [0, -height/4, 0] },
-    enter: { position: [0, 0, 0] },
+    enter: { position: [0, 0, 0], delay },
     // leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
     config: {
       ...config.gentle,
       ...enterConfig
     },
-    trail: 100
+    // trail: 100
   })
 
   return (

@@ -13,7 +13,7 @@ const LCanvas = ({
   const { ref, inView } = useInView()
   const videoEnded = useStore(state => state.videoEnded)
   const [rendered, setRendered] = useState(inView)
-  console.log(name, 'frame active?', !(!videoEnded || !inView || !customInView), inView, customInView)
+  // console.log(name, 'frame active?', !(!videoEnded || !inView || !customInView), inView, customInView)
 
   useEffect(() => {
     if(!rendered && inView) setRendered(true)
@@ -32,6 +32,7 @@ const LCanvas = ({
         <Preload all />
         {(!videoEnded || !inView || !customInView) && <DisableRender />}
         {rendered && children}
+        {/* {children} */}
       </Canvas>
     </div>
   )

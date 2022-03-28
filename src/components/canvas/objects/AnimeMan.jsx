@@ -3,6 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import PresentationControls from '@components/canvas/objects/PresentationControls'
 import { useTransition, a } from '@react-spring/three'
+import * as THREE from 'three'
 
 const Man = forwardRef((props, ref) => {
   const {
@@ -13,13 +14,14 @@ const Man = forwardRef((props, ref) => {
     lazyIn=false,
     animMoveY,
     animMoveX,
-    hover=true,
   } = props
-  const { nodes } = useGLTF(url)
+  const { animations, nodes, scene } = useGLTF(url)
   const { width, height } = useThree(state => state.size)
-  const gl = useThree(state => state.gl)
   const [active, setActive] = useState(!lazyIn)
-
+  // console.log(animations, scene, nodes)
+  const group = useRef()
+  const [mixer] = useState(() => new THREE.AnimationMixer(nodes.Scene))
+  
   const transition = useTransition(active && Object.keys(nodes).filter(key => key!=='Scene'), {
     // from: { scale: [1, 1, 1], rotation: [0, 0, 0] },
     from: { scale: [0, 0, 0], rotation: [0, 1, 0], position: [0, -30, 0] },
@@ -43,6 +45,16 @@ const Man = forwardRef((props, ref) => {
     }
   }
 
+  useFrame((state, delta) => mixer.update(delta))
+  useEffect(() => {
+    console.log(mixer)
+    // mixer.clipAction(animations[0], group.current).play()
+    const action = mixer.clipAction(animations[0], group.current)
+    action.play()
+
+    return () => animations.forEach((clip) => mixer.uncacheClip(clip))
+  }, [])
+
   return (
     <PresentationControls
       config={{ mass: 2, tension: 500 }}
@@ -53,23 +65,40 @@ const Man = forwardRef((props, ref) => {
       azimuth={[-Math.PI / 1.4, Math.PI / 2]} // Horizontal rotate limits
       animMoveX={animMoveX}
       animMoveY={animMoveY}
-      hover={hover}
     >      
-      <group dispose={null}>
-        {transition((props, key) => key && (
+      <group ref={group} dispose={null}>
+      {/* <a.group > */}
+      {/* <a.group > */}
+        {/* {transition((props, key) => key && (
           <a.group {...props}>
             <mesh
+              // {...props}
               ref={ref}
               key={`man-${key}`}
-              scale={scale * window.innerWidth / 360}
+              scale={scale * width / 360}
               geometry={nodes[key].geometry} 
               position={nodes[key].position} 
               material={nodes[key].material} 
             />
           </a.group>
+        ))} */}
+        {/* </a.group> */}
+        {/* </a.group> */}
+        {transition((props, key) => key && (
+          <a.group {...props}>
+             <primitive
+                object={scene}
+                ref={ref}
+                scale={scale * window.innerWidth / 360}
+                geometry={nodes[key].geometry} 
+                position={nodes[key].position} 
+                material={nodes[key].material} 
+              />
+          </a.group>
         ))}
-        <directionalLight intensity={0.5} position={[50, 300, 50]} />
+        <directionalLight intensity={1} position={[width/3, -height/3, 0]} />
       </group>
+      
     </PresentationControls>
   )
 })
