@@ -4,7 +4,7 @@ import IndexPage from '@components/doms/IndexPage'
 // About Next dynamic, React.Suspense, React.lazy discussion:
 // https://github.com/vercel/next.js/discussions/17979
 
-const favIcons = ['/icon_fav_1.png', '/icon_fav_2.png'];
+const favIcons = ['/icon_fav_1.png', '/icon_fav_1.png', '/icon_fav_2.png', '/icon_fav_2.png'];
 function randomItem(items){
   return items[Math.floor(Math.random()*items.length)];
 }
