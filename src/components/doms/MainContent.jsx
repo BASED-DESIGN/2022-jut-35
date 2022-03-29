@@ -53,6 +53,15 @@ const vision_5 = '/vision/5.jpg'
 const vision_6 = '/vision/6.jpg'
 
 const Scene1Left = dynamic(() => import('@components/canvas/sub-scenes/1_Left'), { ssr: false })
+const Break1 = dynamic(() => import('@components/canvas/sub-scenes/Break1'), { ssr: false })
+const Break2 = dynamic(() => import('@components/canvas/sub-scenes/Break2'), { ssr: false })
+const Break3 = dynamic(() => import('@components/canvas/sub-scenes/Break3'), { ssr: false })
+const AnimeMan1 = dynamic(() => import('@components/canvas/sub-scenes/AnimeMan1'), { ssr: false })
+const AnimeMan2 = dynamic(() => import('@components/canvas/sub-scenes/AnimeMan2'), { ssr: false })
+const AnimeMan3 = dynamic(() => import('@components/canvas/sub-scenes/AnimeMan3'), { ssr: false })
+const AnimeMan4 = dynamic(() => import('@components/canvas/sub-scenes/AnimeMan4'), { ssr: false })
+const AnimeMan5 = dynamic(() => import('@components/canvas/sub-scenes/AnimeMan5'), { ssr: false })
+
 
 const MainContent = props => {
   const videoEnded = useStore(state => state.videoEnded)
@@ -335,8 +344,6 @@ const MainContent = props => {
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">忠泰之道</div>
             </div>
             <div className="space-y-32">
-          
-
               <div className="relative fadeIn md:flex">
                 <div className="relative z-10 md:basis-1/2">
                   <img src={`${logo_jutgroup_white}`} className="mx-auto w-3/5 -h-full max-w-none md:w-2/4 md:ml-32" />
@@ -373,7 +380,11 @@ const MainContent = props => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-20" ref={break1Ref}>
+      <div className="sectionBreak relative z-10">
+        <div className="absolute w-screen left-0" style={{ height: '25vw', bottom: '8vw' }}>
+          <Break1 />
+        </div>
+       
         <div className="bg-kv-2">
           <div className="scale-125 origin-center -rotate-6 translate-y-16">
             {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
@@ -383,7 +394,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="newWay relative z-30">
+      <section className="newWay relative z-10">
         <div className="bg-kv-3 py-32">
 
           <div className="container mx-auto relative z-10">
@@ -393,7 +404,11 @@ const MainContent = props => {
             </div>
             <div className="newWayList space-y-40 md:space-y-60">
 
-              <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay1Ref}>
+              <div className="listItem relative fadeIn ml-8 md:ml-48">
+                <div className="absolute" style={{ right: '2vw', top: 'calc(-30vw + 5.5vw)', width: '30vw', height: '30vw' }}>
+                  <AnimeMan1 />
+                </div>
+
                 <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <img src={newway_1_1} alt="" className="photo will-change-auto aspect-[6/4] object-cover scale-110 origin-top bg-white" />
                 </div>
@@ -409,7 +424,11 @@ const MainContent = props => {
                 </div>
               </div>
 
-              <div className="listItem fadeIn mr-8 md:w-full md:mr-0" ref={newWay2Ref}>
+              <div className="listItem relative fadeIn mr-8 md:w-full md:mr-0">
+                <div className="absolute" style={{ right: '4vw', top: 'calc(-30vw + 6vw)', width: '30vw', height: '30vw' }}>
+                  <AnimeMan2 />
+                </div>
+
                 {windowWidth < 959 ?
                   <>
                     <div className="itemPhoto overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
@@ -458,7 +477,11 @@ const MainContent = props => {
                 </div>
               </div>
 
-              <div className="listItem fadeIn ml-8 md:ml-48" ref={newWay3Ref}>
+              <div className="listItem relative fadeIn ml-8 md:ml-48">
+                <div className="absolute" style={{ left: 'calc(-30vw + 5vw)', top: '-13vw', width: '30vw', height: '30vw' }}>
+                  <AnimeMan3 />
+                </div>
+
                 <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <img src={newway_3_1} alt="" className="photo will-change-auto aspect-[3/2] object-cover scale-110 origin-top bg-white" />
                 </div>
@@ -474,7 +497,11 @@ const MainContent = props => {
                 </div>
               </div>
 
-              <div className="listItem fadeIn mr-8 md:mr-24" ref={newWay4Ref}>
+              <div className="listItem relative fadeIn mr-8 md:mr-24">
+                <div className="absolute" style={{ right: '-10vw', top: 'calc(-30vw + 6vw)', width: '30vw', height: '30vw' }}>
+                  <AnimeMan4 />
+                </div>
+
                 <div className="itemPhoto overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <Slider 
                     auto={6000}
@@ -502,7 +529,11 @@ const MainContent = props => {
                 </div>
               </div>
 
-              <div className="listItem fadeIn ml-8 md:mx-24" ref={newWay5Ref}>
+              <div className="listItem relative fadeIn ml-8 md:mx-24">
+                <div className="absolute" style={{ right: '4vw', top: 'calc(-30vw + 6vw)', width: '30vw', height: '30vw' }}>
+                  <AnimeMan5 />
+                </div>
+
                 <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <img src={newway_5_2} alt="" className="photo will-change-auto aspect-[1/1] object-cover scale-110 origin-top bg-white" />
                 </div>
@@ -546,7 +577,11 @@ const MainContent = props => {
 
       </section>
 
-      <div className="sectionBreak relative z-10" ref={break2Ref}>
+      <div className="sectionBreak relative z-10">
+        <div className="absolute w-screen left-0" style={{ height: '25vw', bottom: '14vw' }}>
+          <Break2 />
+        </div>
+
         <div className="bg-kv-3">
           <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
             <div className="midde relative z-10 w-screen h-32 rotate-12 md:rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -555,7 +590,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="vision relative z-20">
+      <section className="vision relative z-10">
         <div className="bg-kv-1 py-32">
           <div className="container mx-auto">
             <div className="titleGruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
@@ -650,7 +685,11 @@ const MainContent = props => {
         </div>            
       </section>
 
-      <div className="sectionBreak relative z-30" style={{ transform: 'translate3d(0, 0, -1px)' }} ref={break3Ref}>
+      <div className="sectionBreak relative z-10" style={{ transform: 'translate3d(0, 0, -1px)' }}>
+        <div className="absolute w-screen left-0" style={{ height: '25vw', bottom: '13vw' }}>
+          <Break3 />
+        </div>
+
         <div className="bg-kv-1">
           <div className="scale-125 origin-center -rotate-6 translate-y-12">
             <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -659,7 +698,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="creative relative z-40" 
+      <section className="creative relative z-10" 
       // style={{ transformStyle: 'preserve-3d' }}
       >
         {/* <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-2" style={{ transform: 'translate3d(0, 0, -1px)' }} /> */}
@@ -745,7 +784,7 @@ const MainContent = props => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-60">
+      <div className="sectionBreak relative z-20">
         <div className="bg-kv-2">
           <div className="scale-125 origin-center -rotate-6 translate-y-12">
             <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -754,7 +793,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="footer relative z-50 bg-kv-1">
+      <section className="footer relative z-10 bg-kv-1">
         <div className="w-full h-screen -mt-24">
           <Scene1Left />
           <div className="absolute top-0 left-0 z-10 w-full h-full flex justify-center items-center pointer-events-none">

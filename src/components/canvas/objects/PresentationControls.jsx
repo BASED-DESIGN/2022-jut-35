@@ -18,7 +18,8 @@ export default function PresentationControls({
   height = [-100, 100],
   config = { mass: 1, tension: 120, friction: 14 },
   animMoveX=true,
-  animMoveY=true
+  animMoveY=true,
+  hover=true,
 }) {
   const { size, gl } = useThree()
   const ref = useRef()
@@ -70,24 +71,28 @@ export default function PresentationControls({
   
   const bind = useGesture({
     onHover: ({ last, hovering }) => {
-      if (cursor && !global) gl.domElement.style.cursor = last ? 'auto' : 'grab'
-      api.start({
-        scale: hovering ? 0.99 : 1,
-        position: hovering ? [position[0], position[1] + 15, position[2]] : position,
-      })
+      if(hover) {
+        if (cursor && !global) gl.domElement.style.cursor = last ? 'auto' : 'grab'
+        api.start({
+          scale: hovering ? 0.99 : 1,
+          position: hovering ? [position[0], position[1] + 15, position[2]] : position,
+        })
+      }
     },
     onDrag: ({ down, delta: [x, y], memo: [oldY, oldX] = spring.rotation.animation.to || rInitial }) => {
-      if (cursor) gl.domElement.style.cursor = down ? 'grabbing' : 'grab'
-      x = MathUtils.clamp(oldX + (x / size.width) * Math.PI * speed, ...rAzimuth)
-      y = MathUtils.clamp(oldY + (y / size.height) * Math.PI * speed, ...rPolar)
-      const sConfig = snap && !down && typeof snap !== 'boolean' ? snap : config
-      api.start({
-        scale: down && y > rPolar[1] / 2 ? zoom : 1,
-        rotation: snap && !down ? rInitial : [y, x, 0],
-        // config: n => console.log(n)
-        // config: (n) => (n === 'scale' || n === 'position' ? { ...sConfig, friction: sConfig.friction * 3 } : sConfig),
-      })
-      return [y, x]
+      if(hover) {
+        if (cursor) gl.domElement.style.cursor = down ? 'grabbing' : 'grab'
+        x = MathUtils.clamp(oldX + (x / size.width) * Math.PI * speed, ...rAzimuth)
+        y = MathUtils.clamp(oldY + (y / size.height) * Math.PI * speed, ...rPolar)
+        const sConfig = snap && !down && typeof snap !== 'boolean' ? snap : config
+        api.start({
+          scale: down && y > rPolar[1] / 2 ? zoom : 1,
+          rotation: snap && !down ? rInitial : [y, x, 0],
+          // config: n => console.log(n)
+          // config: (n) => (n === 'scale' || n === 'position' ? { ...sConfig, friction: sConfig.friction * 3 } : sConfig),
+        })
+        return [y, x]
+      }
     }
   },
   { target: global ? gl.domElement : undefined })

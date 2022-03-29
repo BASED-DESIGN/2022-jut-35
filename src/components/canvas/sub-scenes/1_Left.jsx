@@ -15,7 +15,7 @@ const Content = () => {
   const planeFrontRef = useRef(null)
   const planeBackRef = useRef(null)
   const planeConfig = {
-    ...config, duration: 1000
+    ...config.gentle, duration: 1000
   }
 
   const [planeFrontSpring, planeFrontApi] = useSpring(() => ({ position: [0, 0, 0], config: planeConfig }))
@@ -41,7 +41,8 @@ const Content = () => {
             ref={planeFrontRef}
             url="/kv/kv1_layer_1s.png"
             position={[0, 0, -600]}
-            enterConfig={{ duration: 800 }}
+            delay={600}
+            // enterConfig={{ delay: 300 }}
           />
         </a.group>
         <a.group {...planeBackSpring}>
@@ -49,7 +50,7 @@ const Content = () => {
             ref={planeBackRef}
             url="/kv/kv1_layer_2s.png"
             position={[0, 0, -500]}
-            enterConfig={{ duration: 600 }}
+            // enterConfig={{ duration: 600 }}
           />
         </a.group>
         
