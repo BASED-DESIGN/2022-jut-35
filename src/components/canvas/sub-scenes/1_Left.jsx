@@ -1,7 +1,7 @@
 import { useRef, Suspense } from 'react'
 import { useThree } from '@react-three/fiber'
 import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
-import { useSpring, config, a } from '@react-spring/three'
+import { useSpring, config, a, useChain } from '@react-spring/three'
 import { useGesture } from '@use-gesture/react'
 
 import Canvas from '@components/layout/Canvas'

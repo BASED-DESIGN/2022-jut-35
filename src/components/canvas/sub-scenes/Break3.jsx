@@ -15,7 +15,7 @@ const Content = () => {
 
         <Man
           url='/gltf/kv2-man1.gltf'
-          position={[width < 600 ? -width * .25 : -width * .2, -height*.35, -100]} 
+          position={[width < 600 ? -width * .25 : -width * .2, -height*.38, -100]} 
           rotation={[-.3, -0.2, 0]} 
           scale={width < 600 ? 2 : 1}
           // animMoveY={false}
@@ -23,7 +23,7 @@ const Content = () => {
         />
         <Man
           url='/gltf/kv2-man2.gltf'
-          position={[width < 600 ? -width * 0.05 : -width * .1, -height*.3, -100]} 
+          position={[width < 600 ? -width * 0.05 : -width * .1, -height*.33, -100]} 
           rotation={[-.5, -0.5, 0]}
           scale={width < 600 ? 2 : 1}
           // animMoveY={false}
@@ -31,7 +31,7 @@ const Content = () => {
         />
         <Man
           url='/gltf/kv2-man2.gltf'
-          position={[width * .3, -height*.17, -100]} 
+          position={[width * .3, -height*.20, -100]} 
           rotation={[-.5, -0.5, 0]}
           scale={width < 600 ? 2.4 : 1.2}
           // animMoveY={false}

@@ -381,7 +381,7 @@ const MainContent = props => {
       </section>
 
       <div className="sectionBreak relative z-10">
-        <div className="absolute w-screen left-0" style={{ height: '25vw', bottom: '8vw' }}>
+        <div className="absolute w-screen left-0" style={{ height: '30vw', bottom: '18vw' }}>
           <Break1 />
         </div>
        
@@ -578,7 +578,7 @@ const MainContent = props => {
       </section>
 
       <div className="sectionBreak relative z-10">
-        <div className="absolute w-screen left-0" style={{ height: '25vw', bottom: '14vw' }}>
+        <div className="absolute w-screen left-0" style={{ height: '30vw', bottom: '16vw' }}>
           <Break2 />
         </div>
 
@@ -686,7 +686,7 @@ const MainContent = props => {
       </section>
 
       <div className="sectionBreak relative z-10" style={{ transform: 'translate3d(0, 0, -1px)' }}>
-        <div className="absolute w-screen left-0" style={{ height: '25vw', bottom: '13vw' }}>
+        <div className="absolute w-screen left-0" style={{ height: '30vw', bottom: '15vw' }}>
           <Break3 />
         </div>
 
