@@ -26,7 +26,7 @@ const Content = () => {
 
       </Suspense>
 
-      <directionalLight position={[0, 0, 250]} intensity={1} />
+      <directionalLight position={[-50, 100, 100]} intensity={3} />
       <ambientLight intensity={1} />
     </>
   )

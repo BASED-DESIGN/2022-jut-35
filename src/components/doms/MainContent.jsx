@@ -52,6 +52,24 @@ const vision_4 = '/vision/4.jpg'
 const vision_5 = '/vision/5.jpg'
 const vision_6 = '/vision/6.jpg'
 
+const sdgs_1 = '/vision/sdgs/sdgs_1.svg'
+const sdgs_2 = '/vision/sdgs/sdgs_2.svg'
+const sdgs_3 = '/vision/sdgs/sdgs_3.svg'
+const sdgs_4 = '/vision/sdgs/sdgs_4.svg'
+const sdgs_5 = '/vision/sdgs/sdgs_5.svg'
+const sdgs_6 = '/vision/sdgs/sdgs_6.svg'
+const sdgs_7 = '/vision/sdgs/sdgs_7.svg'
+const sdgs_8 = '/vision/sdgs/sdgs_8.svg'
+const sdgs_9 = '/vision/sdgs/sdgs_9.svg'
+const sdgs_10 = '/vision/sdgs/sdgs_10.svg'
+const sdgs_11 = '/vision/sdgs/sdgs_11.svg'
+const sdgs_12 = '/vision/sdgs/sdgs_12.svg'
+const sdgs_13 = '/vision/sdgs/sdgs_13.svg'
+const sdgs_14 = '/vision/sdgs/sdgs_14.svg'
+const sdgs_15 = '/vision/sdgs/sdgs_15.svg'
+const sdgs_16 = '/vision/sdgs/sdgs_16.svg'
+const sdgs_17 = '/vision/sdgs/sdgs_17.svg'
+
 const Scene1Left = dynamic(() => import('@components/canvas/sub-scenes/1_Left'), { ssr: false })
 const Break1 = dynamic(() => import('@components/canvas/sub-scenes/Break1'), { ssr: false })
 const Break2 = dynamic(() => import('@components/canvas/sub-scenes/Break2'), { ssr: false })
@@ -226,23 +244,23 @@ const MainContent = props => {
       };
       callDistort();
 
-      // const newWayListItem = document.querySelectorAll('.newWayList .listItem .itemPhoto .photo');
-      // newWayListItem.forEach((item)=>{
-      //   // const itemImg = item.querySelector('img');
-      //   gsap.to(item, {
-      //     y: '-10%',
-      //     ease: "none",
-      //     scrollTrigger: {
-      //       trigger: item,
-      //       invalidateOnRefresh: true,
-      //       // pin: true,
-      //       scrub: true,
-      //       start: () => "-=" + window.innerHeight * 0.5 + " top",
-      //       end: () => "+=" + window.innerHeight * 1.2,
-      //       // markers: true,
-      //     }
-      //   });
-      // });
+      const newWayListItem = document.querySelectorAll('.newWayList .listItem .itemPhoto .photo');
+      newWayListItem.forEach((item)=>{
+        // const itemImg = item.querySelector('img');
+        gsap.to(item, {
+          y: '-10%',
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            invalidateOnRefresh: true,
+            // pin: true,
+            scrub: true,
+            start: () => "-=" + window.innerHeight * 0.5 + " top",
+            end: () => "+=" + window.innerHeight * 1.2,
+            // markers: true,
+          }
+        });
+      });
 
 
 
@@ -594,8 +612,8 @@ const MainContent = props => {
         <div className="bg-kv-1 py-32">
           <div className="container mx-auto">
             <div className="titleGruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
-              <div className="en font-title text-5xl md:text-6xl xl:text-7xl">VISION 2030</div>
-              <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">忠泰永續願景</div>
+              <div className="en font-title text-5xl md:text-6xl xl:text-7xl">JUT VISION</div>
+              <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
             </div>
             <div className="video fadeIn aspect-video bg-black/50 -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
               {/* <iframe className="w-full h-full" src="https://www.youtube.com/embed/8BbBGLUzjaA" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
@@ -615,12 +633,11 @@ const MainContent = props => {
 
             <div className="titleGruop fadeIn mt-52 mb-12 text-gray-dark -md:-mt-48 md:mb-24">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">VISION 2030</div>
-              <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">遠望一個更美好的明天</div>
+              <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">忠泰永續願景</div>
             </div>          
             <div className="summary fadeIn mt-4 article_normal md:mt-0 md:ml-auto md:w-3/4">
-              <p>忠泰集團從建築出發到生活風格的倡議，廣泛觸及到個人、城市與整體環境，我們深知在建築這個載體之外，更重要的是生活在載體之上的人們以及關係的串連，唯有生命與生活的灌溉，城市得以生生不息以及多樣盎然。</p>
-              <p>關注於未來的建構，我們在乎每個人對生活的想望，希望在多個面向提出更好的生活方案：從個體出發，我們提出對居住與工作環境的重組，來改變人們對於空間關係的思考；對於城市的規劃，我們把人們的需求擺在第一位，探討城市宜居性等議題；而對於環境，我們著眼永續發展，提出環友善環境與社會的方案來進入可持續性的未來發展。</p>
-              <p>在建築之上，忠泰是生活的園丁，澆灌、照護著這座百花齊放的平行城市。</p>
+              <p>對於 2030 年的到來，我們竭力在經濟活動與發展的同時，與生態環境和諧共存；我們重視與所有合作單位、投資者以及利害關係人之良好關係；我們持續追求高度可信、具透明度以及有效溝通的企業管理，也將逐步對外主動揭露更完整之永續發展資訊。</p>
+              <p>透過 11 項 SDGs 作為目標來達成近十年的集團展望與期許，我們企圖實踐「宜居城市」、「環境永續」、「多元生活」、「管理績效」、「職場培力」、「文化藝術」六個面向的價值或能力。</p>
             </div>
             <div className="sdgListWrap mt-20 pt-6 ml-8 md:ml-0 md:mt-24 md:pt-8 xl:pt-20">
               <div className="sdgList flex flex-wrap flex-col">
@@ -628,54 +645,80 @@ const MainContent = props => {
                   <div className="photo aspect-2/3 bg-gray-light">
                     <img src={vision_1} alt="宜居城市" className="aspect-2/3 object-cover" />
                   </div>
-                  <div className="content mt-8 article_light">
+                  <div className="content mt-8 article_light xl:mt-16">
                     <h3>宜居城市</h3>
                     <p>我們重視建築與人、空間、環境之間的關係美學，以建造舒適、安全、宜居的社區以及城市為目標。</p>
+                  </div>
+                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_3})`}}></div>
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_11})`}}></div>
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_17})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-200 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                   <div className="photo aspect-2/3 bg-gray-light">
                     <img src={vision_2} alt="環境永續" className="aspect-2/3 object-cover" />
                   </div>
-                  <div className="content mt-8 article_light">
+                  <div className="content mt-8 article_light xl:mt-16">
                     <h3>環境永續</h3>
                     <p>我們密切關注全球碳排放以及氣候變化議題，並以開源、節能和綠化來付諸行動。</p>
+                  </div>
+                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_6})`}}></div>
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_13})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-300 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                   <div className="photo aspect-2/3 bg-gray-light">
                     <img src={vision_3} alt="多元生活" className="aspect-2/3 object-cover" />
                   </div>
-                  <div className="content mt-8 article_light">
+                  <div className="content mt-8 article_light xl:mt-16">
                     <h3>多元生活</h3>
                     <p>由商住營造、生活零售、運動產業以至文化藝術，我們不斷探索產業創新的可能性，致力提供優質生活的選擇。</p>
+                  </div>
+                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_3})`}}></div>
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_9})`}}></div>
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_11})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                   <div className="photo aspect-2/3 bg-gray-light">
                     <img src={vision_4} alt="管理績效" className="aspect-2/3 object-cover" />
                   </div>
-                  <div className="content mt-8 article_light">
+                  <div className="content mt-8 article_light xl:mt-16">
                     <h3>管理績效</h3>
                     <p>作為廣受大眾市民以及投資者認同與信任的企業，我們致力提升永績治理效能，為企業創造價值。</p>
+                  </div>
+                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_16})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                   <div className="photo aspect-2/3 bg-gray-light">
                     <img src={vision_5} alt="職場培力" className="aspect-2/3 object-cover" />
                   </div>
-                  <div className="content mt-8 article_light">
+                  <div className="content mt-8 article_light xl:mt-16">
                     <h3>職場培力</h3>
                     <p>我們重視人力資源與培訓，努力創造關愛友善的工作環境，並提供多元的事業發展機會，讓同仁發揮潛能。</p>
+                  </div>
+                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_5})`}}></div>
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_8})`}}></div>
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_10})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                   <div className="photo aspect-2/3 bg-gray-light">
                     <img src={vision_6} alt="文化藝術" className="aspect-2/3 object-cover" />
                   </div>
-                  <div className="content mt-8 article_light">
+                  <div className="content mt-8 article_light xl:mt-16">
                     <h3>文化藝術</h3>
                     <p>我們以文化、藝術與設計融合建築，提供大眾與之對話、思考與互動的機會，藉此推動美學教育普及。</p>
+                  </div>
+                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_4})`}}></div>
+                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_11})`}}></div>
                   </div>
                 </div>
               </div>
