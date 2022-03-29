@@ -13,10 +13,10 @@ const Content = () => {
       <Suspense fallback={`loading assets`}>
 
         <Man
-          url='/gltf-anime/man3.gltf'
+          url='/gltf-anime-2/man-animation.gltf'
           // position={[width < 600 ? width * .31 : width * .38, height*.08, -100]} 
           position={[0, -height*.3, -100]}
-          rotation={[0, -0.2, 0]}
+          rotation={[0, -90.2, 0]}
           // scale={width < 600 ? 2 : 1}
           scale={window.innerWidth < 600 ? 2 : .7}
           // hover={false}

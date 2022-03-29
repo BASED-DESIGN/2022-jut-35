@@ -28,8 +28,11 @@ const video = '/video.mp4'
 const logo_jut35_icon_white = '/logo_jut35_icon_white.svg'
 
 let interval = null
+let fontInterval = null
 
 const CoverVideo = props => {
+  const [fontState, setFontState] = useState(false)
+  const [loadState, setLoadState] = useState(false)
   const [coverLogoValue, setCoverLogoValue] = useState(0)
   const [yearValue, setYearValue] = useState(0)
   const [videoState, setVideoState] = useState('ready')
@@ -37,37 +40,64 @@ const CoverVideo = props => {
 
   useEffect(() => {
 
-    const innerHeight = document.querySelectorAll('.innerHeight');
-    innerHeight.forEach((element)=>{
-      element.style.height = window.innerHeight + 'px';
-    });
-
     setCoverLogoValue(20);
     setYearValue(1987);
-    setTimeout(()=>{
-      setCoverLogoValue(35);
-      setYearValue(2022);
-    }, 500);
+
+    window.addEventListener('load', ()=>{
+      setLoadState(true);
+    });
+    
+    document.querySelector('.logoIcon').style.transform = "translate(" + document.querySelector('.logoText').offsetWidth * .5 + 'px' + ", 0px)";
 
     gsap.to('.coverLogo', 1, {
       opacity: 1,
-      ease: Expo.easeIn,
-      // delay: 1,
-      onComplete: () => {}
+      ease: Expo.easeInOut,
+      delay: .5
     });
 
-    gsap.to('.coverStartButton', 1, {
-      opacity: 1,
-      scale: 1,
-      ease: Expo.easeIn,
-      delay: 1,
-      onComplete: () => {
-        // console.log(loadState);
-        // setTimeout(()=>{
-        //   useStore.setState({ videoEnded: true })
-        //   console.log('videop ended?')
-        // }, 1000);
-      }
+    if (loadState == true){
+      // gsap.to('.coverLogo', 1, {
+      //   opacity: 1,
+      //   ease: Expo.easeInOut,
+      //   delay: .5,
+      //   onStart: () => {
+      //   }
+      // });
+
+      gsap.to('.logoIcon', 1, {
+        x: '0px',
+        ease: Expo.easeInOut,
+        // className: '-=fadeLoop',
+        onStart: () => {
+          document.querySelector('.logoIcon').classList.remove('fadeLoop');
+          setCoverLogoValue(35);
+          setYearValue(2022);  
+        }
+      });
+
+      gsap.to('.logoText', 1, {
+        opacity: 1,
+        ease: Expo.easeInOut,
+        delay: 1
+      });
+      gsap.to('.coverStartButton', 1, {
+        opacity: 1,
+        scale: 1,
+        ease: Expo.easeInOut,
+        delay: .5,
+        onComplete: () => {
+        }
+      });
+
+    }
+
+  }, [loadState]);
+
+  useEffect(() => {
+
+    const innerHeight = document.querySelectorAll('.innerHeight');
+    innerHeight.forEach((element)=>{
+      element.style.height = window.innerHeight + 'px';
     });
 
     const coverStartButton = document.querySelector(".coverStartButton");
@@ -159,6 +189,7 @@ const CoverVideo = props => {
   }, [videoState]);
 
   return (
+    
     <div className={`coverVideo innerHeight fixed top-0 left-0 z-100 w-screen h-screen duration-1000 ease-expo ${videoState == 'ends' ? 'opacity-0 pointer-events-none bg-kv-1':'bg-kv-2'}`}>
       <div className="videoCover relative w-full h-full z-60">
 
@@ -171,10 +202,10 @@ const CoverVideo = props => {
           
           <div className={`absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center ${videoState != 'ready' ? 'opacity-0 pointer-events-none':''}`}>
             <div className="flex items-center mt-16 mb-4 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-125 xl:scale-150">
-              <div className="w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
-              <div className="ml-4 text-white text-5xl inline-flex">
+              <div className="logoIcon fadeLoop w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
+              <div className="logoText pl-4 text-white text-5xl inline-flex opacity-0">
                 <div className="font-extrabold tracking-wide">忠泰</div>
-                <div className="countNumber ml-1" style={{transform: 'translateY(-5px)'}}>
+                <div className="countNumber ml-1 tracking-tight" style={{transform: 'translateY(-5px)'}}>
                   <Odometer value={coverLogoValue} duration={8000} format="d" theme="default" />
                 </div>
                 {/* <div className="countNumber ml-1 font-medium font-inner" data-start="1" data-end="35" data-speed="2">1</div> */}
@@ -184,9 +215,16 @@ const CoverVideo = props => {
               <div className="text-white text-base text-center font-inner font-medium border-2 border-white border-solid px-4 py-1 cursor-pointer duration-800 ease-expo opacity-80 hover:opacity-100">Start JUT 35</div>
             </div>
           </div>
-
         </div>
+
+
       </div>
+
+      {/* <div className="loadProgress absolute top-0 left-0 right-0 mx-auto w-90 h-full --pointer-events-none fadeLoop">
+        <div className="loadProgressText inline-block font-inner font-extrabold tracking-tight text-white/80 text-6xl origin-top-left">
+          <Odometer value={yearValue} duration={20000} format="d" theme="default" />
+        </div>
+      </div> */}
 
       <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-expo duration-1000  bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
         {/* <video autoPlay loop muted playsInline preload="auto" className="video w-full aspect-16/9"> */}

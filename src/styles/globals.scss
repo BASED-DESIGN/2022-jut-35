@@ -97,3 +97,16 @@ canvas {
 .odometer-value {
   @apply font-inner font-medium;
 }
+
+@keyframes fadeLoop {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.fadeLoop {
+  animation: fadeLoop 1s linear infinite forwards;
+}

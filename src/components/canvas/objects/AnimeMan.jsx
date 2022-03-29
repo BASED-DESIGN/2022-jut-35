@@ -49,7 +49,7 @@ const Man = forwardRef((props, ref) => {
   useEffect(() => {
     console.log(mixer)
     // mixer.clipAction(animations[0], group.current).play()
-    const action = mixer.clipAction(animations[0], group.current)
+    const action = mixer.clipAction(animations[5], group.current)
     action.play()
 
     return () => animations.forEach((clip) => mixer.uncacheClip(clip))
