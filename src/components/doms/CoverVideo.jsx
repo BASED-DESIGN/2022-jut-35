@@ -153,7 +153,7 @@ const CoverVideo = props => {
         opacity: 1,
         scale: 1,
         ease: Expo.easeOut,
-        delay: 3
+        delay: 1.5
       });
     }
   }, [videoState]);

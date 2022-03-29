@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import useStore from '@helpers/store'
 import dynamic from 'next/dynamic'
 
@@ -30,6 +30,22 @@ const Hero = props => {
   const videoEnded = useStore(state => state.videoEnded)
 
   useEffect(() => {
+    // if (
+    //   DeviceOrientationEvent &&
+    //   DeviceOrientationEvent.requestPermission &&
+    //   typeof DeviceOrientationEvent.requestPermission === "function"
+    // ) {
+    //   DeviceOrientationEvent.requestPermission().then((permissionState) => {
+    //     if (permissionState === "granted") {
+    //       window.addEventListener("deviceorientation", function(event) {
+    //         alert(event.alpha);
+    //       }, false);
+    //     } else if (permissionState === "denied") {
+    //       alert("denied");
+    //     }
+    //   });
+    // }
+    
     if (videoEnded == true) {
 
       // Hero
@@ -217,7 +233,7 @@ const Hero = props => {
         <div className="kvLeftInner w-full h-full block opacity-0 translate-y-12">
           <Scene1Left />
         </div>
-        <div className="sloganTop absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x -bg-no-repeat bg-left-top scale-x-95 origin-top-left pointer-events-none opacity-0 -translate-y-12" style={{backgroundImage: `url(${slogan_top})`}}></div>
+        <div className="sloganTop absolute top-0 left-0 z-10 w-full h-screen bg-contain bg-repeat-x -bg-no-repeat bg-left-top scale-x-95 origin-top-left pointer-events-none opacity-0 -translate-y-12" style={{backgroundImage: `url(${slogan_top})`}}></div>
       </div>
 
       <div
@@ -230,11 +246,24 @@ const Hero = props => {
           style={{transform: "translate(-50%, 0%)"}}
         >
           <Scene1Right />
-          <div className="sloganBottom absolute top-0 left-0 z-10 w-full h-screen -bg-over-half bg-over-quarter md:bg-contain bg-repeat-x bg-left-bottom translate-y-1 pointer-events-none" style={{backgroundImage: `url(${slogan_bottom})`}}></div>
+          <div className="sloganBottom absolute top-0 left-0 z-10 w-full h-screen bg-contain bg-repeat-x bg-left-bottom translate-y-1 pointer-events-none" style={{backgroundImage: `url(${slogan_bottom})`}}></div>
         </div>
       </div>
 
-      <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center opacity-0 scale-90 pointer-events-none" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
+      <div className="touchHelper absolute top-0 bottom-0 right-0 left-0 z-10 w-full h-full pointer-events-none md:hidden">
+        <div className="absolute top-0 left-0 w-full h-1/4 pointer-events-auto"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1/4 pointer-events-auto"></div>
+        {/* <div className="absolute bottom-0 left-0 w-full h-full pointer-events-none">
+          <ul className='font-inner text-xl font-bold flex flex-col leading-snug'>
+            <li>Alpha:    {orientation.alpha}</li>
+            <li>Beta:     {orientation.beta}</li>
+            <li>Gamma:    {orientation.gamma}</li>
+            <li>Absolute: {orientation.absolute ? 'yes' : 'no'}</li>
+          </ul>
+        </div> */}
+      </div>
+
+      <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full innerHeight bg-contain bg-no-repeat bg-center opacity-0 scale-90 pointer-events-none" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
     </section>
   )
 }
