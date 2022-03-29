@@ -22,8 +22,8 @@ import {
 const Scene1Left = dynamic(() => import('@components/canvas/sub-scenes/1_Left'), { ssr: false })
 const Scene1Right = dynamic(() => import('@components/canvas/sub-scenes/1_Right'), { ssr: false })
 
-const slogan_top = '/kv/kv1_layer_3_2.svg'
-const slogan_bottom = '/kv/kv2_layer_3_2.svg'
+const slogan_top = '/kv/slogan_top_fit.svg'
+const slogan_bottom = '/kv/slogan_bottom_fit.svg'
 const logo_jut35_white = '/logo_jut35_white.svg'
 
 const Hero = props => {
@@ -229,11 +229,11 @@ const Hero = props => {
   return (
     <section className="hero relative w-screen h-screen">
 
-      <div className="kvLeft relative w-screen h-screen bg-kv-1 overflow-hidden scale-x-105 origin-top-left will-change-transform">
+      <div className="kvLeft relative w-screen h-screen bg-kv-1 overflow-hidden origin-top-left will-change-transform">
         <div className="kvLeftInner w-full h-full block opacity-0 translate-y-12">
           <Scene1Left />
         </div>
-        <div className="sloganTop absolute top-0 left-0 z-10 w-full h-screen bg-contain bg-repeat-x -bg-no-repeat bg-left-top scale-x-95 origin-top-left pointer-events-none opacity-0 -translate-y-12" style={{backgroundImage: `url(${slogan_top})`}}></div>
+        <div className="sloganTop absolute top-0 left-0 z-10 w-full h-screen bg-contain bg-repeat-x -bg-no-repeat bg-left-top origin-top-left pointer-events-none opacity-0 -translate-y-12" style={{backgroundImage: `url(${slogan_top})`}}></div>
       </div>
 
       <div

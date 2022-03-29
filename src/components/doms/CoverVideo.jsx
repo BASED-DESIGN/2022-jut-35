@@ -47,7 +47,10 @@ const CoverVideo = props => {
       setLoadState(true);
     });
     
-    document.querySelector('.logoIcon').style.transform = "translate(" + document.querySelector('.logoText').offsetWidth * .5 + 'px' + ", 0px)";
+    const logoIconWrap = document.querySelector('.logoIconWrap'),
+          logoIcon = logoIconWrap.querySelector('.logoIcon');
+          
+    logoIcon.style.transform = "translate(" + (logoIconWrap.offsetWidth - logoIcon.offsetWidth) * .5 + 'px' + ", 0px)";
 
     gsap.to('.coverLogo', 1, {
       opacity: 1,
@@ -201,8 +204,8 @@ const CoverVideo = props => {
           </div>
           
           <div className={`absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center ${videoState != 'ready' ? 'opacity-0 pointer-events-none':''}`}>
-            <div className="flex items-center mt-16 mb-4 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-125 xl:scale-150">
-              <div className="logoIcon fadeLoop w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
+            <div className="logoIconWrap flex items-center mt-16 mb-4 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-125 xl:scale-150">
+              <div className="logoIcon inline-flex fadeLoop w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
               <div className="logoText pl-4 text-white text-5xl inline-flex opacity-0">
                 <div className="font-extrabold tracking-wide">忠泰</div>
                 <div className="countNumber ml-1 tracking-tight" style={{transform: 'translateY(-5px)'}}>

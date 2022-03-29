@@ -287,7 +287,7 @@ const MainContent = props => {
           pin: true,
           scrub: true,
           start: "top top",
-          end: () => "+=" + window.innerHeight,
+          end: () => "+=" + window.innerHeight * 2,
           // markers: true,
         }
       });
@@ -368,7 +368,7 @@ const MainContent = props => {
                 </div>
                 <div className="relative z-10 mt-12 md:basis-1/2 md:mt-0">
                   <div className="article_normal">
-                    <p>忠泰集團的標誌以「⼈、樹、家」意象組成，藍綠兩⾊代表天空與陸地，象徵忠泰以建築營造事業立⾜天地之間。集團成立初期，懷抱「忠於建築　泰然求新」的經營理念，至今⼀直秉持初衷屹立不搖。而忠泰的英⽂名字「JUT」，來自初創時訂立的三⼤核⼼價值：「Justice」（公正）、「Union」（團結）、「Technique」（技術）取其首個字母而得名，「JUT」字義上有尖銳、突出的意思，寓意忠泰永遠走在時代尖端，成為台灣建造產業的領航企業。</p>
+                    <p>忠泰集團的標誌以「⼈、樹、家」意象組成，藍綠兩⾊代表天空與陸地，象徵忠泰以建築營造事業立⾜天地之間。集團成立初期，懷抱「忠於建築　泰然求新」的經營理念，至今⼀直秉持初衷屹立不搖。而忠泰的英⽂名字「JUT」，來自初創時訂立的三⼤核⼼價值：「Justice」（公平）、「Union」（團結）、「Technique」（技術）取其首個字母而得名，「JUT」字義上有尖銳、突出的意思，寓意忠泰永遠走在時代尖端，成為台灣建造產業的領航企業。</p>
                   </div>
                 </div>
                 <div className="groupIconBg absolute z-0 top-0 left-0 w-full h-full opacity-5">
@@ -649,10 +649,10 @@ const MainContent = props => {
                     <h3>宜居城市</h3>
                     <p>我們重視建築與人、空間、環境之間的關係美學，以建造舒適、安全、宜居的社區以及城市為目標。</p>
                   </div>
-                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_3})`}}></div>
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_11})`}}></div>
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_17})`}}></div>
+                  <div className="listIcons mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_3})`}}></div>
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_11})`}}></div>
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_17})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-200 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
@@ -663,9 +663,9 @@ const MainContent = props => {
                     <h3>環境永續</h3>
                     <p>我們密切關注全球碳排放以及氣候變化議題，並以開源、節能和綠化來付諸行動。</p>
                   </div>
-                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_6})`}}></div>
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_13})`}}></div>
+                  <div className="listIcons mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_6})`}}></div>
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_13})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-300 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
@@ -676,10 +676,10 @@ const MainContent = props => {
                     <h3>多元生活</h3>
                     <p>由商住營造、生活零售、運動產業以至文化藝術，我們不斷探索產業創新的可能性，致力提供優質生活的選擇。</p>
                   </div>
-                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_3})`}}></div>
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_9})`}}></div>
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_11})`}}></div>
+                  <div className="listIcons mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_3})`}}></div>
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_9})`}}></div>
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_11})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
@@ -690,8 +690,8 @@ const MainContent = props => {
                     <h3>管理績效</h3>
                     <p>作為廣受大眾市民以及投資者認同與信任的企業，我們致力提升永績治理效能，為企業創造價值。</p>
                   </div>
-                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_16})`}}></div>
+                  <div className="listIcons mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_16})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
@@ -702,10 +702,10 @@ const MainContent = props => {
                     <h3>職場培力</h3>
                     <p>我們重視人力資源與培訓，努力創造關愛友善的工作環境，並提供多元的事業發展機會，讓同仁發揮潛能。</p>
                   </div>
-                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_5})`}}></div>
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_8})`}}></div>
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_10})`}}></div>
+                  <div className="listIcons mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_5})`}}></div>
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_8})`}}></div>
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_10})`}}></div>
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
@@ -716,9 +716,9 @@ const MainContent = props => {
                     <h3>文化藝術</h3>
                     <p>我們以文化、藝術與設計融合建築，提供大眾與之對話、思考與互動的機會，藉此推動美學教育普及。</p>
                   </div>
-                  <div className="sdgsList mt-6 flex flex-wrap space-x-3 xl:space-x-4">
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_4})`}}></div>
-                    <div className="listItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_11})`}}></div>
+                  <div className="listIcons mt-6 flex flex-wrap space-x-3 xl:space-x-4">
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_4})`}}></div>
+                    <div className="iconItem w-10 h-10 xl:w-14 xl:h-14 bg-no-repeat bg-contain bg-center border-2 border-white/40 border-solid" style={{backgroundImage: `url(${sdgs_11})`}}></div>
                   </div>
                 </div>
               </div>
