@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { animated, useTransition, config } from 'react-spring'
+import { animated, useTransition, config } from '@react-spring/three'
 
 export default function Loading() {
   const [loading, setLoading] = useState(true)

@@ -61,16 +61,7 @@ const IndexPage = forwardRef((props, ref) => {
       <nav className="nav"></nav>
 
       <CoverVideo />
-
-      {/* <div className="loadCover fixed top-0 left-0 right-0 bottom-0 z-100 w-screen h-screen pointer-events-none">
-        <div className="mainLogo absolute top-0 left-0 right-0 bottom-0 z-30 mx-auto w-4/5 md:w-1/2 h-full bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_white})`}}></div>
-        <div className="bg absolute top-0 left-0 right-0 bottom-0 z-20 w-full h-full bg-kv-1"></div>
-      </div> */}
-
       <Hero />
-      
-      {/* <BackgroundMans /> */}
-
       <MainContent />
     </div>
   )

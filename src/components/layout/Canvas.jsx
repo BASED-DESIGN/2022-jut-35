@@ -26,6 +26,7 @@ const LCanvas = ({
     >    
       <Canvas
         // frameloop="demand"
+        // frameloop="demand"
         mode='concurrent'
         // gl={{ preserveDrawingBuffer: true }}
       >
