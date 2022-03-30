@@ -31,7 +31,7 @@ const Content = () => {
         />
         <Man
           url='/gltf/kv1-man3.gltf'
-          position={[width < 600 ? 0 : -width * .15, -height*.5, -100]} 
+          position={[width < 600 ? 0 : -width * .15, -height * .5, -100]} 
           rotation={[-.1, -0.8, 0.1]}
           scale={width < 600 ? 1.8 : 1}
           // animMoveY={false}

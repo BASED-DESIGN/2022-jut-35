@@ -35,22 +35,24 @@ const CoverVideo = props => {
   const [loadState, setLoadState] = useState(false)
   const [coverLogoValue, setCoverLogoValue] = useState(0)
   const [yearValue, setYearValue] = useState(0)
-  const [videoState, setVideoState] = useState('ready')
+  const [videoState, setVideoState] = useState('ends')
   const progessRef = useRef()
 
   useEffect(() => {
+    
+    const logoIconWrap = document.querySelector('.logoIconWrap'),
+          logoIcon = logoIconWrap.querySelector('.logoIcon');
 
-    setCoverLogoValue(20);
+    setTimeout(()=>{
+      logoIcon.style.transform = "translate(" + (logoIconWrap.offsetWidth - logoIcon.offsetWidth) * .5 + 'px' + ", 0px)";
+    }, 300)
+
+    setCoverLogoValue(10);
     setYearValue(1987);
 
     window.addEventListener('load', ()=>{
       setLoadState(true);
     });
-    
-    const logoIconWrap = document.querySelector('.logoIconWrap'),
-          logoIcon = logoIconWrap.querySelector('.logoIcon');
-          
-    logoIcon.style.transform = "translate(" + (logoIconWrap.offsetWidth - logoIcon.offsetWidth) * .5 + 'px' + ", 0px)";
 
     gsap.to('.coverLogo', 1, {
       opacity: 1,
@@ -67,12 +69,14 @@ const CoverVideo = props => {
       //   }
       // });
 
+      document.querySelector('.logoIcon').classList.remove('fadeLoop');
+
       gsap.to('.logoIcon', 1, {
         x: '0px',
         ease: Expo.easeInOut,
+        // delay: .2,
         // className: '-=fadeLoop',
         onStart: () => {
-          document.querySelector('.logoIcon').classList.remove('fadeLoop');
           setCoverLogoValue(35);
           setYearValue(2022);  
         }
@@ -81,13 +85,13 @@ const CoverVideo = props => {
       gsap.to('.logoText', 1, {
         opacity: 1,
         ease: Expo.easeInOut,
-        delay: 1
+        delay: .1
       });
       gsap.to('.coverStartButton', 1, {
         opacity: 1,
         scale: 1,
         ease: Expo.easeInOut,
-        delay: .5,
+        delay: .2,
         onComplete: () => {
         }
       });
@@ -200,7 +204,7 @@ const CoverVideo = props => {
         
         <div className="coverLogo opacity-0">
           <div className="absolute top-2 left-0 w-full text-center text-white text-base font-inner font-semibold tracking-wider pointer-events-none">
-            <Odometer value={yearValue} duration={8000} format="d" theme="default" />
+            <Odometer value={yearValue} duration={32000} format="d" theme="default" />
           </div>
           
           <div className={`absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center ${videoState != 'ready' ? 'opacity-0 pointer-events-none':''}`}>
@@ -209,7 +213,7 @@ const CoverVideo = props => {
               <div className="logoText pl-4 text-white text-5xl inline-flex opacity-0">
                 <div className="font-extrabold tracking-wide">忠泰</div>
                 <div className="countNumber ml-1 tracking-tight" style={{transform: 'translateY(-5px)'}}>
-                  <Odometer value={coverLogoValue} duration={8000} format="d" theme="default" />
+                  <Odometer value={coverLogoValue} duration={32000} format="d" theme="default" />
                 </div>
                 {/* <div className="countNumber ml-1 font-medium font-inner" data-start="1" data-end="35" data-speed="2">1</div> */}
               </div>

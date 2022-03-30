@@ -389,7 +389,7 @@ const MainContent = props => {
                   </div>
                 </div>
                 <div className="mainIconBg absolute z-0 top-0 left-0 w-full h-full opacity-5">
-                  <img src={`${logo_jut35_icon_black}`} className="mr-auto -ml-12 mt-20 w-4/5 md:w-2/5 md:-ml-24 md:mt-20 xl:w-2/5 max-w-none" />
+                  <img src={`${logo_jut35_icon_black}`} className="mr-auto -ml-12 mt-20 w-4/5 md:w-2/5 md:-ml-24 md:mt-8 xl:w-2/5 max-w-none" />
                 </div>
               </div>
 
@@ -398,13 +398,13 @@ const MainContent = props => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-10">
-        <div className="absolute w-screen left-0" style={{ height: '30vw', bottom: '18vw' }}>
+      <div className="sectionBreak relative z-10 mix-blend-darken">
+        <div className="absolute w-screen left-0 bg-kv-2" style={{ height: '30vh' }}>
           <Break1 />
         </div>
        
-        <div className="bg-kv-2">
-          <div className="scale-125 origin-center -rotate-6 translate-y-16">
+        <div className="bg-kv-2" style={{ transform: 'translate(0px, -5vh)' }}>
+          <div className="scale-125 origin-center -rotate-6 translate-y-16 ">
             {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
             <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
             <div className="lower relative z-20 w-screen h-48 md:h-72 bg-kv-3"></div>
@@ -595,8 +595,8 @@ const MainContent = props => {
 
       </section>
 
-      <div className="sectionBreak relative z-10">
-        <div className="absolute w-screen left-0" style={{ height: '30vw', bottom: '16vw' }}>
+      <div className="sectionBreak relative z-10 mix-blend-darken">
+        <div className="absolute w-screen left-0" style={{ height: '30vh', bottom: '16vh' }}>
           <Break2 />
         </div>
 
@@ -728,8 +728,8 @@ const MainContent = props => {
         </div>            
       </section>
 
-      <div className="sectionBreak relative z-10" style={{ transform: 'translate3d(0, 0, -1px)' }}>
-        <div className="absolute w-screen left-0" style={{ height: '30vw', bottom: '15vw' }}>
+      <div className="sectionBreak relative z-10 mix-blend-darken" style={{ transform: 'translate3d(0, 0, -1px)' }}>
+        <div className="absolute w-screen left-0" style={{ height: '30vh', bottom: '15vh' }}>
           <Break3 />
         </div>
 
@@ -827,7 +827,7 @@ const MainContent = props => {
         </div>
       </section>
 
-      <div className="sectionBreak relative z-20">
+      <div className="sectionBreak relative z-20 mix-blend-darken">
         <div className="bg-kv-2">
           <div className="scale-125 origin-center -rotate-6 translate-y-12">
             <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
@@ -845,7 +845,7 @@ const MainContent = props => {
               <div className="ml-4 text-white">
                 {/* <div className="font-extrabold tracking-wide">忠泰</div> */}
                 <div className="ml-1 font-bold font-inner tracking-wider">
-                  <div className="text-sm">我們在城市</div>
+                  <div className="text-sm" style={{paddingLeft: "2px"}}>我們在城市</div>
                   <div className="text-3xl">三五成群</div>
                   <div className="text-3xl">破浪前行</div>
                 </div>
