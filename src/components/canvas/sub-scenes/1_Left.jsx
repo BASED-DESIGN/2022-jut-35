@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, Suspense } from 'react'
 import { useThree } from '@react-three/fiber'
 import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
-import { useSpring, config, a, useChain } from '@react-spring/three'
+import { useSpring, config, a } from '@react-spring/three'
 import { useGesture } from '@use-gesture/react'
 
 import Canvas from '@components/layout/Canvas'
@@ -9,7 +9,8 @@ import Camera from '@components/layout/Camera'
 import Plane from '@components/canvas/objects/Item2D'
 import Man from '@components/canvas/objects/Man'
 
-const Content = () => {
+const Content = props => {
+  const { active } = props
   const { width, height } = useThree(state => state.size)
   const gl = useThree(state => state.gl)
   const planeFrontRef = useRef(null)
@@ -34,12 +35,15 @@ const Content = () => {
   { target: gl.domElement })
 
   useEffect(() => {
-    setMansOffsetY(
-      (planeFrontRef.current && (planeFrontRef.current.children[0].children[0].geometry.parameters.height > height)) ? 
-      (height - planeFrontRef.current.children[0].children[0].geometry.parameters.height)/2 : 
-      0
-    )
-  }, [width, height])
+    if(planeFrontRef.current) {
+      const planeHeight = planeFrontRef.current.getPlaneSize().height
+      setMansOffsetY(
+        (planeHeight > height) ? 
+        (height - planeHeight)/2 : 
+        0
+      )
+    }
+  }, [planeFrontRef.current, width, height])
 
   return (
     <>
@@ -51,7 +55,7 @@ const Content = () => {
             url="/kv/kv1_layer_1s.png"
             position={[0, 0, -600]}
             delay={600}
-            // enterConfig={{ delay: 300 }}
+            active={active}
           />
         </a.group>
         <a.group {...planeBackSpring}>
@@ -59,7 +63,7 @@ const Content = () => {
             ref={planeBackRef}
             url="/kv/kv1_layer_2s.png"
             position={[0, 0, -500]}
-            // enterConfig={{ duration: 600 }}
+            active={active}
           />
         </a.group>
         
@@ -71,6 +75,7 @@ const Content = () => {
           {/* 上左 */}
           <Man
             url='/gltf/kv1-man1.gltf'
+            active={active}
             position={[-width * .38, -height/2 + width * .25, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
@@ -78,6 +83,7 @@ const Content = () => {
           {/* 上中 */}
           <Man
             url='/gltf/kv1-man2.gltf'
+            active={active}
             position={[-width * .3, -height/2 + width * .228, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
@@ -85,6 +91,7 @@ const Content = () => {
           {/* 上右 */}
           <Man
             url='/gltf/kv1-man3.gltf'
+            active={active}
             position={[-width * .15, -height/2 + width * .17, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
@@ -92,6 +99,7 @@ const Content = () => {
           {/* 下 */}
           <Man
             url='/gltf/kv1-manx2.gltf'
+            active={active}
             position={[-width * .32, -height/2 + width * .12, -100]} 
             rotation={[-.15, -0.7, 0]} 
             scale={0.9}
@@ -122,12 +130,14 @@ const ResponsiveCamera = props => {
   )
 }
 
-export default function Scene(props) {
+export default function Scene() {
   return (   
     <Canvas name="left" wrapperClassName="absolute top-0 left-0 w-full h-full z-10">
-      <ResponsiveCamera>
-        <Content />
-      </ResponsiveCamera>
+      {(props) => 
+        <ResponsiveCamera>
+          <Content {...props} />
+        </ResponsiveCamera>
+      }
     </Canvas>
   )
 }

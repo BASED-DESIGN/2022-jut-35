@@ -5,9 +5,9 @@ import Canvas from '@components/layout/Canvas'
 import Camera from '@components/layout/Camera'
 import Man from '@components/canvas/objects/AnimeMan'
 
-const Content = () => {
+const Content = props => {
+  const { active } = props
   const { width, height } = useThree(state => state.size)
-  const gl = useThree(state => state.gl)
 
   return (
     <>
@@ -15,6 +15,7 @@ const Content = () => {
 
         <Man
           url='/gltf-anime-2/man-animation.gltf'
+          active={active}
           // position={[width < 600 ? width * .31 : width * .38, height*.08, -100]} 
           position={[0, -height*.3, -100]}
           rotation={[-0.6, 0.5, 0]}
@@ -46,9 +47,11 @@ const ResponsiveCamera = props => {
 export default function Scene(props) {
   return (   
     <Canvas name="right" wrapperClassName="absolute top-0 left-0 w-full h-full z-10">
-      <ResponsiveCamera>
-        <Content />
-      </ResponsiveCamera>
+      {(props) => 
+        <ResponsiveCamera>
+          <Content {...props} />
+        </ResponsiveCamera>
+      }
     </Canvas>
   )
 }
