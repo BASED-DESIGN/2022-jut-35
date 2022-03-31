@@ -45,14 +45,29 @@ const CoverVideo = props => {
 
     setTimeout(()=>{
       logoIcon.style.transform = "translate(" + (logoIconWrap.offsetWidth - logoIcon.offsetWidth) * .5 + 'px' + ", 0px)";
-    }, 300)
+    }, 300);
 
     setCoverLogoValue(10);
     setYearValue(1987);
 
-    window.addEventListener('load', ()=>{
-      setLoadState(true);
-    });
+    if (document.readyState === 'complete') {
+      setTimeout(() => {
+        setLoadState(true);
+      }, 2500);
+    } else {
+      window.addEventListener('load', ()=>{
+        setLoadState(true);
+      });
+    }
+
+    // if (typeof window !== `undefined`) {
+    //   window.addEventListener('load', ()=>{
+    //     setLoadState(true);
+    //   });
+    // }
+    // window.addEventListener('load', ()=>{
+    //   setLoadState(true);
+    // });
 
     gsap.to('.coverLogo', 1, {
       opacity: 1,
@@ -102,9 +117,14 @@ const CoverVideo = props => {
 
   useEffect(() => {
 
-    const innerHeight = document.querySelectorAll('.innerHeight');
-    innerHeight.forEach((element)=>{
-      element.style.height = window.innerHeight + 'px';
+    const innerHeight = () => {
+      document.querySelectorAll('.innerHeight').forEach((element)=>{
+        element.style.height = window.innerHeight + 'px';
+      });
+    }
+    innerHeight();
+    window.addEventListener('resize', ()=>{
+      innerHeight();
     });
 
     const coverStartButton = document.querySelector(".coverStartButton");
@@ -190,8 +210,11 @@ const CoverVideo = props => {
         opacity: 1,
         scale: 1,
         ease: Expo.easeOut,
-        delay: 1.5
+        delay: 1.5,
       });
+      // setTimeout(() => {
+      //   window.scrollTo(0, 200);
+      // }, 10000);
     }
   }, [videoState]);
 

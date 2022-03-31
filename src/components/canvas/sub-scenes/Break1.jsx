@@ -15,25 +15,37 @@ const Content = () => {
   
         <Man
           url='/gltf/kv2-man1.gltf'
-          position={[width < 600 ? -width*.38 : -width*.4, -height*.48, -100]} 
+          position={[
+            width < 767 ? -width * .2 : -width * .35,
+            width < 767 ? -height * .28 : -height * .35,
+            -100
+          ]} 
           rotation={[-.2, -0.2, 0]}
-          scale={width < 600 ? 1.8 : 1}
+          scale={width < 767 ? 2.3 : 1.15}
           // animMoveY={false}
           // lazyIn
         />
         <Man
           url='/gltf/kv2-man2.gltf'
-          position={[width < 600 ? -width * .2 : -width * .3, -height*.41, -100]} 
+          position={[
+            width < 767 ? -width * .4 : -width * .15,
+            -height * .26,
+            -100
+          ]} 
           rotation={[-.4, -0.6, 0.2]}
-          scale={width < 600 ? 2 : 1}
+          scale={width < 767 ? 0 : 1.15}
           // animMoveY={false}
           // lazyIn
         />
         <Man
-          url='/gltf/kv2-man2.gltf'
-          position={[width < 600 ? width * .31 : width * .38, -height * .05, -100]} 
-          rotation={[-.4, -0.5, 0.2]}
-          scale={width < 600 ? 2 : 1}
+          url='/gltf/kv1-man2.gltf'
+          position={[
+            width < 767 ? width * .31 : width * .38,
+            width < 767 ? -height * .15 : -height * 0.01,
+            -100
+          ]} 
+          rotation={[-.0, -0.4, 0.2]}
+          scale={width < 767 ? 2.5 : 1}
           // animMoveY={false}
           // lazyIn
         />
@@ -41,7 +53,7 @@ const Content = () => {
       </Suspense>
 
       <directionalLight position={[-width/2, -height/2, -150]} intensity={0.5} />
-      <ambientLight intensity={0.4} />
+      <ambientLight intensity={0.8} />
     </>
   )
 }

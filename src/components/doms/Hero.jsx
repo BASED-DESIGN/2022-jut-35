@@ -68,7 +68,7 @@ const Hero = props => {
       //   // ease: Linear.easeNone,
       //   ease: "none",
       //   scrollTrigger: {
-      //     trigger: '.wrap',
+      //     trigger: '.nextWrap',
       //     invalidateOnRefresh: true,
       //     scrub: true,
       //     start: "top top",
@@ -82,7 +82,7 @@ const Hero = props => {
       //   clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       //   ease: "none",
       //   scrollTrigger: {
-      //     trigger: '.wrap',
+      //     trigger: '.nextWrap',
       //     invalidateOnRefresh: true,
       //     scrub: true,
       //     start: "top top",
@@ -97,7 +97,7 @@ const Hero = props => {
       //   // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       //   ease: "none",
       //   scrollTrigger: {
-      //     trigger: '.wrap',
+      //     trigger: '.nextWrap',
       //     invalidateOnRefresh: true,
       //     scrub: true,
       //     start: "top top",
@@ -154,7 +154,7 @@ const Hero = props => {
         // ease: Linear.easeNone,
         ease: "none",
         scrollTrigger: {
-          trigger: '.wrap',
+          trigger: '.nextWrap',
           invalidateOnRefresh: true,
           scrub: true,
           start: "top top",
@@ -167,7 +167,7 @@ const Hero = props => {
         // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
         ease: "none",
         scrollTrigger: {
-          trigger: '.wrap',
+          trigger: '.nextWrap',
           invalidateOnRefresh: true,
           scrub: true,
           start: "top top",
@@ -180,7 +180,7 @@ const Hero = props => {
         // clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
         ease: "none",
         scrollTrigger: {
-          trigger: '.wrap',
+          trigger: '.nextWrap',
           invalidateOnRefresh: true,
           scrub: true,
           start: "top top",
@@ -192,7 +192,7 @@ const Hero = props => {
         opacity: 0,
         ease: "none",
         scrollTrigger: {
-          trigger: '.wrap',
+          trigger: '.nextWrap',
           invalidateOnRefresh: true,
           scrub: true,
           start: "top top",

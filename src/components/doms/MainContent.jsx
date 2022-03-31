@@ -354,7 +354,7 @@ const MainContent = props => {
   return (
     <>
       <section className="relative intro">
-        <div className="bg-kv-2 py-32">
+        <div className="bg-kv-2 pt-32 md:pb-24">
 
           <div className="container mx-auto">
             <div className="titleGruop fadeIn mb-32 text-gray-dark md:mb-48">
@@ -396,27 +396,28 @@ const MainContent = props => {
             </div>
           </div>
         </div>
+        <div className="bg-kv-2 w-full h-[50vh] absolute bottom-[-25vh] -z-10"></div>
       </section>
 
-      <div className="sectionBreak relative z-10 mix-blend-darken">
-        <div className="absolute w-screen left-0 bg-kv-2" style={{ height: '30vh' }}>
+      <div className="sectionBreak relative z-20 --mix-blend-darken">
+        <div className="absolute w-screen left-0 h-[35vh] md:h-[40vh] xl:h-[45vh]">
           <Break1 />
         </div>
        
-        <div className="bg-kv-2" style={{ transform: 'translate(0px, -5vh)' }}>
-          <div className="scale-125 origin-center -rotate-6 translate-y-16 ">
+        <div className="bg-kv-2" style={{ transform: 'translate(0px, 14vh)' }}>
+          <div className="scale-125 origin-center -rotate-6 translate-y-12 xl:translate-y-16">
             {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
-            <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
-            <div className="lower relative z-20 w-screen h-48 md:h-72 bg-kv-3"></div>
+            <div className="midde relative z-10 w-screen h-32 md:h-[14vh] -rotate-6 md:-rotate-[4deg] translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-[24vh] bg-kv-3 md:translate-y-4"></div>
           </div>
         </div>
       </div>
 
-      <section className="newWay relative z-10">
-        <div className="bg-kv-3 py-32">
+      <section className="newWay relative z-30">
+        <div className="bg-kv-3 pt-64 pb-32" style={{clipPath: "polygon(0 1%, 100% 0%, 100% 100%, 0 100%)"}}>
 
           <div className="container mx-auto relative z-10">
-            <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:-mt-40 md:mb-48">
+            <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:mb-48">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">New Way</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">探索最新航向 擘畫發展藍圖</div>
             </div>

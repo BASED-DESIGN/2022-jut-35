@@ -57,7 +57,7 @@ const IndexPage = forwardRef((props, ref) => {
   }, [])
 
   return (
-    <div className="relative wrap w-screen overflow-x-hidden" ref={ref}>
+    <div className="relative nextWrap w-screen overflow-x-hidden" ref={ref}>
       <nav className="nav"></nav>
 
       <CoverVideo />
