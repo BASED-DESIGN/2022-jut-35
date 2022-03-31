@@ -2,7 +2,7 @@ import { forwardRef, useRef, useState, useEffect } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import PresentationControls from '@components/canvas/objects/PresentationControls'
-import { useTransition, a } from '@react-spring/three'
+import { useTransition, a, config, easings } from '@react-spring/three'
 import { MathUtils } from 'three'
 
 const Man = forwardRef((props, ref) => {
@@ -14,17 +14,28 @@ const Man = forwardRef((props, ref) => {
     lazyIn=false,
     animMoveY,
     animMoveX,
+    delay=0,
     hover=true,
     active=false
   } = props
   const { nodes } = useGLTF(url)
   const { width, height } = useThree(state => state.size)
+  const [start, setStart] = useState(false)
 
-  const transition = useTransition(active && Object.keys(nodes).filter(key => key!=='Scene'), {
+  useEffect(() => {
+    if(active) setTimeout(() => setStart(true), delay)
+  }, [active])
+
+  const transition = useTransition(start && Object.keys(nodes).filter(key => key!=='Scene'), {
     from: { scale: [0, 0, 0], rotation: [0, 1, 0], position: [0, -30, 0] },
     enter: ({ r=.5 }) => ({ scale: [1, 1, 1], rotation: [0, 0, 0], position: [0, 0, 0] }),
     leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
-    config: { mass: 3, tension: 1000, friction: 100, duration: 300 },
+    // config: { mass: 3, tension: 1000, friction: 100, duration: 300 },
+    config: { 
+      ...config.gentle, 
+      duration: 500, 
+      easing: easings.easeInOutExpo
+    }
   })
 
   // useEffect(() => {

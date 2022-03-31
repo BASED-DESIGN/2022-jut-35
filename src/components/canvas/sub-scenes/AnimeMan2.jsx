@@ -23,7 +23,8 @@ const Content = props => {
           url="/gltf-anime-2/man-animation.gltf"
           active={active}
           position={[0, -height*.3, -100]}
-          rotation={[0, -0.4, 0]}
+          // position={[0, -height*.21, -100]}
+          rotation={[0, -0.3, 0]}
           // rotation={[-0.6, -0.5, 0]}
           // scale={width < 600 ? 2 : 1}
           // scale={window.innerWidth < 600 ? 2 : .7}

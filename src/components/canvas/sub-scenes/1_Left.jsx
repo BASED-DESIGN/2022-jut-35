@@ -63,6 +63,7 @@ const Content = props => {
             ref={planeBackRef}
             url="/kv/kv1_layer_2s.png"
             position={[0, 0, -500]}
+            delay={950}
             active={active}
           />
         </a.group>
@@ -76,6 +77,7 @@ const Content = props => {
           <Man
             url='/gltf/kv1-man1.gltf'
             active={active}
+            delay={2300}
             position={[-width * .38, -height/2 + width * .25, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
@@ -84,6 +86,7 @@ const Content = props => {
           <Man
             url='/gltf/kv1-man2.gltf'
             active={active}
+            delay={2150}
             position={[-width * .3, -height/2 + width * .228, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
@@ -92,6 +95,7 @@ const Content = props => {
           <Man
             url='/gltf/kv1-man3.gltf'
             active={active}
+            delay={2000}
             position={[-width * .15, -height/2 + width * .17, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
@@ -100,6 +104,7 @@ const Content = props => {
           <Man
             url='/gltf/kv1-manx2.gltf'
             active={active}
+            delay={1750}
             position={[-width * .32, -height/2 + width * .12, -100]} 
             rotation={[-.15, -0.7, 0]} 
             scale={0.9}
