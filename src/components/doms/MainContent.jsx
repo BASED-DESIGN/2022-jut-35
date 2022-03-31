@@ -521,7 +521,7 @@ const MainContent = props => {
                   <AnimeMan4 />
                 </div>
 
-                <div className="itemPhoto overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                <div className="itemPhoto overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]" style={{ paddingBottom: '50%' }}>
                   <Slider 
                     auto={6000}
                     hasArrows
@@ -543,7 +543,7 @@ const MainContent = props => {
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">位處台北大直高端消費聚落，忠泰集團首座商場「NOKE忠泰樂生活」即將於2022年第三季開幕，糅合自然(Nature)、原創(Originality)、知識(Knowledge)、活力(Energy) 於一身的零售場域，配備國際賽事標準規格之「極光冰場 Aurora Ice Rink」，以及蔦屋書店強勢加盟，勢將為品味人士敞開風格之門。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">位處台北大直高端消費聚落，忠泰集團首座商場「NOKE忠泰樂生活」即將於2022年12月開幕，糅合自然(Nature)、原創(Originality)、知識(Knowledge)、活力(Energy) 於一身的零售場域，配備國際賽事標準規格之「極光冰場 Aurora Ice Rink」，以及蔦屋書店強勢加盟，勢將為品味人士敞開風格之門。</p>
                   </div>
                 </div>
               </div>
