@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import useStore from '@helpers/store'
 import Slider from "@farbenmeer/react-spring-slider"
 import dynamic from 'next/dynamic'
+import CreativePhotos from './CreativePhotos'
 
 import {
   gsap,
@@ -83,6 +84,7 @@ const AnimeMan5 = dynamic(() => import('@components/canvas/sub-scenes/AnimeMan5'
 
 const MainContent = props => {
   const videoEnded = useStore(state => state.videoEnded)
+  const creativeList = useStore(state => state.creativeList)
   const [windowWidth, setWindowWidth] = useState()
 
   useEffect(() => {  
@@ -290,45 +292,6 @@ const MainContent = props => {
           end: () => "+=" + window.innerHeight * 2,
           // markers: true,
         }
-      });
-
-      
-
-      // Creative Power
-      const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
-      const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
-      photoRowLeftLoopList.forEach(function(el) {
-        const rowLooping = new TimelineMax({ repeat: -1 });
-        rowLooping.staggerFromTo(
-          el,
-          24,
-          { xPercent: -100, ease: Linear.easeNone },
-          { xPercent: 0, ease: Linear.easeNone }
-        );
-        const Move = () => rowLooping.timeScale(1);
-        const Slow = () => rowLooping.timeScale(.3);
-        photoRowLeftLoop.addEventListener("mouseenter", Slow);
-        photoRowLeftLoop.addEventListener("mouseleave", Move);
-        photoRowLeftLoop.addEventListener("touchstart", Slow);
-        photoRowLeftLoop.addEventListener("touchend", Move);
-      });
-
-      const photoRowRightLoop = document.querySelector(".photoRowRightLoop");
-      const photoRowRightLoopList = photoRowRightLoop.querySelectorAll(".photoRowList");
-      photoRowRightLoopList.forEach(function(el) {
-        const rowLooping = new TimelineMax({ repeat: -1 });
-        rowLooping.staggerFromTo(
-          el,
-          24,
-          { xPercent: 0, ease: Linear.easeNone },
-          { xPercent: -100, ease: Linear.easeNone }
-        );
-        const Move = () => rowLooping.timeScale(1);
-        const Slow = () => rowLooping.timeScale(.3);
-        photoRowRightLoop.addEventListener("mouseenter", Slow);
-        photoRowRightLoop.addEventListener("mouseleave", Move);
-        photoRowRightLoop.addEventListener("touchstart", Slow);
-        photoRowRightLoop.addEventListener("touchend", Move);
       });
     }
   }, [videoEnded])
@@ -742,11 +705,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="creative relative z-10" 
-      // style={{ transformStyle: 'preserve-3d' }}
-      >
-        {/* <div className="absolute left-0 top-0 right-0 bottom-0 bg-kv-2" style={{ transform: 'translate3d(0, 0, -1px)' }} /> */}
-
+      <section className="creative relative z-10">
         <div className="bg-kv-2 py-32">
           <div className="container mx-auto fadeIn">
             <div className="-mt-40 mb-12 md:-mt-64 md:mb-24 md:flex md:justify-between md:items-end">
@@ -759,71 +718,13 @@ const MainContent = props => {
               </div>
               <div className="md:basis-1/2 mt-8 article_normal">
                 {/* <p className="text-white text-lg"></p> */}
-                <p className="text-white">35歲，躊躇滿志的年紀，人生走到苦樂參半的道上，不論當時成就如何，歲月已經為生命憑添幾分重量了。在那個特定的時代背景下，偶然的命運或是因緣際會，就這樣不偏不倚地落在生命線上，讓他們35歲以後的生命航向，從此有了一點不一樣。</p>
-                <p className="text-white">我們邀請了35位來自建築、文化、藝術等不同背景的生活實踐者，在寶貴的記憶中回溯，搜出一件跟35歲那時候相關的物件，以一事與一物的個人史料、實物或非實物的紀錄作為分享，讓我們一睹這些彌足珍貴、足以促成社會變革的明日記憶。</p>
+                <p className="text-white">35 歲，躊躇滿志的年紀，人生走到苦樂參半的道上，不論當時成就如何，歲月已經為生命憑添幾分重量了。在那個特定的時代背景下，偶然的命運或是因緣際會，就這樣不偏不倚地落在生命線上，讓他們35歲以後的生命航向，從此有了一點不一樣。</p>
+                <p className="text-white">我們邀請了 35 位來自建築、文化、藝術等不同背景的生活實踐者，在寶貴的記憶中回溯，搜出一件跟 35 歲那時候相關的物件，以一事與一物的個人史料、實物或非實物的紀錄作為分享，讓我們一睹這些彌足珍貴、足以促成社會變革的明日記憶。</p>
               </div>
             </div>
           </div>
 
-          <div className="photoRowWrap fadeIn w-screen overflow-x-hidden space-y-8 md:space-y-10">
-            <div className="photoRowLeftLoop flex">
-              <div className="photoRowList flex whitespace-nowrap">
-                {a.map((k, i) => (
-                  <div key={`row-1-${i}`} className="listItem relative mr-8 md:mr-12">
-                    <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                      <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
-                    </div>
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
-                      <div className="name text-2xl font-medium tracking-wider">李彥良</div>
-                      <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="photoRowList flex whitespace-nowrap">
-                {a.map((k, i) => (
-                  <div key={`row-2-${i}`} className="listItem relative mr-8 md:mr-12">
-                    <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                      <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
-                    </div>
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
-                      <div className="name text-2xl font-medium tracking-wider">李彥良</div>
-                      <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="photoRowRightLoop flex">
-              <div className="photoRowList flex whitespace-nowrap">
-                {a.map((k, i) => (
-                  <div key={`row-3-${i}`} className="listItem relative mr-8 md:mr-12">
-                    <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                      <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
-                    </div>
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
-                      <div className="name text-2xl font-medium tracking-wider">李彥良</div>
-                      <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="photoRowList flex whitespace-nowrap">
-                {a.map((k, i) => (
-                  <div key={`row-4-${i}`} className="listItem relative mr-8 md:mr-12">
-                    <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-                      <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
-                    </div>
-                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
-                      <div className="name text-2xl font-medium tracking-wider">李彥良</div>
-                      <div className="title mt-2 text-sm font-medium tracking-wider">忠泰集團副董事長</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          {creativeList && <CreativePhotos data={creativeList} />}
 
         </div>
       </section>

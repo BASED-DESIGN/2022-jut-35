@@ -26,6 +26,7 @@ const useStore = create((set, get) => ({
   // // },
   // offsetY1: 0,
   // offsetY2: 0,
+  creativeList: null
 }))
 
 export default useStore

@@ -47,7 +47,7 @@ const Man = forwardRef((props, ref) => {
 
   useFrame((state, delta) => mixer.update(delta))
   useEffect(() => {
-    console.log(mixer)
+    // console.log(mixer)
     // mixer.clipAction(animations[0], group.current).play()
     const action = mixer.clipAction(animations[5], group.current)
     action.play()

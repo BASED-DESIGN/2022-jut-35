@@ -3,6 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import PresentationControls from '@components/canvas/objects/PresentationControls'
 import { useTransition, a } from '@react-spring/three'
+import { MathUtils } from 'three'
 
 const Man = forwardRef((props, ref) => {
   const {
@@ -17,7 +18,6 @@ const Man = forwardRef((props, ref) => {
   } = props
   const { nodes } = useGLTF(url)
   const { width, height } = useThree(state => state.size)
-  const gl = useThree(state => state.gl)
   const [active, setActive] = useState(!lazyIn)
 
   const transition = useTransition(active && Object.keys(nodes).filter(key => key!=='Scene'), {
@@ -61,7 +61,7 @@ const Man = forwardRef((props, ref) => {
             <mesh
               ref={ref}
               key={`man-${key}`}
-              scale={scale * window.innerWidth / 360}
+              scale={MathUtils.clamp(scale * window.innerWidth / 360, 0, 4)}
               geometry={nodes[key].geometry} 
               position={nodes[key].position} 
               material={nodes[key].material} 

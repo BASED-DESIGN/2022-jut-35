@@ -1,4 +1,4 @@
-import { useRef, Suspense } from 'react'
+import { useRef, useState, useEffect, Suspense } from 'react'
 import { useThree } from '@react-three/fiber'
 import LightMouseTracker from '@components/canvas/objects/LightMouseTracker'
 import { useSpring, config, a, useChain } from '@react-spring/three'
@@ -17,6 +17,7 @@ const Content = () => {
   const planeConfig = {
     ...config.gentle, duration: 1000
   }
+  const [mansOffsetY, setMansOffsetY] = useState(0)
 
   const [planeFrontSpring, planeFrontApi] = useSpring(() => ({ position: [0, 0, 0], config: planeConfig }))
   const [planeBackSpring, planeBackApi] = useSpring(() => ({ position: [0, 0, 0], config: planeConfig }))
@@ -31,6 +32,14 @@ const Content = () => {
     }
   },
   { target: gl.domElement })
+
+  useEffect(() => {
+    setMansOffsetY(
+      (planeFrontRef.current && (planeFrontRef.current.children[0].children[0].geometry.parameters.height > height)) ? 
+      (height - planeFrontRef.current.children[0].children[0].geometry.parameters.height)/2 : 
+      0
+    )
+  }, [width, height])
 
   return (
     <>
@@ -57,13 +66,7 @@ const Content = () => {
 
         {/* Mans */}
         <group 
-          position={[
-            0, 
-            (planeFrontRef.current 
-            && (planeFrontRef.current.children[0].children[0].geometry.parameters.height > height)) ? 
-            (height - planeFrontRef.current.children[0].children[0].geometry.parameters.height)/2 : 0,
-            0
-          ]}
+          position={[0, mansOffsetY, 0]}
         >
           {/* 上左 */}
           <Man
