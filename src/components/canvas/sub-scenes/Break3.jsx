@@ -8,12 +8,11 @@ import Man from '@components/canvas/objects/Man'
 const Content = props => {
   const { active } = props
   const { width, height } = useThree(state => state.size)
-  const breakpoint_mb = 600
+  const breakpoint_mb = 640
 
   return (
     <>
       <Suspense fallback={`loading assets`}>
-
         <Man
           url='/gltf/kv2-man1.gltf'
           active={active}

@@ -8,7 +8,7 @@ import Man from '@components/canvas/objects/Man'
 const Content = props => {
   const { active } = props
   const { width, height } = useThree(state => state.size)
-  const breakpoint_mb = 767
+  const breakpoint_mb = 640
 
   return (
     <>

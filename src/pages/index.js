@@ -15,6 +15,10 @@ const Home = ({ creativeList=[] }) => {
 
   useEffect(() => {
     useStore.setState({ creativeList })
+
+    // setTimeout(() => {
+    //   document.scrollingElement.scrollTop = 0
+    // }, 300)
   }, [])
   
   useEffect(() => {
