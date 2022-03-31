@@ -521,7 +521,7 @@ const MainContent = props => {
                   <AnimeMan4 />
                 </div>
 
-                <div className="itemPhoto overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]" style={{ paddingBottom: '50%' }}>
+                <div className="itemPhoto overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <Slider 
                     auto={6000}
                     hasArrows
