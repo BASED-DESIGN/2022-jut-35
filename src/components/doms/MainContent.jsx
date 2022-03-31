@@ -620,7 +620,7 @@ const MainContent = props => {
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
             </div>
             <div className="video fadeIn aspect-video bg-black/50 -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
-              {/* <iframe className="w-full h-full" src="https://www.youtube.com/embed/8BbBGLUzjaA" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> */}
+              <iframe className="w-full h-full" src="https://www.youtube.com/embed/pm2nDjCLak8" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
             <div className="itemTitle fadeIn mt-8 md:flex">
               <div className="title md:basis-1/2">
