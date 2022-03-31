@@ -424,7 +424,7 @@ const MainContent = props => {
             <div className="newWayList space-y-40 md:space-y-60">
 
               <div className="listItem relative fadeIn ml-8 md:ml-48">
-                <div className="absolute" style={{ right: '13vw', top: 'calc(-30vw + 5.5vw)', width: '30vw', height: '30vw' }}>
+                <div className="absolute" style={{ right: '10vw', top: 'calc(-30vw + 5.5vw)', width: '30vw', height: '30vw' }}>
                   <AnimeMan1 />
                 </div>
 

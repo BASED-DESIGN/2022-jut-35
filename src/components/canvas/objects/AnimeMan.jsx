@@ -4,6 +4,7 @@ import { useGLTF } from '@react-three/drei'
 import PresentationControls from '@components/canvas/objects/PresentationControls'
 import { useTransition, a } from '@react-spring/three'
 import * as THREE from 'three'
+import { MathUtils } from 'three'
 
 const Man = forwardRef((props, ref) => {
   const {
@@ -94,7 +95,8 @@ const Man = forwardRef((props, ref) => {
               object={scene}
               ref={ref}
               // scale={scale * window.innerWidth / 360}
-              scale={(window.innerWidth < 640 ? 2 : 1.05) * window.innerWidth / 360}
+              // scale={(window.innerWidth < 640 ? 2 : 1.05) * window.innerWidth / 360}
+              scale={MathUtils.clamp((window.innerWidth < 640 ? 2 : 1.05) * window.innerWidth / 360, 0, 6)}
               geometry={nodes[key].geometry} 
               position={nodes[key].position} 
               material={nodes[key].material} 
