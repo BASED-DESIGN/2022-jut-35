@@ -164,7 +164,7 @@ const CoverVideo = props => {
             var currentPercentage = Math.floor((currentTime / duration) * 100);
             // console.log(currentPercentage);
             
-            progessRef && progessRef.current.setVideoCurrentState(currentPercentage + "%");
+            progessRef.current && progessRef.current.setVideoCurrentState(currentPercentage + "%");
 
             if (parseInt(duration) - parseInt(currentTime) == 0) {
               clearInterval(interval);
