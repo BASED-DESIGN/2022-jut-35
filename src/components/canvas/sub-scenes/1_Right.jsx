@@ -1,4 +1,4 @@
-import { useRef, Suspense } from 'react'
+import { useRef, Suspense, useState, useEffect } from 'react'
 import { useThree } from '@react-three/fiber'
 import { useSpring, config, a } from '@react-spring/three'
 import { useGesture } from '@use-gesture/react'
@@ -13,10 +13,10 @@ const Content = () => {
   const gl = useThree(state => state.gl)
   const planeFrontRef = useRef(null)
   const planeBackRef = useRef(null)
-
   const planeConfig = {
     ...config, duration: 1000
   }
+  const [mansOffsetY, setMansOffsetY] = useState(0)
 
   const [planeFrontSpring, planeFrontApi] = useSpring(() => ({ position: [0, 0, 0], config: planeConfig }))
   const [planeBackSpring, planeBackApi] = useSpring(() => ({ position: [0, 0, 0], config: planeConfig }))
@@ -28,6 +28,15 @@ const Content = () => {
     }
   },
   { target: gl.domElement })
+
+  useEffect(() => {
+    console.log('first?')
+    setMansOffsetY(
+      (planeFrontRef.current && (planeFrontRef.current.children[0].children[0].geometry.parameters.height > height)) ? 
+      (height - planeFrontRef.current.children[0].children[0].geometry.parameters.height)/2 : 
+      0
+    )
+  }, [width, height])
 
   return (
     <>
@@ -51,13 +60,7 @@ const Content = () => {
 
         {/* Mans */}
         <group 
-          position={[
-            0, 
-            (planeFrontRef.current 
-              && (planeFrontRef.current.children[0].children[0].geometry.parameters.height > height)) ? 
-              (height - planeFrontRef.current.children[0].children[0].geometry.parameters.height)/2 : 0,
-            0
-          ]}
+          position={[0, mansOffsetY, 0]}
         >
           {/* 下左 */}
           <Man
