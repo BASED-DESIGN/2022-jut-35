@@ -43,7 +43,7 @@ const Content = props => {
             width < breakpoint_mb ? -height * .15 : -height * 0.01,
             -100
           ]} 
-          rotation={[-.0, -0.4, 0.2]}
+          rotation={[-.0, -0.4, 0.1]}
           scale={width < breakpoint_mb ? 2.5 : 1.15}
         />
 
