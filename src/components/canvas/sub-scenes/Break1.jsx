@@ -5,49 +5,46 @@ import Canvas from '@components/layout/Canvas'
 import Camera from '@components/layout/Camera'
 import Man from '@components/canvas/objects/Man'
 
-const Content = () => {
+const Content = props => {
+  const { active } = props
   const { width, height } = useThree(state => state.size)
-  const gl = useThree(state => state.gl)
+  const breakpoint_mb = 767
 
   return (
     <>
       <Suspense fallback={`loading assets`}>
-  
         <Man
           url='/gltf/kv2-man1.gltf'
+          active={active}
           position={[
-            width < 767 ? -width * .2 : -width * .35,
-            width < 767 ? -height * .28 : -height * .35,
+            width < breakpoint_mb ? -width * .2 : -width * .35,
+            width < breakpoint_mb ? -height * .28 : -height * .35,
             -100
           ]} 
           rotation={[-.2, -0.2, 0]}
-          scale={width < 767 ? 2.3 : 1.25}
-          // animMoveY={false}
-          // lazyIn
+          scale={width < breakpoint_mb ? 2.3 : 1.25}
         />
         <Man
           url='/gltf/kv2-man2.gltf'
+          active={active}
           position={[
-            width < 767 ? -width * .4 : -width * .15,
+            width < breakpoint_mb ? -width * .4 : -width * .15,
             -height * .26,
             -100
           ]} 
           rotation={[-.4, -0.6, 0.2]}
-          scale={width < 767 ? 0 : 1.25}
-          // animMoveY={false}
-          // lazyIn
+          scale={width < breakpoint_mb ? 0 : 1.25}
         />
         <Man
           url='/gltf/kv1-man2.gltf'
+          active={active}
           position={[
-            width < 767 ? width * .31 : width * .38,
-            width < 767 ? -height * .15 : -height * 0.01,
+            width < breakpoint_mb ? width * .31 : width * .38,
+            width < breakpoint_mb ? -height * .15 : -height * 0.01,
             -100
           ]} 
           rotation={[-.0, -0.4, 0.2]}
-          scale={width < 767 ? 2.5 : 1.15}
-          // animMoveY={false}
-          // lazyIn
+          scale={width < breakpoint_mb ? 2.5 : 1.15}
         />
 
       </Suspense>
@@ -71,9 +68,11 @@ const ResponsiveCamera = props => {
 export default function Scene(props) {
   return (   
     <Canvas name="right" wrapperClassName="absolute top-0 left-0 w-full h-full z-10">
-      <ResponsiveCamera>
-        <Content />
-      </ResponsiveCamera>
+      {(props) => 
+        <ResponsiveCamera>
+          <Content {...props} />
+        </ResponsiveCamera>
+      }
     </Canvas>
   )
 }

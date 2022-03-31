@@ -2,13 +2,12 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { Preload } from '@react-three/drei'
 import { useInView } from 'react-intersection-observer'
 import useStore from '@helpers/store'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, cloneElement } from 'react'
 
 const LCanvas = ({ 
   children, 
   wrapperClassName,
   name,
-  customInView=true
 }) => {
   const { ref, inView } = useInView()
   const videoEnded = useStore(state => state.videoEnded)
@@ -16,8 +15,12 @@ const LCanvas = ({
   // console.log(name, 'frame active?', !(!videoEnded || !inView || !customInView), inView, customInView)
 
   useEffect(() => {
-    if(!rendered && inView) setRendered(true)
-  }, [inView])
+    if(!rendered && videoEnded && inView) setRendered(true)
+  }, [inView, videoEnded])
+
+  useEffect(() => {
+    // console.log(name, rendered)
+  }, [rendered])
 
   return (
     <div 
@@ -31,9 +34,10 @@ const LCanvas = ({
         // gl={{ preserveDrawingBuffer: true }}
       >
         <Preload all />
-        {(!videoEnded || !inView || !customInView) && <DisableRender />}
-        {rendered && children}
+        {(!videoEnded || !inView) && <DisableRender />}
+        {/* {cloneElement(children, { active: rendered })} */}
         {/* {children} */}
+        {children({ active: rendered })}
       </Canvas>
     </div>
   )

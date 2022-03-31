@@ -5,9 +5,10 @@ import Canvas from '@components/layout/Canvas'
 import Camera from '@components/layout/Camera'
 import Man from '@components/canvas/objects/Man'
 
-const Content = () => {
+const Content = props => {
+  const { active } = props
   const { width, height } = useThree(state => state.size)
-  const gl = useThree(state => state.gl)
+  const breakpoint_mb = 600
 
   return (
     <>
@@ -15,27 +16,24 @@ const Content = () => {
 
         <Man
           url='/gltf/kv2-man1.gltf'
-          position={[width < 600 ? -width * .25 : -width * .2, -height*.38, -100]} 
+          active={active}
+          position={[width < breakpoint_mb ? -width * .25 : -width * .2, -height*.38, -100]} 
           rotation={[-.3, -0.2, 0]} 
-          scale={width < 600 ? 2 : 1}
-          // animMoveY={false}
-          // lazyIn
+          scale={width < breakpoint_mb ? 2 : 1}
         />
         <Man
           url='/gltf/kv2-man2.gltf'
-          position={[width < 600 ? -width * 0.05 : -width * .1, -height*.33, -100]} 
+          active={active}
+          position={[width < breakpoint_mb ? -width * 0.05 : -width * .1, -height*.33, -100]} 
           rotation={[-.5, -0.5, 0]}
-          scale={width < 600 ? 2 : 1}
-          // animMoveY={false}
-          // lazyIn
+          scale={width < breakpoint_mb ? 2 : 1}
         />
         <Man
           url='/gltf/kv2-man2.gltf'
+          active={active}
           position={[width * .3, -height*.20, -100]} 
           rotation={[-.5, -0.5, 0]}
-          scale={width < 600 ? 2.4 : 1.2}
-          // animMoveY={false}
-          // lazyIn
+          scale={width < breakpoint_mb ? 2.4 : 1.2}
         />
       </Suspense>
 
@@ -58,9 +56,11 @@ const ResponsiveCamera = props => {
 export default function Scene(props) {
   return (   
     <Canvas name="right" wrapperClassName="absolute top-0 left-0 w-full h-full z-10">
-      <ResponsiveCamera>
-        <Content />
-      </ResponsiveCamera>
+      {(props) => 
+        <ResponsiveCamera>
+          <Content {...props} />
+        </ResponsiveCamera>
+      }
     </Canvas>
   )
 }

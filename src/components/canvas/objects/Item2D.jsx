@@ -1,4 +1,4 @@
-import { useRef, forwardRef, useEffect } from 'react'
+import { useRef, forwardRef, useImperativeHandle } from 'react'
 import { useThree, useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
 import { useTransition, a, config } from '@react-spring/three'
@@ -11,14 +11,15 @@ const Item2D = forwardRef((props, ref) => {
     position,
     rotation,
     enterConfig = {},
-    delay=0
+    delay=0,
+    active=false
   } = props
   const texture = useLoader(TextureLoader, url)
-  texture.encoding = THREE.sRGBEncoding;
+  texture.encoding = THREE.sRGBEncoding
   const { width, height } = useThree(state => state.size)
   const planeHeight = width * texture.image.height / texture.image.width
 
-  const transition = useTransition(texture, {
+  const transition = useTransition(active && texture, {
     from: { position: [0, -height/4, 0] },
     enter: { position: [0, 0, 0], delay },
     // leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
@@ -29,10 +30,19 @@ const Item2D = forwardRef((props, ref) => {
     // trail: 100
   })
 
+  useImperativeHandle(ref, () => ({
+    getPlaneSize() {
+      return ({
+        width,
+        height: planeHeight
+      })
+    }
+  }))
+
   return (
     <group 
       dispose={null}
-      ref={ref}
+      // ref={wrapperRef}
     >
       {transition((props, key) => {
         return key && (
