@@ -61,7 +61,7 @@ const Man = forwardRef((props, ref) => {
             <mesh
               ref={ref}
               key={`man-${key}`}
-              scale={MathUtils.clamp(scale * window.innerWidth / 360, 0, 4)}
+              scale={MathUtils.clamp(scale * window.innerWidth / 360, 0, 6)}
               geometry={nodes[key].geometry} 
               position={nodes[key].position} 
               material={nodes[key].material} 

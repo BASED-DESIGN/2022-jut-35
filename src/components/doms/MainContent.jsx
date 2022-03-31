@@ -359,27 +359,27 @@ const MainContent = props => {
             </div>
           </div>
         </div>
-        <div className="bg-kv-2 w-full h-[50vh] absolute bottom-[-25vh] -z-10"></div>
+        <div className="bg-kv-2 w-full h-[50vh] absolute bottom-[-49vh] -z-10"></div>
       </section>
 
-      <div className="sectionBreak relative z-20 --mix-blend-darken">
+      <div className="sectionBreak relative z-20">
         <div className="absolute w-screen left-0 h-[35vh] md:h-[40vh] xl:h-[45vh]">
           <Break1 />
         </div>
        
-        <div className="bg-kv-2" style={{ transform: 'translate(0px, 14vh)' }}>
-          <div className="scale-125 origin-center -rotate-6 translate-y-12 xl:translate-y-16">
+        <div className="" style={{ transform: 'translate(0px, 14vh)' }}>
+          <div className="scale-125 origin-center -rotate-6 translate-y-12 xl:translate-y-[7rem]">
             {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
-            <div className="midde relative z-10 w-screen h-32 md:h-[14vh] -rotate-6 md:-rotate-[4deg] translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
-            <div className="lower relative z-20 w-screen h-48 md:h-[24vh] bg-kv-3 md:translate-y-4"></div>
+            <div className="midde relative z-10 w-screen h-32 md:h-[14vh] -rotate-6 md:-rotate-[3.5deg] translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-[24vh] bg-kv-3 md:translate-y-4 xl:-translate-y-3"></div>
           </div>
         </div>
       </div>
 
-      <section className="newWay relative z-30">
-        <div className="bg-kv-3 pt-64 pb-32" style={{clipPath: "polygon(0 1%, 100% 0%, 100% 100%, 0 100%)"}}>
+      <section className="newWay relative top-4 z-20">
+        <div className="relative z-20 pt-64 pb-32 md:pb-40">
 
-          <div className="container mx-auto relative z-10">
+          <div className="container mx-auto relative z-40">
             <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:mb-48">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">New Way</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">探索最新航向 擘畫發展藍圖</div>
@@ -537,7 +537,7 @@ const MainContent = props => {
 
         </div>
 
-        <div className="sloganGroup fixed top-0 left-0 z-0 w-full w-full innerHeight opacity-0 pointer-events-none will-change-scroll">
+        <div className="sloganGroup fixed top-0 left-0 z-10 w-full w-full innerHeight opacity-0 pointer-events-none will-change-scroll">
 
           <div className="sloganTop absolute top-0 left-0 w-full h-full will-change-transform">
             <div className="sloganTopInner relative w-full h-full block opacity-0">
@@ -557,25 +557,28 @@ const MainContent = props => {
           {/* <div className="sloganBottom absolute bottom-0 left-0 w-full h-full bg-over-half md:bg-over-quarter bg-repeat-x bg-left-bottom will-change-auto opacity-0" style={{width: '300vw', backgroundImage: `url(${slogan_bottom_white})`}}></div> */}
         </div>
 
+        <div className="bg-kv-3 w-full h-full absolute top-0 left-0 z-0" style={{clipPath: "polygon(0 1.5%, 100% 0%, 100% 100%, 0 100%)"}}></div>
+
+        <div className="bg-kv-3 w-full h-[50vh] absolute bottom-[-49vh] -z-10"></div>
       </section>
 
-      <div className="sectionBreak relative z-10 mix-blend-darken">
-        <div className="absolute w-screen left-0" style={{ height: '30vh', bottom: '16vh' }}>
+      <div className="sectionBreak relative z-40">
+        <div className="absolute w-screen left-0 h-[35vh] md:h-[40vh] xl:h-[45vh]">
           <Break2 />
         </div>
 
-        <div className="bg-kv-3">
+        <div className="translate-y-[8vh] md:translate-y-[3vh] xl:translate-y-[6vh]">
           <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
-            <div className="midde relative z-10 w-screen h-32 rotate-12 md:rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
-            <div className="lower relative z-20 w-screen h-48 md:h-72 bg-kv-1"></div>
+            <div className="midde relative z-10 w-screen h-32 md:h-[14vh] rotate-[8deg] md:rotate-[4.5deg] translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-[24vh] bg-kv-1"></div>
           </div>
         </div>
       </div>
 
-      <section className="vision relative z-10">
-        <div className="bg-kv-1 py-32">
+      <section className="vision relative top-12 z-40">
+        <div className="relative z-10 pt-32 pb-24 md:pd-64">
           <div className="container mx-auto">
-            <div className="titleGruop fadeIn -mt-40 mb-12 text-gray-dark md:-mt-48 md:mb-24">
+            <div className="titleGruop fadeIn -mt-20 mb-12 text-gray-dark md:-mt-24 md:mb-24">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">JUT VISION</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
             </div>
@@ -689,26 +692,44 @@ const MainContent = props => {
             </div>
 
           </div>
-        </div>            
-      </section>
+        </div>        
 
-      <div className="sectionBreak relative z-10 mix-blend-darken" style={{ transform: 'translate3d(0, 0, -1px)' }}>
-        <div className="absolute w-screen left-0" style={{ height: '30vh', bottom: '15vh' }}>
-          <Break3 />
+        <div className="bg-kv-1 w-full h-full absolute top-0 left-0 z-0" style={{clipPath: "polygon(0 1.5%, 100% 0%, 100% 100%, 0 100%)"}}></div>
+
+        <div className="bg-kv-1 w-full h-[50vh] absolute bottom-[-49vh] -z-10"></div>
+
+      </section>
+{/* 
+      <div className="sectionBreak relative z-40">
+        <div className="absolute w-screen left-0 h-[35vh] md:h-[40vh] xl:h-[45vh]">
+          <Break2 />
         </div>
 
-        <div className="bg-kv-1">
-          <div className="scale-125 origin-center -rotate-6 translate-y-12">
-            <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
-            <div className="lower relative z-20 w-screen h-48 md:h-72 bg-kv-2"></div>
+        <div className="translate-y-[8vh] md:translate-y-[3vh] xl:translate-y-[6vh]">
+          <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
+            <div className="midde relative z-10 w-screen h-32 md:h-[14vh] rotate-[8deg] md:rotate-[4.5deg] translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-[24vh] bg-kv-1"></div>
+          </div>
+        </div>
+      </div>
+       */}
+      <div className="sectionBreak relative z-40">
+        <div className="absolute w-screen left-0 h-[35vh] md:h-[40vh] xl:h-[45vh]">
+          <Break3 />
+        </div>
+       
+        <div className="bg-kv-1" style={{ transform: 'translate(0px, 14vh)' }}>
+          <div className="scale-125 origin-center -rotate-6 translate-y-12 xl:translate-y-[7rem]">
+            <div className="midde relative z-10 w-screen h-32 md:h-[17vh] -rotate-6 md:-rotate-[2deg] translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-[24vh] bg-kv-2 md:translate-y-4 xl:-translate-y-3"></div>
           </div>
         </div>
       </div>
 
-      <section className="creative relative z-10">
-        <div className="bg-kv-2 py-32">
+      <section className="creative relative z-50">
+        <div className="relative z-10 pt-64 pb-48">
           <div className="container mx-auto fadeIn">
-            <div className="-mt-40 mb-12 md:-mt-64 md:mb-24 md:flex md:justify-between md:items-end">
+            <div className="-mt-32 mb-12 md:-mt-40 md:mb-24 md:flex md:justify-between md:items-end">
               <div className="md:basis-1/2">
                 <div className="titleGruop text-white">
                   {/* <div className="en font-inner font-bold text-8xl md:text-9xl">100</div> */}
@@ -727,10 +748,14 @@ const MainContent = props => {
           {creativeList && <CreativePhotos data={creativeList} />}
 
         </div>
+
+        <div className="bg-kv-2 w-full h-full absolute top-0 left-0 z-0" style={{clipPath: "polygon(0 10%, 100% 0%, 100% 100%, 0 100%)"}}></div>
+
+        <div className="bg-kv-2 w-full h-[50vh] absolute bottom-[-49vh] -z-10"></div>
       </section>
 
-      <div className="sectionBreak relative z-20 mix-blend-darken">
-        <div className="bg-kv-2">
+      <div className="sectionBreak relative z-60">
+        <div className="">
           <div className="scale-125 origin-center -rotate-6 translate-y-12">
             <div className="midde relative z-10 w-screen h-32 -rotate-6 md:-rotate-3 translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
             <div className="lower relative z-20 w-screen h-48 md:h-36 bg-kv-1"></div>
@@ -738,7 +763,7 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="footer relative z-10 bg-kv-1">
+      <section className="footer relative z-60 ">
         <div className="w-full h-screen -mt-24">
           <Scene1Left />
           <div className="absolute top-0 left-0 z-10 w-full h-full flex justify-center items-center pointer-events-none">
@@ -756,6 +781,7 @@ const MainContent = props => {
             </div>
           </div>
         </div>
+        <div className="bg-kv-1 w-full h-full absolute top-0 left-0 z-0" style={{clipPath: "polygon(0 10%, 100% 0%, 100% 100%, 0 100%)"}}></div>
       </section>
     </>
   )

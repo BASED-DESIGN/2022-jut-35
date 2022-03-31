@@ -21,7 +21,7 @@ const Content = () => {
             -100
           ]} 
           rotation={[-.2, -0.2, 0]}
-          scale={width < 767 ? 2.3 : 1.15}
+          scale={width < 767 ? 2.3 : 1.25}
           // animMoveY={false}
           // lazyIn
         />
@@ -33,7 +33,7 @@ const Content = () => {
             -100
           ]} 
           rotation={[-.4, -0.6, 0.2]}
-          scale={width < 767 ? 0 : 1.15}
+          scale={width < 767 ? 0 : 1.25}
           // animMoveY={false}
           // lazyIn
         />
@@ -45,7 +45,7 @@ const Content = () => {
             -100
           ]} 
           rotation={[-.0, -0.4, 0.2]}
-          scale={width < 767 ? 2.5 : 1}
+          scale={width < 767 ? 2.5 : 1.15}
           // animMoveY={false}
           // lazyIn
         />
