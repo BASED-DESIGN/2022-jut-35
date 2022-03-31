@@ -26,46 +26,51 @@ const CreativePhotos = props => {
   const groupedList = spliceIntoChunks(data, Math.ceil(data.length/2))
 
   useEffect(() => {
+    
     // Creative Power
-    const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
-    const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
-    photoRowLeftLoopList.forEach(function(el) {
-      const rowLooping = new TimelineMax({ repeat: -1 });
-      rowLooping.staggerFromTo(
-        el,
-        groupedList[0].length,
-        { xPercent: -100, ease: Linear.easeNone },
-        { xPercent: 0, ease: Linear.easeNone }
-      );
-      // const Move = () => rowLooping.timeScale(1);
-      // const Slow = () => rowLooping.timeScale(.3);
-      const Move = () => rowLooping.timeScale(.6);
-      const Slow = () => rowLooping.timeScale(.2);
-      photoRowLeftLoop.addEventListener("mouseenter", Slow);
-      photoRowLeftLoop.addEventListener("mouseleave", Move);
-      photoRowLeftLoop.addEventListener("touchstart", Slow);
-      photoRowLeftLoop.addEventListener("touchend", Move);
-    });
+    if(groupedList[0]) {
+      const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
+      const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
+      photoRowLeftLoopList.forEach(function(el) {
+        const rowLooping = new TimelineMax({ repeat: -1 });
+        rowLooping.staggerFromTo(
+          el,
+          groupedList[0].length,
+          { xPercent: -100, ease: Linear.easeNone },
+          { xPercent: 0, ease: Linear.easeNone }
+        );
+        // const Move = () => rowLooping.timeScale(1);
+        // const Slow = () => rowLooping.timeScale(.3);
+        const Move = () => rowLooping.timeScale(.6);
+        const Slow = () => rowLooping.timeScale(.2);
+        photoRowLeftLoop.addEventListener("mouseenter", Slow);
+        photoRowLeftLoop.addEventListener("mouseleave", Move);
+        photoRowLeftLoop.addEventListener("touchstart", Slow);
+        photoRowLeftLoop.addEventListener("touchend", Move);
+      });
+    }
 
-    const photoRowRightLoop = document.querySelector(".photoRowRightLoop");
-    const photoRowRightLoopList = photoRowRightLoop.querySelectorAll(".photoRowList");
-    photoRowRightLoopList.forEach(function(el) {
-      const rowLooping = new TimelineMax({ repeat: -1 });
-      rowLooping.staggerFromTo(
-        el,
-        groupedList[1].length,
-        { xPercent: 0, ease: Linear.easeNone },
-        { xPercent: -100, ease: Linear.easeNone }
-      );
-      // const Move = () => rowLooping.timeScale(1);
-      // const Slow = () => rowLooping.timeScale(.3);
-      const Move = () => rowLooping.timeScale(.6);
-      const Slow = () => rowLooping.timeScale(.2);
-      photoRowRightLoop.addEventListener("mouseenter", Slow);
-      photoRowRightLoop.addEventListener("mouseleave", Move);
-      photoRowRightLoop.addEventListener("touchstart", Slow);
-      photoRowRightLoop.addEventListener("touchend", Move);
-    })
+    if(groupedList[1]) {
+      const photoRowRightLoop = document.querySelector(".photoRowRightLoop");
+      const photoRowRightLoopList = photoRowRightLoop.querySelectorAll(".photoRowList");
+      photoRowRightLoopList.forEach(function(el) {
+        const rowLooping = new TimelineMax({ repeat: -1 });
+        rowLooping.staggerFromTo(
+          el,
+          groupedList[1].length,
+          { xPercent: 0, ease: Linear.easeNone },
+          { xPercent: -100, ease: Linear.easeNone }
+        );
+        // const Move = () => rowLooping.timeScale(1);
+        // const Slow = () => rowLooping.timeScale(.3);
+        const Move = () => rowLooping.timeScale(.6);
+        const Slow = () => rowLooping.timeScale(.2);
+        photoRowRightLoop.addEventListener("mouseenter", Slow);
+        photoRowRightLoop.addEventListener("mouseleave", Move);
+        photoRowRightLoop.addEventListener("touchstart", Slow);
+        photoRowRightLoop.addEventListener("touchend", Move);
+      })
+    }
   }, [])
 
   return (
@@ -88,7 +93,7 @@ const CreativePhotos = props => {
         )} */}
         
         <div className="photoRowList flex whitespace-nowrap">
-          {groupedList[0].map((k, i) => (
+          {groupedList[0] && groupedList[0].map((k, i) => (
             <div key={`row-2-${i}`} className="listItem relative mr-8 md:mr-12">
               <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
                 <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
@@ -101,7 +106,7 @@ const CreativePhotos = props => {
           ))}
         </div>
         <div className="photoRowList flex whitespace-nowrap">
-          {groupedList[0].map((k, i) => (
+          {groupedList[0] && groupedList[0].map((k, i) => (
             <div key={`row-2-${i}`} className="listItem relative mr-8 md:mr-12">
               <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
                 <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
@@ -132,7 +137,7 @@ const CreativePhotos = props => {
           </div>
         )} */}
         <div className="photoRowList flex whitespace-nowrap">
-          {groupedList[1].map((k, i) => (
+          {groupedList[1] && groupedList[1].map((k, i) => (
             <div key={`row-3-${i}`} className="listItem relative mr-8 md:mr-12">
               <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
                 <img src={newway_5_2} alt="" className="object-cover w-full h-full" />
@@ -145,7 +150,7 @@ const CreativePhotos = props => {
           ))}
         </div>
         <div className="photoRowList flex whitespace-nowrap">
-          {groupedList[1].map((k, i) => (
+          {groupedList[1] && groupedList[1].map((k, i) => (
             <div key={`row-3-${i}`} className="listItem relative mr-8 md:mr-12">
               <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
                 <img src={newway_5_2} alt="" className="object-cover w-full h-full" />

@@ -10,8 +10,8 @@ import { randomItem } from '@helpers/utils'
 
 const favIcons = ['/icon_fav_1.png', '/icon_fav_1.png', '/icon_fav_2.png', '/icon_fav_2.png'];
 
-const Home = ({ creativeList }) => {
-  
+const Home = ({ creativeList=[] }) => {
+
   useEffect(() => {
     useStore.setState({ creativeList })
   }, [])
@@ -42,6 +42,7 @@ const Home = ({ creativeList }) => {
 
 export async function getStaticProps({ preview = false }) {
   const creativeList = await getCreativeList()
+  // const creativeList = []
   return {
     props: {
       creativeList
