@@ -293,10 +293,47 @@ const MainContent = props => {
           // markers: true,
         }
       });
+
+      // Footer
+      gsap.to('.footerInner', {
+        transform: "translate(0px, 0px)",
+        ease: "none",
+        onComplete: () => {
+        },
+        scrollTrigger: {
+          trigger: '.footer',
+          invalidateOnRefresh: true,
+          scrub: true,
+          start: "+=" + window.innerHeight * -.5 + " top",
+          end: () => "+=" + window.innerHeight * .5,
+        }
+      });
+
+
+      const footerLogoAnimate = function(ev) {
+        const target = document.querySelector(".footerLogo");
+
+        const evX = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
+        const evY = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
+
+        const sxPos = (evX / window.innerWidth * 50) * 0.8;
+        const syPos = (evY / window.innerHeight * 50) * 0.8;
+
+        gsap.to(target, 1, {
+          css:{ "filter": "drop-shadow(" + Math.ceil(-sxPos) + "px " + Math.ceil(-syPos) + "px 16px rgba(0,0,0,.2))"},
+          ease: Expo.easeOut
+        });
+      };
+      
+      window.addEventListener("touchstart", footerLogoAnimate);
+      window.addEventListener("touchend", footerLogoAnimate);
+      window.addEventListener("mousemove", footerLogoAnimate);
+      window.addEventListener("mouseleave", footerLogoAnimate);
+
     }
   }, [videoEnded])
 
-  const a = ["0", "0", "0", "0", "0"];
+  // const a = ["0", "0", "0", "0", "0"];
 
   const break1Ref = useRef()
   const break2Ref = useRef()
@@ -763,11 +800,13 @@ const MainContent = props => {
         </div>
       </div>
 
-      <section className="footer relative z-60 ">
+      <section className="footer relative z-50">
         <div className="w-full h-screen -mt-24">
-          <Scene1Left />
-          <div className="absolute top-0 left-0 z-10 w-full h-full flex justify-center items-center pointer-events-none">
-            <div className="flex items-center mt-16 mb-4 scale-125 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-150 xl:scale-250">
+          <div className="footerInner block relative top-0 z-20 w-full h-full" style={{transform: "translate(0%, -20%)"}}>
+            <Scene1Left />
+          </div>
+          <div className="absolute top-0 left-0 z-30 w-full h-full flex justify-center items-center pointer-events-none">
+            <div className="footerLogo flex items-center mt-16 mb-4 scale-125 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-150 xl:scale-[2]">
               <div className="w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
               <div className="ml-4 text-white">
                 {/* <div className="font-extrabold tracking-wide">忠泰</div> */}
