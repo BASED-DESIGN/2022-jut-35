@@ -444,7 +444,7 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn mr-8 md:w-full md:mr-0">
-                <div className="absolute" style={{ right: '4vw', top: 'calc(-30vw + 6vw)', width: '30vw', height: '30vw' }}>
+                <div className="absolute" style={{ right: '-2vw', top: 'calc(-30vw + 11.5vw)', width: '30vw', height: '30vw' }}>
                   <AnimeMan2 />
                 </div>
 
@@ -497,7 +497,7 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn ml-8 md:ml-48">
-                <div className="absolute" style={{ left: 'calc(-30vw + 5vw)', top: '-13vw', width: '30vw', height: '30vw' }}>
+                <div className="absolute" style={{ left: 'calc(-30vw + 5vw)', top: '-25vw', width: '30vw', height: '30vw' }}>
                   <AnimeMan3 />
                 </div>
 
@@ -517,7 +517,7 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn mr-8 md:mr-24">
-                <div className="absolute" style={{ right: '-10vw', top: 'calc(-30vw + 6vw)', width: '30vw', height: '30vw' }}>
+                <div className="absolute" style={{ right: '-6vw', top: 'calc(-30vw + 5.5vw)', width: '30vw', height: '30vw' }}>
                   <AnimeMan4 />
                 </div>
 
@@ -549,7 +549,7 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn ml-8 md:mx-24">
-                <div className="absolute" style={{ right: '4vw', top: 'calc(-30vw + 6vw)', width: '30vw', height: '30vw' }}>
+                <div className="absolute" style={{ left: '-1vw', top: 'calc(-30vw + 8.5vw)', width: '30vw', height: '30vw' }}>
                   <AnimeMan5 />
                 </div>
 

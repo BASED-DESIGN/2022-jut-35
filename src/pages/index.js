@@ -4,6 +4,7 @@ import getCreativeList from '@apis/getCreativeList'
 import useStore from '@helpers/store'
 import { useEffect } from 'react'
 import { randomItem } from '@helpers/utils'
+import { useGLTF } from '@react-three/drei'
 
 // About Next dynamic, React.Suspense, React.lazy discussion:
 // https://github.com/vercel/next.js/discussions/17979
@@ -15,7 +16,7 @@ const Home = ({ creativeList=[] }) => {
 
   useEffect(() => {
     useStore.setState({ creativeList })
-
+    // useGLTF.preload('/gltf-anime-2/man-animation.gltf')
     // setTimeout(() => {
     //   document.scrollingElement.scrollTop = 0
     // }, 300)

@@ -35,7 +35,7 @@ const CoverVideo = props => {
   const [loadState, setLoadState] = useState(false)
   const [coverLogoValue, setCoverLogoValue] = useState(0)
   const [yearValue, setYearValue] = useState(0)
-  const [videoState, setVideoState] = useState('ready')
+  const [videoState, setVideoState] = useState('ends')
   const progessRef = useRef()
 
   useEffect(() => {

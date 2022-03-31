@@ -12,24 +12,32 @@ const Content = props => {
   return (
     <>
       <Suspense fallback={`loading assets`}>
-
         <Man
-          url='/gltf-anime-2/man-animation.gltf'
+          url="/gltf-anime-3/man-animation.gltf"
           active={active}
-          // position={[width < 600 ? width * .31 : width * .38, height*.08, -100]} 
           position={[0, -height*.3, -100]}
+          // rotation={[-0.6, -0.5, 0]}
           rotation={[-0.6, 0.5, 0]}
           // scale={width < 600 ? 2 : 1}
-          scale={window.innerWidth < 600 ? 2 : .7}
-          // hover={false}
-          // animMoveY={false}
-          // lazyIn
+          // scale={window.innerWidth < 600 ? 2 : .7}
+          animeIndex={1}
         />
-
+        {/* <Man
+          url="/gltf-anime-3/man-animation.gltf"
+          active={active}
+          position={[0, -height*.3, -100]}
+          // rotation={[-0.6, -0.5, 0]}
+          rotation={[0.3, 0.5, 0]}
+          // scale={width < 600 ? 2 : 1}
+          // scale={window.innerWidth < 600 ? 2 : .7}
+          animeIndex={0}
+        /> */}
       </Suspense>
 
-      <directionalLight position={[-width/2, -height/2, -50]} intensity={1} />
-      <ambientLight intensity={0.6} />
+      {/* <directionalLight position={[-width/2, -height/2, -50]} intensity={1} />
+      <ambientLight intensity={0.6} /> */}
+      <directionalLight position={[-50, 100, 100]} intensity={3} />
+      <ambientLight intensity={1} />
     </>
   )
 }
