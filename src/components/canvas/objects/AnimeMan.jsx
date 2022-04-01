@@ -18,7 +18,7 @@ const Man = forwardRef((props, ref) => {
     animeIndex=0,
     active=true
   } = props
-  const { animations, nodes, scene, ...last } = useGLTF(url)
+  const { animations, nodes, scene } = useGLTF(url)
   const { width, height } = useThree(state => state.size)
   // const [active, setActive] = useState(!lazyIn)
   // console.log(animations, scene, nodes, last)

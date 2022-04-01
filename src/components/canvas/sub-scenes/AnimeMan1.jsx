@@ -13,13 +13,13 @@ const Content = props => {
     <>
       <Suspense fallback={`loading assets`}>
         <Man
-          url="/gltf-anime-1/man-animation.gltf"
+          url="/gltf-anime/looking.gltf"
           active={active}
           position={[0, -height*.3, -100]}
           rotation={[0, -.3, 0]}
           // scale={width < 600 ? 2 : 1}
           // scale={window.innerWidth < 600 ? 2 : .7}
-          animeIndex={4}
+          // animeIndex={4}
         />
 
       </Suspense>

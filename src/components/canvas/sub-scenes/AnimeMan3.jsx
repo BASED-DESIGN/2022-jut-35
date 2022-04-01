@@ -13,29 +13,16 @@ const Content = props => {
     <>
       <Suspense fallback={`loading assets`}>
         <Man
-          url="/gltf-anime-3/man-animation.gltf"
+          url="/gltf-anime/flying.gltf"
           active={active}
           position={[0, -height*.3, -100]}
-          // rotation={[-0.6, -0.5, 0]}
           rotation={[-0.6, 0.5, 0]}
           // scale={width < 600 ? 2 : 1}
           // scale={window.innerWidth < 600 ? 2 : .7}
-          animeIndex={1}
+          // animeIndex={1}
         />
-        {/* <Man
-          url="/gltf-anime-3/man-animation.gltf"
-          active={active}
-          position={[0, -height*.3, -100]}
-          // rotation={[-0.6, -0.5, 0]}
-          rotation={[0.3, 0.5, 0]}
-          // scale={width < 600 ? 2 : 1}
-          // scale={window.innerWidth < 600 ? 2 : .7}
-          animeIndex={0}
-        /> */}
       </Suspense>
 
-      {/* <directionalLight position={[-width/2, -height/2, -50]} intensity={1} />
-      <ambientLight intensity={0.6} /> */}
       <directionalLight position={[-50, 100, 100]} intensity={3} />
       <ambientLight intensity={1} />
     </>
