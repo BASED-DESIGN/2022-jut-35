@@ -32,8 +32,8 @@ const Man = forwardRef((props, ref) => {
     leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
     // config: { mass: 3, tension: 1000, friction: 100, duration: 300 },
     config: { 
-      ...config.gentle, 
-      duration: 500, 
+      ...config.wobbly, 
+      duration: 1500, 
       easing: easings.easeInOutExpo
     }
   })
@@ -70,7 +70,7 @@ const Man = forwardRef((props, ref) => {
             <mesh
               ref={ref}
               key={`man-${key}`}
-              scale={MathUtils.clamp(scale * window.innerWidth / 360, 0, 6)}
+              scale={MathUtils.clamp(scale * window.innerWidth / 360, 0, 5)}
               geometry={nodes[key].geometry} 
               position={nodes[key].position} 
               material={nodes[key].material} 

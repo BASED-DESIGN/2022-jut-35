@@ -96,7 +96,7 @@ const Man = forwardRef((props, ref) => {
               ref={ref}
               // scale={scale * window.innerWidth / 360}
               // scale={(window.innerWidth < 640 ? 2 : 1.05) * window.innerWidth / 360}
-              scale={MathUtils.clamp((window.innerWidth < 640 ? 2 : 1.05) * window.innerWidth / 360, 0, 6)}
+              scale={MathUtils.clamp((window.innerWidth < 640 ? 2 : 1.05) * window.innerWidth / 360, 0, 5)}
               geometry={nodes[key].geometry} 
               position={nodes[key].position} 
               material={nodes[key].material} 

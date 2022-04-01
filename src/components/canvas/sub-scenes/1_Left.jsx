@@ -16,7 +16,7 @@ const Content = props => {
   const planeFrontRef = useRef(null)
   const planeBackRef = useRef(null)
   const planeConfig = {
-    ...config.gentle, duration: 1000
+    ...config.slow, duration: 5500
   }
   const [mansOffsetY, setMansOffsetY] = useState(0)
 
@@ -77,7 +77,7 @@ const Content = props => {
           <Man
             url='/gltf/kv1-man1.gltf'
             active={active}
-            delay={1700}
+            delay={1950}
             position={[-width * .38, -height/2 + width * .25, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
@@ -86,7 +86,7 @@ const Content = props => {
           <Man
             url='/gltf/kv1-man2.gltf'
             active={active}
-            delay={1550}
+            delay={1850}
             position={[-width * .3, -height/2 + width * .228, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
@@ -95,7 +95,7 @@ const Content = props => {
           <Man
             url='/gltf/kv1-man3.gltf'
             active={active}
-            delay={1400}
+            delay={1700}
             position={[-width * .15, -height/2 + width * .17, -200]} 
             rotation={[-.1, -0.8, 0]}
             scale={0.8}
@@ -104,7 +104,7 @@ const Content = props => {
           <Man
             url='/gltf/kv1-manx2.gltf'
             active={active}
-            delay={1150}
+            delay={1350}
             position={[-width * .32, -height/2 + width * .12, -100]} 
             rotation={[-.15, -0.7, 0]} 
             scale={0.9}

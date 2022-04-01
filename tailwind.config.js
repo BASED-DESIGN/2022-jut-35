@@ -49,6 +49,7 @@ module.exports = {
       '1000': '1000ms',
       '1500': '1500ms',
       '2000': '2000ms',
+      '2500': '2500ms',
     },
     backgroundSize: {
       'auto': 'auto',

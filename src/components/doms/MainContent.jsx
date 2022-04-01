@@ -267,14 +267,15 @@ const MainContent = props => {
 
 
       // Vision
+      const container = document.querySelector('.vision .container .titleGruop');
       const sdgList = document.querySelector('.sdgList');
       const sdgListItems = sdgList.querySelectorAll('.listItem');
 
       const sdgListRange = () => {
         if (window.innerWidth > 959) {
-          return window.innerWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 2);
+          return container.offsetWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 1);
         } else {
-          return window.innerWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 1.2);
+          return container.offsetWidth - sdgListItems[0].offsetWidth * (sdgListItems.length + 1.2);
         }
       }
 
@@ -310,25 +311,25 @@ const MainContent = props => {
       });
 
 
-      const footerLogoAnimate = function(ev) {
-        const target = document.querySelector(".footerLogo");
+      // const footerLogoAnimate = function(ev) {
+      //   const target = document.querySelector(".footerLogo");
 
-        const evX = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
-        const evY = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
+      //   const evX = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientX : ev.clientX;
+      //   const evY = (ev == 'touchmove') ? ev.originalEvent.touches[0].clientY : ev.clientY;
 
-        const sxPos = (evX / window.innerWidth * 50) * 0.8;
-        const syPos = (evY / window.innerHeight * 50) * 0.8;
+      //   const sxPos = (evX / window.innerWidth * 50) * 0.8;
+      //   const syPos = (evY / window.innerHeight * 50) * 0.8;
 
-        gsap.to(target, 1, {
-          css:{ "filter": "drop-shadow(" + Math.ceil(-sxPos) + "px " + Math.ceil(-syPos) + "px 16px rgba(0,0,0,.2))"},
-          ease: Expo.easeOut
-        });
-      };
+      //   gsap.to(target, 1, {
+      //     css:{ "filter": "drop-shadow(" + Math.ceil(-sxPos) + "px " + Math.ceil(-syPos) + "px 16px rgba(0,0,0,.2))"},
+      //     ease: Expo.easeOut
+      //   });
+      // };
       
-      window.addEventListener("touchstart", footerLogoAnimate);
-      window.addEventListener("touchend", footerLogoAnimate);
-      window.addEventListener("mousemove", footerLogoAnimate);
-      window.addEventListener("mouseleave", footerLogoAnimate);
+      // window.addEventListener("touchstart", footerLogoAnimate);
+      // window.addEventListener("touchend", footerLogoAnimate);
+      // window.addEventListener("mousemove", footerLogoAnimate);
+      // window.addEventListener("mouseleave", footerLogoAnimate);
 
     }
   }, [videoEnded])
@@ -396,7 +397,7 @@ const MainContent = props => {
             </div>
           </div>
         </div>
-        <div className="bg-kv-2 w-full h-[50vh] absolute bottom-[-49vh] -z-10"></div>
+        <div className="bg-kv-2 w-full h-[80vh] absolute bottom-[-79vh] -z-10"></div>
       </section>
 
       <div className="sectionBreak relative z-20">
@@ -407,7 +408,7 @@ const MainContent = props => {
         <div className="" style={{ transform: 'translate(0px, 14vh)' }}>
           <div className="scale-125 origin-center -rotate-6 translate-y-12 xl:translate-y-[7rem]">
             {/* <div className="upper relative z-0 w-screen h-32 bg-kv-2"></div> */}
-            <div className="midde relative z-10 w-screen h-32 md:h-[14vh] -rotate-6 md:-rotate-[3.5deg] translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
+            <div className="midde relative z-10 w-screen h-32 md:h-[17vh] -rotate-6 md:-rotate-[3.5deg] translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
             <div className="lower relative z-20 w-screen h-48 md:h-[24vh] bg-kv-3 md:translate-y-4 xl:-translate-y-3"></div>
           </div>
         </div>
@@ -417,23 +418,23 @@ const MainContent = props => {
         <div className="relative z-20 pt-64 pb-32 md:pb-40">
 
           <div className="container mx-auto relative z-40">
-            <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:mb-48">
+            <div className="titleGruop fadeIn -mt-24 mb-40 text-gray-dark md:mb-64">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">New Way</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">探索最新航向 擘畫發展藍圖</div>
             </div>
-            <div className="newWayList space-y-40 md:space-y-60">
+            <div className="newWayList space-y-40 md:space-y-80 xl:space-y-96">
 
               <div className="listItem relative fadeIn ml-8 md:ml-48">
-                <div className="absolute" style={{ right: '10vw', top: 'calc(-30vw + 5.5vw)', width: '30vw', height: '30vw' }}>
+                <div className="absolute right-0 top-[calc(-30vw+6vw)] w-[30vw] h-[30vw]">
                   <AnimeMan1 />
                 </div>
 
-                <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                <div className="relative z-0 mix-blend-lighten itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <img src={newway_1_1} alt="" className="photo will-change-auto aspect-[6/4] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
+                    <h2 className="text-2xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       忠泰建設與義泰建設<br />雙品牌發展策略
                     </h2>
                   </div>                  
@@ -444,13 +445,13 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn mr-8 md:w-full md:mr-0">
-                <div className="absolute" style={{ right: '-2vw', top: 'calc(-30vw + 7vw)', width: '30vw', height: '30vw' }}>
+                <div className="absolute w-[30vw] h-[30vw] right-[-6vw] top-[-24vw] md:top-[-20.3vw] 2xl:top-[-21.9vw] md:right-[-9vw]">
                   <AnimeMan2 />
                 </div>
 
                 {windowWidth < 959 ?
                   <>
-                    <div className="itemPhoto overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                    <div className="relative z-0 mix-blend-lighten itemPhoto overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                       <Slider 
                         auto={6000}
                         hasArrows
@@ -467,7 +468,7 @@ const MainContent = props => {
                   </>
                 :
                   <>
-                    <div className="grid grid-cols-2 gap-x-24 gap-y-20">
+                    <div className="relative z-0 mix-blend-lighten grid grid-cols-2 gap-x-24 gap-y-20">
                       <div className="itemPhoto fadeIn translate-x-12 overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                         <img src={newway_2_1} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
                       </div>
@@ -485,7 +486,7 @@ const MainContent = props => {
                 }
                 <div className="itemTitle fadeIn mt-8 md:flex">
                   <div className="title md:basis-1/2 md:ml-16">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
+                    <h2 className="text-2xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       首度跨足國際頂級商辦市場
                     </h2>
                     <p className="mt-4 text-base font-inner font-normal text-gray-dark md:text-base">忠泰建設將首度開發頂級商辦市場，聯手安藤忠雄、MVRDV等國際大師，以匠心概念糅合當代設計，勢將打造台北新世代的黃金商業核心區。</p>
@@ -501,12 +502,12 @@ const MainContent = props => {
                   <AnimeMan3 />
                 </div>
 
-                <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                <div className="itemPhoto relative z-0 mix-blend-lighten overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <img src={newway_3_1} alt="" className="photo will-change-auto aspect-[3/2] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
+                    <h2 className="text-2xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       拓展生活版圖<br />首度公開外縣市造鎮藍圖
                     </h2>
                   </div>                  
@@ -517,11 +518,11 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn mr-8 md:mr-24">
-                <div className="absolute" style={{ right: '-6vw', top: 'calc(-30vw + 5.5vw)', width: '30vw', height: '30vw' }}>
+                <div className="absolute" style={{ right: '-6vw', top: 'calc(-30vw + 6.2vw)', width: '30vw', height: '30vw' }}>
                   <AnimeMan4 />
                 </div>
 
-                <div className="itemPhoto overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                <div className="itemPhoto relative z-0 mix-blend-lighten overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <Slider 
                     auto={6000}
                     hasArrows
@@ -538,7 +539,7 @@ const MainContent = props => {
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
+                    <h2 className="text-2xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       首座零售商場<br />蓄勢待發
                     </h2>
                   </div>                  
@@ -549,16 +550,16 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn ml-8 md:mx-24">
-                <div className="absolute" style={{ left: '-1vw', top: 'calc(-30vw + 8.5vw)', width: '30vw', height: '30vw' }}>
+                <div className="absolute z-0 left-[-3vw] top-[-24vw] w-[30vw] h-[30vw]">
                   <AnimeMan5 />
                 </div>
 
-                <div className="itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                <div className="itemPhoto relative z-10 mix-blend-lighten overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <img src={newway_5_2} alt="" className="photo will-change-auto aspect-[1/1] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
-                    <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
+                    <h2 className="text-2xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       全城焦點<br />安藤忠雄特展五月登場
                     </h2>
                   </div>                  
@@ -596,18 +597,18 @@ const MainContent = props => {
 
         <div className="bg-kv-3 w-full h-full absolute top-0 left-0 z-0" style={{clipPath: "polygon(0 1.5%, 100% 0%, 100% 100%, 0 100%)"}}></div>
 
-        <div className="bg-kv-3 w-full h-[50vh] absolute bottom-[-49vh] -z-10"></div>
+        <div className="bg-kv-3 w-full h-[80vh] absolute bottom-[-79vh] -z-10"></div>
       </section>
 
       <div className="sectionBreak relative z-40">
-        <div className="absolute w-screen left-0 h-[35vh] md:h-[40vh] xl:h-[45vh]">
+        <div className="absolute w-screen left-0 h-[35vh] md:h-[45vh] xl:h-[50vh]">
           <Break2 />
         </div>
 
         <div className="translate-y-[8vh] md:translate-y-[3vh] xl:translate-y-[6vh]">
           <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
-            <div className="midde relative z-10 w-screen h-32 md:h-[14vh] rotate-[8deg] md:rotate-[4.5deg] translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
-            <div className="lower relative z-20 w-screen h-48 md:h-[24vh] bg-kv-1"></div>
+            <div className="midde relative z-10 w-screen h-32 md:h-[18vh] rotate-[8deg] md:rotate-[4.5deg] translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-[28vh] bg-kv-1 --translate-y-8"></div>
           </div>
         </div>
       </div>
@@ -615,7 +616,7 @@ const MainContent = props => {
       <section className="vision relative top-12 z-40">
         <div className="relative z-10 pt-32 pb-24 md:pd-64">
           <div className="container mx-auto">
-            <div className="titleGruop fadeIn -mt-20 mb-12 text-gray-dark md:-mt-24 md:mb-24">
+            <div className="titleGruop fadeIn -mt-20 mb-12 text-gray-dark md:-mt-12 md:mb-24">
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">JUT VISION</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
             </div>
@@ -624,7 +625,7 @@ const MainContent = props => {
             </div>
             <div className="itemTitle fadeIn mt-8 md:flex">
               <div className="title md:basis-1/2">
-                <h2 className="text-3xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
+                <h2 className="text-2xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                   在建築之上，我們構築一座富有生命力與創造力的平行城市。
                 </h2>
               </div>                  
@@ -643,7 +644,7 @@ const MainContent = props => {
               <p>對於 2030 年的到來，我們竭力在經濟活動與發展的同時，與生態環境和諧共存；我們重視與所有合作單位、投資者以及利害關係人之良好關係；我們持續追求高度可信、具透明度以及有效溝通的企業管理，也將逐步對外主動揭露更完整之永續發展資訊。</p>
               <p>透過 11 項 SDGs 作為目標來達成近十年的集團展望與期許，我們企圖實踐「宜居城市」、「環境永續」、「多元生活」、「管理績效」、「職場培力」、「文化藝術」六個面向的價值或能力。</p>
             </div>
-            <div className="sdgListWrap mt-20 pt-6 ml-8 md:ml-0 md:mt-24 md:pt-8 xl:pt-20">
+            <div className="sdgListWrap mt-20 pt-8 ml-8 md:ml-0 md:mt-24 md:pt-8 xl:pt-20">
               <div className="sdgList flex flex-wrap flex-col">
                 <div className="listItem fadeIn delay-100 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
                   <div className="photo aspect-2/3 bg-gray-light">
@@ -733,7 +734,7 @@ const MainContent = props => {
 
         <div className="bg-kv-1 w-full h-full absolute top-0 left-0 z-0" style={{clipPath: "polygon(0 1.5%, 100% 0%, 100% 100%, 0 100%)"}}></div>
 
-        <div className="bg-kv-1 w-full h-[50vh] absolute bottom-[-49vh] -z-10"></div>
+        <div className="bg-kv-1 w-full h-[80vh] absolute bottom-[-79vh] -z-10"></div>
 
       </section>
 {/* 
@@ -764,7 +765,7 @@ const MainContent = props => {
       </div>
 
       <section className="creative relative z-50">
-        <div className="relative z-10 pt-64 pb-48">
+        <div className="relative z-10 pt-64 pb-24">
           <div className="container mx-auto fadeIn">
             <div className="-mt-32 mb-12 md:-mt-40 md:mb-24 md:flex md:justify-between md:items-end">
               <div className="md:basis-1/2">
@@ -788,7 +789,7 @@ const MainContent = props => {
 
         <div className="bg-kv-2 w-full h-full absolute top-0 left-0 z-0" style={{clipPath: "polygon(0 10%, 100% 0%, 100% 100%, 0 100%)"}}></div>
 
-        <div className="bg-kv-2 w-full h-[50vh] absolute bottom-[-49vh] -z-10"></div>
+        <div className="bg-kv-2 w-full h-[80vh] absolute bottom-[-79vh] -z-10"></div>
       </section>
 
       <div className="sectionBreak relative z-60">
@@ -801,12 +802,12 @@ const MainContent = props => {
       </div>
 
       <section className="footer relative z-50">
-        <div className="w-full h-screen -mt-24">
+        <div className="w-full innerHeight md:h-screen -mt-24">
           <div className="footerInner block relative top-0 z-20 w-full h-full" style={{transform: "translate(0%, -20%)"}}>
             <Scene1Left />
           </div>
           <div className="absolute top-0 left-0 z-30 w-full h-full flex justify-center items-center pointer-events-none">
-            <div className="footerLogo flex items-center mt-16 mb-4 scale-125 md:mt-20 xl:mt-24 md:mb-8 xl:mb-12 md:scale-150 xl:scale-[2]">
+            <div className="footerLogo flex items-center -mt-4 scale-125 md:mt-20 xl:mt-12 md:mb-8 md:scale-150 xl:scale-[2]">
               <div className="w-20 h-28 bg-contain bg-no-repeat bg-center" style={{backgroundImage: `url(${logo_jut35_icon_white})`}}></div>
               <div className="ml-4 text-white">
                 {/* <div className="font-extrabold tracking-wide">忠泰</div> */}

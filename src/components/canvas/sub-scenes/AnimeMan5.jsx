@@ -25,7 +25,7 @@ const Content = props => {
           position={[0, -height*.3, -100]} 
           rotation={[0.2, 0.2, 0]} 
           // scale={window.innerWidth < 600 ? 2 : .9}
-          animeIndex={7}
+          animeIndex={8}
         />
       </Suspense>
 
