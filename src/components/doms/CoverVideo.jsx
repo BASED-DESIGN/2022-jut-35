@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import dynamic from 'next/dynamic'
 import useStore from '@helpers/store'
+import { randomItem } from '@helpers/utils'
 
 import {
   gsap,
@@ -29,6 +30,8 @@ const logo_jut35_icon_white = '/logo_jut35_icon_white.svg'
 
 let interval = null
 let fontInterval = null
+
+const coverColor = ['bg-kv-1', 'bg-kv-2', 'bg-kv-3', 'bg-kv-1', 'bg-kv-2', 'bg-kv-3'];
 
 const CoverVideo = props => {
   const [fontState, setFontState] = useState(false)
@@ -220,13 +223,13 @@ const CoverVideo = props => {
 
   return (
     
-    <div className={`coverVideo innerHeight fixed top-0 left-0 z-100 w-screen h-screen duration-1000 ease-expo ${videoState == 'ends' ? 'opacity-0 pointer-events-none bg-kv-1':'bg-kv-2'}`}>
+    <div className={`coverVideo innerHeight fixed top-0 left-0 z-100 w-screen h-screen duration-1000 ease-expo ${videoState == 'ends' ? 'opacity-0 pointer-events-none bg-kv-1' : randomItem(coverColor)}`}>
       <div className="videoCover relative w-full h-full z-60">
 
         <div className="thumbanil"></div>
         
         <div className="coverLogo opacity-0">
-          <div className="absolute top-2 left-0 w-full text-center text-white text-base font-inner font-semibold tracking-wider pointer-events-none">
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-center text-white text-5xl scale-[5] md:scale-[9] xl:scale-[10] opacity-20 tracking-tighter font-inner font-semibold pointer-events-none">
             <Odometer value={yearValue} duration={32000} format="d" theme="default" />
           </div>
           

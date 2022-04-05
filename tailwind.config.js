@@ -23,7 +23,8 @@ module.exports = {
     colors: {
       'kv-1': '#EDB524',
       'kv-2': '#1ED172',
-      'kv-3': '#9BD6E4',
+      'kv-3': '#6eddef',
+      'kv-4': '#ffc52e',
       'anwser': '#285983',
       'purple': '#7e5bef',
       'pink': '#ff49db',

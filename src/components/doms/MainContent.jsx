@@ -608,7 +608,7 @@ const MainContent = props => {
         <div className="translate-y-[8vh] md:translate-y-[3vh] xl:translate-y-[6vh]">
           <div className="scale-125 origin-center rotate-6 translate-y-16 md:translate-y-32">
             <div className="midde relative z-10 w-screen h-32 md:h-[18vh] rotate-[8deg] md:rotate-[4.5deg] translate-y-16 bg-gradient-to-r from-white opacity-30"></div>
-            <div className="lower relative z-20 w-screen h-48 md:h-[28vh] bg-kv-1 --translate-y-8"></div>
+            <div className="lower relative z-20 w-screen h-48 md:h-[28vh] bg-kv-4 --translate-y-8"></div>
           </div>
         </div>
       </div>
@@ -732,9 +732,9 @@ const MainContent = props => {
           </div>
         </div>        
 
-        <div className="bg-kv-1 w-full h-full absolute top-0 left-0 z-0" style={{clipPath: "polygon(0 1.5%, 100% 0%, 100% 100%, 0 100%)"}}></div>
+        <div className="bg-kv-4 w-full h-full absolute top-0 left-0 z-0" style={{clipPath: "polygon(0 1.5%, 100% 0%, 100% 100%, 0 100%)"}}></div>
 
-        <div className="bg-kv-1 w-full h-[80vh] absolute bottom-[-79vh] -z-10"></div>
+        <div className="bg-kv-4 w-full h-[80vh] absolute bottom-[-79vh] -z-10"></div>
 
       </section>
 {/* 
@@ -756,7 +756,7 @@ const MainContent = props => {
           <Break3 />
         </div>
        
-        <div className="bg-kv-1" style={{ transform: 'translate(0px, 14vh)' }}>
+        <div className="" style={{ transform: 'translate(0px, 14vh)' }}>
           <div className="scale-125 origin-center -rotate-6 translate-y-12 xl:translate-y-[7rem]">
             <div className="midde relative z-10 w-screen h-32 md:h-[17vh] -rotate-6 md:-rotate-[2deg] translate-y-16 bg-gradient-to-r from-gray-dark opacity-30"></div>
             <div className="lower relative z-20 w-screen h-48 md:h-[24vh] bg-kv-2 md:translate-y-4 xl:-translate-y-3"></div>
