@@ -46,9 +46,6 @@ const CoverVideo = props => {
     const logoIconWrap = document.querySelector('.logoIconWrap'),
           logoIcon = logoIconWrap.querySelector('.logoIcon');
 
-    setTimeout(()=>{
-      logoIcon.style.transform = "translate(" + (logoIconWrap.offsetWidth - logoIcon.offsetWidth) * .5 + 'px' + ", 0px)";
-    }, 300);
 
     setCoverLogoValue(10);
     setYearValue(1987);
@@ -114,6 +111,10 @@ const CoverVideo = props => {
         }
       });
 
+    } else {
+      setTimeout(()=>{
+        logoIcon.style.transform = "translate(" + (logoIconWrap.offsetWidth - logoIcon.offsetWidth) * .5 + 'px' + ", 0px)";
+      }, 300);
     }
 
   }, [loadState]);

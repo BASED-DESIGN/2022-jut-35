@@ -36,14 +36,14 @@ const CreativePhotos = props => {
         const rowLooping = new TimelineMax({ repeat: -1 });
         rowLooping.staggerFromTo(
           el,
-          30,
+          40,
           { xPercent: -100, ease: Linear.easeNone },
           { xPercent: 0, ease: Linear.easeNone }
         );
         // const Move = () => rowLooping.timeScale(1);
         // const Slow = () => rowLooping.timeScale(.3);
-        const Move = () => rowLooping.timeScale(.6);
-        const Slow = () => rowLooping.timeScale(.2);
+        const Move = () => rowLooping.timeScale(.4);
+        const Slow = () => rowLooping.timeScale(.15);
         photoRowLeftLoop.addEventListener("mouseenter", Slow);
         photoRowLeftLoop.addEventListener("mouseleave", Move);
         photoRowLeftLoop.addEventListener("touchstart", Slow);
@@ -58,14 +58,14 @@ const CreativePhotos = props => {
         const rowLooping = new TimelineMax({ repeat: -1 });
         rowLooping.staggerFromTo(
           el,
-          30,
+          40,
           { xPercent: 0, ease: Linear.easeNone },
           { xPercent: -100, ease: Linear.easeNone }
         );
         // const Move = () => rowLooping.timeScale(1);
         // const Slow = () => rowLooping.timeScale(.3);
-        const Move = () => rowLooping.timeScale(.6);
-        const Slow = () => rowLooping.timeScale(.2);
+        const Move = () => rowLooping.timeScale(.4);
+        const Slow = () => rowLooping.timeScale(.15);
         photoRowRightLoop.addEventListener("mouseenter", Slow);
         photoRowRightLoop.addEventListener("mouseleave", Move);
         photoRowRightLoop.addEventListener("touchstart", Slow);
@@ -139,12 +139,12 @@ const Item = props => {
       className="listItem relative mr-8 md:mr-12" 
       onClick={()=>setActiveModalIndex(data.index)}
     >
-      <div className="photo aspect-1/1 w-60 h-60 md:w-80 md:h-80">
-        <img src={newway_5_2} alt={data.name} className="object-cover w-full h-full" />
+      <div className="photo w-[20rem] h-[15rem] md:w-[30rem] md:h-[20rem]">
+        <img src={data.image ? data.image.sizes.medium_large : newway_5_2} alt={data.name} className="object-cover w-full h-full" />
       </div>
-      <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center bg-black bg-opacity-25 text-white opacity-0 ease-expo duration-1000 backdrop-blur-sm cursor-pointer hover:opacity-100">
-        <div className="name text-2xl font-medium tracking-wider">{data.name}</div>
-        {data.title ? <div className="title mt-2 text-sm font-medium tracking-wider">{data.title}</div> : ''}
+      <div className="absolute bottom-0 left-0 w-full h-1/2 px-4 py-3 md:px-5 md:py-4 flex flex-col justify-end items-start bg-gradient-to-t from-black/30 text-white opacity-80 ease-expo duration-1000 --backdrop-blur-sm cursor-pointer hover:opacity-100">
+        <div className="name text-xl font-medium tracking-wider">{data.name}</div>
+        {data.title ? <div className="title mt-1 text-sm font-medium tracking-wider">{data.title}</div> : ''}
       </div>
     </div>
   )

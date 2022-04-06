@@ -305,8 +305,8 @@ const MainContent = props => {
           trigger: '.footer',
           invalidateOnRefresh: true,
           scrub: true,
-          start: "+=" + window.innerHeight * -.5 + " top",
-          end: () => "+=" + window.innerHeight * .5,
+          start: "+=" + window.innerHeight * -.55 + " top",
+          end: () => "+=" + window.innerHeight * .45,
         }
       });
 
@@ -647,7 +647,7 @@ const MainContent = props => {
             <div className="sdgListWrap mt-20 pt-8 ml-8 md:ml-0 md:mt-24 md:pt-8 xl:pt-20">
               <div className="sdgList flex flex-wrap flex-col">
                 <div className="listItem fadeIn delay-100 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light">
+                  <div className="photo">
                     <img src={vision_1} alt="宜居城市" className="aspect-2/3 object-cover" />
                   </div>
                   <div className="content mt-8 article_light xl:mt-16">
@@ -661,7 +661,7 @@ const MainContent = props => {
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-200 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light">
+                  <div className="photo">
                     <img src={vision_2} alt="環境永續" className="aspect-2/3 object-cover" />
                   </div>
                   <div className="content mt-8 article_light xl:mt-16">
@@ -674,7 +674,7 @@ const MainContent = props => {
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-300 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light">
+                  <div className="photo">
                     <img src={vision_3} alt="多元生活" className="aspect-2/3 object-cover" />
                   </div>
                   <div className="content mt-8 article_light xl:mt-16">
@@ -688,7 +688,7 @@ const MainContent = props => {
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light">
+                  <div className="photo">
                     <img src={vision_4} alt="管理績效" className="aspect-2/3 object-cover" />
                   </div>
                   <div className="content mt-8 article_light xl:mt-16">
@@ -700,7 +700,7 @@ const MainContent = props => {
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light">
+                  <div className="photo">
                     <img src={vision_5} alt="職場培力" className="aspect-2/3 object-cover" />
                   </div>
                   <div className="content mt-8 article_light xl:mt-16">
@@ -714,7 +714,7 @@ const MainContent = props => {
                   </div>
                 </div>
                 <div className="listItem fadeIn delay-500 w-64 md:w-72 xl:w-80 mr-12 md:mr-16">
-                  <div className="photo aspect-2/3 bg-gray-light">
+                  <div className="photo">
                     <img src={vision_6} alt="文化藝術" className="aspect-2/3 object-cover" />
                   </div>
                   <div className="content mt-8 article_light xl:mt-16">
