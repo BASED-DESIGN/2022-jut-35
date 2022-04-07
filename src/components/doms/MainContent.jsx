@@ -264,8 +264,11 @@ const MainContent = props => {
         });
       });
 
-
-
+      const slidePhotoWrap = document.querySelector('.slidePhotoWrap');
+      if (slidePhotoWrap != null){
+        slidePhotoWrap.style.height = slidePhotoWrap.offsetWidth * 0.625 + 'px';
+      }
+      
       // Vision
       const container = document.querySelector('.vision .container .titleGruop');
       const sdgList = document.querySelector('.sdgList');
@@ -429,7 +432,7 @@ const MainContent = props => {
                   <AnimeMan1 />
                 </div>
 
-                <div className="relative z-0 mix-blend-lighten itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                <div className="relative z-0 itemPhoto overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <img src={newway_1_1} alt="" className="photo will-change-auto aspect-[6/4] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
@@ -451,7 +454,7 @@ const MainContent = props => {
 
                 {windowWidth < 959 ?
                   <>
-                    <div className="relative z-0 mix-blend-lighten itemPhoto overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                    <div className="relative z-0 itemPhoto overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                       <Slider 
                         auto={6000}
                         hasArrows
@@ -468,7 +471,7 @@ const MainContent = props => {
                   </>
                 :
                   <>
-                    <div className="relative z-0 mix-blend-lighten grid grid-cols-2 gap-x-24 gap-y-20">
+                    <div className="relative z-0 grid grid-cols-2 gap-x-24 gap-y-20">
                       <div className="itemPhoto fadeIn translate-x-12 overflow-hidden aspect-[5/7] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                         <img src={newway_2_1} alt="" className="photo will-change-auto aspect-[5/7] object-cover scale-110 origin-top bg-white" />
                       </div>
@@ -502,7 +505,7 @@ const MainContent = props => {
                   <AnimeMan3 />
                 </div>
 
-                <div className="itemPhoto relative z-0 mix-blend-lighten overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                <div className="itemPhoto relative z-0 overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <img src={newway_3_1} alt="" className="photo will-change-auto aspect-[3/2] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
@@ -522,7 +525,7 @@ const MainContent = props => {
                   <AnimeMan4 />
                 </div>
 
-                <div className="itemPhoto relative z-0 mix-blend-lighten overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                <div className="itemPhoto slidePhotoWrap relative z-0 overflow-hidden aspect-[8/5] shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <Slider 
                     auto={6000}
                     hasArrows
@@ -530,11 +533,11 @@ const MainContent = props => {
                     hasBullets
                     bulletStyle={{ margin: "0 4px", width: "8px", height: "8px", backgroundColor: "rgba(255,255,255, .9)", border: "1px solid rgba(0,0,0, .2)" }}
                   >
-                    <img src={newway_4_1} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
-                    <img src={newway_4_2} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
-                    <img src={newway_4_3} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
-                    <img src={newway_4_4} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
-                    <img src={newway_4_5} alt="" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_1} alt="首座零售商場 蓄勢待發" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_2} alt="首座零售商場 蓄勢待發" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_3} alt="首座零售商場 蓄勢待發" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_4} alt="首座零售商場 蓄勢待發" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
+                    <img src={newway_4_5} alt="首座零售商場 蓄勢待發" className="photo will-change-auto aspect-[8/5] object-cover scale-110 origin-top bg-white" />
                   </Slider>
                 </div>
                 <div className="itemTitle mt-8 md:flex">
@@ -549,12 +552,12 @@ const MainContent = props => {
                 </div>
               </div>
 
-              <div className="listItem relative fadeIn ml-8 md:mx-24">
+              <div className="listItem relative fadeIn ml-8 md:ml-28 md:mx-28">
                 <div className="absolute z-0 left-[-3vw] top-[-24vw] w-[30vw] h-[30vw]">
                   <AnimeMan5 />
                 </div>
 
-                <div className="itemPhoto relative z-10 mix-blend-lighten overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
+                <div className="itemPhoto relative z-10 overflow-hidden shadow-[3vw_-3vw_0_0_rgba(0,0,0,0.2)] md:shadow-[1vw_-1vw_0_0_rgba(0,0,0,0.2)]">
                   <img src={newway_5_2} alt="" className="photo will-change-auto aspect-[1/1] object-cover scale-110 origin-top bg-white" />
                 </div>
                 <div className="itemTitle mt-8 md:flex">
@@ -620,7 +623,7 @@ const MainContent = props => {
               <div className="en font-title text-5xl md:text-6xl xl:text-7xl">JUT VISION</div>
               <div className="zh mt-2 text-xl tracking-wider font-bold md:text-2xl">明日倡議</div>
             </div>
-            <div className="video fadeIn aspect-video bg-black/50 -mr-6 md:-mr-40 xl:-mr-48 2xl:mr-0">
+            <div className="video fadeIn aspect-video bg-black/50">
               <iframe className="w-full h-full" src="https://www.youtube.com/embed/pm2nDjCLak8" title="JUT" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
             <div className="itemTitle fadeIn mt-8 md:flex">

@@ -20,15 +20,19 @@ import {
   Expo,
 } from "gsap"
 
-const newway_5_2 = '/newway/5-2.jpg'
+const placeholder = 'placeholder.jpg'
 
 const CreativePhotos = props => {
   const data = props.data.map((d, i) => ({ ...d, index: i }))
-  const groupedList = spliceIntoChunks(data, Math.ceil(data.length/3))
+  const groupedList = spliceIntoChunks(data, Math.ceil(data.length/2))
   const [activeModalIndex, setActiveModalIndex] = useState(null)
 
   useEffect(() => {
     // Creative Power
+    // console.log('0-' + groupedList[0][0].name);
+    // console.log('1-' + groupedList[1][0].name);
+    // console.log('2-' + groupedList[2][0].name);
+
     // if(groupedList[0]) {
       const photoRowLeftLoop = document.querySelector(".photoRowLeftLoop");
       const photoRowLeftLoopList = photoRowLeftLoop.querySelectorAll(".photoRowList");
@@ -88,9 +92,9 @@ const CreativePhotos = props => {
             ))}
           </div>
           <div className="photoRowList flex whitespace-nowrap">
-            {groupedList[1] && groupedList[1].map((d, i) => (
+            {groupedList[0] && groupedList[0].map((d, i) => (
               <Item 
-                key={`row-l-2-${i}`} 
+                key={`row-l-1-${i}`} 
                 data={d} 
                 setActiveModalIndex={setActiveModalIndex}
               />
@@ -102,16 +106,16 @@ const CreativePhotos = props => {
           <div className="photoRowList flex whitespace-nowrap">
             {groupedList[1] && groupedList[1].map((d, i) => (
               <Item 
-                key={`row-r-1-${i}`} 
+                key={`row-l-1-${i}`} 
                 data={d} 
                 setActiveModalIndex={setActiveModalIndex}
               />
             ))}
           </div>
           <div className="photoRowList flex whitespace-nowrap">
-            {groupedList[2] && groupedList[2].map((d, i) => (
+            {groupedList[1] && groupedList[1].map((d, i) => (
               <Item 
-                key={`row-r-2-${i}`} 
+                key={`row-l-1-${i}`} 
                 data={d} 
                 setActiveModalIndex={setActiveModalIndex}
               />
@@ -140,7 +144,7 @@ const Item = props => {
       onClick={()=>setActiveModalIndex(data.index)}
     >
       <div className="photo w-[20rem] h-[15rem] md:w-[30rem] md:h-[20rem]">
-        <img src={data.image ? data.image.sizes.medium_large : newway_5_2} alt={data.name} className="object-cover w-full h-full" />
+        <img src={data.image ? data.image.sizes.medium_large : placeholder} alt={data.name} className="object-cover w-full h-full" />
       </div>
       <div className="absolute bottom-0 left-0 w-full h-1/2 px-4 py-3 md:px-5 md:py-4 flex flex-col justify-end items-start bg-gradient-to-t from-black/30 text-white opacity-80 ease-expo duration-1000 --backdrop-blur-sm cursor-pointer hover:opacity-100">
         <div className="name text-xl font-medium tracking-wider">{data.name}</div>
