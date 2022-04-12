@@ -8,8 +8,6 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 
-const BackgroundMans = dynamic(() => import('@components/canvas/BackgroundMans'), { ssr: false })
-
 const IndexPage = forwardRef((props, ref) => {
 
   useEffect(() => {
