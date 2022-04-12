@@ -40,14 +40,14 @@ const CreativePhotos = props => {
         const rowLooping = new TimelineMax({ repeat: -1 });
         rowLooping.staggerFromTo(
           el,
-          40,
+          50,
           { xPercent: -100, ease: Linear.easeNone },
           { xPercent: 0, ease: Linear.easeNone }
         );
         // const Move = () => rowLooping.timeScale(1);
         // const Slow = () => rowLooping.timeScale(.3);
         const Move = () => rowLooping.timeScale(.4);
-        const Slow = () => rowLooping.timeScale(.15);
+        const Slow = () => rowLooping.timeScale(.1);
         photoRowLeftLoop.addEventListener("mouseenter", Slow);
         photoRowLeftLoop.addEventListener("mouseleave", Move);
         photoRowLeftLoop.addEventListener("touchstart", Slow);
@@ -62,14 +62,14 @@ const CreativePhotos = props => {
         const rowLooping = new TimelineMax({ repeat: -1 });
         rowLooping.staggerFromTo(
           el,
-          40,
+          50,
           { xPercent: 0, ease: Linear.easeNone },
           { xPercent: -100, ease: Linear.easeNone }
         );
         // const Move = () => rowLooping.timeScale(1);
         // const Slow = () => rowLooping.timeScale(.3);
         const Move = () => rowLooping.timeScale(.4);
-        const Slow = () => rowLooping.timeScale(.15);
+        const Slow = () => rowLooping.timeScale(.1);
         photoRowRightLoop.addEventListener("mouseenter", Slow);
         photoRowRightLoop.addEventListener("mouseleave", Move);
         photoRowRightLoop.addEventListener("touchstart", Slow);
@@ -77,6 +77,10 @@ const CreativePhotos = props => {
       })
     // }
   }, [])
+
+  useEffect(() => {
+    document.scrollingElement.style.overflowY = activeModalIndex ? 'hidden' : 'auto'
+  }, [activeModalIndex])
 
   return (
     <>
@@ -191,27 +195,61 @@ const ModalContent = props => {
   return (
     <animated.div 
       style={style}
-      className="photoRowContent fixed top-0 left-0 z-90 w-full h-full flex justify-center items-center backdrop-blur bg-black/30"
+      className="photoRowContent fixed top-0 left-0 z-100 w-full h-full flex justify-center items-center backdrop-blur bg-black/50"
     >
       <div 
-        className="closeBtn absolute top-6 left-0 w-full text-center"
+        className="closeBtn absolute top-6 left-0 w-full text-center mix-blend-difference"
         onClick={()=>setActiveModalIndex(null)}
       >
-        <div className="text-2xl text-white cursor-pointer duration-400 ease-expo hover:scale-125 md:text-4xl">✕</div>
+        <div className="text-2xl text-white cursor-pointer duration-400 ease-expo drop-shadow-lg scale-125 opacity-8 hover:opacity-10 md:text-4xl">✕</div>
+      </div>
+
+      <div 
+        className="navBtn absolute bottom-8 left-0 w-full px-12 flex justify-between mix-blend-difference"
+        // onClick={()=>setActiveModalIndex(null)}
+      >
+        <div 
+          className="text-2xl text-white text-left cursor-pointer duration-400 ease-expo drop-shadow-lg scale-125 opacity-80 hover:opacity-100 md:text-3xl"
+          // onClick={()=>setActiveModalIndex(null)}
+        >←</div>
+        <div 
+          className="text-2xl text-white text-right cursor-pointer duration-400 ease-expo drop-shadow-lg scale-125 opacity-80 hover:opacity-100 md:text-3xl"
+          // onClick={()=>setActiveModalIndex(null)}
+        >→</div>
       </div>
 
       {index!==null &&
-        <div className="px-12 py-6 w-full md:w-[calc(36rem+5vw)] xl:w-[calc(40rem+5vw)]">
-          <article className="article font-inner text-white md:mt-20 xl:scale-125">
-            <div 
-              className="space-y-6 font-medium text-lg text-justify leading-[1.675] md:leading-[1.75] md:text-xl" 
-              dangerouslySetInnerHTML={{ __html: data[index].summary }}
-            />
-            <div className="font-inner text-right font-medium mt-6 md:mt-8">
-              <div className="text-2xl">{data[index].name}</div>
-              <div className="mt-1 text-base">{data[index].title}</div>
+        // <div className="px-12 py-6 w-full md:w-[calc(36rem+5vw)] xl:w-[calc(40rem+5vw)]">
+        //   <article className="article font-inner text-white md:mt-20 xl:scale-125">
+        //     <div 
+        //       className="space-y-6 font-medium text-lg text-justify leading-[1.675] md:leading-[1.75] md:text-xl" 
+        //       dangerouslySetInnerHTML={{ __html: data[index].summary }}
+        //     />
+        //     <div className="font-inner text-right font-medium mt-6 md:mt-8">
+        //       <div className="text-2xl">{data[index].name}</div>
+        //       <div className="mt-1 text-base">{data[index].title}</div>
+        //     </div>
+        //   </article>
+        // </div>
+
+        <div className="px-12 py-24 w-full h-full max-w-7xl overflow-y-scroll md:flex md:items-center md:overflow-hidden">
+          <div className='md:w-1/2'>
+            <div className="w-full h-full flex justify-center items-center">
+              <img src={data[index].image ? data[index].image.sizes.medium_large : placeholder} alt={data[index].name} className="w-full h-auto md:w-auto md:h-90vh" />
             </div>
-          </article>
+          </div>
+          <div className='md:w-1/2 mt-8 md:mt-0 md:ml-12'>
+            <article className="article font-inner text-white md:mt-20">
+              <div 
+                className="space-y-6 font-medium text-lg text-justify leading-[1.675] md:leading-[1.75] md:text-xl" 
+                dangerouslySetInnerHTML={{ __html: data[index].summary }}
+              />
+              <div className="font-inner text-right font-medium mt-6 md:mt-8">
+                <div className="text-2xl">{data[index].name}</div>
+                <div className="mt-1 text-base">{data[index].title}</div>
+              </div>
+            </article>
+          </div>
         </div>
       }
     </animated.div>
