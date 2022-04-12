@@ -492,11 +492,11 @@ const MainContent = props => {
                     <h2 className="text-2xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
                       首度跨足國際頂級商辦市場
                     </h2>
-                    <p className="mt-4 text-base font-inner font-normal text-gray-dark md:text-base">忠泰建設將首度開發頂級商辦市場，聯手安藤忠雄、MVRDV等國際大師，以匠心概念糅合當代設計，勢將打造台北新世代的黃金商業核心區。</p>
+                    <p className="mt-4 text-base font-inner font-normal text-gray-dark md:text-base">忠泰建設將全面開發頂級商辦市場，聯手安藤忠雄、MVRDV、隈研吾等國際大師，以匠心概念糅合當代設計，永續技術打造台北新世代的黃金商業核心區。</p>
                   </div>                  
-                  <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    {/* <p className="text-base font-inner font-normal text-gray-dark md:text-base">忠泰建設將首度開發頂級商辦市場，聯手安藤忠雄、MVRDV等國際大師，以匠心概念糅合當代設計，勢將打造台北新世代的黃金商業核心區。</p> */}
-                  </div>
+                  {/* <div className="summary mt-4 md:mt-0 md:basis-1/2">
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">忠泰建設將首度開發頂級商辦市場，聯手安藤忠雄、MVRDV等國際大師，以匠心概念糅合當代設計，勢將打造台北新世代的黃金商業核心區。</p>
+                  </div> */}
                 </div>
               </div>
 
@@ -515,7 +515,7 @@ const MainContent = props => {
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">首個台北以外的大型造鎮項目即將展開，實踐永續生活社區的明日想像。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">首個南臺灣30公頃的大型造鎮項目「大崗山球場開發案」即將展開，實踐永續生活社區的明日想像。</p>
                   </div>
                 </div>
               </div>
@@ -563,11 +563,11 @@ const MainContent = props => {
                 <div className="itemTitle mt-8 md:flex">
                   <div className="title md:basis-1/2">
                     <h2 className="text-2xl leading-snug font-bold text-gray-dark tracking-wide md:text-3xl md:leading-snug">
-                      全城焦點<br />安藤忠雄特展五月登場
+                      全城焦點<br />安藤忠雄特展六月登場
                     </h2>
                   </div>                  
                   <div className="summary mt-4 md:mt-0 md:basis-1/2">
-                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">《挑戰 - 安藤忠雄展》 全球巡展最終站首次來台展出，日本當代建築巨擘集半世紀的心血大成，將以 4 大主題 300 件展品精彩重現。</p>
+                    <p className="text-base font-inner font-normal text-gray-dark md:text-base">忠泰建築文化藝術基金會引進安藤忠雄特展六月正式登場——《挑戰 - 安藤忠雄展》 全球巡展最終站來台展出，日本當代建築巨擘集半世紀的心血大成，將以 4 大主題 300 件展品精彩重現。</p>
                   </div>
                 </div>
               </div>
