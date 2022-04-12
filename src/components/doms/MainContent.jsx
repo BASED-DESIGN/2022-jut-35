@@ -337,24 +337,6 @@ const MainContent = props => {
     }
   }, [videoEnded])
 
-  // const a = ["0", "0", "0", "0", "0"];
-
-  // const break1Ref = useRef()
-  // const break2Ref = useRef()
-  // const break3Ref = useRef()
-  // const newWay1Ref = useRef()
-  // const newWay2Ref = useRef()
-  // const newWay3Ref = useRef()
-  // const newWay4Ref = useRef()
-  // const newWay5Ref = useRef()
-
-  // useEffect(() => {
-  //   useStore.setState({ 
-  //     break1Ref, break2Ref, break3Ref,
-  //     newWay1Ref, newWay2Ref, newWay3Ref, newWay4Ref, newWay5Ref,
-  //   })
-  // }, [])
-
   return (
     <>
       <section className="relative intro">
