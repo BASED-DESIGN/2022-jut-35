@@ -3,6 +3,7 @@ import { Preload } from '@react-three/drei'
 import { useInView } from 'react-intersection-observer'
 import useStore from '@helpers/store'
 import { useState, useEffect, cloneElement } from 'react'
+import { ResizeObserver } from '@juggle/resize-observer';
 
 const LCanvas = ({ 
   children, 
@@ -28,6 +29,7 @@ const LCanvas = ({
       className={wrapperClassName}
     >    
       <Canvas
+        resize={{ polyfill: ResizeObserver }}
         // frameloop="demand"
         // frameloop="demand"
         mode='concurrent'
