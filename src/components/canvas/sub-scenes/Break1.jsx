@@ -18,7 +18,7 @@ const Content = props => {
           active={active}
           position={[
             width < breakpoint_mb ? -width * .2 : -width * .35,
-            width < breakpoint_mb ? -height * .28 : -height * .35,
+            width < breakpoint_mb ? -height * .28 : -height * .40,
             -100
           ]} 
           rotation={[-.2, -0.2, 0]}
@@ -29,7 +29,7 @@ const Content = props => {
           active={active}
           position={[
             width < breakpoint_mb ? -width * .4 : -width * .15,
-            -height * .26,
+            -height * .31,
             -100
           ]} 
           rotation={[-.4, -0.6, 0.2]}
@@ -40,11 +40,11 @@ const Content = props => {
           active={active}
           position={[
             width < breakpoint_mb ? width * .31 : width * .38,
-            width < breakpoint_mb ? -height * .15 : -height * 0.01,
+            width < breakpoint_mb ? -height * .15 : -height * 0.1,
             -100
           ]} 
           rotation={[-.0, -0.4, 0.1]}
-          scale={width < breakpoint_mb ? 2.5 : 1.15}
+          scale={width < breakpoint_mb ? 2.5 : 1}
         />
 
       </Suspense>

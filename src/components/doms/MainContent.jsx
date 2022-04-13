@@ -410,7 +410,7 @@ const MainContent = props => {
             <div className="newWayList space-y-40 md:space-y-80 xl:space-y-96">
 
               <div className="listItem relative fadeIn ml-8 md:ml-48">
-                <div className="absolute right-0 top-[calc(-30vw+6vw)] w-[30vw] h-[30vw]">
+                <div className="absolute z-20 right-0 top-[calc(-30vw+6vw)] w-[30vw] h-[30vw]">
                   <AnimeMan1 />
                 </div>
 
@@ -430,7 +430,7 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn mr-8 md:w-full md:mr-0">
-                <div className="absolute w-[30vw] h-[30vw] right-[-6vw] top-[-24vw] md:top-[-20.3vw] 2xl:top-[-21.9vw] md:right-[-9vw]">
+                <div className="absolute z-20 w-[30vw] h-[30vw] right-[-6vw] top-[-24vw] md:top-[-20.3vw] 2xl:top-[-21.9vw] md:right-[-9vw]">
                   <AnimeMan2 />
                 </div>
 
@@ -483,7 +483,7 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn ml-8 md:ml-48">
-                <div className="absolute" style={{ left: 'calc(-30vw + 10vw)', top: '-25vw', width: '30vw', height: '30vw' }}>
+                <div className="absolute z-20" style={{ left: 'calc(-30vw + 10vw)', top: '-25vw', width: '30vw', height: '30vw' }}>
                   <AnimeMan3 />
                 </div>
 
@@ -503,7 +503,7 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn mr-8 md:mr-24">
-                <div className="absolute" style={{ right: '-6vw', top: 'calc(-30vw + 6.2vw)', width: '30vw', height: '30vw' }}>
+                <div className="absolute z-20" style={{ right: '-6vw', top: 'calc(-30vw + 6.2vw)', width: '30vw', height: '30vw' }}>
                   <AnimeMan4 />
                 </div>
 
@@ -535,7 +535,7 @@ const MainContent = props => {
               </div>
 
               <div className="listItem relative fadeIn ml-8 md:ml-28 md:mx-28">
-                <div className="absolute z-0 left-[-3vw] top-[-24vw] w-[30vw] h-[30vw]">
+                <div className="absolute z-20 left-[-3vw] top-[-24vw] w-[30vw] h-[30vw]">
                   <AnimeMan5 />
                 </div>
 
