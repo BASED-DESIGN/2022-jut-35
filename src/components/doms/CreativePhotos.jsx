@@ -208,20 +208,20 @@ const ModalContent = props => {
 
   const imgTrans = useTransition(!switching, {
     ref: imgRef,
-    from: { opacity: 0, transform: 'translate3d(0, 10px, 0)' },
+    from: { opacity: 0, transform: 'translate3d(0, 64px, 0)' },
     enter: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
-    leave: { opacity: 0, transform: 'translate3d(0, 10px, 0)' },
-    config: { ...config.gentle, duration: 1000, easing: easings.easeInOutExpo },
+    leave: { opacity: 0, transform: 'translate3d(0, -64px, 0)' },
+    config: { ...config.gentle, duration: 1400, easing: easings.easeInOutExpo },
   })
 
   const textTrans = useTransition(!switching, {
     ref: textRef,
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: { ...config.gentle, duration: 800, easing: easings.easeInOutExpo },
+    from: { opacity: 0, transform: 'translate3d(0, -64px, 0)' },
+    enter: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+    leave: { opacity: 0, transform: 'translate3d(0, 64px, 0)' },
+    config: { ...config.gentle, duration: 1400, easing: easings.easeInOutExpo },
     onRest: () => {
-      if(cacheNewIndex!==null) {
+      if (cacheNewIndex!==null) {
         switchItem(cacheNewIndex)
         setSwitching(false)
       }
@@ -267,7 +267,7 @@ const ModalContent = props => {
         className="closeBtn absolute top-6 left-0 w-full text-center mix-blend-difference"
         onClick={close}
       >
-        <div className="text-2xl text-white cursor-pointer duration-400 ease-expo drop-shadow-lg scale-125 opacity-8 hover:opacity-10 md:text-4xl">✕</div>
+        <div className="text-2xl text-white cursor-pointer duration-400 ease-expo drop-shadow-lg scale-125 opacity-8 hover:opacity-10 md:text-2xl">✕</div>
       </div>
 
       <div 
