@@ -75,7 +75,7 @@ const Content = props => {
         >
           {/* 上左 */}
           <Man
-            url='/gltf/kv1-man1.gltf'
+            url='/gltf/K1-man1.gltf'
             active={active}
             delay={1950}
             position={[-width * .38, -height/2 + width * .25, -200]} 
@@ -84,7 +84,7 @@ const Content = props => {
           />
           {/* 上中 */}
           <Man
-            url='/gltf/kv1-man2.gltf'
+            url='/gltf/K1-man2.gltf'
             active={active}
             delay={1850}
             position={[-width * .3, -height/2 + width * .228, -200]} 
@@ -93,7 +93,7 @@ const Content = props => {
           />
           {/* 上右 */}
           <Man
-            url='/gltf/kv1-man3.gltf'
+            url='/gltf/K1-man4.gltf'
             active={active}
             delay={1700}
             position={[-width * .15, -height/2 + width * .17, -200]} 
@@ -102,7 +102,7 @@ const Content = props => {
           />
           {/* 下 */}
           <Man
-            url='/gltf/kv1-manx2.gltf'
+            url='/gltf/K1-man3.gltf'
             active={active}
             delay={1350}
             position={[-width * .32, -height/2 + width * .12, -100]} 

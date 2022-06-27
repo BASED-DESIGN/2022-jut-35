@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber'
 
 import Canvas from '@components/layout/Canvas'
 import Camera from '@components/layout/Camera'
-import Man from '@components/canvas/objects/AnimeMan'
+import AnimeMan from '@components/canvas/objects/AnimeMan'
 
 const Content = props => {
   const { active } = props
@@ -12,13 +12,11 @@ const Content = props => {
   return (
     <>
       <Suspense fallback={`loading assets`}>
-        <Man
+        <AnimeMan
           url="/gltf-anime/thumbs_up.gltf"
           active={active}
           position={[0, -height*.3, -100]} 
-          rotation={[0.2, 0.2, 0]} 
-          // scale={window.innerWidth < 600 ? 2 : .9}
-          // animeIndex={8}
+          rotation={[0.2, 0, 0]} 
         />
       </Suspense>
 

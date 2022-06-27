@@ -14,18 +14,18 @@ const Content = props => {
     <>
       <Suspense fallback={`loading assets`}>
         <Man
-          url='/gltf/kv2-man1.gltf'
+          url='/gltf/K2-man4.gltf'
           active={active}
           position={[
             width < breakpoint_mb ? -width * .2 : -width * .35,
             width < breakpoint_mb ? -height * .28 : -height * .40,
             -100
           ]} 
-          rotation={[-.2, -0.2, 0]}
+          rotation={[-.2, -0.6, 0]}
           scale={width < breakpoint_mb ? 2.3 : 1.25}
         />
         <Man
-          url='/gltf/kv2-man2.gltf'
+          url='/gltf/K2-man3.gltf'
           active={active}
           position={[
             width < breakpoint_mb ? -width * .4 : -width * .15,
@@ -36,7 +36,7 @@ const Content = props => {
           scale={width < breakpoint_mb ? 0 : 1.25}
         />
         <Man
-          url='/gltf/kv1-man2.gltf'
+          url='/gltf/K1-man2.gltf'
           active={active}
           position={[
             width < breakpoint_mb ? width * .31 : width * .38,

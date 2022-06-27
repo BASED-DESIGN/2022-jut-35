@@ -69,21 +69,21 @@ const Content = props => {
         >
           {/* 下左 */}
           <Man
-            url='/gltf/kv2-man1.gltf'
+            url='/gltf/K2-man4.gltf'
             active={active}
             position={[-width * .31, -height/2 + width * .23, -100]} 
-            rotation={[-.2, -0.2, 0]} 
+            rotation={[-.2, -0.6, 0]} 
           />
           {/* 下右 */}
           <Man
-            url='/gltf/kv2-man2.gltf'
+            url='/gltf/K2-man3.gltf'
             active={active}
             position={[-width * .2, -height/2 + width * .25, -100]}
             rotation={[-.4, -0.6, .2]}
           />
           {/* 上左 */}
           <Man
-            url='/gltf/kv2-man4.gltf'
+            url='/gltf/K2-man2.gltf'
             active={active}
             position={width<600 ? [-width * .17, -height/2 + width * .37, -500] : [width * .08, -height/2 + width * 0.44, -500]} 
             rotation={[-.2, -0.8, 0]} 
@@ -91,7 +91,7 @@ const Content = props => {
           />
           {/* 上右 */}
           <Man
-            url='/gltf/kv2-man3.gltf'
+            url='/gltf/K2-man1.gltf'
             active={active}
             position={width<600 ? [-width * .08, -height/2 + width * .395, -500] : [width * .16, -height/2 + width * 0.46, -500]} 
             rotation={[-.1, -.95, 0.4]} 

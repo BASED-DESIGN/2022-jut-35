@@ -14,21 +14,21 @@ const Content = props => {
     <>
       <Suspense fallback={`loading assets`}>
         <Man
-          url='/gltf/kv2-man1.gltf'
+          url='/gltf/K2-man1.gltf'
           active={active}
           position={[width < breakpoint_mb ? -width * .25 : -width * .2, -height*.38, -100]} 
           rotation={[-.3, -0.2, 0]} 
           scale={width < breakpoint_mb ? 2 : 1}
         />
         <Man
-          url='/gltf/kv2-man2.gltf'
+          url='/gltf/K2-man2.gltf'
           active={active}
           position={[width < breakpoint_mb ? -width * 0.05 : -width * .1, -height*.33, -100]} 
           rotation={[-.5, -0.5, 0]}
           scale={width < breakpoint_mb ? 2 : 1}
         />
         <Man
-          url='/gltf/kv2-man2.gltf'
+          url='/gltf/K2-man2.gltf'
           active={active}
           position={[width * .3, -height*.20, -100]} 
           rotation={[-.5, -0.5, 0]}

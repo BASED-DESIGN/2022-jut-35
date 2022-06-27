@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber'
 
 import Canvas from '@components/layout/Canvas'
 import Camera from '@components/layout/Camera'
-import Man from '@components/canvas/objects/AnimeMan'
+import AnimeMan from '@components/canvas/objects/AnimeMan'
 
 const Content = props => {
   const { active } = props
@@ -13,7 +13,7 @@ const Content = props => {
     <>
       <Suspense fallback={`loading assets`}>
 
-        <Man
+        <AnimeMan
           url="/gltf-anime/runing.gltf"
           active={active}
           position={[0, -height*.3, -100]}

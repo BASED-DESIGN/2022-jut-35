@@ -2,24 +2,10 @@ import { spliceIntoChunks } from '@helpers/utils'
 import { useEffect, useState } from 'react'
 import ReactDOM from "react-dom"
 import { animated, useTransition, config, easings, useSpringRef, useChain } from '@react-spring/web'
-
 import {
-  gsap,
   TimelineMax,
-  TweenMax,
-  TweenLite,
   Linear,
-  TextPlugin,
-  ThrowPropsPlugin,
-  EasePack,
-  CSSPlugin,
-  ScrollToPlugin,
-  Power1,
-  Power2,
-  Power4,
-  Expo,
 } from "gsap"
-// import { useRef } from 'react/cjs/react.production.min'
 
 const placeholder = 'placeholder.jpg'
 

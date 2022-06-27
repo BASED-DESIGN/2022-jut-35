@@ -15,10 +15,6 @@ const Home = ({ creativeList=[] }) => {
 
   useEffect(() => {
     useStore.setState({ creativeList })
-    // useGLTF.preload('/gltf-anime-2/man-animation.gltf')
-    // setTimeout(() => {
-    //   document.scrollingElement.scrollTop = 0
-    // }, 300)
   }, [])
   
   useEffect(() => {
