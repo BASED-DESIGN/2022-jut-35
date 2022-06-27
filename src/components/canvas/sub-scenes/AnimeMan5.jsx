@@ -13,7 +13,7 @@ const Content = props => {
     <>
       <Suspense fallback={`loading assets`}>
         <AnimeMan
-          url="/gltf-anime/thumbs_up.gltf"
+          url="/gltf-anime/thumbs_up_v2.gltf"
           active={active}
           position={[0, -height*.3, -100]} 
           rotation={[0.2, 0, 0]} 
