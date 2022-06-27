@@ -27,7 +27,7 @@ const AnimeMan = forwardRef((props, ref) => {
   const transition = useTransition(Object.keys(nodes).filter(key => key!=='Scene'), {
     // from: { scale: [1, 1, 1], rotation: [0, 0, 0] },
     from: { scale: [0, 0, 0], rotation: [0, 1, 0], position: [0, -30, 0] },
-    enter: ({ r=.5 }) => ({ scale: [.3, .3, .3], rotation: [0, 0, 0], position: [0, 0, 0] }),
+    enter: ({ r=.5 }) => ({ scale: [.25, .25, .25], rotation: [0, 0, 0], position: [0, 0, 0] }),
     leave: { scale: [0.1, 0.1, 0.1], rotation: [0, 0, 0] },
     config: { mass: 3, tension: 1000, friction: 100, duration: 200 },
     // trail: 100
