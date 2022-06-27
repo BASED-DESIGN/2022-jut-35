@@ -132,65 +132,66 @@ const CoverVideo = props => {
     });
 
     const coverStartButton = document.querySelector(".coverStartButton");
-    const coverVideo = document.querySelector(".coverVideo");
-    const videoFrame = coverVideo.querySelector(".videoFrame");
-    const video = videoFrame.querySelector(".video");
-    const skipVideoButton = videoFrame.querySelector(".skipVideoButton");
+    // const coverVideo = document.querySelector(".coverVideo");
+    // const videoFrame = coverVideo.querySelector(".videoFrame");
+    // const video = videoFrame.querySelector(".video");
+    // const skipVideoButton = videoFrame.querySelector(".skipVideoButton");
 
     coverStartButton.addEventListener("click", startPlayVideo, false);
     function startPlayVideo(){
-      setVideoState('start');
-      handlePlayButton();
+      // setVideoState('start');
+      // handlePlayButton();
+      setVideoState('ends');
     }
 
-    skipVideoButton.addEventListener("click", skipVideo, false);
-    function skipVideo(){
-      clearInterval(interval)
+    // skipVideoButton.addEventListener("click", skipVideo, false);
+    // function skipVideo(){
+    //   clearInterval(interval)
 
-      setTimeout(()=>{
-        setVideoState('ends');
-      }, 500);
-      video.pause();
-    }
+    //   setTimeout(()=>{
+    //     setVideoState('ends');
+    //   }, 500);
+    //   video.pause();
+    // }
 
-    video.addEventListener("click", handlePlayButton, false);
-    async function playVideo() {
-      try {
-        await video.play();
-        // coverVideo.classList.toggle("playing");
-        interval = setInterval(function() {
-          // console.log('interval called')
-          if (video.readyState > 0) {
-            // modal_video minutes = parseInt(video.duration / 60, 10);
-            // var seconds = video.duration % 60;
-            var duration = video.duration;
-            var currentTime = video.currentTime;
-            var currentPercentage = Math.floor((currentTime / duration) * 100);
-            // console.log(currentPercentage);
+    // video.addEventListener("click", handlePlayButton, false);
+    // async function playVideo() {
+    //   try {
+    //     await video.play();
+    //     // coverVideo.classList.toggle("playing");
+    //     interval = setInterval(function() {
+    //       // console.log('interval called')
+    //       if (video.readyState > 0) {
+    //         // modal_video minutes = parseInt(video.duration / 60, 10);
+    //         // var seconds = video.duration % 60;
+    //         var duration = video.duration;
+    //         var currentTime = video.currentTime;
+    //         var currentPercentage = Math.floor((currentTime / duration) * 100);
+    //         // console.log(currentPercentage);
             
-            progessRef.current && progessRef.current.setVideoCurrentState(currentPercentage + "%");
+    //         progessRef.current && progessRef.current.setVideoCurrentState(currentPercentage + "%");
 
-            if (parseInt(duration) - parseInt(currentTime) == 0) {
-              clearInterval(interval);
-              // coverVideo.classList.remove("playing");
-              setVideoState('ends');
-              // setTimeout(()=>{}, 1000);
-            }
-          }
-        }, 100);
-      } catch (err) {}
-    }
+    //         if (parseInt(duration) - parseInt(currentTime) == 0) {
+    //           clearInterval(interval);
+    //           // coverVideo.classList.remove("playing");
+    //           setVideoState('ends');
+    //           // setTimeout(()=>{}, 1000);
+    //         }
+    //       }
+    //     }, 100);
+    //   } catch (err) {}
+    // }
 
-    function handlePlayButton() {
-      if (video.paused) {
-        playVideo();
-        setVideoState('play');
-      } else {
-        video.pause();
-        setVideoState('pause');
-        // coverVideo.classList.remove("playing");
-      }
-    }
+    // function handlePlayButton() {
+    //   if (video.paused) {
+    //     playVideo();
+    //     setVideoState('play');
+    //   } else {
+    //     video.pause();
+    //     setVideoState('pause');
+    //     // coverVideo.classList.remove("playing");
+    //   }
+    // }
 
   }, []);
 
@@ -260,8 +261,7 @@ const CoverVideo = props => {
         </div>
       </div> */}
 
-      <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-expo duration-1000  bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
-        {/* <video autoPlay loop muted playsInline preload="auto" className="video w-full aspect-16/9"> */}
+      {/* <div className={`videoFrame absolute top-0 left-0 w-full h-full z-70 flex items-center justify-center ease-expo duration-1000  bg-black ${videoState == 'start' || videoState == 'play' || videoState == 'pause' ? '':'pointer-events-none opacity-0'}`}>
         <video preload="auto" className="video w-full aspect-16/9">
           <source src={video} type="video/mp4" />
         </video>
@@ -271,33 +271,34 @@ const CoverVideo = props => {
         <div className="skipVideoButton absolute bottom-9 z-10 flex items-center justify-center scale-90 ease-out duration-1000 opacity-50 hover:opacity-100">
           <div className="text-white text-sm text-center font-inner font-normal border border-white border-solid bg-black/20 backdrop-blur-sm px-3 py-1 cursor-pointer">SKIP</div>
         </div>
-      </div>
+      </div> */}
+
     </div>
   )
 }
 
-const Progess = forwardRef((props, ref) => {
-  const [videoCurrentState, setVideoCurrentState] = useState(0)
+// const Progess = forwardRef((props, ref) => {
+//   const [videoCurrentState, setVideoCurrentState] = useState(0)
 
-  useImperativeHandle(ref, () => ({
-    setVideoCurrentState(val) {
-      setVideoCurrentState(val)
-    }
-  }))
+//   useImperativeHandle(ref, () => ({
+//     setVideoCurrentState(val) {
+//       setVideoCurrentState(val)
+//     }
+//   }))
 
-  return (
-    <div className="videoProgress absolute bottom-4 z-0 w-full px-4 mix-blend-difference">
-      <div 
-        className="bar bg-white/70 ease-linear duration-[1000ms]" 
-        style={{height: '1px', width: videoCurrentState}}
-      />
-      <div 
-        className="w-full bg-white/30" 
-        style={{height: '1px', transform: 'translateY(-1px)'}} 
-      />
-    </div>
-  )
-})
-Progess.displayName = 'Progess'
+//   return (
+//     <div className="videoProgress absolute bottom-4 z-0 w-full px-4 mix-blend-difference">
+//       <div 
+//         className="bar bg-white/70 ease-linear duration-[1000ms]" 
+//         style={{height: '1px', width: videoCurrentState}}
+//       />
+//       <div 
+//         className="w-full bg-white/30" 
+//         style={{height: '1px', transform: 'translateY(-1px)'}} 
+//       />
+//     </div>
+//   )
+// })
+// Progess.displayName = 'Progess'
 
 export default CoverVideo
